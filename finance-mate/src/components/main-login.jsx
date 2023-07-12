@@ -1,39 +1,25 @@
 import React from 'react';
-import { Button, TextField, FormControl, Grid, Box } from '@mui/material';
+import { Button, TextField, Stack } from '@mui/material';
 
 function LoginMain() {
   return (
-    <Box
-    //Can Add this to a CSS file
-      display="flex"
-      flexDirection="column"
+    <Stack
+      direction="column"
       justifyContent="center"
       alignItems="center"
       minHeight="100vh"
+      spacing={2}
     >
-      <FormControl>
-        <Box textAlign="center">
-          <Grid container spacing={2} alignItems="center">
-            <Grid item xs={12}>
-              <TextField label="Username" variant="outlined" />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField label="Password" type="password" variant="outlined" />
-            </Grid>
-            <Grid item xs={12}>
-              <Button variant="contained" color="primary">
-                LOG IN
-              </Button>
-            </Grid>
-            <Grid item xs={12}>
-              <Button variant="contained" color="primary">
-                Sign UP
-              </Button>
-            </Grid>
-          </Grid>
-        </Box>
-      </FormControl>
-    </Box>
+      <h1>Finance Mate</h1>
+      <TextField label="Username" variant="outlined" />
+      <TextField label="Password" type="password" variant="outlined" />
+      <Button variant="contained" color="primary">
+        LOG IN
+      </Button>
+      <Button variant="contained" color="primary">
+        Sign UP
+      </Button>
+    </Stack>
   );
 }
 
