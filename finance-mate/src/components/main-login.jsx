@@ -10,6 +10,7 @@ import axios from "axios"
 function LoginMain(props) {
   const [username,setUsername]=useState();
   const [password,setPassword]=useState();
+  const navigate=useNavigate();
 
   const handleUsername=(event)=>{
     setUsername(event.target.value)
@@ -19,14 +20,14 @@ function LoginMain(props) {
     setPassword(event.target.value)
   }
 
-
-
   const handleLocalLogin = async () => {
     const signUpLink="http://localhost:8080/api/login"
     const reqBody={username,password}
     try {
       const logininfo=await axios.post(signUpLink,reqBody)
-      alert (username+"logged in")
+      alert (username+" logged in")
+      navigate(`/payments`)
+      console.log(logininfo.data)
     } catch (error) {
       alert(error)
     }
