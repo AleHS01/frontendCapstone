@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Button, TextField, Stack } from '@mui/material';
-import { BrowserRouter as Link } from 'react-router-dom';
+//import { BrowserRouter as Link } from 'react-router-dom';
 import GoogleButton from 'react-google-button'
 import Popup from 'reactjs-popup';
 import { useNavigate } from 'react-router-dom';
@@ -10,6 +10,7 @@ import axios from "axios"
 function LoginMain(props) {
   const [username,setUsername]=useState();
   const [password,setPassword]=useState();
+  const [userid, setUserid] = useState();
   const navigate=useNavigate();
 
   const handleUsername=(event)=>{
@@ -25,9 +26,12 @@ function LoginMain(props) {
     const reqBody={username,password}
     try {
       const logininfo=await axios.post(signUpLink,reqBody)
+      console.log(logininfo.data.id)
       alert (username+" logged in")
-      navigate(`/payments`)
-      console.log(logininfo.data)
+      setUserid(logininfo.data.id)
+      // console.log(logininfo.data.id)
+      // navigate(`/payments`)
+      // console.log(logininfo.data)
     } catch (error) {
       alert(error)
     }
