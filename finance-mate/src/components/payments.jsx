@@ -1,8 +1,15 @@
 import react from 'react'
 import { TextField, Button,Grid } from '@mui/material';
 import NavBar from './nav-bar'
+import { useLocation } from 'react-router-dom';
+import { DisabledByDefault } from '@mui/icons-material';
+import PlaidLink from "react-plaid-link";
+
 
 const CreditCardForm = () => {
+    const location=useLocation();
+    const user=location.state
+    console.log(user)
   const handleSubmit = (event) => {
     event.preventDefault();
     // Add your form submission logic here
@@ -10,40 +17,10 @@ const CreditCardForm = () => {
 
   return (
     <div>
-    <NavBar></NavBar>
-        <form onSubmit={handleSubmit}>
-        <TextField
-            label="Cardholder Name"
-            variant="outlined"
-            fullWidth
-            margin="normal"
-            required
-            />
-        <TextField
-            label="Card Number"
-            variant="outlined"
-            fullWidth
-            margin="normal"
-            required
-            />
-        <TextField
-            label="Expiration Date"
-            variant="outlined"
-            fullWidth
-            margin="normal"
-            required
-            />
-        <TextField
-            label="CVV"
-            variant="outlined"
-            fullWidth
-            margin="normal"
-            required
-            />
-        <Button type="submit" variant="contained" color="primary">
-            Submit
-        </Button>
-        </form> 
+        <NavBar></NavBar>
+        <h1>Welcome {user.username}!!!</h1>
+        
+
     </div>
   );
 };

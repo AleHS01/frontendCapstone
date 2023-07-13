@@ -25,9 +25,9 @@ function LoginMain(props) {
     const reqBody={username,password}
     try {
       const logininfo=await axios.post(signUpLink,reqBody)
-      alert (username+" logged in")
-      navigate(`/payments`)
-      console.log(logininfo.data)
+      // alert (username+" logged in")
+      console.log(logininfo.data.user)
+      navigate(`/payments`,{state:logininfo.data.user})
     } catch (error) {
       alert(error)
     }
