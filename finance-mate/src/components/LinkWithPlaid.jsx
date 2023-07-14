@@ -104,7 +104,7 @@ const LinkPlaid = () => {
     async function getToken() {
       try {
         const info = await axios.post(
-          `http://localhost:8080/api/plaid/create_link_token/3`
+          `http://localhost:8080/api/plaid/create_link_token`
         );
         setToken(info.data);
         console.log("Info call in getToken():", info);
