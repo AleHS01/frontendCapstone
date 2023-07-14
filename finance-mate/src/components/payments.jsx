@@ -11,10 +11,34 @@ const CreditCardForm = () => {
   const location = useLocation();
   const user = location.state;
   console.log(user);
+
+  
+  
+  
+//     const location=useLocation();
+//     const user=location.state
+//     console.log(user)
+
   const handleSubmit = (event) => {
     event.preventDefault();
     // Add your form submission logic here
   };
+  
+  // Get the URL fragment identifier
+  const hash = window.location.hash;
+
+  // Parse the parameters from the fragment identifier
+  const params = new URLSearchParams(hash.slice(1));
+
+  // Get the access token
+  const accessToken = params.get('access_token');
+
+  const fetchingUserGoogleData=()=>{
+    // https://oauth2.example.com/callback#access_token=4/P7q7W91&token_type=Bearer&expires_in=3600
+  }
+
+
+  if(hash) console.log("Hash==> "+hash)
 
   const handleCLick = async () => {
     try {
