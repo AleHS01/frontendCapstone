@@ -1,22 +1,27 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-
-import LoginMain from "./components/main-login.jsx";
-
-import Payments from './components/payments.jsx';
-
-import LinkPlaid from './components/LinkWithPlaid.jsx';
-
+import "./App.css";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Home from "./components/Home";
+import Login from "./components/Login";
+import SignUp from "./components/SignUp";
+import Logout from "./components/LogOut";
+import User from "./components/User";
+import LinkPlaid from "./components/LinkPlaid";
+import Dashboard from "./components/Dashboard";
 
 function App() {
   return (
-    // <LoginMain></LoginMain>
     <Router>
-      <Routes>
-        <Route path="/" element={<LoginMain></LoginMain>}></Route>
-        <Route path="/payments" element={<Payments></Payments>}></Route>
-        <Route path = "/linkplaid" element = {<LinkPlaid></LinkPlaid>}></Route>
-      </Routes>
+      <div className="App">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/logout" element={<Logout />} />
+          <Route path="/user" element={<User />} />
+          <Route path="/link_plaid" element={<LinkPlaid />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+        </Routes>
+      </div>
     </Router>
   );
 }
