@@ -34,10 +34,10 @@ const LinkPlaid = () => {
       // Select Account view is enabled.
       const response = await axios.post('http://localhost:8080/api/plaid/exchange_public_token', {
         public_token: public_token
-      });
+      }, {withCredentials: true});
   
       // Using Redux to store access token into state
-      dispatch(getAccessTokenThunk(response.data.access_token));
+      await dispatch(getAccessTokenThunk(response.data.access_token));
     },
     onExit: (err, metadata) => {
       // handle the case when your user exits Link
