@@ -25,9 +25,11 @@ const SignUp = () => {
       );
       console.log("Response: ", response);
 
+      //need to dispatch Login, to login the user as soon as submit the data
+
       setPassword("");
       setUsername("");
-      navigate("/user");
+      navigate("/expense-form");
     } catch (error) {
       console.log(error);
     }
