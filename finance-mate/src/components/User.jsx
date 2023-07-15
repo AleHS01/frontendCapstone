@@ -45,6 +45,7 @@ import { fetchUserThunk } from "../redux/user/user.action";
 import { logoutUserThunk } from "../redux/user/user.action";
 import { Link } from "react-router-dom";
 import LinkPlaid from "./LinkPlaid";
+import Accounts from "./GetAccounts";
 import SideBar from "./side-bar";
 
 const User = () => {
@@ -68,14 +69,28 @@ const User = () => {
   }, [user]);
 
   return (
-    <div className="dashboard">
-      <SideBar></SideBar>
-      <div className="content">
-        <h1>Dashboard</h1>
-        <h2>Welcome {user.username}!!!</h2>
-        <p>Balance: $5000</p>
-
-      </div>
+    <div>
+      <Typography variant="h1">User Goes Here</Typography>
+      <Button variant="contained" onClick={getUser}>
+        Get User Data
+      </Button>
+      <Link to="/">Go Home</Link>
+      {user ? (
+        <div>
+          <Typography variant="h1">Welcome {user.username}!!!</Typography>
+          <Typography variant="h2">Email: {user.email}</Typography>
+          <Link to="/link_plaid">
+            <button>Connect Bank Account</button>
+          </Link>
+        </div>
+      ) : (
+        <div>
+          <Typography variant="body1">Nothing to see here</Typography>
+          <Button variant="contained" onClick={handleLogout}>
+            Log Out
+          </Button>
+        </div>
+      )}
     </div>
   );
 };

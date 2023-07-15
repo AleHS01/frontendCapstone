@@ -30,10 +30,18 @@ const Accounts = () => {
 
 return (
     <div>
-      <h1>Accounts</h1>
-      {accounts.map((account) => (
-        <div key={account.id}>{account.name}</div>
-      ))}
+      <div>
+        {accounts.map((account, index) => (
+          <div key={index}>
+            <h3>Account Name: {account.name}</h3>
+            <p>Subtype: {account.subtype}</p>
+            <p>Available Balance: {account.balances.available}</p>
+            <p>Current Balance: {account.balances.current}</p>
+            <hr />
+          </div>
+        ))}
+      </div>
+
     </div>
   );
 };
