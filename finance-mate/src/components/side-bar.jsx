@@ -39,7 +39,7 @@ function SideBar() {
     <button className="sidebar-button" onClick={handleLogout}>Sign Out</button>
     <button className="sidebar-button" onClick={handleAccount}>Account</button>
     <button className="sidebar-button" onClick={handleLinkPlaid}>Add Payment</button>
-    <button className="sidebar-button" onClick={handleBankAccount}>Accounts</button>
+    <button className="sidebar-button" onClick={handleBankAccount}>Bank Accounts</button>
     <button className="sidebar-button" onClick={handleFinaceForm}>Finance Form</button>
   </div>
   );

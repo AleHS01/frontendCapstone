@@ -32,7 +32,8 @@ const Accounts = () => {
 return (
 
     <div className="dashboard">
-      <SideBar></SideBar>
+        <SideBar></SideBar>
+      <div className="content">
       {accounts.map((account, index) => (
         <div key={index}>
           <h3>Account Name: {account.name}</h3>
@@ -42,6 +43,8 @@ return (
           <hr />
         </div>
       ))}
+
+      </div>
     </div>
 
 
