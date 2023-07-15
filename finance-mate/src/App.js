@@ -9,12 +9,15 @@ import LinkPlaid from "./components/LinkPlaid";
 import Dashboard from "./components/Dashboard";
 import ExpensesForm from "./components/ExpensesForm";
 import Accounts from "./components/GetAccounts";
+import SideBar from "./components/side-bar";
+
 
 function App() {
   return (
     <Router>
       <div className="App">
         <Routes>
+          
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
@@ -28,6 +31,7 @@ function App() {
                                            
                                            
           <Route path = "/accounts" element = {<Accounts></Accounts>}></Route>
+          <Route path = "/bank_accounts" element = {<Accounts></Accounts>}></Route>
 
           <Route path="/dashboard" element={<Dashboard />} />
 

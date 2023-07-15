@@ -72,12 +72,11 @@ const LinkPlaid = () => {
   return (
     <div className="dashboard">
       <SideBar></SideBar>
-      <h1>You are inside Link Plaid</h1>
-      {/* <PlaidLinkOnSuccess onSuccess={onSuccess} />
-      <PlaidLinkOnEvent onEvent={onEvent} />
-      <PlaidLinkOnExit onExit={onExit} /> */}
-      <button onClick={popUp} disabled={!ready}> Link with Plaid</button>
-      {/* <Link to = "/accounts">View Bank Account Details</Link> */}
+      <div className="content">
+        <button onClick={popUp} disabled={!ready}> Link with Plaid</button>
+      </div>
+      
+
     </div>
   );
 };
