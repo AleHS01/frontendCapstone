@@ -21,7 +21,14 @@ function App() {
           <Route path="/logout" element={<Logout />} />
           <Route path="/user" element={<User />} />
           <Route path="/link_plaid" element={<LinkPlaid />} />
+
           <Route path="/accounts" element={<Accounts></Accounts>}></Route>
+
+                                           
+                                           
+                                           
+          <Route path = "/accounts" element = {<Accounts></Accounts>}></Route>
+
           <Route path="/dashboard" element={<Dashboard />} />
 
           <Route path="/expense-form" element={<ExpensesForm />} />
