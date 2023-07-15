@@ -7,7 +7,11 @@ import Logout from "./components/LogOut";
 import User from "./components/User";
 import LinkPlaid from "./components/LinkPlaid";
 import Dashboard from "./components/Dashboard";
+<<<<<<< HEAD
 import ExpensesForm from "./components/ExpensesForm";
+=======
+import Accounts from "./components/GetAccounts";
+>>>>>>> 281b9efc575d2f3a30e8b70940f74ae7bdb5ba5b
 
 function App() {
   return (
@@ -20,6 +24,7 @@ function App() {
           <Route path="/logout" element={<Logout />} />
           <Route path="/user" element={<User />} />
           <Route path="/link_plaid" element={<LinkPlaid />} />
+          <Route path = "/accounts" element = {<Accounts></Accounts>}></Route>
           <Route path="/dashboard" element={<Dashboard />} />
 
           <Route path="/expense-form" element={<ExpensesForm />} />

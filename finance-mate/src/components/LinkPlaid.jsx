@@ -4,10 +4,12 @@ import {usePlaidLink, PlaidLinkOptions, PlaidLinkOnSuccess} from "react-plaid-li
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { getAccessTokenThunk } from "../redux/user/user.action";
+import { getAccountsThunk } from "../redux/user/user.action";
 
 const LinkPlaid = () => {
   const [link_token, setLinkToken] = useState("");
   const user = useSelector((state) => state.user.user);
+  console.log(user)
   const dispatch = useDispatch();
 
   async function getLinkToken() {
@@ -52,12 +54,19 @@ const LinkPlaid = () => {
   };
   
   const {open, exit, ready} = usePlaidLink(config)
-  
-
   const popUp = () => {
     open()
-    
   }
+
+ /*----------------------------------------------------------------------------------------------*/ 
+  // const access_token = user.plaidAccessToken
+  // try {
+  //   const accounts = dispatch(getAccountsThunk(access_token))
+  //   console.log(accounts)
+  // } catch (error) {
+  //   console.log(error)
+  // }
+  
   return (
     <div>
       <h1>You are inside Link PLaid</h1>
