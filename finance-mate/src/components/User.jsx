@@ -45,6 +45,7 @@ import { fetchUserThunk } from "../redux/user/user.action";
 import { logoutUserThunk } from "../redux/user/user.action";
 import { Link } from "react-router-dom";
 import LinkPlaid from "./LinkPlaid";
+import Accounts from "./GetAccounts";
 
 const User = () => {
   const navigate = useNavigate();
@@ -98,6 +99,9 @@ const User = () => {
           </Button>
         </div>
       )}
+      <div> 
+      <Link to = "/accounts">View Bank Account Details</Link>
+      </div>
     </div>
   );
 };

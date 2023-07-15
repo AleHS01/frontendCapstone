@@ -5,6 +5,7 @@ import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { getAccessTokenThunk } from "../redux/user/user.action";
 import { getAccountsThunk } from "../redux/user/user.action";
+import Accounts from "./GetAccounts";
 
 const LinkPlaid = () => {
   const [link_token, setLinkToken] = useState("");
@@ -74,6 +75,7 @@ const LinkPlaid = () => {
       <PlaidLinkOnEvent onEvent={onEvent} />
       <PlaidLinkOnExit onExit={onExit} /> */}
       <button onClick={popUp} disabled={!ready}> Link with Plaid</button>
+      {/* <Link to = "/accounts">View Bank Account Details</Link> */}
     </div>
   );
 };
