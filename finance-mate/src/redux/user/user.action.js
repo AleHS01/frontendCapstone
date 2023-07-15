@@ -96,3 +96,21 @@ export const getAccessTokenThunk = (public_token) => {
     }
   };
 };
+
+export const getAccountsThunk = (access_token) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.post(
+        "http://localhost:8080/api/plaid/accounts",{
+          access_token
+        }
+      )
+      const accounts = response.data.accounts
+      dispatch(getAccounts(accounts))
+    } catch (error) {
+      console.log(error)
+      
+    }
+
+  }
+}

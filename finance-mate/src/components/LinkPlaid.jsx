@@ -52,12 +52,11 @@ const LinkPlaid = () => {
   };
   
   const {open, exit, ready} = usePlaidLink(config)
-  
-
   const popUp = () => {
     open()
-    
   }
+
+  
   return (
     <div>
       <h1>You are inside Link PLaid</h1>
