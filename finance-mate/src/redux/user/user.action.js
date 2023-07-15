@@ -81,7 +81,6 @@ export const loginUserThunk = (credentials) => {
 export const getAccessTokenThunk = (public_token) => {
   return async (dispatch) => {
     try {
-      console.log("Public Token in Thunk: ", public_token);
       const response = await axios.post(
         "http://localhost:8080/api/plaid/exchange_public_token",
         { public_token: public_token },
