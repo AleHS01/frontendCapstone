@@ -116,6 +116,7 @@ export const getAccountsThunk = () => {
       console.log("User bank account types:", accounts);
       dispatch(getAccounts(accounts));
     } catch (error) {
+
       console.log(error);
     }
   };

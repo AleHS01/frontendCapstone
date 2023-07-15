@@ -1,3 +1,30 @@
-body{
-    background-color: gray;
-}
+.dashboard {
+    display: flex;
+    min-height: 100vh; /* Set the minimum height of the dashboard to the full viewport height */
+  }
+  
+  .sidebar {
+    width: 200px;
+    background-color: #f2f2f2;
+    padding: 20px;
+  }
+  
+  .sidebar-button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: none;
+    background-color: #ddd;
+    color: #333;
+    font-size: 16px;
+    text-align: left;
+    cursor: pointer;
+  }
+  
+  .content {
+    flex: 1;
+    padding: 20px;
+    background-color: #fff;
+  }
+  

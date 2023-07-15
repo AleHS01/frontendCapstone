@@ -9,19 +9,30 @@ import LinkPlaid from "./components/LinkPlaid";
 import Dashboard from "./components/Dashboard";
 import ExpensesForm from "./components/ExpensesForm";
 import Accounts from "./components/GetAccounts";
+import SideBar from "./components/side-bar";
+
 
 function App() {
   return (
     <Router>
       <div className="App">
         <Routes>
+          
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/logout" element={<Logout />} />
           <Route path="/user" element={<User />} />
           <Route path="/link_plaid" element={<LinkPlaid />} />
+
           <Route path="/accounts" element={<Accounts></Accounts>}></Route>
+
+                                           
+                                           
+                                           
+          <Route path = "/accounts" element = {<Accounts></Accounts>}></Route>
+          <Route path = "/bank_accounts" element = {<Accounts></Accounts>}></Route>
+
           <Route path="/dashboard" element={<Dashboard />} />
 
           <Route path="/expense-form" element={<ExpensesForm />} />

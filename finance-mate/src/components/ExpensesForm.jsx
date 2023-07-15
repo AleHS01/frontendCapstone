@@ -9,6 +9,7 @@ import {
   Tooltip,
   IconButton,
 } from "@mui/material";
+import SideBar from "./side-bar";
 // import DeleteIcon from "@mui/icons-material/Delete";
 
 const ExpensesForm = () => {
@@ -109,29 +110,32 @@ const ExpensesForm = () => {
   );
 
   return (
-    <div>
-      <Typography variant="h1" style={{ marginBottom: "2rem" }}>
-        Finance Form
-      </Typography>
-      <form onSubmit={handleSubmit}>
-        {expenses.map(renderExpense)}
-        {expenses.length >= 10 && (
-          <Typography color="error" variant="caption">
-            Expense limit reached. You cannot add more than 10 expenses.
-          </Typography>
-        )}
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={addExpense}
-          disabled={expenses.length >= 10}
-        >
-          Add Expense
-        </Button>
-        <Button type="submit" variant="contained" color="primary">
-          Submit
-        </Button>
-      </form>
+    <div className="dashboard">
+      <SideBar></SideBar>
+      <div className="content">
+        <Typography variant="h1" style={{ marginBottom: "2rem" }}>
+          Finance Form
+        </Typography>
+        <form onSubmit={handleSubmit}>
+          {expenses.map(renderExpense)}
+          {expenses.length >= 10 && (
+            <Typography color="error" variant="caption">
+              Expense limit reached. You cannot add more than 10 expenses.
+            </Typography>
+          )}
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={addExpense}
+            disabled={expenses.length >= 10}
+          >
+            Add Expense
+          </Button>
+          <Button type="submit" variant="contained" color="primary">
+            Submit
+          </Button>
+        </form>
+      </div>
     </div>
   );
 };
