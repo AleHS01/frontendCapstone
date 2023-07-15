@@ -63,7 +63,7 @@ const User = () => {
 
   const getUser = async () => {
     try {
-      await dispatch(fetchUserThunk());
+      dispatch(fetchUserThunk());
     } catch (error) {
       console.log(error);
     }

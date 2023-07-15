@@ -7,6 +7,7 @@ import Logout from "./components/LogOut";
 import User from "./components/User";
 import LinkPlaid from "./components/LinkPlaid";
 import Dashboard from "./components/Dashboard";
+import Accounts from "./components/GetAccounts";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/logout" element={<Logout />} />
           <Route path="/user" element={<User />} />
           <Route path="/link_plaid" element={<LinkPlaid />} />
+          <Route path = "/accounts" element = {<Accounts></Accounts>}></Route>
           <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
       </div>

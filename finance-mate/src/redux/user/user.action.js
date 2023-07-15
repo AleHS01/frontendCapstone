@@ -23,22 +23,27 @@ export const getAccessToken = (access_token, item_id) => ({
   },
 });
 
+export const getAccounts = (accounts) => ({
+  type: userActionTypes.GET_ACCOUNT,
+  payload: accounts
+})
+
 export const fetchUserThunk = () => {
   console.log("got to the thunk");
   return async (dispatch, getState) => {
     // Check if the user is logged in
-    const isLoggedIn = getState().user.user !== null;
-    if (!isLoggedIn) {
-      console.log("not logged :(");
-      return;
-    }
-
+    
     try {
       const response = await axios.get("http://localhost:8080/api/user", {
         withCredentials: true,
       });
       dispatch(fetchUser(response.data));
       console.log("Response: ", response);
+      const isLoggedIn = getState().user.user !== null;
+      if (!isLoggedIn) {
+        console.log("not logged :(");
+        return;
+      }
     } catch (error) {
       console.log(error);
     }
@@ -97,15 +102,18 @@ export const getAccessTokenThunk = (public_token) => {
   };
 };
 
-export const getAccountsThunk = (access_token) => {
+export const getAccountsThunk = () => {
   return async (dispatch) => {
     try {
       const response = await axios.post(
         "http://localhost:8080/api/plaid/accounts",{
-          access_token
+          
+        }, {
+          withCredentials: true
         }
       )
       const accounts = response.data.accounts
+      console.log("User bank account types:", accounts)
       dispatch(getAccounts(accounts))
     } catch (error) {
       console.log(error)
