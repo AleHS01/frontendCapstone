@@ -5,6 +5,7 @@ import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { getAccessTokenThunk } from "../redux/user/user.action";
 import { getAccountsThunk } from "../redux/user/user.action";
+import SideBar from "./side-bar";
 
 const LinkPlaid = () => {
   const [link_token, setLinkToken] = useState("");
@@ -68,8 +69,9 @@ const LinkPlaid = () => {
   // }
   
   return (
-    <div>
-      <h1>You are inside Link PLaid</h1>
+    <div className="dashboard">
+      <SideBar></SideBar>
+      <h1>You are inside Link Plaid</h1>
       {/* <PlaidLinkOnSuccess onSuccess={onSuccess} />
       <PlaidLinkOnEvent onEvent={onEvent} />
       <PlaidLinkOnExit onExit={onExit} /> */}

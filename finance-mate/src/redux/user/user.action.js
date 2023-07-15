@@ -117,7 +117,6 @@ export const getAccountsThunk = () => {
       dispatch(getAccounts(accounts))
     } catch (error) {
       console.log(error)
-      
     }
 
   }
