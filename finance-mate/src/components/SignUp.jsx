@@ -3,12 +3,15 @@ import { Link } from "react-router-dom";
 import { Button, TextField } from "@mui/material";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { loginUserThunk } from "../redux/user/user.action";
 
 const SignUp = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const signUp = async () => {
     try {
@@ -24,7 +27,7 @@ const SignUp = () => {
         }
       );
       console.log("Response: ", response);
-
+      await dispatch(loginUserThunk({ username, password }));
       //need to dispatch Login, to login the user as soon as submit the data
 
       setPassword("");
