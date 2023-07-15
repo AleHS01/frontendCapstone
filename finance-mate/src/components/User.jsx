@@ -67,17 +67,19 @@ const User = () => {
 
   const getUser = async () => {
     try {
-      dispatch(fetchUserThunk());
+      await dispatch(fetchUserThunk());
     } catch (error) {
       console.log(error);
     }
+
+    console.log("This is the return user:", user);
   };
 
   useEffect(() => {
     if (!user) {
       getUser();
     }
-  }, [user]);
+  }, []);
 
   return (
     <div className="dashboard">
