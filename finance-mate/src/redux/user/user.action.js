@@ -25,19 +25,23 @@ export const getAccessToken = (access_token, item_id) => ({
 
 export const getAccounts = (accounts) => ({
   type: userActionTypes.GET_ACCOUNT,
-  payload: accounts
-})
+  payload: accounts,
+});
 
 export const fetchUserThunk = () => {
   console.log("got to the thunk");
   return async (dispatch, getState) => {
     // Check if the user is logged in
-    
+
     try {
-      const response = await axios.get("http://localhost:8080/api/user", {
-        withCredentials: true,
-      });
-      dispatch(fetchUser(response.data));
+      const response = await axios.get(
+        "http://localhost:8080/api/user",
+        {},
+        {
+          withCredentials: true,
+        }
+      );
+      await dispatch(fetchUser(response.data));
       console.log("Response: ", response);
       const isLoggedIn = getState().user.user !== null;
       if (!isLoggedIn) {
@@ -53,7 +57,11 @@ export const fetchUserThunk = () => {
 export const logoutUserThunk = () => {
   return async (dispatch) => {
     try {
-      const response = await axios.post("http://localhost:8080/api/logout");
+      const response = await axios.post(
+        "http://localhost:8080/api/logout",
+        {},
+        { withCredentials: true }
+      );
       dispatch(logoutUser());
       console.log(response.data); // Assuming the backend sends a "Logout successful" message
       // Add any additional logic after successful logout if needed
@@ -73,8 +81,8 @@ export const loginUserThunk = (credentials) => {
           withCredentials: true,
         }
       );
-      const user = response.data; // Assuming the login API response contains the user data
-      console.log("User\n", response.data);
+      const user = await response.data; // Assuming the login API response contains the user data
+      console.log("User\n", await response.data);
       dispatch(loginSuccess(user));
       // Additional logic after successful login
     } catch (error) {
@@ -106,18 +114,17 @@ export const getAccountsThunk = () => {
   return async (dispatch) => {
     try {
       const response = await axios.post(
-        "http://localhost:8080/api/plaid/accounts",{
-          
-        }, {
-          withCredentials: true
+        "http://localhost:8080/api/plaid/accounts",
+        {},
+        {
+          withCredentials: true,
         }
-      )
-      const accounts = response.data.accounts
-      console.log("User bank account types:", accounts)
-      dispatch(getAccounts(accounts))
+      );
+      const accounts = response.data.accounts;
+      console.log("User bank account types:", accounts);
+      dispatch(getAccounts(accounts));
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-
-  }
-}
+  };
+};

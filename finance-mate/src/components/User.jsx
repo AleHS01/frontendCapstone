@@ -39,13 +39,13 @@
 
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { Button, Typography } from "@mui/material";
+// import { Button, Typography } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUserThunk } from "../redux/user/user.action";
 import { logoutUserThunk } from "../redux/user/user.action";
-import { Link } from "react-router-dom";
-import LinkPlaid from "./LinkPlaid";
-import Accounts from "./GetAccounts";
+// import { Link } from "react-router-dom";
+// import LinkPlaid from "./LinkPlaid";
+// import Accounts from "./GetAccounts";
 import SideBar from "./side-bar";
 
 const User = () => {
@@ -65,33 +65,43 @@ const User = () => {
     }
   };
 
-  const getUser = async () => {
-    try {
-      dispatch(fetchUserThunk());
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // const getUser = async () => {
+  //   try {
+  //     await dispatch(fetchUserThunk());
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
 
-  useEffect(() => {
-    if (!user) {
-      getUser();
-    }
-  }, [user]);
+  //   console.log("This is the return user:", user);
+  // };
+
+  // useEffect(() => {
+  //   const getUser = async () => {
+  //     try {
+  //       await dispatch(fetchUserThunk());
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+
+  //     console.log("This is the return user:", user);
+  //   };
+
+  //   getUser();
+  // }, []);
 
   return (
     <div className="dashboard">
       <SideBar></SideBar>
       <div className="content">
         <h1>Account</h1>
-        <h2>Welcome {user.username}!!</h2>
+        {user && user.username ? (
+          <h2>Welcome {user.username}!!</h2>
+        ) : (
+          <h2>Loading User data...</h2>
+        )}
       </div>
     </div>
   );
 };
 
-
 export default User;
-
-
-

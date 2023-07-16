@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import {
   Button,
   TextField,
@@ -12,20 +14,29 @@ import SideBar from "./side-bar";
 
 const ExpensesForm = () => {
   const [expenses, setExpenses] = useState([
-    { name: "Monthly Income", value: "" },
-    { name: "Car Insurance", value: "" },
+    { expense_name: "Monthly Income", expense_value: "" },
+    { expense_name: "Car Insurance", expense_value: "" },
     // Other default expenses
   ]);
+  const navigate = useNavigate();
 
+  // const handleExpenseChange = (index, field, value) => {
+  //   const updatedExpenses = [...expenses];
+  //   updatedExpenses[index][field] = value;
+  //   setExpenses(updatedExpenses);
+  // };
   const handleExpenseChange = (index, field, value) => {
     const updatedExpenses = [...expenses];
-    updatedExpenses[index][field] = value;
+    updatedExpenses[index] = {
+      ...updatedExpenses[index],
+      [field]: value,
+    };
     setExpenses(updatedExpenses);
   };
 
   const addExpense = () => {
     if (expenses.length < 10) {
-      setExpenses([...expenses, { name: "", value: "" }]);
+      setExpenses([...expenses, { expense_name: "", expense_value: "" }]);
     }
   };
 
@@ -35,20 +46,34 @@ const ExpensesForm = () => {
     setExpenses(updatedExpenses);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    // Handle form submission logic here
-    // You can access the expenses array with the updated values
-    console.log(expenses);
+    console.log("Expenses array before send:\n", expenses);
+    try {
+      const respose = await axios.post(
+        "http://localhost:8080/api/expense",
+        {
+          expenses,
+        },
+        { withCredentials: true }
+      );
+      console.log("Response Expenses:\n", respose.data);
+      setExpenses([{ expense_name: "Monthly Income", expense_value: "" }]);
+      setTimeout(() => {
+        navigate("/user");
+      }, 3000);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const renderExpense = (expense, index) => (
     <div key={index}>
       <TextField
         label={`Expense #${index + 1}`}
-        value={expense.name}
+        value={expense.expense_name}
         onChange={(event) =>
-          handleExpenseChange(index, "name", event.target.value)
+          handleExpenseChange(index, "expense_name", event.target.value)
         }
         style={{ marginBottom: "1rem" }}
         placeholder="Enter expense name"
@@ -56,9 +81,9 @@ const ExpensesForm = () => {
       <TextField
         label={`Expense Value`}
         type="number"
-        value={expense.value}
+        value={expense.expense_value}
         onChange={(event) =>
-          handleExpenseChange(index, "value", event.target.value)
+          handleExpenseChange(index, "expense_value", event.target.value)
         }
         inputProps={{
           min: "0",
@@ -70,15 +95,6 @@ const ExpensesForm = () => {
         placeholder="0.00"
         style={{ marginBottom: "1rem" }}
       />
-      {index < 1 && (
-        // <Tooltip title="You can only have up to 10 expenses" placement="right">
-        <span>
-          <IconButton disabled>
-            <Typography variant="body2">X</Typography>
-          </IconButton>
-        </span>
-        // </Tooltip>
-      )}
       {index >= 1 && (
         // <Tooltip title="You can only have up to 10 expenses" placement="right">
         <IconButton onClick={() => deleteExpense(index)}>
