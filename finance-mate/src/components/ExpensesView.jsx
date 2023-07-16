@@ -123,29 +123,33 @@ const ExpensesView = () => {
   return (
     <div className="dashboard">
       <SideBar />
-      <div className="pie-chart-div">
-        {loadingChart ? (
-          <h3 key="loaded-heading">Expense Chart</h3>
-        ) : (
-          <h3 key="loading-heading">Loading Chart...</h3>
-        )}
-        <PieChart data={pieChartData} fill={pieChartFill} />
-      </div>
+      <div className="content">
+        <div className="pie-chart-div" >
+          {loadingChart ? (
+            <h3 key="loaded-heading">Expense Chart</h3>
+          ) : (
+            <h3 key="loading-heading">Loading Chart...</h3>
+          )}
+          <PieChart data={pieChartData} fill={pieChartFill} />
+        </div>
 
-      <h1>Hello Expenses</h1>
-      {expenses.length > 0 ? (
-        expenses.map((expense) => {
-          return (
-            <div key={expense.id}>
-              <h3>
-                {expense.expense_name}: ${expense.expense_value}
-              </h3>
-            </div>
-          );
-        })
-      ) : (
-        <h2>No Expenses Found</h2>
-      )}
+        <h1>Hello Expenses</h1>
+        {expenses.length > 0 ? (
+          expenses.map((expense) => {
+            return (
+              <div key={expense.id}>
+                <h3>
+                  {expense.expense_name}: ${expense.expense_value}
+                </h3>
+              </div>
+            );
+          })
+
+        ) : (
+          <h2>No Expenses Found</h2>
+        )}
+      </div>
+     
     </div>
   );
 };
