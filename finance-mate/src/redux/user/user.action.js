@@ -34,10 +34,14 @@ export const fetchUserThunk = () => {
     // Check if the user is logged in
 
     try {
-      const response = await axios.get("http://localhost:8080/api/user", {
-        withCredentials: true,
-      });
-      dispatch(fetchUser(response.data));
+      const response = await axios.get(
+        "http://localhost:8080/api/user",
+        {},
+        {
+          withCredentials: true,
+        }
+      );
+      await dispatch(fetchUser(response.data));
       console.log("Response: ", response);
       const isLoggedIn = getState().user.user !== null;
       if (!isLoggedIn) {
@@ -53,7 +57,11 @@ export const fetchUserThunk = () => {
 export const logoutUserThunk = () => {
   return async (dispatch) => {
     try {
-      const response = await axios.post("http://localhost:8080/api/logout");
+      const response = await axios.post(
+        "http://localhost:8080/api/logout",
+        {},
+        { withCredentials: true }
+      );
       dispatch(logoutUser());
       console.log(response.data); // Assuming the backend sends a "Logout successful" message
       // Add any additional logic after successful logout if needed
@@ -116,7 +124,6 @@ export const getAccountsThunk = () => {
       console.log("User bank account types:", accounts);
       dispatch(getAccounts(accounts));
     } catch (error) {
-
       console.log(error);
     }
   };
