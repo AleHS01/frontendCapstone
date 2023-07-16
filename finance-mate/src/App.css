@@ -5,27 +5,49 @@
 
 .sidebar {
   width: 200px;
-  background-color: #f2f2f2;
+  background:
+    linear-gradient(#05377f, transparent),
+    linear-gradient(to top left, #3886f7, transparent),
+    linear-gradient(to top right, #8ca4fc, transparent);
+  background-blend-mode: screen;
   padding: 20px;
 }
 
+
 .sidebar-button {
+
   display: block;
   width: 100%;
   padding: 10px;
   margin-bottom: 10px;
   border: none;
-  background-color: #ddd;
-  color: #333;
-  font-size: 16px;
+  background-color: white;
+  color: black;
+  font-size: 20px;
   text-align: left;
   cursor: pointer;
+  font-weight: bold;
+  font-family: 'Times New Roman', Times, serif;
+  transition: background-color 0.3s ease; /* Add transition for smooth effect */
 }
+
+  /* Hover effect */
+.sidebar-button:hover {
+  background-color: #c0c0c0;
+  box-shadow: 0 0 5px white, 0 0 25px white, 0 0 25px white, 0 0 100px black;
+
+}  
+
+
 
 .content {
   flex: 1;
   padding: 20px;
-  background-color: #fff;
+  background:
+    linear-gradient(white, transparent),
+    linear-gradient(to top left, #FFFAFA, transparent),
+    linear-gradient(to top right, white, transparent);
+  background-blend-mode: screen;
 }
 
 .pie-chart-div {
@@ -40,4 +62,19 @@
 .pie-chart-div .pie-chart-2 {
   height: 100%;
   width: 100%;
+}
+
+
+/* for button hover */
+button{
+  position: relative;
+  border: none;
+  transition: 4s ease-in;
+  z-index: 1;
+}
+button::before,
+button::after{
+  position: absolute;
+  content: " ";
+  z-index: -1;
 }
