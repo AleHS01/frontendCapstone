@@ -44,6 +44,10 @@ function SideBar() {
     navigate("/incomes");
   };
 
+  const handleSetBudget = () => {
+    navigate("/setbudget")
+  }
+
 
 
   return (
@@ -71,6 +75,9 @@ function SideBar() {
       </button>
       <button className="sidebar-button" onClick={handleIncomeView}>
         Incomes
+      </button>
+      <button className="sidebar-button" onClick={handleSetBudget}>
+        Set Budget
       </button>
       <button className="sidebar-button" onClick={handleTrans}>
         Transactions
