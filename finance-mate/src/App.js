@@ -12,6 +12,7 @@ import Accounts from "./components/GetAccounts";
 import SideBar from "./components/side-bar";
 import ExpensesView from "./components/ExpensesView";
 import Transactions from "./components/Transactions";
+import IncomeForm from "./components/IncomeForm";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
           <Route path="/bank_accounts" element={<Accounts></Accounts>}></Route>
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/expense-form" element={<ExpensesForm />} />
+          <Route path = "/income-form" element={<IncomeForm></IncomeForm>}></Route>
           <Route path="/expenses" element={<ExpensesView />} />
           <Route path="/trans" element={<Transactions />} />
         </Routes>

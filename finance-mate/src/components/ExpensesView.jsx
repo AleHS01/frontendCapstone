@@ -4,34 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import SideBar from "./side-bar";
 import PieChart from "./PieChart";
 
-// const patterns = ["squares", "dots", "lines"];
-
-// const getDefaultData = () => {
-//   const defaultData = [];
-//   for (let i = 0; i < 5; i++) {
-//     defaultData.push({
-//       id: `Expense ${i + 1}`,
-//       label: `Expense ${i + 1}`,
-//       value: Math.floor(Math.random() * 951) + 50, // Generate a random value between 50 and 1000
-//     });
-//   }
-//   console.log("defaultData:\n", defaultData);
-//   return defaultData;
-// };
-// const getDefaultFill = () => {
-//   const defaultFill = [];
-//   for (let i = 0; i < 5; i++) {
-//     const randomPattern = patterns[Math.floor(Math.random() * patterns.length)];
-//     defaultFill.push({
-//       match: {
-//         id: `Expense ${i + 1}`,
-//       },
-//       id: randomPattern,
-//     });
-//   }
-//   console.log("default fill:\n", defaultFill);
-//   return defaultFill;
-// };
 
 const ExpensesView = () => {
   const user = useSelector((state) => state.user.user);

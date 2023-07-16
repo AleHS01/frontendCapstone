@@ -52,7 +52,7 @@ function SideBar() {
         Accounts
       </button>
       <button className="sidebar-button" onClick={handleFinaceForm}>
-        Finance Form
+        Expenses Form
       </button>
       <button className="sidebar-button" onClick={handleExpenseView}>
         Expenses

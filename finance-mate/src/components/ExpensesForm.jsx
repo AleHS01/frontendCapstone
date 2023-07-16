@@ -14,7 +14,7 @@ import SideBar from "./side-bar";
 
 const ExpensesForm = () => {
   const [expenses, setExpenses] = useState([
-    { expense_name: "Monthly Income", expense_value: "" },
+    { expense_name: "Rent", expense_value: "" },
     { expense_name: "Car Insurance", expense_value: "" },
     // Other default expenses
   ]);
@@ -114,7 +114,7 @@ const ExpensesForm = () => {
       <SideBar></SideBar>
       <div className="content">
         <Typography variant="h1" style={{ marginBottom: "2rem" }}>
-          Finance Form
+          Expenses Form
         </Typography>
         <form onSubmit={handleSubmit}>
           {expenses.map(renderExpense)}
