@@ -114,7 +114,7 @@ const ExpensesForm = () => {
         }
         style={{ marginBottom: "1rem" }}
         placeholder="Enter expense name"
-        disabled={editedExpenseIndex !== index}
+        disabled={editedExpenseIndex !== index && expense.id !== undefined}
       />
       <TextField
         label={`Expense Value`}
@@ -132,7 +132,7 @@ const ExpensesForm = () => {
         }}
         placeholder="0.00"
         style={{ marginBottom: "1rem" }}
-        disabled={editedExpenseIndex !== index}
+        disabled={editedExpenseIndex !== index && expense.id !== undefined}
       />
       {editedExpenseIndex === index ? (
         <Tooltip title="Save Expense" placement="right">
@@ -141,7 +141,8 @@ const ExpensesForm = () => {
           </IconButton>
         </Tooltip>
       ) : (
-        index >= 0 && (
+        index >= 0 &&
+        expense.id !== undefined && (
           <Tooltip title="Edit Expense" placement="right">
             <IconButton onClick={() => setEditedExpenseIndex(index)}>
               <EditIcon style={{ color: "#03a9f4" }} />
@@ -152,12 +153,7 @@ const ExpensesForm = () => {
       {index >= 1 && (
         <Tooltip title="Delete Expense" placement="right">
           <IconButton onClick={() => deleteExpense(index)}>
-            <span>
-              <IconButton disabled>
-                <DeleteIcon style={{ color: "#ff1744" }}></DeleteIcon>
-                {/* <Typography variant="body2">X</Typography> */}
-              </IconButton>
-            </span>
+            <DeleteIcon style={{ color: "#ff1744" }}></DeleteIcon>
           </IconButton>
         </Tooltip>
       )}
