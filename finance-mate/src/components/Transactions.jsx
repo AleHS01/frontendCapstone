@@ -35,14 +35,15 @@ function Transactions() {
   return (
     <div className='dashboard'>
       <SideBar></SideBar>
+      <div className='content'>
       {trans && trans.data ? (
         trans.data.map((item) => {
           try {
             return (
-              <div className='content'>
-                <h4>Transaction</h4>
+              <div >
+                <hr></hr>
                 <div>
-                  <b>Description:</b> {item.name} <b>Amount:</b> {item.amount}
+                  <b>Description:</b> {item.name} <br></br><b>Amount:</b> {item.amount}
                 </div>
               </div>
             );
@@ -63,6 +64,8 @@ function Transactions() {
           <div>No transaction data available.</div>
         </div>
       )}
+
+      </div>
     </div>
   );
   
