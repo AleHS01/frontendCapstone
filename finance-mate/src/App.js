@@ -11,6 +11,7 @@ import ExpensesForm from "./components/ExpensesForm";
 import Accounts from "./components/GetAccounts";
 import SideBar from "./components/side-bar";
 import ExpensesView from "./components/ExpensesView";
+import Transactions from "./components/Transactions";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/expense-form" element={<ExpensesForm />} />
           <Route path="/expenses" element={<ExpensesView />} />
+          <Route path="/trans" element={<Transactions />} />
         </Routes>
       </div>
     </Router>

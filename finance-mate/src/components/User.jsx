@@ -51,7 +51,9 @@ import SideBar from "./side-bar";
 const User = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.user.user);
+  const user = useSelector((state) => {
+    console.log(state)
+    return state.user.user});
 
   const handleLogout = async () => {
     try {

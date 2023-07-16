@@ -33,6 +33,9 @@ function SideBar() {
   const handleExpenseView = () => {
     navigate("/expenses");
   };
+  const handleTrans = () => {
+    navigate("/trans");
+  };
 
   return (
     <div className="sidebar">
@@ -53,6 +56,9 @@ function SideBar() {
       </button>
       <button className="sidebar-button" onClick={handleExpenseView}>
         Expenses
+      </button>
+      <button className="sidebar-button" onClick={handleTrans}>
+        Transactions
       </button>
     </div>
   );

@@ -28,6 +28,11 @@ export const getAccounts = (accounts) => ({
   payload: accounts,
 });
 
+export const getTransactions=(transactions)=>({
+  type:userActionTypes.GET_TRANS,
+  payload:transactions
+})
+
 export const fetchUserThunk = () => {
   console.log("got to the thunk");
   return async (dispatch, getState) => {
@@ -123,6 +128,25 @@ export const getAccountsThunk = () => {
       const accounts = response.data.accounts;
       console.log("User bank account types:", accounts);
       dispatch(getAccounts(accounts));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const getTransactionsThunk = () => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.post(
+        "http://localhost:8080/api/plaid/transactions",
+        {},
+        {
+          withCredentials: true,
+        }
+      );
+      const transactions = response;
+      console.log("User bank account types:", transactions);
+      dispatch(getTransactions(transactions));
     } catch (error) {
       console.log(error);
     }
