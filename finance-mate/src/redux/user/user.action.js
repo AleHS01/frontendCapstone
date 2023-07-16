@@ -34,7 +34,7 @@ export const getTransactions=(transactions)=>({
 })
 
 export const fetchUserThunk = () => {
-  console.log("got to the thunk");
+  console.log("got to the fetch_user_thunk");
   return async (dispatch, getState) => {
     // Check if the user is logged in
 
@@ -89,6 +89,7 @@ export const loginUserThunk = (credentials) => {
       const user = await response.data; // Assuming the login API response contains the user data
       console.log("User\n", await response.data);
       dispatch(loginSuccess(user));
+      localStorage.setItem("user",JSON.stringify(user))
       // Additional logic after successful login
     } catch (error) {
       console.log(error);
