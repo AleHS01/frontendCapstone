@@ -22,9 +22,7 @@ const Accounts = () => {
     }
   };
   useEffect(() => {
-    if (!user) {
-      getUser().then(() => dispatch(getAccountsThunk()));
-    }
+    getUser().then(() => dispatch(getAccountsThunk()));
   }, [user, dispatch]);
   
 

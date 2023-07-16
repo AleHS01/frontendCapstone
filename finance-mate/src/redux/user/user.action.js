@@ -144,7 +144,7 @@ export const getTransactionsThunk = () => {
           withCredentials: true,
         }
       );
-      const transactions = response;
+      const transactions = await response;
       console.log("User bank account types:", transactions);
       dispatch(getTransactions(transactions));
     } catch (error) {
