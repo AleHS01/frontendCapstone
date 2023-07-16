@@ -96,11 +96,11 @@ const ExpensesView = () => {
     <div className="dashboard">
       <SideBar />
       <div className="content">
-        <div className="pie-chart-div" >
+        <div className="pie-chart-div">
           {loadingChart ? (
-            <h3 key="loaded-heading">Expense Chart</h3>
+            <h1 key="loaded-heading">Expense Chart</h1>
           ) : (
-            <h3 key="loading-heading">Loading Chart...</h3>
+            <h1 key="loading-heading">Loading Chart...</h1>
           )}
           <PieChart data={pieChartData} fill={pieChartFill} />
         </div>
@@ -116,12 +116,10 @@ const ExpensesView = () => {
               </div>
             );
           })
-
         ) : (
           <h2>No Expenses Found</h2>
         )}
       </div>
-     
     </div>
   );
 };
