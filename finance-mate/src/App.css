@@ -32,6 +32,10 @@
   height: 400px !important;
   width: 600px !important;
   text-align: center;
+  margin: 0 auto 70px;
+}
+.pie-chart-div h1 {
+  margin: 1rem 0;
 }
 .pie-chart-div .pie-chart-2 {
   height: 100%;

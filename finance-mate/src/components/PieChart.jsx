@@ -9,7 +9,7 @@ const PieChart = (props) => {
       padAngle={0.7}
       cornerRadius={3}
       activeOuterRadiusOffset={8}
-      colors={{ scheme: "greens" }}
+      colors={{ scheme: "green_blue" }}
       borderWidth={1}
       borderColor={{
         from: "color",
@@ -56,19 +56,19 @@ const PieChart = (props) => {
       fill={props.fill}
       legends={[
         {
-          anchor: "bottom",
-          direction: "row",
+          anchor: "top-right",
+          direction: "column",
           justify: false,
-          translateX: 0,
-          translateY: 56,
-          itemsSpacing: 0,
-          itemWidth: 100,
+          translateX: 115,
+          translateY: 30,
+          itemsSpacing: 15,
+          itemWidth: 150,
           itemHeight: 18,
           itemTextColor: "#999",
           itemDirection: "left-to-right",
           itemOpacity: 1,
           symbolSize: 18,
-          symbolShape: "circle",
+          symbolShape: "square",
           effects: [
             {
               on: "hover",

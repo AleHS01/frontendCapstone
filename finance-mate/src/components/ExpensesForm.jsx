@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import {
@@ -9,22 +9,41 @@ import {
   Tooltip,
   IconButton,
 } from "@mui/material";
+import DeleteIcon from "@mui/icons-material/Delete";
+import EditIcon from "@mui/icons-material/Edit";
+import SaveIcon from "@mui/icons-material/Save";
 import SideBar from "./side-bar";
 // import DeleteIcon from "@mui/icons-material/Delete";
 
 const ExpensesForm = () => {
-  const [expenses, setExpenses] = useState([
-    { expense_name: "Monthly Income", expense_value: "" },
-    { expense_name: "Car Insurance", expense_value: "" },
-    // Other default expenses
-  ]);
+  const [expenses, setExpenses] = useState(null);
+  const [editedExpenseIndex, setEditedExpenseIndex] = useState(null);
+
   const navigate = useNavigate();
 
-  // const handleExpenseChange = (index, field, value) => {
-  //   const updatedExpenses = [...expenses];
-  //   updatedExpenses[index][field] = value;
-  //   setExpenses(updatedExpenses);
-  // };
+  // [
+  //   { expense_name: "Monthly Income", expense_value: "" },
+  //   { expense_name: "Car Insurance", expense_value: "" },
+  // ]
+
+  useEffect(() => {
+    const getExpenses = async () => {
+      try {
+        const response = await axios.post(
+          "http://localhost:8080/api/expense/get",
+          {},
+          { withCredentials: true }
+        );
+
+        console.log("Response.data in Expense Form\n", response.data);
+        setExpenses(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getExpenses();
+  }, []);
+
   const handleExpenseChange = (index, field, value) => {
     const updatedExpenses = [...expenses];
     updatedExpenses[index] = {
@@ -58,13 +77,31 @@ const ExpensesForm = () => {
         { withCredentials: true }
       );
       console.log("Response Expenses:\n", respose.data);
-      setExpenses([{ expense_name: "Monthly Income", expense_value: "" }]);
+      //setExpenses([{ expense_name: "Monthly Income", expense_value: "" }]);
       setTimeout(() => {
         navigate("/user");
       }, 3000);
     } catch (error) {
       console.log(error);
     }
+  };
+
+  const saveExpense = async (index) => {
+    // Make the API call to update the expense in the backend
+    try {
+      const updatedExpense = expenses[index];
+      const response = await axios.put(
+        `http://localhost:8080/api/expense/${updatedExpense.id}`,
+        updatedExpense,
+        { withCredentials: true }
+      );
+      console.log("Expense updated:", response.data);
+    } catch (error) {
+      console.log(error);
+    }
+
+    // Reset the edited expense index to null to stop editing
+    setEditedExpenseIndex(null);
   };
 
   const renderExpense = (expense, index) => (
@@ -77,6 +114,7 @@ const ExpensesForm = () => {
         }
         style={{ marginBottom: "1rem" }}
         placeholder="Enter expense name"
+        disabled={editedExpenseIndex !== index}
       />
       <TextField
         label={`Expense Value`}
@@ -94,17 +132,34 @@ const ExpensesForm = () => {
         }}
         placeholder="0.00"
         style={{ marginBottom: "1rem" }}
+        disabled={editedExpenseIndex !== index}
       />
-      {index >= 1 && (
-        // <Tooltip title="You can only have up to 10 expenses" placement="right">
-        <IconButton onClick={() => deleteExpense(index)}>
-          <span>
-            <IconButton disabled>
-              <Typography variant="body2">X</Typography>
+      {editedExpenseIndex === index ? (
+        <Tooltip title="Save Expense" placement="right">
+          <IconButton onClick={() => saveExpense(index)}>
+            <SaveIcon style={{ color: "#00bfa5" }} />
+          </IconButton>
+        </Tooltip>
+      ) : (
+        index >= 0 && (
+          <Tooltip title="Edit Expense" placement="right">
+            <IconButton onClick={() => setEditedExpenseIndex(index)}>
+              <EditIcon style={{ color: "#03a9f4" }} />
             </IconButton>
-          </span>
-        </IconButton>
-        // </Tooltip>
+          </Tooltip>
+        )
+      )}
+      {index >= 1 && (
+        <Tooltip title="Delete Expense" placement="right">
+          <IconButton onClick={() => deleteExpense(index)}>
+            <span>
+              <IconButton disabled>
+                <DeleteIcon style={{ color: "#ff1744" }}></DeleteIcon>
+                {/* <Typography variant="body2">X</Typography> */}
+              </IconButton>
+            </span>
+          </IconButton>
+        </Tooltip>
       )}
     </div>
   );
@@ -116,7 +171,31 @@ const ExpensesForm = () => {
         <Typography variant="h1" style={{ marginBottom: "2rem" }}>
           Finance Form
         </Typography>
-        <form onSubmit={handleSubmit}>
+        {expenses !== null && expenses !== [] ? (
+          <form onSubmit={handleSubmit}>
+            {expenses.map(renderExpense)}
+            {expenses.length >= 10 && (
+              <Typography color="error" variant="caption">
+                Expense limit reached. You cannot add more than 10 expenses.
+              </Typography>
+            )}
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={addExpense}
+              disabled={expenses.length >= 10}
+            >
+              Add Expense
+            </Button>
+            <Button type="submit" variant="contained" color="primary">
+              Submit
+            </Button>
+          </form>
+        ) : (
+          <h2>Loading Form...</h2>
+        )}
+
+        {/* <form onSubmit={handleSubmit}>
           {expenses.map(renderExpense)}
           {expenses.length >= 10 && (
             <Typography color="error" variant="caption">
@@ -134,7 +213,7 @@ const ExpensesForm = () => {
           <Button type="submit" variant="contained" color="primary">
             Submit
           </Button>
-        </form>
+        </form> */}
       </div>
     </div>
   );
