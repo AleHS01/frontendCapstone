@@ -40,11 +40,22 @@ function Transactions() {
         trans.data.map((item) => {
           try {
             return (
-              <div >
-                <hr></hr>
+              <div style={{
+                border: '1px solid black',
+                height:'auto',
+                width: '30%',
+                fontFamily: 'Times New Roman',
+                fontSize: '25px',
+                borderRadius: '10px',
+                padding: '10px',
+                margin: '0.5em 0.5em 0.5em 0.5em',
+
+              }}
+              >  
                 <div>
                   <b>Description:</b> {item.name} <br></br><b>Amount:</b> {item.amount}
                 </div>
+                <hr style={{ backgroundColor: 'black', height: '1px', width: '100%' }}></hr>
               </div>
             );
           } catch (error) {

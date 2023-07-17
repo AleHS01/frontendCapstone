@@ -24,6 +24,7 @@ body {
   padding: 10px;
   margin-bottom: 10px;
   border: none;
+  border-radius: 10px;
   background-color: white;
   color: black;
   font-size: 20px;
@@ -46,12 +47,12 @@ body {
 .content {
   flex: 1;
   padding: 20px;
-  background:
-    linear-gradient(white, transparent),
-    linear-gradient(to top left, #FFFAFA, transparent),
-    linear-gradient(to top right, white, transparent);
-  background-blend-mode: screen;
-}
+    background:
+      linear-gradient(white, transparent),
+      linear-gradient(to top left, #FFFAFA, transparent),
+      linear-gradient(to top right, white, transparent);
+    background-blend-mode: screen;
+  }
 
 .pie-chart-div {
   height: 400px !important;
@@ -92,7 +93,7 @@ button::after{
   padding: 10px 20px;
   border: none;
   border-radius: 4px;
-  font-size: 16px;
+  font-size: 20px;
   font-weight: bold;
   cursor: pointer;
   transition: background-color 0.3s ease;
@@ -103,3 +104,11 @@ button::after{
   box-shadow: 0 0 5px white, 0 0 25px white, 0 0 25px white, 0 0 100px #3886f7;
 
 }
+
+/* .content{
+  background:
+    linear-gradient(#05377f, transparent),
+    linear-gradient(to top left, #3886f7, transparent),
+    linear-gradient(to top right, #8ca4fc, transparent);
+  background-blend-mode: screen;
+} */
