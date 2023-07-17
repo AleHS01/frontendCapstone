@@ -40,21 +40,21 @@ function App() {
           <Route path="/expense-form" element={<ExpensesForm />} />
           {/* <Route path = "/income-form" element={<IncomeForm></IncomeForm>}></Route>
           <Route path = "/incomes" element = {<IncomesView></IncomesView>} /> */}
-          <Route path = "/budgetform" element = {<BudgetForm></BudgetForm>}/>
-          <Route path = "/budget-view" element = {<BudgetView></BudgetView>} />
-          <Route path = "/budget-expense" element = {<AddExpenseForm></AddExpenseForm>} />
+          <Route path="/budgetform" element={<BudgetForm></BudgetForm>} />
+          <Route path="/budget-view" element={<BudgetView></BudgetView>} />
+          <Route
+            path="/budget-expense"
+            element={<AddExpenseForm></AddExpenseForm>}
+          />
 
           <Route path="/expenses" element={<ExpensesView />} />
           <Route path="/trans" element={<Transactions />} />
 
           <Route path="/login/success" element={<LoginGoogleSuccess />} />
-
         </Routes>
       </div>
     </Router>
   );
-  
-
 }
 
 export default App;
