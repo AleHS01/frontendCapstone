@@ -13,8 +13,7 @@ import {
   Container,
 } from "@mui/material";
 import styled from "styled-components";
-import waveBackground from "/Users/hamzakhaliq/Desktop/frontendcapstone/frontendCapstone/finance-mate/src/components/layered-waves-haikei.svg";
-
+import waveBackground from "./layered-waves-haikei.svg"
 const BackgroundContainer = styled.div``;
 
 const DottedBox = styled.div`
