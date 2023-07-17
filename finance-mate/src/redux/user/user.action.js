@@ -15,6 +15,11 @@ export const loginSuccess = (user) => ({
   payload: user,
 });
 
+export const googleLoginSuccess = (user) => ({
+  type: userActionTypes.LOGIN_WITH_GOOGLE,
+  payload: user,
+});
+
 export const getAccessToken = (access_token, item_id) => ({
   type: userActionTypes.GET_ACCESS_TOKEN,
   payload: {
@@ -55,8 +60,13 @@ export const deleteAExpense = (expense) => ({
 
 //----------------End of Expenses Actions----------------
 
+export const addBudget = (budgetinfo) => ({
+  type: userActionTypes.ADD_BUDGET,
+  payload: budgetinfo,
+});
+
 export const fetchUserThunk = () => {
-  console.log("got to the thunk");
+  console.log("got to the fetch_user_thunk");
   return async (dispatch, getState) => {
     // Check if the user is logged in
 
@@ -111,7 +121,24 @@ export const loginUserThunk = (credentials) => {
       const user = await response.data; // Assuming the login API response contains the user data
       console.log("User\n", await response.data);
       dispatch(loginSuccess(user));
-      // Additional logic after successful login
+      localStorage.setItem("user", JSON.stringify(user));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const googleLoginThunk = () => {
+  return async (dispatch) => {
+    console.log("IN GOOGLE THUNK");
+    try {
+      const response = await axios.get("http://localhost:8080/api/user", {
+        withCredentials: true,
+      });
+      const user = await response.data;
+      console.log("User\n", await response.data);
+      dispatch(googleLoginSuccess(user));
+      localStorage.setItem("user", JSON.stringify(user));
     } catch (error) {
       console.log(error);
     }
@@ -169,6 +196,24 @@ export const getTransactionsThunk = () => {
       const transactions = await response;
       console.log("User bank account types:", transactions);
       dispatch(getTransactions(transactions));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const addBudgetThunk = (budgetInfo) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.post(
+        "http://localhost:8080/api/budget/addBudget",
+        budgetInfo,
+        {
+          withCredentials: true,
+        }
+      );
+      console.log(response.data);
+      dispatch(addBudget(response.data));
     } catch (error) {
       console.log(error);
     }

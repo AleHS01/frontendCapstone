@@ -37,6 +37,19 @@ function SideBar() {
     navigate("/trans");
   };
 
+  const handleIncomeForm = () => {
+    navigate("/income-form");
+  };
+  const handleIncomeView = () => {
+    navigate("/incomes");
+  };
+
+  const handleSetBudget = () => {
+    navigate("/setbudget")
+  }
+
+
+
   return (
     <div className="sidebar">
       <button className="sidebar-button" onClick={handleLogout}>
@@ -52,14 +65,24 @@ function SideBar() {
         Accounts
       </button>
       <button className="sidebar-button" onClick={handleFinaceForm}>
-        Finance Form
+        Expenses Form
       </button>
       <button className="sidebar-button" onClick={handleExpenseView}>
         Expenses
       </button>
+      <button className="sidebar-button" onClick={handleIncomeForm}>
+        Income Form
+      </button>
+      <button className="sidebar-button" onClick={handleIncomeView}>
+        Incomes
+      </button>
+      <button className="sidebar-button" onClick={handleSetBudget}>
+        Set Budget
+      </button>
       <button className="sidebar-button" onClick={handleTrans}>
         Transactions
       </button>
+
     </div>
   );
 }

@@ -6,8 +6,8 @@ import SideBar from "./side-bar";
 
 const Accounts = () => {
   const dispatch = useDispatch();
-  const state = useSelector((state) => state);
-    console.log("here",state);
+  // const state = useSelector((state) => state);
+  //   console.log("here",state);
 
   const accounts = useSelector((state) => state.user_accounts);
   console.log("accounts", accounts)

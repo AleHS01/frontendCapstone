@@ -156,7 +156,7 @@ const ExpensesForm = () => {
       <SideBar></SideBar>
       <div className="content">
         <Typography variant="h1" style={{ marginBottom: "2rem" }}>
-          Finance Form
+          Expenses Form
         </Typography>
         {expenses && expenses !== [] && expensesList ? (
           <form onSubmit={handleSubmit}>

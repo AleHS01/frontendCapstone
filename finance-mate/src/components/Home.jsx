@@ -1,9 +1,15 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@mui/material";
 import axios from "axios";
+import GoogleButton from "react-google-button";
+import { useDispatch } from "react-redux";
+import { googleLoginThunk } from "../redux/user/user.action";
 
 const Home = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const handleLogOut = async () => {
     try {
       const response = await axios.post("http://localhost:8080/api/logout");
@@ -14,6 +20,25 @@ const Home = () => {
     }
   };
 
+  const googleLogin = async () => {
+    const newWindow = window.open(
+      "http://localhost:8080/api/login/google",
+      "_blank",
+      "width=400, height=700"
+    );
+    let timer = setInterval(() => {
+      if (newWindow.closed) {
+        console.log("You are logged with google");
+        dispatch(googleLoginThunk());
+        if (timer) clearInterval(timer);
+        navigate("/user");
+      }
+    }, 500);
+    // await dispatch(googleLoginThunk());
+    // setTimeout(() => {
+    //   navigate("/user");
+    // }, 500);
+  };
   return (
     <div
       style={{
@@ -41,6 +66,7 @@ const Home = () => {
           Check Logged User
         </Button>
       </Link>
+      <GoogleButton onClick={googleLogin} />
       <Link to="/logout" onClick={handleLogOut}>
         <Button variant="contained" color="secondary">
           Log Out
