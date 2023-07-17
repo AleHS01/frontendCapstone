@@ -12,8 +12,8 @@ import Accounts from "./components/GetAccounts";
 import SideBar from "./components/side-bar";
 import ExpensesView from "./components/ExpensesView";
 import Transactions from "./components/Transactions";
-import IncomeForm from "./components/IncomeForm";
-import IncomesView from "./components/IncomeView";
+// import IncomeForm from "./components/IncomeForm";
+// import IncomesView from "./components/IncomeView";
 import BudgetForm from "./components/BudgetForm";
 
 function App() {
@@ -32,8 +32,8 @@ function App() {
           <Route path="/bank_accounts" element={<Accounts></Accounts>}></Route>
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/expense-form" element={<ExpensesForm />} />
-          <Route path = "/income-form" element={<IncomeForm></IncomeForm>}></Route>
-          <Route path = "/incomes" element = {<IncomesView></IncomesView>} />
+          {/* <Route path = "/income-form" element={<IncomeForm></IncomeForm>}></Route>
+          <Route path = "/incomes" element = {<IncomesView></IncomesView>} /> */}
           <Route path = "/budgetform" element = {<BudgetForm></BudgetForm>}/>
           <Route path="/expenses" element={<ExpensesView />} />
           <Route path="/trans" element={<Transactions />} />
