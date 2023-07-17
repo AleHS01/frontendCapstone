@@ -14,10 +14,13 @@ import ExpensesView from "./components/ExpensesView";
 import Transactions from "./components/Transactions";
 // import IncomeForm from "./components/IncomeForm";
 // import IncomesView from "./components/IncomeView";
-import BudgetForm from "./components/BudgetForm";
 
 import BudgetView from "./components/BudgetView";
 import AddExpenseForm from "./components/BudgetExpenseForm";
+// import IncomeForm from "./components/IncomeForm";
+// import IncomesView from "./components/IncomeView";
+import BudgetForm from "./components/BudgetForm";
+import LoginGoogleSuccess from "./components/LoginGoogleSuccess";
 
 function App() {
   return (
@@ -43,6 +46,8 @@ function App() {
 
           <Route path="/expenses" element={<ExpensesView />} />
           <Route path="/trans" element={<Transactions />} />
+
+          <Route path="/login/success" element={<LoginGoogleSuccess />} />
 
         </Routes>
       </div>

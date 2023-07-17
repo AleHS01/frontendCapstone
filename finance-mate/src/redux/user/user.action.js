@@ -15,6 +15,11 @@ export const loginSuccess = (user) => ({
   payload: user,
 });
 
+export const googleLoginSuccess = (user) => ({
+  type: userActionTypes.LOGIN_WITH_GOOGLE,
+  payload: user,
+});
+
 export const getAccessToken = (access_token, item_id) => ({
   type: userActionTypes.GET_ACCESS_TOKEN,
   payload: {
@@ -28,15 +33,37 @@ export const getAccounts = (accounts) => ({
   payload: accounts,
 });
 
-export const getTransactions=(transactions)=>({
-  type:userActionTypes.GET_TRANS,
-  payload:transactions
-})
+export const getTransactions = (transactions) => ({
+  type: userActionTypes.GET_TRANS,
+  payload: transactions,
+});
+
+//----------------Expenses Actions----------------
+
+export const getExpenses = (expenses) => ({
+  type: userActionTypes.GET_EXPENSES,
+  payload: expenses,
+});
+export const createExpenses = (expenses) => ({
+  type: userActionTypes.CREATE_OR_UPDATE_EXPENSES,
+  payload: expenses,
+});
+export const updateAExpense = (expense) => ({
+  type: userActionTypes.UPDATE_A_EXPENSES,
+  payload: expense,
+});
+
+export const deleteAExpense = (expense) => ({
+  type: userActionTypes.DELETE_EXPENSE,
+  payload: expense,
+});
+
+//----------------End of Expenses Actions----------------
 
 export const addBudget = (budgetinfo) => ({
   type: userActionTypes.ADD_BUDGET,
-  payload: budgetinfo
-})
+  payload: budgetinfo,
+});
 
 export const getBudget = (budgets) => ({
   type: userActionTypes.GET_BUDGET,
@@ -110,8 +137,24 @@ export const loginUserThunk = (credentials) => {
       const user = await response.data; // Assuming the login API response contains the user data
       console.log("User\n", await response.data);
       dispatch(loginSuccess(user));
-      localStorage.setItem("user",JSON.stringify(user))
-      // Additional logic after successful login
+      localStorage.setItem("user", JSON.stringify(user));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const googleLoginThunk = () => {
+  return async (dispatch) => {
+    console.log("IN GOOGLE THUNK");
+    try {
+      const response = await axios.get("http://localhost:8080/api/user", {
+        withCredentials: true,
+      });
+      const user = await response.data;
+      console.log("User\n", await response.data);
+      dispatch(googleLoginSuccess(user));
+      localStorage.setItem("user", JSON.stringify(user));
     } catch (error) {
       console.log(error);
     }
@@ -176,13 +219,37 @@ export const getTransactionsThunk = () => {
 };
 
 export const addBudgetThunk = (budgetInfo) => {
-  return async(dispatch) => {
+  return async (dispatch) => {
     try {
-      const response = await axios.post("http://localhost:8080/api/budget/addBudget", budgetInfo, {
-        withCredentials: true
-      });
+      const response = await axios.post(
+        "http://localhost:8080/api/budget/addBudget",
+        budgetInfo,
+        {
+          withCredentials: true,
+        }
+      );
       console.log(response.data);
       dispatch(addBudget(response.data));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+//---------------ExpensesThunk-----------
+
+export const getExpensesThunk = () => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.post(
+        "http://localhost:8080/api/expense/get",
+        {},
+        { withCredentials: true }
+      );
+      const expenses = await response.data;
+      console.log("User Expenses in Thunk:", expenses);
+      dispatch(getExpenses(expenses));
+      return response.data;
     } catch (error) {
       console.log(error);
       
@@ -216,6 +283,66 @@ export const addExpenseThunk = (expenseData) => {
   };
 };
 
+export const createExpensesThunk = (expenses) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.post(
+        "http://localhost:8080/api/expense",
+        { expenses },
+        {
+          withCredentials: true,
+        }
+      );
+      const expensesList = await response.data;
+      console.log("Created Expense List:", expensesList);
+      dispatch(createExpenses(expensesList));
+
+      return response.data;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const updateExpenseThunk = (expenseToUpdpate) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.put(
+        `http://localhost:8080/api/expense/${expenseToUpdpate.id}`,
+        expenseToUpdpate,
+        {
+          withCredentials: true,
+        }
+      );
+      const updatedExpense = await response.data;
+      console.log("Updated Expense", updatedExpense);
+      dispatch(updateAExpense(updatedExpense));
+      return response.data;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+export const deleteExpenseThunk = (expenseToDelete) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.delete(
+        `http://localhost:8080/api/expense/${expenseToDelete.id}`,
+        {
+          withCredentials: true,
+        }
+      );
+      const updatedExpense = await response.data;
+      console.log("Updated Expense", updatedExpense);
+      dispatch(deleteAExpense(updatedExpense));
+      return response.data;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+//---------------End ExpensesThunk-----------
 // export const getBudgetNamesThunk = () => {
 //   return async (dispatch) => {
 //     try {

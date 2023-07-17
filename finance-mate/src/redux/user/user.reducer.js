@@ -11,6 +11,11 @@ const userReducer = (state = initialState, action) => {
         ...state,
         user: action.payload,
       };
+    case userActionTypes.LOGIN_WITH_GOOGLE:
+      return {
+        ...state,
+        user: action.payload,
+      };
     case userActionTypes.GET_ACCESS_TOKEN:
       return {
         ...state,

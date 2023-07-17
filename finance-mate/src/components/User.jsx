@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 // import { Button, Typography } from "@mui/material";
-import { useDispatch} from "react-redux";
-import { fetchUser} from "../redux/user/user.action";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchUser } from "../redux/user/user.action";
 
 import SideBar from "./side-bar";
 
 const User = () => {
   const dispatch = useDispatch();
-  const user=JSON.parse(localStorage.getItem("user"))
-  console.log(user)
+  // const user=JSON.parse(localStorage.getItem("user"))
+  const user = useSelector((state) => state.user.user);
+  console.log(user);
   // useEffect=(()=>dispatch(fetchUser({user:user})))
   return (
     <div className="dashboard">

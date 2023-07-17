@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import SideBar from "./side-bar";
 import PieChart from "./PieChart";
 
-
 const ExpensesView = () => {
   const user = useSelector((state) => state.user.user);
   const [expenses, setExpenses] = useState([]);
@@ -85,12 +84,16 @@ const ExpensesView = () => {
         setPieChartFill(defaultFill);
       }
     };
-    setLoadingChart(true);
+    // setLoadingChart(true);
     setTimeout(() => {
       processPieData();
       processPieFill();
-    }, 2000);
-  }, [expenses]);
+    }, 250);
+
+    setTimeout(() => {
+      setLoadingChart(true);
+    }, 1000);
+  }, [expenses, loadingChart]);
 
   return (
     <div className="dashboard">

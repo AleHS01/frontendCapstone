@@ -1,5 +1,5 @@
-import React, { useState} from "react";
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addBudgetThunk } from "../redux/user/user.action";
 import { TextField, Button, Container, Typography } from "@mui/material";
@@ -29,7 +29,7 @@ const WaveImage = styled.img`
 `;
 
 const BudgetForm = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [budgetname, setBudgetName] = useState("");
   const [amount, setAmount] = useState("");
@@ -41,7 +41,7 @@ const BudgetForm = () => {
       amount: amount,
     };
     dispatch(addBudgetThunk(budgetinfo));
-    navigate("/budget-view")
+    navigate("/budget-view");
   };
 
   return (
@@ -53,9 +53,7 @@ const BudgetForm = () => {
             <span style={{ color: "black", fontWeight: "bold" }}>
               Welcome back,
             </span>{" "}
-            <span style={{ color: "darkblue", fontWeight: "bold" }}>
-              User!
-            </span>
+            <span style={{ color: "darkblue", fontWeight: "bold" }}>User!</span>
           </Typography>
 
           <Typography variant="body1" align="center" gutterBottom>
@@ -110,4 +108,3 @@ const BudgetForm = () => {
 };
 
 export default BudgetForm;
-
