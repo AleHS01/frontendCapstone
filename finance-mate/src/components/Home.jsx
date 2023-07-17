@@ -45,7 +45,7 @@ function Home() {
             </p>
           </div>
 
-          <div className="flex flex-col">
+          <div className="flex flex-col items-center">
             <Link
               to="/login"
               className="bg-green-600 flex rounded-md px-4 py-2 mr-4 items-center mb-4 shadow-md "
@@ -65,7 +65,7 @@ function Home() {
                 Sign Up
               </p>
             </Link>
-            <GoogleButton onClick={googleLogin} />
+            <GoogleButton className="m-4 shadow-md" onClick={googleLogin} />
           </div>
         </div>
       </div>
