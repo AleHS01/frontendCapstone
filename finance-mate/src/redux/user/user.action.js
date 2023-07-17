@@ -33,6 +33,12 @@ export const getTransactions=(transactions)=>({
   payload:transactions
 })
 
+export const addBudget = (budgetinfo) => ({
+  type: userActionTypes.ADD_BUDGET,
+  payload: budgetinfo
+})
+  
+
 export const fetchUserThunk = () => {
   console.log("got to the fetch_user_thunk");
   return async (dispatch, getState) => {
@@ -151,5 +157,20 @@ export const getTransactionsThunk = () => {
     } catch (error) {
       console.log(error);
     }
+  };
+};
+
+export const addBudgetThunk = (budgetInfo) => {
+  return async(dispatch) => {
+    try {
+      const response = await axios.post("http://localhost:8080/api/budget/addBudget", budgetInfo, {
+        withCredentials: true
+      });
+      console.log(response.data);
+      dispatch(addBudget(response.data));
+    } catch (error) {
+      console.log(error);
+      
+    };
   };
 };
