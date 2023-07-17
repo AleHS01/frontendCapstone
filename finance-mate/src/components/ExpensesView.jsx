@@ -88,11 +88,11 @@ const ExpensesView = () => {
     setTimeout(() => {
       processPieData();
       processPieFill();
-    }, 1000);
+    }, 250);
 
     setTimeout(() => {
       setLoadingChart(true);
-    }, 2000);
+    }, 1000);
   }, [expenses, loadingChart]);
 
   return (
