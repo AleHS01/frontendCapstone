@@ -1,22 +1,19 @@
-// budget.reducer.js
+import userActionTypes from "./user.type";
 
-// Define the initial state
 const initialState = {
-    expenses: [],
-  };
-  
-  // Define the budget reducer
-  const budgetExpenseReducer = (state = initialState, action) => {
-    switch (action.type) {
-      case 'ADD_EXPENSE':
-        return {
-          ...state,
-          expenses: [...state.expenses, action.payload],
-        };
-      default:
-        return state;
-    }
-  };
-  
-  export default budgetExpenseReducer;
-  
+  get_budget_categories: [],
+};
+
+const getBudgetReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case(userActionTypes.GET_BUDGET_NAMES):
+      return {
+        ...state,
+        get_budget_categories: action.payload,
+      };
+    default:
+      return state;
+  }
+};
+
+export default getBudgetReducer;

@@ -49,6 +49,10 @@ export const addExpense = (expense) => ({
   payload: expense,
 });
 
+export const getBudgetName = (budgetName) => ({
+  type: userActionTypes.GET_BUDGET_NAMES,
+  payload: budgetName
+})
 
 export const fetchUserThunk = () => {
   console.log("got to the thunk");
@@ -201,7 +205,7 @@ export const addExpenseThunk = (expenseData) => {
   return async (dispatch) => {
     try {
       // Make a POST request to the API endpoint to add the expense
-      const response = await axios.post("/api/expenses", expenseData);
+      const response = await axios.post("http://localhost:8080/api/expense/addExpense", expenseData, {withCredentials: true});
       const expense = response.data;
 
       dispatch(addExpense(expense));
@@ -210,4 +214,28 @@ export const addExpenseThunk = (expenseData) => {
     }
   };
 };
+
+// export const getBudgetNamesThunk = () => {
+//   return async (dispatch) => {
+//     try {
+//       const response = await axios.get("http://localhost:8080/api/budget/budgetNames", {withCredentials: true})
+//       console.log(response.data)
+//       dispatch(getBudgetName(response.data.filter((name) => name !== null))); // Filter out null values
+//     } catch (error) {
+//       console.log(error)
+//     }
+//   }
+// }
+
+export const getBudgetNamesThunk = () => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.get("http://localhost:8080/api/budget/budgetNames", {withCredentials: true})
+      // const filteredBudgets = response.data.filter((budget) => budget.budget_name !== null);
+      dispatch(getBudgetName(response.data));
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
 

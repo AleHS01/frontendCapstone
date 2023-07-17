@@ -7,7 +7,8 @@ const userActionTypes = {
   GET_TRANS:"GET TRANSACTIONS",
   ADD_BUDGET: "ADD BUDGET",
   GET_BUDGET: "GET BUDGET",
-  ADD_EXPENSE: "ADD EXPENSE"
+  ADD_EXPENSE: "ADD EXPENSE",
+  GET_BUDGET_NAMES: "GET BUDGET NAMES",
 };
 
 export default userActionTypes;

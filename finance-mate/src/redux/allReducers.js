@@ -5,6 +5,7 @@ import getTransReducer from "./user/getTransReducer";
 import addBudgetReducer from "./user/addBudget";
 import getBudgetReducer from "./user/getBudgetReducer";
 import budgetExpenseReducer from "./user/addExpenseReducer";
+import getBudgetCategoryName from "./user/getBudgetNameReducer";
 
 
 const allReducers = combineReducers({
@@ -13,7 +14,8 @@ const allReducers = combineReducers({
   trans:getTransReducer,
   add_budget: addBudgetReducer,
   get_budget: getBudgetReducer,
-  add_budget_expense: budgetExpenseReducer
+  add_budget_expense: budgetExpenseReducer,
+  get_budget_categories: getBudgetCategoryName
 });
 
 export default allReducers;
