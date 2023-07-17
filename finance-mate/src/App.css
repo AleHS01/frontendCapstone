@@ -1,3 +1,6 @@
+body {
+  /* background-color: rgb(71, 132, 237); */
+}
 .dashboard {
   display: flex;
   min-height: 100vh; /* Set the minimum height of the dashboard to the full viewport height */
