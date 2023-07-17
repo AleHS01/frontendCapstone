@@ -18,10 +18,14 @@ import waveBackground from "/Users/hamzakhaliq/Desktop/frontendcapstone/frontend
 const BackgroundContainer = styled.div``;
 
 const DottedBox = styled.div`
-  border: 4px dotted #000;
+border: 4px dotted #000;
   border-radius: 15px;
   padding: 20px;
   margin: 40px 0;
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+
 `;
 
 const ContentContainer = styled.div`
@@ -37,14 +41,17 @@ const WaveImage = styled.img`
   height: auto;
 `;
 
+const BudgetContainer = styled.div`
+  margin-bottom: 20px;
+`;
+
 const AddExpenseForm = () => {
-  // Remove budgetId from here, we are now getting it from state
   const dispatch = useDispatch();
   const [expenseName, setExpenseName] = useState("");
   const [expenseAmount, setExpenseAmount] = useState("");
-  const [selectedBudgetId, setSelectedBudgetId] = useState(""); // State for storing selected budget ID
+  const [selectedBudgetId, setSelectedBudgetId] = useState("");
   const budgets = useSelector((state) => state.get_budget_categories);
-  console.log(budgets);
+
   useEffect(() => {
     dispatch(getBudgetNamesThunk());
   }, [dispatch]);
@@ -60,16 +67,25 @@ const AddExpenseForm = () => {
 
     dispatch(addExpenseThunk(expenseData));
 
-    // Reset the form fields
     setExpenseName("");
     setExpenseAmount("");
   };
+
+  const selectedBudget = budgets.find((budget) => budget.id === selectedBudgetId);
 
   return (
     <BackgroundContainer>
       <WaveImage src={waveBackground} alt="Wave background" />
       <Container maxWidth="sm">
         <ContentContainer>
+          <BudgetContainer>
+            <Typography variant="h6">Selected Budget:</Typography>
+            {selectedBudget ? (
+              <Typography variant="body1">{selectedBudget.budget_name}</Typography>
+            ) : (
+              <Typography variant="body1">No budget selected</Typography>
+            )}
+          </BudgetContainer>
           <DottedBox>
             <form onSubmit={handleSubmit}>
               <Typography variant="h5" gutterBottom>
@@ -94,10 +110,10 @@ const AddExpenseForm = () => {
                 value={expenseAmount}
                 onChange={(e) => setExpenseAmount(e.target.value)}
               />
-
               <Select
                 variant="outlined"
                 fullWidth
+                label="Budget Category"
                 value={selectedBudgetId}
                 onChange={(e) => setSelectedBudgetId(e.target.value)}
               >
@@ -112,6 +128,7 @@ const AddExpenseForm = () => {
               </Button>
             </form>
           </DottedBox>
+          
         </ContentContainer>
       </Container>
     </BackgroundContainer>
