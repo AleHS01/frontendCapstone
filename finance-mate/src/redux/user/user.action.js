@@ -162,9 +162,7 @@ export const getTransactionsThunk = () => {
 export const addBudgetThunk = (budgetInfo) => {
   return async(dispatch) => {
     try {
-      const response = await axios.post("http://localhost:8080/api/budget/addBudget", {
-        budgetInfo
-      }, {
+      const response = await axios.post("http://localhost:8080/api/budget/addBudget", budgetInfo, {
         withCredentials: true
       });
       console.log(response.data);
