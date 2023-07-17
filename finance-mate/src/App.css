@@ -78,3 +78,25 @@ button::after{
   content: " ";
   z-index: -1;
 }
+
+.plaid-button {
+  background:
+    linear-gradient(#05377f, transparent),
+    linear-gradient(to top left, #3886f7, transparent),
+    linear-gradient(to top right, #8ca4fc, transparent);
+  background-blend-mode: screen;
+  color: black;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.plaid-button:hover {
+  background-color: darkblue;
+  box-shadow: 0 0 5px white, 0 0 25px white, 0 0 25px white, 0 0 100px #3886f7;
+
+}
