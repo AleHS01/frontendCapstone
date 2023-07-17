@@ -1,3 +1,6 @@
+body {
+  /* background-color: rgb(71, 132, 237); */
+}
 .dashboard {
   display: flex;
   min-height: 100vh; /* Set the minimum height of the dashboard to the full viewport height */
@@ -18,6 +21,7 @@
   padding: 10px;
   margin-bottom: 10px;
   border: none;
+  border-radius: 10px;
   background-color: white;
   color: black;
   font-size: 20px;
@@ -72,8 +76,7 @@ button::after {
 }
 
 .plaid-button {
-  background:
-    linear-gradient(#05377f, transparent),
+  background: linear-gradient(#05377f, transparent),
     linear-gradient(to top left, #3886f7, transparent),
     linear-gradient(to top right, #8ca4fc, transparent);
   background-blend-mode: screen;
@@ -81,7 +84,7 @@ button::after {
   padding: 10px 20px;
   border: none;
   border-radius: 4px;
-  font-size: 16px;
+  font-size: 20px;
   font-weight: bold;
   cursor: pointer;
   transition: background-color 0.3s ease;
@@ -90,5 +93,20 @@ button::after {
 .plaid-button:hover {
   background-color: darkblue;
   box-shadow: 0 0 5px white, 0 0 25px white, 0 0 25px white, 0 0 100px #3886f7;
-
 }
+
+/* .content{
+  background:
+    linear-gradient(#05377f, transparent),
+    linear-gradient(to top left, #3886f7, transparent),
+    linear-gradient(to top right, #8ca4fc, transparent);
+  background-blend-mode: screen;
+} */
+
+/* .content{
+  background:
+    linear-gradient(#05377f, transparent),
+    linear-gradient(to top left, #3886f7, transparent),
+    linear-gradient(to top right, #8ca4fc, transparent);
+  background-blend-mode: screen;
+} */

@@ -3,6 +3,7 @@ import { getAccountsThunk, fetchUserThunk } from "../redux/user/user.action";
 import { useSelector, useDispatch } from "react-redux";
 // import { loginUserThunk } from "../redux/user/user.action";
 import SideBar from "./side-bar";
+import { height } from "@mui/system";
 
 const Accounts = () => {
   const dispatch = useDispatch();
@@ -33,11 +34,24 @@ return (
         <SideBar></SideBar>
       <div className="content">
       {accounts.map((account, index) => (
-        <div key={index}>
-          <h3>Account Name: {account.name}</h3>
-          <p>Subtype: {account.subtype}</p>
-          <p>Available Balance: {account.balances.available}</p>
-          <p>Current Balance: {account.balances.current}</p>
+        <div key={index} style={{
+          fontFamily: 'Times New Roman',
+          display: '',
+          fontWeight: 'normal',
+          fontSize: '20px',
+          backgroundBlendMode: 'linear',
+          border: '1px solid black',
+          borderRadius: '10px',
+          padding: '0.5em 0.5em 0.5em',
+          margin: '10px',
+          height: 'auto',
+          width: '50%',
+          backgroundColor: 'white'
+        }}>
+          <h1>Account Name: {account.name}</h1>
+          <h3>Subtype: {account.subtype}</h3>
+          <h3>Available Balance: {account.balances.available}</h3>
+          <h3>Current Balance: {account.balances.current}</h3>
           <hr />
         </div>
       ))}

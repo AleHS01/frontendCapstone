@@ -9,9 +9,14 @@ import LinkPlaid from "./components/LinkPlaid";
 import Dashboard from "./components/Dashboard";
 import ExpensesForm from "./components/ExpensesForm";
 import Accounts from "./components/GetAccounts";
-import SideBar from "./components/side-bar";
+
 import ExpensesView from "./components/ExpensesView";
 import Transactions from "./components/Transactions";
+// import IncomeForm from "./components/IncomeForm";
+// import IncomesView from "./components/IncomeView";
+
+import BudgetView from "./components/BudgetView";
+import AddExpenseForm from "./components/BudgetExpenseForm";
 // import IncomeForm from "./components/IncomeForm";
 // import IncomesView from "./components/IncomeView";
 import BudgetForm from "./components/BudgetForm";
@@ -35,15 +40,21 @@ function App() {
           <Route path="/expense-form" element={<ExpensesForm />} />
           {/* <Route path = "/income-form" element={<IncomeForm></IncomeForm>}></Route>
           <Route path = "/incomes" element = {<IncomesView></IncomesView>} /> */}
-          <Route path="/budgetform" element={<BudgetForm></BudgetForm>} />
+          <Route path = "/budgetform" element = {<BudgetForm></BudgetForm>}/>
+          <Route path = "/budget-view" element = {<BudgetView></BudgetView>} />
+          <Route path = "/budget-expense" element = {<AddExpenseForm></AddExpenseForm>} />
+
           <Route path="/expenses" element={<ExpensesView />} />
           <Route path="/trans" element={<Transactions />} />
 
           <Route path="/login/success" element={<LoginGoogleSuccess />} />
+
         </Routes>
       </div>
     </Router>
   );
+  
+
 }
 
 export default App;
