@@ -103,6 +103,7 @@ const LinkPlaid = () => {
           Plaid's solid infrastructure creates a standardized and dependable channel for our app to retrieve critical financial data, 
           allowing us to provide a streamlined and tailored finance experience to our valued consumers.
         </p>
+        <p className="text-green-600">HI</p>
         <div>
         <img src={plaidImage2} alt="Plaid" style={{ width: '450px', height: 'auto', }} />
         <img src={plaidImage3} alt="Plaid" style={{ width: '450px', height: 'auto', }} />
