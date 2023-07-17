@@ -6,6 +6,8 @@ const userActionTypes = {
   GET_ACCOUNT: "GET BANK ACCOUNTS",
   GET_TRANS:"GET TRANSACTIONS",
   ADD_BUDGET: "ADD BUDGET",
+  GET_BUDGET: "GET BUDGET",
+  ADD_EXPENSE: "ADD EXPENSE"
 };
 
 export default userActionTypes;

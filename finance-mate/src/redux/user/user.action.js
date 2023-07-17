@@ -37,7 +37,18 @@ export const addBudget = (budgetinfo) => ({
   type: userActionTypes.ADD_BUDGET,
   payload: budgetinfo
 })
+
+export const getBudget = (budgets) => ({
+  type: userActionTypes.GET_BUDGET,
+  payload: budgets
   
+})
+
+export const addExpense = (expense) => ({
+  type: userActionTypes.ADD_EXPENSE,
+  payload: expense,
+});
+
 
 export const fetchUserThunk = () => {
   console.log("got to the thunk");
@@ -173,3 +184,30 @@ export const addBudgetThunk = (budgetInfo) => {
     };
   };
 };
+
+export const getBudgets = () => {
+  return async(dispatch) => {
+    try {
+      const response = await axios.get("http://localhost:8080/api/budget/budgetDetails", {withCredentials: true})
+      console.log(response);
+      dispatch(getBudgets(response.data));
+    } catch (error) {
+      console.log(error)
+    }
+  }
+};
+
+export const addExpenseThunk = (expenseData) => {
+  return async (dispatch) => {
+    try {
+      // Make a POST request to the API endpoint to add the expense
+      const response = await axios.post("/api/expenses", expenseData);
+      const expense = response.data;
+
+      dispatch(addExpense(expense));
+    } catch (error) {
+      console.error(error);
+    }
+  };
+};
+
