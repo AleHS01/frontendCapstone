@@ -37,7 +37,22 @@ export const addBudget = (budgetinfo) => ({
   type: userActionTypes.ADD_BUDGET,
   payload: budgetinfo
 })
+
+export const getBudget = (budgets) => ({
+  type: userActionTypes.GET_BUDGET,
+  payload: budgets
   
+})
+
+export const addExpense = (expense) => ({
+  type: userActionTypes.ADD_EXPENSE,
+  payload: expense,
+});
+
+export const getBudgetName = (budgetName) => ({
+  type: userActionTypes.GET_BUDGET_NAMES,
+  payload: budgetName
+})
 
 export const fetchUserThunk = () => {
   console.log("got to the fetch_user_thunk");
@@ -174,3 +189,54 @@ export const addBudgetThunk = (budgetInfo) => {
     };
   };
 };
+
+export const getBudgets = () => {
+  return async(dispatch) => {
+    try {
+      const response = await axios.get("http://localhost:8080/api/budget/budgetDetails", {withCredentials: true})
+      console.log(response);
+      dispatch(getBudgets(response.data));
+    } catch (error) {
+      console.log(error)
+    }
+  }
+};
+
+export const addExpenseThunk = (expenseData) => {
+  return async (dispatch) => {
+    try {
+      // Make a POST request to the API endpoint to add the expense
+      const response = await axios.post("http://localhost:8080/api/expense/addExpense", expenseData, {withCredentials: true});
+      const expense = response.data;
+
+      dispatch(addExpense(expense));
+    } catch (error) {
+      console.error(error);
+    }
+  };
+};
+
+// export const getBudgetNamesThunk = () => {
+//   return async (dispatch) => {
+//     try {
+//       const response = await axios.get("http://localhost:8080/api/budget/budgetNames", {withCredentials: true})
+//       console.log(response.data)
+//       dispatch(getBudgetName(response.data.filter((name) => name !== null))); // Filter out null values
+//     } catch (error) {
+//       console.log(error)
+//     }
+//   }
+// }
+
+export const getBudgetNamesThunk = () => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.get("http://localhost:8080/api/budget/budgetNames", {withCredentials: true})
+      // const filteredBudgets = response.data.filter((budget) => budget.budget_name !== null);
+      dispatch(getBudgetName(response.data));
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
+
