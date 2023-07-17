@@ -1,6 +1,13 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  getExpensesThunk,
+  updateExpenseThunk,
+  createExpensesThunk,
+  deleteExpenseThunk,
+} from "../redux/user/user.action";
 import {
   Button,
   TextField,
@@ -16,9 +23,10 @@ import SideBar from "./side-bar";
 // import DeleteIcon from "@mui/icons-material/Delete";
 
 const ExpensesForm = () => {
-  const [expenses, setExpenses] = useState(null);
+  const [expensesList, setExpensesList] = useState(null);
   const [editedExpenseIndex, setEditedExpenseIndex] = useState(null);
-
+  const dispatch = useDispatch();
+  const expenses = useSelector((state) => state.user_expenses);
   const navigate = useNavigate();
 
   // [
@@ -28,80 +36,63 @@ const ExpensesForm = () => {
 
   useEffect(() => {
     const getExpenses = async () => {
-      try {
-        const response = await axios.post(
-          "http://localhost:8080/api/expense/get",
-          {},
-          { withCredentials: true }
-        );
-
-        console.log("Response.data in Expense Form\n", response.data);
-        setExpenses(response.data);
-      } catch (error) {
-        console.log(error);
-      }
+      setExpensesList(await dispatch(getExpensesThunk()));
     };
     getExpenses();
   }, []);
 
   const handleExpenseChange = (index, field, value) => {
-    const updatedExpenses = [...expenses];
+    const updatedExpenses = [...expensesList];
     updatedExpenses[index] = {
       ...updatedExpenses[index],
       [field]: value,
     };
-    setExpenses(updatedExpenses);
+    setExpensesList(updatedExpenses);
   };
 
   const addExpense = () => {
     if (expenses.length < 10) {
-      setExpenses([...expenses, { expense_name: "", expense_value: "" }]);
+      setExpensesList([
+        ...expensesList,
+        { expense_name: "", expense_value: "" },
+      ]);
     }
-  };
-
-  const deleteExpense = (index) => {
-    const updatedExpenses = [...expenses];
-    updatedExpenses.splice(index, 1);
-    setExpenses(updatedExpenses);
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log("Expenses array before send:\n", expenses);
-    try {
-      const respose = await axios.post(
-        "http://localhost:8080/api/expense",
-        {
-          expenses,
-        },
-        { withCredentials: true }
-      );
-      console.log("Response Expenses:\n", respose.data);
-      //setExpenses([{ expense_name: "Monthly Income", expense_value: "" }]);
-      setTimeout(() => {
-        navigate("/user");
-      }, 3000);
-    } catch (error) {
-      console.log(error);
-    }
+    console.log("Expenses array before send:\n", expensesList);
+    const response = await dispatch(createExpensesThunk(expensesList));
+    console.log("Response Expenses:\n", response);
+    setExpensesList(await response);
+
+    setTimeout(() => {
+      navigate("/user");
+    }, 3000);
   };
 
   const saveExpense = async (index) => {
     // Make the API call to update the expense in the backend
-    try {
-      const updatedExpense = expenses[index];
-      const response = await axios.put(
-        `http://localhost:8080/api/expense/${updatedExpense.id}`,
-        updatedExpense,
-        { withCredentials: true }
-      );
-      console.log("Expense updated:", response.data);
-    } catch (error) {
-      console.log(error);
+
+    const updatedExpense = expensesList[index];
+
+    const response = await dispatch(updateExpenseThunk(updatedExpense));
+
+    console.log("Expense updated:", response);
+    setEditedExpenseIndex(null);
+  };
+
+  const deleteExpense = (index) => {
+    const updatedExpenses = [...expensesList];
+
+    const expenseToDelete = expensesList[index];
+
+    if (expenseToDelete.id) {
+      dispatch(deleteExpenseThunk(expenseToDelete));
     }
 
-    // Reset the edited expense index to null to stop editing
-    setEditedExpenseIndex(null);
+    updatedExpenses.splice(index, 1);
+    setExpensesList(updatedExpenses);
   };
 
   const renderExpense = (expense, index) => (
@@ -167,9 +158,9 @@ const ExpensesForm = () => {
         <Typography variant="h1" style={{ marginBottom: "2rem" }}>
           Finance Form
         </Typography>
-        {expenses !== null && expenses !== [] ? (
+        {expenses && expenses !== [] && expensesList ? (
           <form onSubmit={handleSubmit}>
-            {expenses.map(renderExpense)}
+            {expensesList.map(renderExpense)}
             {expenses.length >= 10 && (
               <Typography color="error" variant="caption">
                 Expense limit reached. You cannot add more than 10 expenses.
@@ -190,26 +181,6 @@ const ExpensesForm = () => {
         ) : (
           <h2>Loading Form...</h2>
         )}
-
-        {/* <form onSubmit={handleSubmit}>
-          {expenses.map(renderExpense)}
-          {expenses.length >= 10 && (
-            <Typography color="error" variant="caption">
-              Expense limit reached. You cannot add more than 10 expenses.
-            </Typography>
-          )}
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={addExpense}
-            disabled={expenses.length >= 10}
-          >
-            Add Expense
-          </Button>
-          <Button type="submit" variant="contained" color="primary">
-            Submit
-          </Button>
-        </form> */}
       </div>
     </div>
   );
