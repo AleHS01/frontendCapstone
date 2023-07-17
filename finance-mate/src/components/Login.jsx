@@ -12,7 +12,7 @@ const Login = () => {
   const navigate = useNavigate();
   const handleLogin = async () => {
     try {
-      await dispatch(loginUserThunk({ username, password })); // Dispatch the login thunk action
+      dispatch(loginUserThunk({ username, password })); // Dispatch the login thunk action
       setPassword("");
       setUsername("");
       navigate("/user");

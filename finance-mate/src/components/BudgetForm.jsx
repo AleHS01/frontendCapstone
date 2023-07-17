@@ -41,7 +41,7 @@ const BudgetForm = () => {
       amount: amount,
     };
     dispatch(addBudgetThunk(budgetinfo));
-    navigate("/budget-view");
+    navigate("/budget-expense");
   };
 
   return (

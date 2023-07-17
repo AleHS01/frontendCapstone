@@ -45,12 +45,12 @@ function Home() {
             </p>
           </div>
 
-          <div className="flex flex-col">
+          <div className="flex flex-col items-center">
             <Link
               to="/login"
               className="bg-green-600 flex rounded-md px-4 py-2 mr-4 items-center mb-4 shadow-md "
             >
-              <p className="text-black mr-2">Plaid Required</p>
+              <p className="text-black mr-2">Log back in!</p>
               <p className="bg-black p-1.5 rounded-md text-white font-bold">
                 Log In
               </p>
@@ -60,12 +60,12 @@ function Home() {
               to="/signup"
               className="bg-green-600 flex rounded-md px-4 py-2 mr-4 items-center mv-4 shadow-md"
             >
-              <p className="text-black mr-2">Plaid Required</p>
+              <p className="text-black mr-2">Join Finance Mate</p>
               <p className="bg-black p-1.5 rounded-md text-white font-bold">
                 Sign Up
               </p>
             </Link>
-            <GoogleButton onClick={googleLogin} />
+            <GoogleButton className="m-4 shadow-md" onClick={googleLogin} />
           </div>
         </div>
       </div>
