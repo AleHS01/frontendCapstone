@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { addBudgetThunk } from "../redux/user/user.action";
 import { TextField, Button, Container, Typography } from "@mui/material";
 import styled from "styled-components";
-import waveBackground from "/Users/hamzakhaliq/Desktop/frontendcapstone/frontendCapstone/finance-mate/src/components/layered-waves-haikei.svg";
+import waveBackground from "./layered-waves-haikei.svg";
 
 const BackgroundContainer = styled.div``;
 

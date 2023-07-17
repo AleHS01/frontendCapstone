@@ -10,6 +10,7 @@ import SideBar from "./side-bar";
 import plaidImage1 from "../images/plaid.png"; // Import the image
 import plaidImage2 from "../images/plaid2.webp"; // Import the image
 import plaidImage3 from "../images/plaid3.webp"; // Import the image
+//import plaidImage4 from "../images/creditcards.p"; // Import the image
 
 import { withTheme } from "@emotion/react";
 
@@ -94,6 +95,7 @@ const LinkPlaid = () => {
           backgroundColor: 'snow-gray',
           fontSize: '24px',
         }}>
+
           Plaid is a vital financial technology solution that provides users of our Finance-Mate app with smooth access to their bank accounts and critical financial data. 
           We ensure a secure and efficient connection to multiple financial institutions by integrating Plaid's cutting-edge APIs into our application. 
           Plaid allows our users to easily view their bank and credit union account information, transaction details, and balances. 
