@@ -9,12 +9,13 @@ import LinkPlaid from "./components/LinkPlaid";
 import Dashboard from "./components/Dashboard";
 import ExpensesForm from "./components/ExpensesForm";
 import Accounts from "./components/GetAccounts";
-import SideBar from "./components/side-bar";
+
 import ExpensesView from "./components/ExpensesView";
 import Transactions from "./components/Transactions";
 // import IncomeForm from "./components/IncomeForm";
 // import IncomesView from "./components/IncomeView";
 import BudgetForm from "./components/BudgetForm";
+import LandingPage from "./components/Landing-Page";
 
 function App() {
   return (
@@ -37,10 +38,13 @@ function App() {
           <Route path = "/budgetform" element = {<BudgetForm></BudgetForm>}/>
           <Route path="/expenses" element={<ExpensesView />} />
           <Route path="/trans" element={<Transactions />} />
+          <Route path="/landing-page" element={<LandingPage />} />
         </Routes>
       </div>
     </Router>
   );
+  
+
 }
 
 export default App;

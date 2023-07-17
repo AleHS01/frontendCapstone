@@ -43,14 +43,14 @@ const Login = () => {
         onChange={(e) => setPassword(e.target.value)}
         style={{ marginBottom: "1rem" }}
       />
-      <Button
-        variant="contained"
-        color="primary"
+      <button
+
+        className="bg-green-600 flex rounded-md px-4 py-2 mr-4 items-center mv-4 shadow-md"
         onClick={handleLogin} // Call the handleLogin function
-        style={{ marginBottom: "1rem" }}
+
       >
         Submit
-      </Button>
+      </button>
     </div>
   );
 };
