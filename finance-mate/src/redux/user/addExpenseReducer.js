@@ -1,19 +1,20 @@
 import userActionTypes from "./user.type";
 
 const initialState = {
-  get_budget_categories: [],
+  expenses: {},
 };
 
-const getBudgetReducer = (state = initialState, action) => {
+const expenseReducer = (state = initialState, action) => {
   switch (action.type) {
-    case(userActionTypes.GET_BUDGET_NAMES):
+    case(userActionTypes.ADD_EXPENSE):
       return {
         ...state,
-        get_budget_categories: action.payload,
+        expenses: action.payload,
       };
     default:
       return state;
   }
 };
 
-export default getBudgetReducer;
+export default expenseReducer;
+   

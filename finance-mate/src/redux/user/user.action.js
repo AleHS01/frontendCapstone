@@ -274,9 +274,9 @@ export const addExpenseThunk = (expenseData) => {
     try {
       // Make a POST request to the API endpoint to add the expense
       const response = await axios.post("http://localhost:8080/api/expense/addExpense", expenseData, {withCredentials: true});
-      const expense = response.data;
+      // const expense = response.data;
 
-      dispatch(addExpense(expense));
+      dispatch(addExpense(expenseData));
     } catch (error) {
       console.error(error);
     }

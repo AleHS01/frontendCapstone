@@ -13,10 +13,13 @@ const allReducers = combineReducers({
   user_accounts: getAccountsReducer,
   trans: getTransReducer,
   user_expenses: expensesReducer,
+
   add_budget: addBudgetReducer,
+
   get_budget: getBudgetReducer,
-  add_budget_expense: budgetExpenseReducer,
+  expenses: budgetExpenseReducer,
   get_budget_categories: getBudgetCategoryName,
+
 });
 
 export default allReducers;
