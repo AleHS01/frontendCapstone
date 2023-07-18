@@ -20,7 +20,8 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import SaveIcon from "@mui/icons-material/Save";
 import SideBar from "./side-bar";
-// import DeleteIcon from "@mui/icons-material/Delete";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
+import PageHeader from "./PageHeader";
 
 const ExpensesForm = () => {
   const [expensesList, setExpensesList] = useState(null);
@@ -28,11 +29,6 @@ const ExpensesForm = () => {
   const dispatch = useDispatch();
   const expenses = useSelector((state) => state.user_expenses);
   const navigate = useNavigate();
-
-  // [
-  //   { expense_name: "Monthly Income", expense_value: "" },
-  //   { expense_name: "Car Insurance", expense_value: "" },
-  // ]
 
   useEffect(() => {
     const getExpenses = async () => {
@@ -107,87 +103,113 @@ const ExpensesForm = () => {
   };
 
   const renderExpense = (expense, index) => (
-    <div key={index}>
-      <TextField
-        label={`Expense #${index + 1}`}
-        value={expense.expense_name}
-        onChange={(event) =>
-          handleExpenseChange(index, "expense_name", event.target.value)
-        }
-        style={{ marginBottom: "1rem" }}
-        placeholder="Enter expense name"
-        disabled={editedExpenseIndex !== index && expense.id !== undefined}
-      />
-      <TextField
-        label={`Expense Value`}
-        type="number"
-        value={expense.expense_value}
-        onChange={(event) =>
-          handleExpenseChange(index, "expense_value", event.target.value)
-        }
-        inputProps={{
-          min: "0",
-          step: "0.01",
-        }}
-        InputProps={{
-          startAdornment: <InputAdornment position="start">$</InputAdornment>,
-        }}
-        placeholder="0.00"
-        style={{ marginBottom: "1rem" }}
-        disabled={editedExpenseIndex !== index && expense.id !== undefined}
-      />
-      {editedExpenseIndex === index ? (
-        <Tooltip title="Save Expense" placement="right">
-          <IconButton onClick={() => saveExpense(index)}>
-            <SaveIcon style={{ color: "#00bfa5" }} />
-          </IconButton>
-        </Tooltip>
-      ) : (
-        index >= 0 &&
-        expense.id !== undefined && (
-          <Tooltip title="Edit Expense" placement="right">
-            <IconButton onClick={() => setEditedExpenseIndex(index)}>
-              <EditIcon style={{ color: "#03a9f4" }} />
+    <CSSTransition key={index} timeout={300} classNames="example">
+      <div>
+        <TextField
+          label={`Expense #${index + 1}`}
+          value={expense.expense_name}
+          onChange={(event) =>
+            handleExpenseChange(index, "expense_name", event.target.value)
+          }
+          style={{ marginBottom: "1rem" }}
+          placeholder="Enter expense name"
+          disabled={editedExpenseIndex !== index && expense.id !== undefined}
+          sx={{ mr: "20px", width: "300px", mb: "1.2rem" }}
+        />
+        <TextField
+          label={`Expense Value`}
+          type="number"
+          value={expense.expense_value}
+          onChange={(event) =>
+            handleExpenseChange(index, "expense_value", event.target.value)
+          }
+          inputProps={{
+            min: "0",
+            step: "0.01",
+          }}
+          InputProps={{
+            startAdornment: <InputAdornment position="start">$</InputAdornment>,
+          }}
+          placeholder="0.00"
+          disabled={editedExpenseIndex !== index && expense.id !== undefined}
+          sx={{ width: "300px", mb: "1.2rem" }}
+        />
+        {editedExpenseIndex === index ? (
+          <Tooltip title="Save Expense" placement="right">
+            <IconButton onClick={() => saveExpense(index)}>
+              <SaveIcon style={{ color: "#00bfa5" }} />
             </IconButton>
           </Tooltip>
-        )
-      )}
-      {index >= 1 && (
-        <Tooltip title="Delete Expense" placement="right">
-          <IconButton onClick={() => deleteExpense(index)}>
-            <DeleteIcon style={{ color: "#ff1744" }}></DeleteIcon>
-          </IconButton>
-        </Tooltip>
-      )}
-    </div>
+        ) : (
+          index >= 0 &&
+          expense.id !== undefined && (
+            <Tooltip title="Edit Expense" placement="right">
+              <IconButton onClick={() => setEditedExpenseIndex(index)}>
+                <EditIcon style={{ color: "#03a9f4" }} />
+              </IconButton>
+            </Tooltip>
+          )
+        )}
+        {index >= 1 && (
+          <Tooltip title="Delete Expense" placement="right">
+            <IconButton onClick={() => deleteExpense(index)}>
+              <DeleteIcon style={{ color: "#ff1744" }}></DeleteIcon>
+            </IconButton>
+          </Tooltip>
+        )}
+      </div>
+    </CSSTransition>
   );
 
   return (
     <div className="dashboard">
       <SideBar></SideBar>
       <div className="content">
-        <Typography variant="h1" style={{ marginBottom: "2rem" }}>
+        <PageHeader page_name="Expenses Form" />
+        {/* <Typography variant="h1" style={{ marginBottom: "2rem" }}>
           Expenses Form
-        </Typography>
+        </Typography> */}
         {expenses && expenses !== [] && expensesList ? (
-          <form onSubmit={handleSubmit}>
-            {expensesList.map(renderExpense)}
-            {expenses.length >= 10 && (
+          <form
+            onSubmit={handleSubmit}
+            style={{
+              margin: " 0 auto",
+              maxWidth: "800px",
+              paddingLeft: "60px",
+            }}
+          >
+            <TransitionGroup>{expensesList.map(renderExpense)}</TransitionGroup>
+            {/* {expenses.length >= 10 && (
               <Typography color="error" variant="caption">
                 Expense limit reached. You cannot add more than 10 expenses.
               </Typography>
-            )}
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={addExpense}
-              disabled={expenses.length >= 10}
+            )} */}
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                gap: "20px",
+                width: "620px",
+              }}
             >
-              Add Expense
-            </Button>
-            <Button type="submit" variant="contained" color="primary">
-              Submit
-            </Button>
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={addExpense}
+                // disabled={expenses.length >= 10}
+                sx={{ minWidth: "200px" }}
+              >
+                Add Expense
+              </Button>
+              <Button
+                type="submit"
+                variant="contained"
+                color="primary"
+                sx={{ minWidth: "200px" }}
+              >
+                Submit
+              </Button>
+            </div>
           </form>
         ) : (
           <h2>Loading Form...</h2>

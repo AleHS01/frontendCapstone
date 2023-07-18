@@ -40,7 +40,7 @@ body {
 
 .content {
   flex: 1;
-  padding: 20px;
+  padding: 0 20px 20px;
   background: linear-gradient(white, transparent),
     linear-gradient(to top left, #fffafa, transparent),
     linear-gradient(to top right, white, transparent);
@@ -119,3 +119,24 @@ button::after {
     linear-gradient(to top right, #8ca4fc, transparent);
   background-blend-mode: screen;
 } */
+.example-enter {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.example-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 300ms, transform 500ms;
+}
+
+.example-exit {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.example-exit-active {
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity 300ms, transform 300ms;
+}

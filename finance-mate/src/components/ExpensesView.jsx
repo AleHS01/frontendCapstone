@@ -17,6 +17,7 @@ import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Link } from "react-router-dom";
+import PageHeader from "./PageHeader";
 
 const ExpensesView = () => {
   const user = useSelector((state) => state.user.user);
@@ -126,6 +127,7 @@ const ExpensesView = () => {
     <div className="dashboard">
       <SideBar />
       <div className="content">
+        <PageHeader page_name="My Expenses" />
         <ExpenseInfoBox />
         <Grid container spacing={2}>
           <Grid item xs={7} style={{ height: "450px" }}>
