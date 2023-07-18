@@ -36,8 +36,19 @@ const ExpensesForm = () => {
 
   useEffect(() => {
     const getExpenses = async () => {
-      setExpensesList(await dispatch(getExpensesThunk()));
+      const expensesData = await dispatch(getExpensesThunk());
+      setExpensesList(expensesData);
+
+      if (expensesData.length === 0) {
+        setExpensesList([
+          {
+            expense_name: "Monthly Income",
+            expense_value: "",
+          },
+        ]);
+      }
     };
+
     getExpenses();
   }, []);
 
@@ -67,8 +78,8 @@ const ExpensesForm = () => {
     setExpensesList(await response);
 
     setTimeout(() => {
-      navigate("/user");
-    }, 3000);
+      navigate("/expenses");
+    }, 1000);
   };
 
   const saveExpense = async (index) => {

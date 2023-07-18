@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   addExpenseThunk,
   getBudgetNamesThunk,
+  getExpensesThunk,
+  getBudgets
 } from "../redux/user/user.action";
 import {
   TextField,
@@ -15,6 +17,7 @@ import {
 import styled from "styled-components";
 import waveBackground from "./layered-waves-haikei.svg"
 import BudgetBox from "./BudgetBox";
+import RecentExpenses from "./RecentExpenses";
 const BackgroundContainer = styled.div``;
 
 const DottedBox = styled.div`
@@ -50,11 +53,19 @@ const AddExpenseForm = () => {
   const [expenseName, setExpenseName] = useState("");
   const [expenseAmount, setExpenseAmount] = useState("");
   const [selectedBudgetId, setSelectedBudgetId] = useState("");
-  const budgets = useSelector((state) => state.get_budget_categories);
+  const budgets = useSelector((state) => state.budget);
+  const all_expenses = useSelector((state) => state.user_expenses);
+  const expensesForBudget=all_expenses.filter((expense)=>expense.BudgetId===selectedBudgetId)
+
 
   useEffect(() => {
-    dispatch(getBudgetNamesThunk());
-  }, [dispatch]);
+    dispatch(getBudgets());
+    dispatch(getExpensesThunk())
+    console.log("Use Effect")
+  }, []);
+  
+  
+ 
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -75,7 +86,7 @@ const AddExpenseForm = () => {
 
   return (
     <BackgroundContainer>
-      <WaveImage src={waveBackground} alt="Wave background" />
+      {/* <WaveImage src={waveBackground} alt="Wave background" /> */}
       <Container maxWidth="sm">
         <ContentContainer>
           <BudgetContainer>
@@ -129,6 +140,7 @@ const AddExpenseForm = () => {
             </form>
           </DottedBox>
           <BudgetBox />
+      <RecentExpenses expensesForBudget={expensesForBudget}></RecentExpenses>
           
         </ContentContainer>
       </Container>

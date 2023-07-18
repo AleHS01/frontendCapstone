@@ -19,6 +19,8 @@ import AddExpenseForm from "./components/BudgetExpenseForm";
 import BudgetForm from "./components/BudgetForm";
 import LoginGoogleSuccess from "./components/LoginGoogleSuccess";
 
+import IndividualBudget from "./components/IndividualBudget";
+
 function App() {
   return (
     <Router>
@@ -38,18 +40,15 @@ function App() {
           <Route path = "/budgetform" element = {<BudgetForm></BudgetForm>}/>
           <Route path = "/budget-view" element = {<BudgetView></BudgetView>} />
           <Route path = "/budget-expense" element = {<AddExpenseForm></AddExpenseForm>} />
-
           <Route path="/expenses" element={<ExpensesView />} />
           <Route path="/trans" element={<Transactions />} />
-
           <Route path="/login/success" element={<LoginGoogleSuccess />} />
+          <Route path="/individual-budget/:budget_id" element={<IndividualBudget />} />
 
         </Routes>
       </div>
     </Router>
   );
-  
-
 }
 
 export default App;
