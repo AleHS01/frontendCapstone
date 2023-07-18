@@ -14,6 +14,7 @@ import {
 } from "@mui/material";
 import styled from "styled-components";
 import waveBackground from "./layered-waves-haikei.svg"
+import BudgetBox from "./BudgetBox";
 const BackgroundContainer = styled.div``;
 
 const DottedBox = styled.div`
@@ -127,6 +128,7 @@ const AddExpenseForm = () => {
               </Button>
             </form>
           </DottedBox>
+          <BudgetBox />
           
         </ContentContainer>
       </Container>
