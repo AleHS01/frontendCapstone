@@ -133,7 +133,7 @@ export const loginUserThunk = (credentials) => {
           withCredentials: true,
         }
       );
-      const user_info = response.data.user; // Assuming the login API response contains the user data
+      const user_info = response.data; // Assuming the login API response contains the user data
       console.log("User\n", response.data);
       dispatch(loginSuccess(user_info));
       localStorage.setItem("user", JSON.stringify(user_info));
