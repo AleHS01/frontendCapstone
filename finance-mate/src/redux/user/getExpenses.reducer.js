@@ -17,7 +17,11 @@ const expensesReducer = (state = initialState, action) => {
 
     case userActionTypes.CREATE_OR_UPDATE_EXPENSES:
       return action.payload;
+
+    case userActionTypes.ADD_EXPENSE: 
+      return  [...state, action.payload]
       
+
     default:
       return state;
   }

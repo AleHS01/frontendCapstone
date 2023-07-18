@@ -16,6 +16,9 @@ const budgetReducer = (state = initialState, action) => {
       const deleteBudget = action.payload;
       return state.filter((budget) => budget.id !== deleteBudget.id);
     }
+        case (userActionTypes.GET_BUDGET_TOTAL_AMOUNT): {
+            return action.payload
+        }
     default: {
       return state;
     }
