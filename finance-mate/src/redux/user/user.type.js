@@ -14,6 +14,7 @@ const userActionTypes = {
   GET_BUDGET: "GET BUDGET",
   ADD_EXPENSE: "ADD EXPENSE",
   GET_BUDGET_NAMES: "GET BUDGET NAMES",
+  DELETE_A_BUDGET: "DELETE A BUDGET",
 };
 
 export default userActionTypes;

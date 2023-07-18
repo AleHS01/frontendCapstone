@@ -80,6 +80,11 @@ export const getBudgetName = (budgetName) => ({
   payload: budgetName,
 });
 
+export const deleteABudget = (budget) => ({
+  type: userActionTypes.DELETE_A_BUDGET,
+  payload: budget,
+});
+
 export const fetchUserThunk = () => {
   console.log("got to the fetch_user_thunk");
   return async (dispatch, getState) => {
@@ -227,7 +232,7 @@ export const addBudgetThunk = (budgetInfo) => {
           withCredentials: true,
         }
       );
-      console.log("RESPONSE FROM addBudgetThunk"+response.data);
+      console.log("RESPONSE FROM addBudgetThunk" + response.data);
       dispatch(addBudget(response.data));
     } catch (error) {
       console.log(error);
@@ -273,7 +278,11 @@ export const addExpenseThunk = (expenseData) => {
   return async (dispatch) => {
     try {
       // Make a POST request to the API endpoint to add the expense
-      const response = await axios.post("http://localhost:8080/api/expense/addExpense", expenseData, {withCredentials: true});
+      const response = await axios.post(
+        "http://localhost:8080/api/expense/addExpense",
+        expenseData,
+        { withCredentials: true }
+      );
       const expense = response.data;
 
       dispatch(addExpense(expenseData));
@@ -326,16 +335,14 @@ export const updateExpenseThunk = (expenseToUpdpate) => {
 export const deleteExpenseThunk = (expenseToDelete) => {
   return async (dispatch) => {
     try {
-      const response = await axios.delete(
+      await axios.delete(
         `http://localhost:8080/api/expense/${expenseToDelete.id}`,
         {
           withCredentials: true,
         }
       );
-      const updatedExpense = await response.data;
-      console.log("Updated Expense", updatedExpense);
-      dispatch(deleteAExpense(updatedExpense));
-      return response.data;
+
+      dispatch(deleteAExpense(expenseToDelete));
     } catch (error) {
       console.log(error);
     }
@@ -364,6 +371,23 @@ export const getBudgetNamesThunk = () => {
       );
       // const filteredBudgets = response.data.filter((budget) => budget.budget_name !== null);
       dispatch(getBudgetName(response.data));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const deletedubgetThunk = (budgetToDelete) => {
+  return async (dispatch) => {
+    try {
+      await axios.delete(
+        `http://localhost:8080/api/budget/${budgetToDelete.id}`,
+        {
+          withCredentials: true,
+        }
+      );
+
+      dispatch(deleteABudget(budgetToDelete));
     } catch (error) {
       console.log(error);
     }
