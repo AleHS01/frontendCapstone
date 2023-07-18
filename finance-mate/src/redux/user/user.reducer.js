@@ -1,16 +1,11 @@
 import userActionTypes from "./user.type";
 
-const initialState = {
-  user: null,
-};
+const initialState = {};
 
 const userReducer = (state = initialState, action) => {
   switch (action.type) {
     case userActionTypes.LOGIN_SUCCESS:
-      return {
-        ...state,
-        user: action.payload,
-      };
+      return action.payload;
     case userActionTypes.LOGIN_WITH_GOOGLE:
       return {
         ...state,
@@ -26,15 +21,9 @@ const userReducer = (state = initialState, action) => {
         },
       };
     case userActionTypes.FETCH_USER:
-      return {
-        ...state,
-        user: action.payload,
-      };
+      return action.payload;
     case userActionTypes.LOGOUT_USER:
-      return {
-        ...state,
-        user: null,
-      };
+      return {};
     default:
       return state;
   }

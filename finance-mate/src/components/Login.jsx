@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button, TextField } from "@mui/material";
 import { useDispatch } from "react-redux";
-import { loginUserThunk } from "../redux/user/user.action";
+import { loginUserThunk} from "../redux/user/user.action";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
@@ -13,6 +13,7 @@ const Login = () => {
   const handleLogin = async () => {
     try {
       dispatch(loginUserThunk({ username, password })); // Dispatch the login thunk action
+
       setPassword("");
       setUsername("");
       navigate("/user");

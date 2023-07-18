@@ -3,23 +3,15 @@ import userReducer from "./user/user.reducer";
 import getAccountsReducer from "./user/getAccounts.reducer";
 import getTransReducer from "./user/getTransReducer";
 import expensesReducer from "./user/getExpenses.reducer";
-import addBudgetReducer from "./user/addBudget";
-import getBudgetReducer from "./user/getBudgetReducer";
-import budgetExpenseReducer from "./user/addExpenseReducer";
-import getBudgetCategoryName from "./user/getBudgetNameReducer";
+import budgetReducer from "./user/budgetReducer.js";
+
 
 const allReducers = combineReducers({
   user: userReducer,
   user_accounts: getAccountsReducer,
   trans: getTransReducer,
+  budget: budgetReducer,
   user_expenses: expensesReducer,
-
-  add_budget: addBudgetReducer,
-
-  get_budget: getBudgetReducer,
-  expenses: budgetExpenseReducer,
-  get_budget_categories: getBudgetCategoryName,
-
 });
 
 export default allReducers;

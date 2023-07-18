@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addBudgetThunk } from "../redux/user/user.action";
 import { TextField, Button, Container, Typography } from "@mui/material";
 import styled from "styled-components";
 import waveBackground from "./layered-waves-haikei.svg";
+import {getBudgets} from "../redux/user/user.action"
+import RecentExpenses from "./RecentExpenses";
 
 const BackgroundContainer = styled.div``;
 
@@ -33,6 +35,12 @@ const BudgetForm = () => {
   const dispatch = useDispatch();
   const [budgetname, setBudgetName] = useState("");
   const [amount, setAmount] = useState("");
+  const budgets=useSelector(state=>state.budget)
+
+  useEffect(() => {
+    dispatch(getBudgets());
+    console.log("Use Effect")
+  }, []);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -44,9 +52,15 @@ const BudgetForm = () => {
     navigate("/budget-expense");
   };
 
+  const handleBudget=(event)=>{
+    const budget_Id=event.target.value
+    console.log("BudgetID in handleBudget() "+ budget_Id)
+    navigate(`/individual-budget/${budget_Id}`)
+  }
+
   return (
     <BackgroundContainer>
-      <WaveImage src={waveBackground} alt="Wave background" />
+      {/* <WaveImage src={waveBackground} alt="Wave background" /> */}
       <Container maxWidth="sm">
         <ContentContainer>
           <Typography variant="h2" align="center" gutterBottom>
@@ -101,6 +115,12 @@ const BudgetForm = () => {
               </Button>
             </form>
           </DottedBox>
+          {budgets.map((item) => (
+            
+              <button onClick={handleBudget} value={item.id} className="bg-blue-500 text-white hover:bg-green-600 font-bold py-2 px-4 rounded m-4">{item.budget_name} {item.expense_value}</button>
+
+          ))}
+          <RecentExpenses></RecentExpenses>
         </ContentContainer>
       </Container>
     </BackgroundContainer>

@@ -134,10 +134,10 @@ export const loginUserThunk = (credentials) => {
           withCredentials: true,
         }
       );
-      const user = await response.data; // Assuming the login API response contains the user data
-      console.log("User\n", await response.data);
-      dispatch(loginSuccess(user));
-      localStorage.setItem("user", JSON.stringify(user));
+      const user_info = response.data.user; // Assuming the login API response contains the user data
+      console.log("User\n", response.data);
+      dispatch(loginSuccess(user_info));
+      localStorage.setItem("user", JSON.stringify(user_info));
     } catch (error) {
       console.log(error);
     }
@@ -228,7 +228,7 @@ export const addBudgetThunk = (budgetInfo) => {
           withCredentials: true,
         }
       );
-      console.log(response.data);
+      console.log("RESPONSE FROM addBudgetThunk"+response.data);
       dispatch(addBudget(response.data));
     } catch (error) {
       console.log(error);
@@ -241,9 +241,8 @@ export const addBudgetThunk = (budgetInfo) => {
 export const getExpensesThunk = () => {
   return async (dispatch) => {
     try {
-      const response = await axios.post(
-        "http://localhost:8080/api/expense/get",
-        {},
+      const response = await axios.get(
+        "http://localhost:8080/api/expense/getExpenses",
         { withCredentials: true }
       );
       const expenses = await response.data;
@@ -262,7 +261,7 @@ export const getBudgets = () => {
     try {
       const response = await axios.get("http://localhost:8080/api/budget/budgetDetails", {withCredentials: true})
       console.log(response);
-      dispatch(getBudgets(response.data));
+      dispatch(getBudget(response.data));
     } catch (error) {
       console.log(error)
     }

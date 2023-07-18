@@ -1,10 +1,32 @@
 import React from 'react'
+import { useSelector } from 'react-redux/es/hooks/useSelector'
 
-function RecentExpenses() {
+function RecentExpenses({expensesForBudget}) {
+  const expenses=useSelector((state)=>state.user_expenses);
+  let expenses_to_render=[]
+
+  if (!expensesForBudget){
+    expenses_to_render=expenses;
+  } else{
+    expenses_to_render=expensesForBudget
+  }
+
+
+
     //get all the expenses pertaining to the user and render them
-  return (
-    <div>RecentExpenses</div>
-  )
+    return (
+      <div className=" text-black p-4">
+        <div className="text-xl font-bold mb-4">RECENT EXPENSES</div>
+        {expenses_to_render.map((single_expense, index) => (
+          <div className="mb-2" key={index}>
+            <span className="font-semibold">Expense Name:</span> {single_expense.expense_name}
+            <span className="mx-2">|</span>
+            <span className="font-semibold">Amount:</span> {single_expense.expense_value}
+          </div>
+        ))}
+      </div>
+    );
+    
 }
 
 export default RecentExpenses
