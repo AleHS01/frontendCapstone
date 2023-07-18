@@ -7,10 +7,10 @@ body {
 }
 
 .sidebar {
-  width: 200px;
-  background: linear-gradient(#05377f, transparent),
-    linear-gradient(to top left, #3886f7, transparent),
-    linear-gradient(to top right, #8ca4fc, transparent);
+  width: 230px;
+  background: linear-gradient(#008000, transparent),
+    linear-gradient(to top left, black, transparent),
+    linear-gradient(to top right, #006400, transparent);
   background-blend-mode: screen;
   padding: 20px;
 }
@@ -34,8 +34,8 @@ body {
 
 /* Hover effect */
 .sidebar-button:hover {
-  background-color: #c0c0c0;
-  box-shadow: 0 0 5px white, 0 0 25px white, 0 0 25px white, 0 0 100px black;
+  background-color: #32cd32;
+  box-shadow: 0 0 5px white, 0 0 25px white, 0 0 25px white, 0 0 100px #006400;
 }
 
 .content {
@@ -49,9 +49,9 @@ body {
 
 .pie-chart-div {
   height: 400px !important;
-  width: 800px !important;
+  width: 600px !important;
   text-align: center;
-  margin: 0 auto 70px;
+  margin: 0 0 50px;
 }
 .pie-chart-div h1 {
   margin: 1rem 0;
@@ -59,6 +59,15 @@ body {
 .pie-chart-div .pie-chart-2 {
   height: 100%;
   width: 100%;
+  text-align: left;
+}
+/* filter arrows in expense-view */
+.filter-arrows {
+  cursor: pointer !important;
+  transition: color 0.5s ease-in !important;
+}
+.filter-arrows:hover {
+  color: #05377f;
 }
 
 /* for button hover */
@@ -76,23 +85,26 @@ button::after {
 }
 
 .plaid-button {
-  background: linear-gradient(#05377f, transparent),
-    linear-gradient(to top left, #3886f7, transparent),
-    linear-gradient(to top right, #8ca4fc, transparent);
-  background-blend-mode: screen;
+  /* background: linear-gradient(grey, transparent),
+    linear-gradient(to top left, #2e8b57, transparent),
+    linear-gradient(to top right, #006400, transparent);
+  background-blend-mode: screen; */
+  background-color: #006400;
   color: black;
   padding: 10px 20px;
   border: none;
   border-radius: 4px;
+  font-family: 'Times New Roman', Times, serif;
   font-size: 20px;
   font-weight: bold;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  color: azure;
 }
 
 .plaid-button:hover {
-  background-color: darkblue;
-  box-shadow: 0 0 5px white, 0 0 25px white, 0 0 25px white, 0 0 100px #3886f7;
+  background-color: #7cfc00;
+  box-shadow: 0 0 5px white, 0 0 25px white, 0 0 25px white, 0 0 100px #006400;
 }
 
 /* .content{

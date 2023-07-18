@@ -67,9 +67,8 @@ export const addBudget = (budgetinfo) => ({
 
 export const getBudget = (budgets) => ({
   type: userActionTypes.GET_BUDGET,
-  payload: budgets
-  
-})
+  payload: budgets,
+});
 
 export const addExpense = (expense) => ({
   type: userActionTypes.ADD_EXPENSE,
@@ -78,8 +77,8 @@ export const addExpense = (expense) => ({
 
 export const getBudgetName = (budgetName) => ({
   type: userActionTypes.GET_BUDGET_NAMES,
-  payload: budgetName
-})
+  payload: budgetName,
+});
 
 export const fetchUserThunk = () => {
   console.log("got to the fetch_user_thunk");
@@ -251,21 +250,23 @@ export const getExpensesThunk = () => {
       return response.data;
     } catch (error) {
       console.log(error);
-      
-    };
+    }
   };
 };
 
 export const getBudgets = () => {
-  return async(dispatch) => {
+  return async (dispatch) => {
     try {
-      const response = await axios.get("http://localhost:8080/api/budget/budgetDetails", {withCredentials: true})
+      const response = await axios.get(
+        "http://localhost:8080/api/budget/budgetDetails",
+        { withCredentials: true }
+      );
       console.log(response);
       dispatch(getBudget(response.data));
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
 };
 
 export const addExpenseThunk = (expenseData) => {
@@ -273,7 +274,7 @@ export const addExpenseThunk = (expenseData) => {
     try {
       // Make a POST request to the API endpoint to add the expense
       const response = await axios.post("http://localhost:8080/api/expense/addExpense", expenseData, {withCredentials: true});
-      // const expense = response.data;
+      const expense = response.data;
 
       dispatch(addExpense(expenseData));
     } catch (error) {
@@ -357,12 +358,14 @@ export const deleteExpenseThunk = (expenseToDelete) => {
 export const getBudgetNamesThunk = () => {
   return async (dispatch) => {
     try {
-      const response = await axios.get("http://localhost:8080/api/budget/budgetNames", {withCredentials: true})
+      const response = await axios.get(
+        "http://localhost:8080/api/budget/budgetNames",
+        { withCredentials: true }
+      );
       // const filteredBudgets = response.data.filter((budget) => budget.budget_name !== null);
       dispatch(getBudgetName(response.data));
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
-}
-
+  };
+};

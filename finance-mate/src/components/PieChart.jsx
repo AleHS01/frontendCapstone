@@ -4,7 +4,7 @@ const PieChart = (props) => {
   return (
     <ResponsivePie
       data={props.data}
-      margin={{ top: 40, right: 80, bottom: 80, left: 80 }}
+      margin={{ top: 40, right: 80, bottom: 80, left: -70 }}
       innerRadius={0.5}
       padAngle={0.7}
       cornerRadius={3}
@@ -59,16 +59,16 @@ const PieChart = (props) => {
           anchor: "top-right",
           direction: "column",
           justify: false,
-          translateX: 115,
-          translateY: 30,
-          itemsSpacing: 15,
-          itemWidth: 150,
+          translateX: 60,
+          translateY: 40,
+          itemsSpacing: 10,
+          itemWidth: 100,
           itemHeight: 18,
           itemTextColor: "#999",
           itemDirection: "left-to-right",
           itemOpacity: 1,
           symbolSize: 18,
-          symbolShape: "square",
+          symbolShape: "circle",
           effects: [
             {
               on: "hover",
