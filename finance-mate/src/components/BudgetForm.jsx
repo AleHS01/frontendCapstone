@@ -7,6 +7,7 @@ import styled from "styled-components";
 import waveBackground from "./layered-waves-haikei.svg";
 import {getBudgets} from "../redux/user/user.action"
 import RecentExpenses from "./RecentExpenses";
+import SideBar from "./side-bar";
 
 const BackgroundContainer = styled.div``;
 
@@ -59,9 +60,10 @@ const BudgetForm = () => {
   }
 
   return (
-    <BackgroundContainer>
+    <BackgroundContainer className="dashboard">
+      <SideBar></SideBar>
       {/* <WaveImage src={waveBackground} alt="Wave background" /> */}
-      <Container maxWidth="sm">
+      <Container maxWidth="sm" className="content">
         <ContentContainer>
           <Typography variant="h2" align="center" gutterBottom>
             <span style={{ color: "black", fontWeight: "bold" }}>
