@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   addExpenseThunk,
   getBudgetNamesThunk,
+  getExpenseOfBudgetThunk,
   getExpensesThunk,
   getBudgets
 } from "../redux/user/user.action";
@@ -55,17 +56,25 @@ const AddExpenseForm = () => {
   const [selectedBudgetId, setSelectedBudgetId] = useState("");
   const budgets = useSelector((state) => state.budget);
   const all_expenses = useSelector((state) => state.user_expenses);
+  const budget_expense_total = useSelector((state) => state.user_budget_expenses)
   const expensesForBudget=all_expenses.filter((expense)=>expense.BudgetId===selectedBudgetId)
-  console.log("expenses for entertainment:", expensesForBudget)
-
+  // console.log("expenses for entertainment:", expensesForBudget)
+  const selectedBudget = budgets.find((budget) => budget.id === selectedBudgetId);
 
   useEffect(() => {
     dispatch(getBudgets());
     dispatch(getExpensesThunk())
+
+    // Add check to ensure selectedBudget is defined before dispatching
+    if (selectedBudget) {
+      console.log("budget expense thunk launched")
+      dispatch(getExpenseOfBudgetThunk(selectedBudget.id))
+    }
+    
     console.log("Use Effect")
-  }, []);
+  }, [selectedBudgetId]); // Add selectedBudget to the dependency array
   
-  
+console.log("budget_expense_total", budget_expense_total)
  
 
   const handleSubmit = (event) => {
@@ -78,27 +87,28 @@ const AddExpenseForm = () => {
     };
 
     dispatch(addExpenseThunk(expenseData));
+    if (selectedBudgetId) {
+      dispatch(getExpenseOfBudgetThunk(selectedBudgetId));
+    }
 
     setExpenseName("");
     setExpenseAmount("");
   };
 
-  const selectedBudget = budgets.find((budget) => budget.id === selectedBudgetId);
-  console.log("budget details", selectedBudget)
 
   return (
     <BackgroundContainer>
       {/* <WaveImage src={waveBackground} alt="Wave background" /> */}
       <Container maxWidth="sm">
         <ContentContainer>
-          <BudgetContainer>
+          {/* <BudgetContainer>
             <Typography variant="h6">Selected Budget:</Typography>
             {selectedBudget ? (
               <Typography variant="body1">{selectedBudget.budget_name}</Typography>
             ) : (
               <Typography variant="body1">No budget selected</Typography>
             )}
-          </BudgetContainer>
+          </BudgetContainer> */}
           <DottedBox>
             <form onSubmit={handleSubmit}>
               <Typography variant="h5" gutterBottom>
@@ -144,6 +154,7 @@ const AddExpenseForm = () => {
           <BudgetBox 
             budget= {selectedBudget}
             expenses = {expensesForBudget}
+            expense_total = {budget_expense_total}
           />
       {/* <RecentExpenses expensesForBudget={expensesForBudget}></RecentExpenses> */}
           

@@ -58,6 +58,16 @@ export const deleteAExpense = (expense) => ({
   payload: expense,
 });
 
+export const getExpenseOfBudget = (expenseBudgetTotal) => ({
+  type: userActionTypes.GET_BUDGET_EXPENSE_TOTAL_AMOUNT,
+  payload: expenseBudgetTotal
+})
+
+export const addExpense = (expense) => ({
+  type: userActionTypes.ADD_EXPENSE,
+  payload: expense,
+});
+
 //----------------End of Expenses Actions----------------
 
 // ---------------------Budget Actions-------------------------
@@ -71,25 +81,17 @@ export const getBudget = (budgets) => ({
   payload: budgets,
 });
 
-export const addExpense = (expense) => ({
-  type: userActionTypes.ADD_EXPENSE,
-  payload: expense,
-});
-
 export const getBudgetName = (budgetName) => ({
   type: userActionTypes.GET_BUDGET_NAMES,
   payload: budgetName,
 });
 
-export const getBudgetAmount = (budgetAmount) => ( {
+export const getBudgetAmount = (budgetAmount) => ({
   type: userActionTypes.GET_BUDGET_TOTAL_AMOUNT,
-  payload: budgetAmount
-})
-
+  payload: budgetAmount,
+});
 
 //-------------------------End of Budget Actions----------------------------
-
-
 
 //-------------------------------------Thunks----------------------------------------
 
@@ -230,25 +232,7 @@ export const getTransactionsThunk = () => {
   };
 };
 
-export const addBudgetThunk = (budgetInfo) => {
-  return async (dispatch) => {
-    try {
-      const response = await axios.post(
-        "http://localhost:8080/api/budget/addBudget",
-        budgetInfo,
-        {
-          withCredentials: true,
-        }
-      );
-      console.log("RESPONSE FROM addBudgetThunk"+response.data);
-      dispatch(addBudget(response.data));
-    } catch (error) {
-      console.log(error);
-    }
-  };
-};
-
-//---------------ExpensesThunk-----------
+//------------------------------------ExpensesThunk-----------------------------------
 
 export const getExpensesThunk = () => {
   return async (dispatch) => {
@@ -267,26 +251,15 @@ export const getExpensesThunk = () => {
   };
 };
 
-export const getBudgets = () => {
-  return async (dispatch) => {
-    try {
-      const response = await axios.get(
-        "http://localhost:8080/api/budget/budgetDetails",
-        { withCredentials: true }
-      );
-      console.log(response);
-      dispatch(getBudget(response.data));
-    } catch (error) {
-      console.log(error);
-    }
-  };
-};
-
 export const addExpenseThunk = (expenseData) => {
   return async (dispatch) => {
     try {
       // Make a POST request to the API endpoint to add the expense
-      const response = await axios.post("http://localhost:8080/api/expense/addExpense", expenseData, {withCredentials: true});
+      const response = await axios.post(
+        "http://localhost:8080/api/expense/addExpense",
+        expenseData,
+        { withCredentials: true }
+      );
       const expense = response.data;
 
       dispatch(addExpense(expenseData));
@@ -355,6 +328,22 @@ export const deleteExpenseThunk = (expenseToDelete) => {
   };
 };
 
+export const getExpenseOfBudgetThunk = (budgetId) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.get(`http://localhost:8080/api/expense/totalExpenses/${budgetId}`, {
+        withCredentials: true
+      })
+      console.log("Total expense done inside this budget: ", response.data)
+      dispatch(getExpenseOfBudget(response.data))
+    } catch (error) {
+        console.log(error)
+    }
+  }
+}
+
+//-----------------------------------Budget Thunk-----------------------------------
+
 export const getBudgetNamesThunk = () => {
   return async (dispatch) => {
     try {
@@ -371,15 +360,53 @@ export const getBudgetNamesThunk = () => {
 };
 
 export const getBudgetAmountThunk = (budgetId) => {
-  return async(dispatch) => {
+  return async (dispatch) => {
     try {
-      const response = await axios.post("http://localhost:8080/api/budget/budgetAmount", budgetId, {
-        withCredentials: true
-      })
-      console.log("Budget total retrieved by thunk: ", response.data)
-      dispatch(getBudgetAmount(response.data))
+      const response = await axios.post(
+        "http://localhost:8080/api/budget/budgetAmount",
+        budgetId,
+        {
+          withCredentials: true,
+        }
+      );
+      console.log("Budget total retrieved by thunk: ", response.data);
+      dispatch(getBudgetAmount(response.data));
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
-}
+  };
+};
+
+export const getBudgets = () => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.get(
+        "http://localhost:8080/api/budget/budgetDetails",
+        { withCredentials: true }
+      );
+      console.log(response);
+      dispatch(getBudget(response.data));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const addBudgetThunk = (budgetInfo) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.post(
+        "http://localhost:8080/api/budget/addBudget",
+        budgetInfo,
+        {
+          withCredentials: true,
+        }
+      );
+      console.log("RESPONSE FROM addBudgetThunk" + response.data);
+      dispatch(addBudget(response.data));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
