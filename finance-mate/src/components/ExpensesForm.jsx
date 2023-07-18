@@ -166,9 +166,7 @@ const ExpensesForm = () => {
       <SideBar></SideBar>
       <div className="content">
         <PageHeader page_name="Expenses Form" />
-        {/* <Typography variant="h1" style={{ marginBottom: "2rem" }}>
-          Expenses Form
-        </Typography> */}
+
         {expenses && expenses !== [] && expensesList ? (
           <form
             onSubmit={handleSubmit}
@@ -179,11 +177,7 @@ const ExpensesForm = () => {
             }}
           >
             <TransitionGroup>{expensesList.map(renderExpense)}</TransitionGroup>
-            {/* {expenses.length >= 10 && (
-              <Typography color="error" variant="caption">
-                Expense limit reached. You cannot add more than 10 expenses.
-              </Typography>
-            )} */}
+
             <div
               style={{
                 display: "flex",

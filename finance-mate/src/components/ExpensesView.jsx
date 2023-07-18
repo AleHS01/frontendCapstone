@@ -12,12 +12,14 @@ import {
   IconButton,
   Card,
   CardContent,
+  Tooltip,
 } from "@mui/material";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Link } from "react-router-dom";
 import PageHeader from "./PageHeader";
+import { deleteExpenseThunk } from "../redux/user/user.action";
 
 const ExpensesView = () => {
   const user = useSelector((state) => state.user.user);
@@ -25,7 +27,8 @@ const ExpensesView = () => {
   const [pieChartData, setPieChartData] = useState([]);
   const [pieChartFill, setPieChartFill] = useState([]);
   const [loadingChart, setLoadingChart] = useState(false);
-
+  const [sortOrder, setSortOrder] = useState("asc");
+  const dispatch = useDispatch();
   const financeTips = [
     "- Track your daily expenses to know where your money is going",
     "- Set financial goals and create a budget to achieve them",
@@ -123,6 +126,35 @@ const ExpensesView = () => {
     }, 500);
   }, [expenses, loadingChart]);
 
+  const deleteExpense = (index) => {
+    const updatedExpenses = [...expenses];
+
+    const expenseToDelete = expenses[index];
+
+    if (expenseToDelete.id) {
+      dispatch(deleteExpenseThunk(expenseToDelete));
+    }
+
+    updatedExpenses.splice(index, 1);
+    setExpenses(updatedExpenses);
+  };
+
+  const sortedExpenses = [...expenses].sort((a, b) => {
+    if (sortOrder === "asc") {
+      return parseFloat(b.expense_value) - parseFloat(a.expense_value);
+    } else {
+      return parseFloat(a.expense_value) - parseFloat(b.expense_value);
+    }
+  });
+
+  const handleSortAsc = () => {
+    setSortOrder("asc");
+  };
+
+  const handleSortDesc = () => {
+    setSortOrder("desc");
+  };
+
   return (
     <div className="dashboard">
       <SideBar />
@@ -168,16 +200,24 @@ const ExpensesView = () => {
           <Grid item sx={{ ml: "40px" }}>
             <Typography variant="h6" sx={{ color: "#05377f" }}>
               Filter:
-              <ArrowUpwardIcon
-                fontSize="small"
-                sx={{ ml: 1, mr: 0.5, color: "#9da3ab", cursor: "pointer" }}
-                className="filter-arrows"
-              />
-              <ArrowDownwardIcon
-                fontSize="small"
-                sx={{ color: "#9da3ab", cursor: "pointer" }}
-                className="filter-arrows"
-              />
+              <Tooltip title="Sort Ascending" placement="top">
+                <IconButton onClick={handleSortAsc}>
+                  <ArrowUpwardIcon
+                    fontSize="small"
+                    sx={{ color: "#9da3ab", cursor: "pointer" }}
+                    className="filter-arrows"
+                  />
+                </IconButton>
+              </Tooltip>
+              <Tooltip title="Sort Descending" placement="top">
+                <IconButton onClick={handleSortDesc}>
+                  <ArrowDownwardIcon
+                    fontSize="small"
+                    sx={{ color: "#9da3ab", cursor: "pointer" }}
+                    className="filter-arrows"
+                  />
+                </IconButton>
+              </Tooltip>
             </Typography>
           </Grid>
           <Grid item xs>
@@ -223,8 +263,8 @@ const ExpensesView = () => {
           spacing={2}
           sx={{ mt: "20px", width: "93%", mx: "auto" }}
         >
-          {expenses.length > 0 ? (
-            expenses.map((expense) => (
+          {sortedExpenses.length > 0 ? (
+            sortedExpenses.map((expense, index) => (
               <Grid item xs={12} sm={6} md={4} key={expense.id}>
                 <Card sx={{ height: "100px", position: "relative" }}>
                   <CardContent>
@@ -233,13 +273,16 @@ const ExpensesView = () => {
                       ${expense.expense_value}
                     </Typography>
                   </CardContent>
-                  <IconButton
-                    aria-label="delete"
-                    // onClick={() => handleDeleteExpense(expense.id)}
-                    sx={{ position: "absolute", top: "10px", right: "10px" }}
-                  >
-                    <DeleteIcon style={{ color: "red" }} />
-                  </IconButton>
+                  <Tooltip title="Delete Expense" placement="bottom">
+                    <IconButton
+                      aria-label="delete"
+                      // onClick={() => handleDeleteExpense(expense.id)}
+                      sx={{ position: "absolute", top: "10px", right: "10px" }}
+                      onClick={() => deleteExpense(index)}
+                    >
+                      <DeleteIcon style={{ color: "red" }} />
+                    </IconButton>
+                  </Tooltip>
                 </Card>
               </Grid>
             ))
