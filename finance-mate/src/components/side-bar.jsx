@@ -45,7 +45,7 @@ function SideBar() {
   };
 
   const handleSetBudget = () => {
-    navigate("/setbudget")
+    navigate("/budgetform")
   }
 
 
@@ -69,12 +69,6 @@ function SideBar() {
       </button>
       <button className="sidebar-button" onClick={handleExpenseView}>
         Expenses
-      </button>
-      <button className="sidebar-button" onClick={handleIncomeForm}>
-        Income Form
-      </button>
-      <button className="sidebar-button" onClick={handleIncomeView}>
-        Incomes
       </button>
       <button className="sidebar-button" onClick={handleSetBudget}>
         Set Budget
