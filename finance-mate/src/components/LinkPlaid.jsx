@@ -101,14 +101,13 @@ const LinkPlaid = () => {
         />{" "}
         {/* Replace the <p> tag with this <img> tag */}
         
-        <button className="plaid-button"
-        onClick={popUp} disabled={!ready}>
+        <button className="plaid-button" onClick={popUp} disabled={!ready}>
           {" "}
           Link with Plaid
         </button>
         <br/>
         {/* Existing <p> tag */}
-        <p className="text-base font-serif p-4 border border-green-500 border-opacity-50 rounded-lg bg-gradient-to-r from-green-400 to-green-600 text-lg">
+        <p className="text-base font-serif p-4 border border-green-500 border-opacity-50 rounded-lg bg-gradient-to-r from-green-100 to-green-200 text-lg">
           Plaid is a vital financial technology solution that provides users of
           our Finance-Mate app with smooth access to their bank accounts and
           critical financial data. We ensure a secure and efficient connection

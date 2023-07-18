@@ -7,7 +7,7 @@ body {
 }
 
 .sidebar {
-  width: 200px;
+  width: 230px;
   background: linear-gradient(#008000, transparent),
     linear-gradient(to top left, black, transparent),
     linear-gradient(to top right, #006400, transparent);
@@ -76,18 +76,21 @@ button::after {
 }
 
 .plaid-button {
-  background: linear-gradient(grey, transparent),
+  /* background: linear-gradient(grey, transparent),
     linear-gradient(to top left, #2e8b57, transparent),
     linear-gradient(to top right, #006400, transparent);
-  background-blend-mode: screen;
+  background-blend-mode: screen; */
+  background-color: #006400;
   color: black;
   padding: 10px 20px;
   border: none;
   border-radius: 4px;
+  font-family: 'Times New Roman', Times, serif;
   font-size: 20px;
   font-weight: bold;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  color: azure;
 }
 
 .plaid-button:hover {
