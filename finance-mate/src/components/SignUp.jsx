@@ -89,6 +89,19 @@ const SignUp = () => {
       </Link>
       </div>
 
+      <div className="m-4 bg-green-600 flex rounded-lg px-6 py-3 mr-4 items-center mb-4 shadow-md border-8 ">
+          <p className="text-base font-serif p-4 border border-green-500 border-opacity-50 rounded-lg bg-gradient-to-r from-green-100 to-green-200 text-lg">
+            <h1 className="flex justify-center font-semibold text-xl font-serif">Finance-Mate</h1>
+            Welcome to Finance-Mate, your trusted companion for simplified financial management. 
+            Take control of your money and achieve your goals effortlessly. 
+            Seamlessly track expenses, analyze spending patterns, and budget for a secure future. 
+            Manage accounts, make seamless transactions, and stay informed in one place. 
+            Experience convenience, security, and peace of mind. 
+            Join us today and embark on a rewarding financial journey.
+          </p>
+          
+        </div>
+
     </div>
   );
 };
