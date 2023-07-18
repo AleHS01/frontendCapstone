@@ -78,8 +78,8 @@ const ExpensesForm = () => {
     setExpensesList(await response);
 
     setTimeout(() => {
-      navigate("/user");
-    }, 3000);
+      navigate("/expenses");
+    }, 1000);
   };
 
   const saveExpense = async (index) => {

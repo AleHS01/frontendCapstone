@@ -3,6 +3,20 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import SideBar from "./side-bar";
 import PieChart from "./PieChart";
+import ExpenseInfoBox from "./Expense/ExpenseInfoBox";
+import {
+  Grid,
+  Typography,
+  Divider,
+  Chip,
+  IconButton,
+  Card,
+  CardContent,
+} from "@mui/material";
+import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
+import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
+import DeleteIcon from "@mui/icons-material/Delete";
+import { Link } from "react-router-dom";
 
 const ExpensesView = () => {
   const user = useSelector((state) => state.user.user);
@@ -11,12 +25,25 @@ const ExpensesView = () => {
   const [pieChartFill, setPieChartFill] = useState([]);
   const [loadingChart, setLoadingChart] = useState(false);
 
+  const financeTips = [
+    "- Track your daily expenses to know where your money is going",
+    "- Set financial goals and create a budget to achieve them",
+    "- Consider saving a percentage of your income each month",
+    "- Track daily expenses to identify savings opportunities",
+    "- Create a budget to control your finances effectively",
+    "- Pay bills on time to avoid unnecessary fees",
+    "- Avoid impulse purchases and stick to your plan",
+    "- Shop smart and look for discounts and deals",
+    "- Utilize cashback rewards to earn money on purchases",
+    "- Cook at home to save on eating out costs",
+    "- Prioritize needs over wants to stay financially disciplined",
+  ];
+
   useEffect(() => {
     const getExpenses = async () => {
       try {
-        const response = await axios.post(
-          "http://localhost:8080/api/expense/get",
-          {},
+        const response = await axios.get(
+          "http://localhost:8080/api/expense/getExpenses",
           { withCredentials: true }
         );
 
@@ -92,24 +119,106 @@ const ExpensesView = () => {
 
     setTimeout(() => {
       setLoadingChart(true);
-    }, 1000);
+    }, 500);
   }, [expenses, loadingChart]);
 
   return (
     <div className="dashboard">
       <SideBar />
       <div className="content">
-        <div className="pie-chart-div">
-          {loadingChart ? (
-            <h1 key="loaded-heading">Expense Chart</h1>
-          ) : (
-            <h1 key="loading-heading">Loading Chart...</h1>
-          )}
-          <PieChart data={pieChartData} fill={pieChartFill} />
-        </div>
+        <ExpenseInfoBox />
+        <Grid container spacing={2}>
+          <Grid item xs={7} style={{ height: "450px" }}>
+            {/* Your Pie Chart Component */}
+            <Typography
+              variant="h4"
+              sx={{ textAlign: "center", fontWeight: "500", color: "#0e365e" }}
+            >
+              Insights Into Your Spending Habits
+            </Typography>
+            <PieChart data={pieChartData} fill={pieChartFill} />
+          </Grid>
+          <Grid item xs={5}>
+            {/* Finance Tips */}
+            <Typography variant="h4" sx={{ color: "#137f31" }}>
+              Finance Tips
+            </Typography>
+            {financeTips.map((tip) => (
+              <Typography
+                variant="body1"
+                key={tip}
+                style={{
+                  margin: "10px 0",
+                  color: "#2c4966",
+                  textAlign: "justify",
+                }}
+              >
+                {tip}
+              </Typography>
+            ))}
+          </Grid>
+        </Grid>
 
-        <h1>Hello Expenses</h1>
-        {expenses.length > 0 ? (
+        <Grid
+          container
+          alignItems="center"
+          spacing={2}
+          sx={{ mt: "20px", height: "40px" }}
+        >
+          <Grid item sx={{ ml: "40px" }}>
+            <Typography variant="h6" sx={{ color: "#05377f" }}>
+              Filter:
+              <ArrowUpwardIcon
+                fontSize="small"
+                sx={{ ml: 1, mr: 0.5, color: "#9da3ab", cursor: "pointer" }}
+                className="filter-arrows"
+              />
+              <ArrowDownwardIcon
+                fontSize="small"
+                sx={{ color: "#9da3ab", cursor: "pointer" }}
+                className="filter-arrows"
+              />
+            </Typography>
+          </Grid>
+          <Grid item xs>
+            <Divider
+              orientation="vertical"
+              variant="middle"
+              sx={{ borderColor: "#4CAF50", height: "100%" }}
+            />
+          </Grid>
+          <Grid item>
+            <Typography
+              variant="h4"
+              sx={{ fontWeight: "500", color: "#4CAF50" }}
+            >
+              Overview of Your Expenses
+            </Typography>
+          </Grid>
+          <Grid item xs>
+            <Divider
+              orientation="vertical"
+              variant="middle"
+              sx={{ borderColor: "#4CAF50", height: "100%" }}
+            />
+          </Grid>
+          <Grid item sx={{ mr: "40px" }}>
+            <Chip
+              label="Edit Expenses"
+              component={Link}
+              to="/expense-form"
+              clickable
+              sx={{
+                backgroundColor: "#03a9f4",
+                color: "#fff",
+                "&:hover": {
+                  backgroundColor: "#05377f",
+                },
+              }}
+            />
+          </Grid>
+        </Grid>
+        {/* {expenses.length > 0 ? (
           expenses.map((expense) => {
             return (
               <div key={expense.id}>
@@ -121,7 +230,38 @@ const ExpensesView = () => {
           })
         ) : (
           <h2>No Expenses Found</h2>
-        )}
+        )} */}
+        <Grid
+          container
+          spacing={2}
+          sx={{ mt: "20px", width: "93%", mx: "auto" }}
+        >
+          {expenses.length > 0 ? (
+            expenses.map((expense) => (
+              <Grid item xs={12} sm={6} md={4} key={expense.id}>
+                <Card sx={{ height: "100px", position: "relative" }}>
+                  <CardContent>
+                    <Typography variant="h5">{expense.expense_name}</Typography>
+                    <Typography variant="body1">
+                      ${expense.expense_value}
+                    </Typography>
+                  </CardContent>
+                  <IconButton
+                    aria-label="delete"
+                    // onClick={() => handleDeleteExpense(expense.id)}
+                    sx={{ position: "absolute", top: "10px", right: "10px" }}
+                  >
+                    <DeleteIcon style={{ color: "red" }} />
+                  </IconButton>
+                </Card>
+              </Grid>
+            ))
+          ) : (
+            <Grid item xs={12}>
+              <Typography variant="h6">No Expenses Found</Typography>
+            </Grid>
+          )}
+        </Grid>
       </div>
     </div>
   );
