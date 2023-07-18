@@ -12,6 +12,9 @@ const budgetReducer = (state = initialState, action) => {
         case (userActionTypes.GET_BUDGET): {
             return action.payload
         }
+        case (userActionTypes.GET_BUDGET_TOTAL_AMOUNT): {
+            return action.payload
+        }
         default: {
             return state
         }

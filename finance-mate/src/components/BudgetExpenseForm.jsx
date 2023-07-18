@@ -56,6 +56,7 @@ const AddExpenseForm = () => {
   const budgets = useSelector((state) => state.budget);
   const all_expenses = useSelector((state) => state.user_expenses);
   const expensesForBudget=all_expenses.filter((expense)=>expense.BudgetId===selectedBudgetId)
+  console.log("expenses for entertainment:", expensesForBudget)
 
 
   useEffect(() => {
@@ -83,6 +84,7 @@ const AddExpenseForm = () => {
   };
 
   const selectedBudget = budgets.find((budget) => budget.id === selectedBudgetId);
+  console.log("budget details", selectedBudget)
 
   return (
     <BackgroundContainer>
@@ -139,8 +141,11 @@ const AddExpenseForm = () => {
               </Button>
             </form>
           </DottedBox>
-          <BudgetBox />
-      <RecentExpenses expensesForBudget={expensesForBudget}></RecentExpenses>
+          <BudgetBox 
+            budget= {selectedBudget}
+            expenses = {expensesForBudget}
+          />
+      {/* <RecentExpenses expensesForBudget={expensesForBudget}></RecentExpenses> */}
           
         </ContentContainer>
       </Container>

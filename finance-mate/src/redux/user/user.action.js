@@ -60,6 +60,7 @@ export const deleteAExpense = (expense) => ({
 
 //----------------End of Expenses Actions----------------
 
+// ---------------------Budget Actions-------------------------
 export const addBudget = (budgetinfo) => ({
   type: userActionTypes.ADD_BUDGET,
   payload: budgetinfo,
@@ -79,6 +80,18 @@ export const getBudgetName = (budgetName) => ({
   type: userActionTypes.GET_BUDGET_NAMES,
   payload: budgetName,
 });
+
+export const getBudgetAmount = (budgetAmount) => ( {
+  type: userActionTypes.GET_BUDGET_TOTAL_AMOUNT,
+  payload: budgetAmount
+})
+
+
+//-------------------------End of Budget Actions----------------------------
+
+
+
+//-------------------------------------Thunks----------------------------------------
 
 export const fetchUserThunk = () => {
   console.log("got to the fetch_user_thunk");
@@ -342,19 +355,6 @@ export const deleteExpenseThunk = (expenseToDelete) => {
   };
 };
 
-//---------------End ExpensesThunk-----------
-// export const getBudgetNamesThunk = () => {
-//   return async (dispatch) => {
-//     try {
-//       const response = await axios.get("http://localhost:8080/api/budget/budgetNames", {withCredentials: true})
-//       console.log(response.data)
-//       dispatch(getBudgetName(response.data.filter((name) => name !== null))); // Filter out null values
-//     } catch (error) {
-//       console.log(error)
-//     }
-//   }
-// }
-
 export const getBudgetNamesThunk = () => {
   return async (dispatch) => {
     try {
@@ -369,3 +369,17 @@ export const getBudgetNamesThunk = () => {
     }
   };
 };
+
+export const getBudgetAmountThunk = (budgetId) => {
+  return async(dispatch) => {
+    try {
+      const response = await axios.post("http://localhost:8080/api/budget/budgetAmount", budgetId, {
+        withCredentials: true
+      })
+      console.log("Budget total retrieved by thunk: ", response.data)
+      dispatch(getBudgetAmount(response.data))
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}

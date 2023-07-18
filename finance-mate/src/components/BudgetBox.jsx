@@ -1,4 +1,5 @@
-import React from "react";
+import { isMuiElement } from "@mui/material";
+import React, {useEffect, useState} from "react";
 import styled from "styled-components";
 
 const BudgetBoxContainer = styled.div`
@@ -39,25 +40,46 @@ const ExpenseItem = styled.li`
   margin-bottom: 4px;
 `;
 
-const BudgetBox = ({ budgetName, totalAmount, expenses }) => {
-  // Dummy data for demonstration
-  // Replace this with your actual data
-  const dummyExpenses = [
-    { id: 1, name: "Expense 1", amount: 100 },
-    { id: 2, name: "Expense 2", amount: 200 },
-    { id: 3, name: "Expense 3", amount: 150 },
-  ];
+const BudgetBox = ({ budget, expenses }) => {
+  console.log("budget in BudgetBOX", budget);
+  const [budgetname, setBudgetName] = useState("")
+  const [budgetamount, setBudgetAmount] = useState(0)
+  const [budgetexpenses, setBudgetExpenses] = useState([])
+  const [budgetexpenseamount, setBudgetExpenseAmount] = useState(0)
 
-  const totalSpent = dummyExpenses.reduce((total, expense) => total + expense.amount, 0);
-  const fillpercentage = (25 / 100) * 100;
+  useEffect(() => {
+    try {
+      const budgetName = budget.budget_name;
+      setBudgetName(budgetName)
+      const totalAmount = budget.amount;
+      setBudgetAmount(totalAmount)
+      const budgetExpenses = expenses;
+      setBudgetExpenses(budgetExpenses)
+  
+      var total = 0.0;
+      budgetExpenses.forEach((item) => {
+        console.log(item.expense_value);
+        total = total + parseFloat(item.expense_value);
+      });
+
+      setBudgetExpenseAmount(total)
+    } catch (error) {
+      console.log(error);
+    }
+  }, [budget, expenses])
+
+  console.log("total expenses: ", budgetexpenseamount)
+
+  // console.log(budgetname, budgetamount, budgetexpenses)
+  // const fillpercentage = (total / totalAmount) * 100;
 
   return (
     <BudgetBoxContainer>
-      <BudgetName>Groceries</BudgetName>
-      <TotalAmount>Total Amount: ${1200}</TotalAmount>
+      {/* <BudgetName>{budgetName}</BudgetName>
+      <TotalAmount>Total Budgeted: {totalAmount}</TotalAmount> 
       <ProgressBar>
         <ProgressFill fillpercentage= {fillpercentage}/>
-      </ProgressBar>
+      </ProgressBar> */}
       {/* <ExpenseList>
         {dummyExpenses.map((expense) => (
           <ExpenseItem key={expense.id}>
