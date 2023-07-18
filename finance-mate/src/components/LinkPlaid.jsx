@@ -100,22 +100,15 @@ const LinkPlaid = () => {
           style={{ width: "400px", height: "auto", padding: "10px" }}
         />{" "}
         {/* Replace the <p> tag with this <img> tag */}
-        <button className="plaid-button" onClick={popUp} disabled={!ready}>
+        
+        <button className="plaid-button"
+        onClick={popUp} disabled={!ready}>
           {" "}
           Link with Plaid
         </button>
+        <br/>
         {/* Existing <p> tag */}
-        <p
-          style={{
-            fontFamily: "Times New Roman",
-            fontWeight: "normal",
-            padding: "10px",
-            border: "0.5px solid black",
-            borderRadius: "9px",
-            backgroundColor: "snow-gray",
-            fontSize: "24px",
-          }}
-        >
+        <p className="text-base font-serif p-4 border border-green-500 border-opacity-50 rounded-lg bg-gradient-to-r from-green-400 to-green-600 text-lg">
           Plaid is a vital financial technology solution that provides users of
           our Finance-Mate app with smooth access to their bank accounts and
           critical financial data. We ensure a secure and efficient connection
@@ -128,14 +121,17 @@ const LinkPlaid = () => {
           critical financial data, allowing us to provide a streamlined and
           tailored finance experience to our valued consumers.
         </p>
-        <p className="text-green-600">HI</p>
-        <div>
-          <img
+        <br/>
+
+        <h1 className="font-bold font-serif text-xl " >Secure Banking with plaid</h1>
+
+        <div className="flex justify-evenly border border-black border-opacity-50 rounded-lg bg-gradient-to-r from-green-200 to-green-400">
+          <img className="ml-4"
             src={plaidImage2}
             alt="Plaid"
             style={{ width: "450px", height: "auto" }}
           />
-          <img
+          <img className="ml-4"
             src={plaidImage3}
             alt="Plaid"
             style={{ width: "450px", height: "auto" }}
