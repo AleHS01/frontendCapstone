@@ -1,7 +1,6 @@
 import { isMuiElement } from "@mui/material";
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components"; // generates STYLED react components
-
 
 // const DottedBox = styled.div`
 // border: 4px dotted #000;
@@ -52,51 +51,51 @@ const ExpenseItem = styled.li`
   margin-bottom: 4px;
 `;
 
-const BudgetBox = ({ budget, expenses,expense_total }) => {
+const BudgetBox = ({ budget, expenses, expense_total }) => {
   // console.log("budget in BudgetBOX", budget);
-  const [budgetname, setBudgetName] = useState("")
-  const [budgetamount, setBudgetAmount] = useState(0)
-  const [budgetexpenses, setBudgetExpenses] = useState([])
-  const [budgetexpenseamount, setBudgetExpenseAmount] = useState(0)
+  const [budgetname, setBudgetName] = useState(budget.budget_name);
+  const [budgetamount, setBudgetAmount] = useState(budget.amount);
+  const [budgetexpenses, setBudgetExpenses] = useState(expenses);
+  const [budgetexpenseamount, setBudgetExpenseAmount] = useState(0);
 
   useEffect(() => {
     try {
       const budgetName = budget.budget_name;
-      setBudgetName(budgetName)
+      setBudgetName(budgetName);
       const totalAmount = budget.amount;
-      setBudgetAmount(totalAmount)
+      setBudgetAmount(totalAmount);
       const budgetExpenses = expenses;
-      setBudgetExpenses(budgetExpenses)
-  
+      setBudgetExpenses(budgetExpenses);
+
       // var total = 0.0;
       // budgetExpenses.forEach((item) => {
       //   console.log(item.expense_value);
       //   total = total + parseFloat(item.expense_value);
       // });
 
-      setBudgetExpenseAmount(expense_total)
+      setBudgetExpenseAmount(expense_total);
     } catch (error) {
       console.log(error);
     }
-  }, [budget, expenses, expense_total])
+  }, [budget, expenses, expense_total]);
+  // useEffect(()=>{
 
-  console.log("total expenses: ", budgetexpenseamount)
-  const fillpercentage = (budgetexpenseamount/budgetamount) * 100
+  // },[])
+
+  console.log("total expenses: ", budgetexpenseamount);
+  const fillpercentage = (budgetexpenseamount / budgetamount) * 100;
 
   // console.log(budgetname, budgetamount, budgetexpenses)
   // const fillpercentage = (total / totalAmount) * 100;
 
   return (
-
     <BudgetBoxContainer>
       <BudgetName>{budgetname}</BudgetName>
-      <TotalAmount>Total Budgeted: {budgetamount}</TotalAmount> 
-
+      <TotalAmount>Total Budgeted: {budgetamount}</TotalAmount>
 
       <ProgressBar>
-      {/* <progress value = {fillpercentage} max = "100"></progress> */}
-        <ProgressFill fillpercentage= {fillpercentage}/>
-       
+        {/* <progress value = {fillpercentage} max = "100"></progress> */}
+        <ProgressFill fillpercentage={fillpercentage} />
       </ProgressBar>
       {/* <ExpenseList>
         {dummyExpenses.map((expense) => (
@@ -106,7 +105,6 @@ const BudgetBox = ({ budget, expenses,expense_total }) => {
         ))}
       </ExpenseList> */}
     </BudgetBoxContainer>
-
   );
 };
 
