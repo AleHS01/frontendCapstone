@@ -33,6 +33,7 @@ const Login = () => {
         placeholder="Username"
         value={username}
         onChange={(e) => setUsername(e.target.value)}
+        //TailWindCSS
         className="mb-4 py-2 px-4 border border-black rounded-md shadow-lg focus:outline-none focus:border-green-500"
       />
 
@@ -41,10 +42,12 @@ const Login = () => {
         placeholder="Password"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
+        //TailWindCSS
         className="mb-4 py-2 px-4 border border-black rounded-md shadow-lg focus:outline-none focus:border-green-500"
       />
 
       <button
+      //TailWindCSS
         className="bg-green-600 flex rounded-md px-4 py-2 mr-4 items-center mv-4 shadow-md border-4 font-semibold font-sans"
         onClick={handleLogin} // Call the handleLogin function
         >Submit</button>
@@ -56,7 +59,9 @@ const Login = () => {
         <p className="bg-black p-1.5 rounded-md text-white font-bold">Sign Up</p>
       </Link>
       </div>
-        <div className="bg-green-600 flex rounded-lg px-4 py-2 mr-4 items-center mb-4 shadow-md border-8 ">
+
+
+        <div className="m-4 bg-green-600 flex rounded-lg px-6 py-3 mr-4 items-center mb-4 shadow-md border-8 ">
           <p className="text-base font-serif p-4 border border-green-500 border-opacity-50 rounded-lg bg-gradient-to-r from-green-100 to-green-200 text-lg">
             <h1 className="flex justify-center font-semibold text-xl font-serif">Finance-Mate</h1>
           Welcome to Finance-Mate, your trusted companion for financial management. 
