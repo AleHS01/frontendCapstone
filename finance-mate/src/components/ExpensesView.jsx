@@ -74,7 +74,7 @@ const ExpensesView = () => {
           defaultData.push({
             id: `Expense ${i + 1}`,
             label: `Expense ${i + 1}`,
-            value: Math.floor(Math.random() * 951) + 50, // Generate a random value between 50 and 1000
+            value: Math.floor(Math.random() * 951) + 50,
           });
         }
         console.log("defaultData:\n", defaultData);
@@ -129,7 +129,6 @@ const ExpensesView = () => {
         <ExpenseInfoBox />
         <Grid container spacing={2}>
           <Grid item xs={7} style={{ height: "450px" }}>
-            {/* Your Pie Chart Component */}
             <Typography
               variant="h4"
               sx={{ textAlign: "center", fontWeight: "500", color: "#0e365e" }}
@@ -139,7 +138,6 @@ const ExpensesView = () => {
             <PieChart data={pieChartData} fill={pieChartFill} />
           </Grid>
           <Grid item xs={5}>
-            {/* Finance Tips */}
             <Typography variant="h4" sx={{ color: "#137f31" }}>
               Finance Tips
             </Typography>
@@ -218,19 +216,6 @@ const ExpensesView = () => {
             />
           </Grid>
         </Grid>
-        {/* {expenses.length > 0 ? (
-          expenses.map((expense) => {
-            return (
-              <div key={expense.id}>
-                <h3>
-                  {expense.expense_name}: ${expense.expense_value}
-                </h3>
-              </div>
-            );
-          })
-        ) : (
-          <h2>No Expenses Found</h2>
-        )} */}
         <Grid
           container
           spacing={2}
