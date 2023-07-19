@@ -9,7 +9,7 @@ function SideBar() {
 
   const handleLogout = async () => {
     try {
-      await dispatch(logoutUserThunk());
+      dispatch(logoutUserThunk());
       console.log("Logout successful");
       navigate("/");
     } catch (error) {
