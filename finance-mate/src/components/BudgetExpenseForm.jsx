@@ -21,6 +21,7 @@ import styled from "styled-components";
 import waveBackground from "./layered-waves-haikei.svg";
 import BudgetBox from "./BudgetBox";
 import RecentExpenses from "./RecentExpenses";
+import SideBar from "./side-bar";
 const BackgroundContainer = styled.div``;
 
 const DottedBox = styled.div`
@@ -64,9 +65,9 @@ const AddExpenseForm = () => {
   const budgets = useSelector((state) => state.budget);
   const all_expenses = useSelector((state) => state.user_expenses);
   const expensesForBudget = all_expenses.filter((expense) => expense.BudgetId === selectedBudgetId);
-  console.log("expensesForBudget==>",expensesForBudget)
+  // console.log("expensesForBudget==>",expensesForBudget)
   const budget_expense_total = expensesForBudget.reduce(((acc, expense) => (acc + parseInt(expense.expense_value))), 0);
-  console.log(budget_expense_total,expensesForBudget)
+  // console.log(budget_expense_total,expensesForBudget)
   // const budget_expense_total = useSelector((state) => state.user_budget_expenses);
   // console.log("expenses for entertainment:", expensesForBudget)
   // const selectedBudget = budgets.find((budget) => budget.id === selectedBudgetId);
@@ -90,7 +91,7 @@ const AddExpenseForm = () => {
     //     dispatch(getExpenseOfBudgetThunk(selectedBudget.id));
     // }
 
-    console.log("Use Effect");
+    // console.log("Use Effect");
     }, [selectedBudgetId]);
 
   // console.log("budget_expense_total", budget_expense_total);
@@ -114,9 +115,10 @@ const AddExpenseForm = () => {
   };
 
   return (
-    <BackgroundContainer>
+    <BackgroundContainer className="dashboard">
+      <SideBar></SideBar>
       {/* <WaveImage src={waveBackground} alt="Wave background" /> */}
-      <Container maxWidth="sm">
+      <Container maxWidth="sm" className="content">
         <ContentContainer>
           {/* <BudgetContainer>
             <Typography variant="h6">Selected Budget:</Typography>
@@ -157,7 +159,7 @@ const AddExpenseForm = () => {
                 value={selectedBudgetId}
                 onChange={(e) => {
                   setSelectedBudgetId(e.target.value);
-                  console.log("User Selected ID"+e.target.value);
+                  // console.log("User Selected ID"+e.target.value);
                 }}
               >
                 {budgets.map((budget) => (
