@@ -107,7 +107,7 @@ export const getBudgetsThunk = () => {
         "http://localhost:8080/api/budget/budgetDetails",
         { withCredentials: true }
       );
-      console.log(response);
+      // console.log(response);
       dispatch(getBudget(response.data));
     } catch (error) {
       console.log(error);
