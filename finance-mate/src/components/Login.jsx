@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button, TextField } from "@mui/material";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { loginUserThunk} from "../redux/user/user.action";
 import { useNavigate } from "react-router-dom";
 
@@ -10,17 +10,29 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const dispatch = useDispatch(); // Get the dispatch function
   const navigate = useNavigate();
-  const handleLogin = async () => {
-    try {
-      dispatch(loginUserThunk({ username, password })); // Dispatch the login thunk action
+  const user=useSelector(state=>state.user)
+  const [loginStatus, setLoginStatus] = useState(""); // New state variable to track login status
 
-      setPassword("");
-      setUsername("");
+  useEffect(() => {
+    console.log(Object.keys(user));
+    if (loginStatus === "failed") {
+      alert("Login Failed");
+    } else if (loginStatus === "success") {
       navigate("/user");
-    } catch (error) {
-      console.log(error);
     }
-  };
+  }, [loginStatus]);
+
+  useEffect(()=>{
+    if (!(Object.keys(user).length===0)){
+      setLoginStatus("success"); // Set loginStatus to "success" if login is successfull
+    }
+  },[user])
+
+  const handleLogin =  () => {
+    dispatch(loginUserThunk({ username, password }));
+  }
+  
+
 
   return (
     <div
