@@ -14,6 +14,9 @@ import SideBar from "./side-bar";
 import plaidImage1 from "../images/plaid.png"; // Import the image
 import plaidImage2 from "../images/plaid2.webp"; // Import the image
 import plaidImage3 from "../images/plaid3.webp"; // Import the image
+import { ImLink } from "react-icons/im";
+
+//ImLink
 //import plaidImage4 from "../images/creditcards.p"; // Import the image
 
 import { withTheme } from "@emotion/react";
@@ -87,7 +90,7 @@ const LinkPlaid = () => {
     <div className="dashboard">
       <SideBar></SideBar>
       <div
-        className="content"
+        className="content p-7"
         style={{
           display: "flex",
           flexDirection: "column",
@@ -101,13 +104,14 @@ const LinkPlaid = () => {
         />{" "}
         {/* Replace the <p> tag with this <img> tag */}
         
-        <button className="plaid-button" onClick={popUp} disabled={!ready}>
-          {" "}
+        <button className="plaid-button flex items-center" onClick={popUp} disabled={!ready}>
           Link with Plaid
+          <ImLink className="ml-2" />
         </button>
+
         <br/>
         {/* Existing <p> tag */}
-        <p className="text-base font-serif p-4 border border-green-500 border-opacity-50 rounded-lg bg-gradient-to-r from-green-100 to-green-200 text-lg">
+        <p className="border-8 text-base font-serif p-4 border border-green-500 border-opacity-50 rounded-lg bg-gradient-to-r from-green-100 to-green-200 text-lg">
           Plaid is a vital financial technology solution that provides users of
           our Finance-Mate app with smooth access to their bank accounts and
           critical financial data. We ensure a secure and efficient connection

@@ -5,6 +5,9 @@ import { useSelector, useDispatch } from "react-redux";
 import SideBar from "./side-bar";
 import { height } from "@mui/system";
 import creditdebit from "../images/creditdebit.png"; // Import the image
+import { MdOutlineAccountBalanceWallet } from "react-icons/md";
+
+//MdOutlineAccountBalanceWallet
 
 
 const Accounts = () => {
@@ -34,11 +37,13 @@ return (
 
     <div className="dashboard">
         <SideBar></SideBar>
-      <div className="content">
+      <div className="content p-7">
         
-      <h6 className="text-white my-5 bg-black p-4 rounded-md text-2xl font-extrabold">
-          Account Information
-        </h6>
+      <h6 className="text-white my-5 bg-black p-4 rounded-md text-2xl font-extrabold flex items-center ">
+        <MdOutlineAccountBalanceWallet className="text-4xl mr-2" />
+        Account Information
+      </h6>
+
       {accounts.map((account, index) => (
         <div key={index} className="bg-green-600 flex rounded-md px-4 py-2 mr-4 items-center mb-4 shadow-md border-8 ">
           <h1 className="text-black mr-2 font-serif text-3xl font-semibold w-60">

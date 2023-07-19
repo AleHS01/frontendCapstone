@@ -158,7 +158,7 @@ const ExpensesView = () => {
   return (
     <div className="dashboard">
       <SideBar />
-      <div className="content">
+      <div className="content p-3">
         <PageHeader page_name="My Expenses" />
         <ExpenseInfoBox />
         <Grid container spacing={2}>
