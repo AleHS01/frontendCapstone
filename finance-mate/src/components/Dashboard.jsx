@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 const Dashboard = () => {
-  const user = useSelector((state) => state.user.user);
+  const user = useSelector((state) => state.user);
   return (
     <div>
       <h1>You are in dashboar</h1>
