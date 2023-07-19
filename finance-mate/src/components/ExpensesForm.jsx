@@ -7,7 +7,7 @@ import {
   updateExpenseThunk,
   createExpensesThunk,
   deleteExpenseThunk,
-} from "../redux/user/user.action";
+} from "../redux/expenses/expense.action";
 import {
   Button,
   TextField,

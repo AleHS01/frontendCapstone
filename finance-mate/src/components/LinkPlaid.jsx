@@ -8,7 +8,7 @@ import {
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
 import { getAccessTokenThunk } from "../redux/user/user.action";
-import { getAccountsThunk } from "../redux/user/user.action";
+import { getAccountsThunk } from "../redux/accounts/account.action";
 import Accounts from "./GetAccounts";
 import SideBar from "./side-bar";
 import plaidImage1 from "../images/plaid.png"; // Import the image
@@ -20,7 +20,7 @@ import { withTheme } from "@emotion/react";
 
 const LinkPlaid = () => {
   const [link_token, setLinkToken] = useState("");
-  const user = useSelector((state) => state.user.user);
+  const user = useSelector((state) => state.user);
   console.log(user);
   const dispatch = useDispatch();
 
@@ -100,12 +100,11 @@ const LinkPlaid = () => {
           style={{ width: "400px", height: "auto", padding: "10px" }}
         />{" "}
         {/* Replace the <p> tag with this <img> tag */}
-        
         <button className="plaid-button" onClick={popUp} disabled={!ready}>
           {" "}
           Link with Plaid
         </button>
-        <br/>
+        <br />
         {/* Existing <p> tag */}
         <p className="text-base font-serif p-4 border border-green-500 border-opacity-50 rounded-lg bg-gradient-to-r from-green-100 to-green-200 text-lg">
           Plaid is a vital financial technology solution that provides users of
@@ -120,17 +119,19 @@ const LinkPlaid = () => {
           critical financial data, allowing us to provide a streamlined and
           tailored finance experience to our valued consumers.
         </p>
-        <br/>
-
-        <h1 className="font-bold font-serif text-xl " >Secure Banking with plaid</h1>
-
+        <br />
+        <h1 className="font-bold font-serif text-xl ">
+          Secure Banking with plaid
+        </h1>
         <div className="flex justify-evenly border border-black border-opacity-50 rounded-lg bg-gradient-to-r from-green-200 to-green-400">
-          <img className="ml-4"
+          <img
+            className="ml-4"
             src={plaidImage2}
             alt="Plaid"
             style={{ width: "450px", height: "auto" }}
           />
-          <img className="ml-4"
+          <img
+            className="ml-4"
             src={plaidImage3}
             alt="Plaid"
             style={{ width: "450px", height: "auto" }}
