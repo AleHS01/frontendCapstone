@@ -4,6 +4,10 @@ import { Button, TextField } from "@mui/material";
 import { useDispatch } from "react-redux";
 import { loginUserThunk} from "../redux/user/user.action";
 import { useNavigate } from "react-router-dom";
+import { AiFillHome, AiOutlineFileDone } from "react-icons/ai";
+import { GrUserAdd } from "react-icons/gr";
+
+//GrUserAdd
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -26,7 +30,9 @@ const Login = () => {
     <div
       style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
         {/* Link to Home */}
-      <Link className="absolute top-0 right-0 bg-green-600 flex rounded-md px-4 py-2 m-4 shadow-md font-semibold font-sans rounded-lg border-4" to="/">Home</Link>
+      <Link className="absolute top-0 right-0 bg-green-600 flex rounded-md px-4 py-2 m-4 shadow-md font-semibold font-sans rounded-lg border-4" to="/">
+        <AiFillHome className="mt-0.5 text-lg"/>
+        Home</Link>
 
       <h1 className=" flex justify-center text-white my-5 bg-black p-4 rounded-md text-2xl font-extrabold border-8 shadow-lg">Welcome to Finance-Mate <br/> Take Control of Your Finances</h1>
       <input
@@ -51,14 +57,15 @@ const Login = () => {
       //TailWindCSS
         className="bg-green-600 flex rounded-md px-4 py-2 mr-4 items-center mv-4 shadow-md border-4 font-semibold font-sans"
         onClick={handleLogin} // Call the handleLogin function
-        >Submit</button>
+        >
+          <AiOutlineFileDone className="text-3xl"/>
+          Submit</button>
 
       <br/>
       <div className="bg-green-600 flex rounded-lg px-4 py-2 mr-4 items-center mb-4 shadow-md border-8 ">
         <p className="text-black mr-2 font-serif text-xl">Don't have an account?</p>
-      <Link className="bg-green-500 flex rounded-md px-4 py-2 mr-4 items-center mb-4 shadow-md " to="/signup">
-        <p className="bg-black p-1.5 rounded-md text-white font-bold">Sign Up</p>
-      </Link>
+      <Link className="bg-green-400 flex rounded-md px-4 py-2 mr-2 items-center mt-mb-4 shadow-md " to="/signup">
+        <GrUserAdd className="text-lg mr-1"/> SIGN UP</Link>
       </div>
 
 
