@@ -35,7 +35,7 @@ function Transactions() {
   return (
     <div className='dashboard'>
       <SideBar></SideBar>
-      <div className='content'>
+      <div className='content p-4'>
       {trans && trans.data ? (
         trans.data.map((item) => {
           try {

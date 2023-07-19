@@ -23,7 +23,7 @@ const User = () => {
   return (
     <div className="dashboard">
       <SideBar></SideBar>
-      <div className="content">
+      <div className="content p-5">
         <h1>Account</h1>
         {user ? (
           <h2>Welcome {user.username}!!</h2>

@@ -87,7 +87,7 @@ const LinkPlaid = () => {
     <div className="dashboard">
       <SideBar></SideBar>
       <div
-        className="content"
+        className="content p-7"
         style={{
           display: "flex",
           flexDirection: "column",

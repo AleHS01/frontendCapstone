@@ -72,18 +72,21 @@ function SideBar() {
       />
 
       {/* Header */}
-      <div classname="inline-flex">
-        <RiBankFill className={`bg-amber-300 text-4xl rounded cursor-pointer block float-left mr-2 duration-500 ${open && "rotate-[360deg]"}`}/>
+      <div className="inline-flex">
+        <RiBankFill className={`bg-amber-300 text-4xl rounded cursor-pointer block float-left mr-2 duration-500 ${open && "rotate-[360deg]"}`} />
         <h1 className={`text-white origin-left font-medium text-2xl duration-300 ${!open && "scale-0"}`}>Finance-Mate</h1>
       </div>
 
-      <div className={` flex items-center rounded-md mt-4  px-2 py-2   ${!open ? "px-2.5" : "px-4"}`}>
+      {/* All other buttons */}
+
+      <div className={`flex items-center rounded-md px-2 py-2 ${!open ? "px-2.5" : "px-4"}`}>
         <SlLogout className={`bg-light-white text-4xl rounded cursor-pointer block float-left mr-2 duration-500 mt-4`} />
         <button className={`bg-green-400 flex rounded-md px-4 py-2 mr-4 items-center mv-4 shadow-md border-4 font-semibold mt-4 font-sans duration-400 ${!open && "hidden"}`}
           onClick={handleLogout}>Sign Out</button>
       </div>
 
-      <div className="flex items-center rounded-md mt-4 px-2 py-2">
+
+      <div className="flex items-center rounded-md px-2 py-2">
         <ImUserTie className={`bg-light-white text-4xl rounded cursor-pointer block float-left mr-2 duration-500 mt-4 `}/>
       <button className={`bg-green-400 flex rounded-md px-4 py-2 mr-4 items-center mv-4 shadow-md border-4 font-semibold mt-4 font-sans ${!open && "hidden"}`}
       onClick={handleAccount}>
@@ -91,7 +94,7 @@ function SideBar() {
       </button>
       </div>
 
-      <div className="flex items-center rounded-md mt-4 px-2 py-2">
+      <div className="flex items-center rounded-md px-2 py-2">
         <ImUsers className={`bg-light-white text-4xl rounded cursor-pointer block float-left mr-2 duration-500 mt-4`}/>
         <button className={`bg-green-400 flex rounded-md px-4 py-2 mr-4 items-center mv-4 shadow-md border-4 font-semibold mt-4 font-sans ${!open && "hidden"}`}
         onClick={handleBankAccount}>
@@ -99,7 +102,7 @@ function SideBar() {
       </button>
       </div>
 
-      <div className="flex items-center rounded-md mt-4 px-2 py-2">
+      <div className="flex items-center rounded-md px-2 py-2">
         <SlWallet className={`bg-light-white text-4xl rounded cursor-pointer block float-left mr-2 duration-500 mt-4 `} />
       <button className={`bg-green-400 flex rounded-md px-4 py-2 mr-4 items-center mv-4 shadow-md border-4 font-semibold mt-4 font-sans ${!open && "hidden"}`} 
       onClick={handleLinkPlaid}>
@@ -107,7 +110,7 @@ function SideBar() {
       </button>
       </div>
       
-      <div className="flex items-center rounded-md mt-4 px-2 py-2">
+      <div className="flex items-center rounded-md px-2 py-2">
         <AiOutlineForm className={`bg-light-white text-4xl rounded cursor-pointer block float-left mr-2 duration-500 mt-4 `}/>
         <button className={`bg-green-400 flex rounded-md px-4 py-2 mr-4 items-center mv-4 shadow-md border-4 font-semibold mt-4 font-sans ${!open && "hidden"}`} 
         onClick={handleFinaceForm}>
@@ -115,7 +118,7 @@ function SideBar() {
       </button>
       </div>
 
-      <div className="flex items-center rounded-md mt-4 px-2 py-2">
+      <div className="flex items-center rounded-md px-2 py-2">
       <GiTakeMyMoney className={`bg-light-white text-4xl rounded cursor-pointer block float-left mr-2 duration-500 mt-4 `}/>
         <button className={`bg-green-400 flex rounded-md px-4 py-2 mr-4 items-center mv-4 shadow-md border-4 font-semibold mt-4 font-sans ${!open && "hidden"}`} 
         onClick={handleExpenseView}>
@@ -123,7 +126,7 @@ function SideBar() {
       </button>
       </div>
 
-      <div className="flex items-center rounded-md mt-4 px-2 py-2">
+      <div className="flex items-center rounded-md px-2 py-2">
         <TbReportMoney className={`bg-light-white text-4xl rounded cursor-pointer block float-left mr-2 duration-500 mt-4 `}/>
         <button className={`bg-green-400 flex rounded-md px-4 py-2 mr-4 items-center mv-4 shadow-md border-4 font-semibold mt-4 font-sans ${!open && "hidden"}`} 
         onClick={handleSetBudget}>
@@ -131,7 +134,7 @@ function SideBar() {
       </button>
       </div>
 
-      <div className="flex items-center rounded-md mt-4 px-2 py-2">
+      <div className="flex items-center rounded-md px-2 py-2">
         <GrTransaction className={`bg-light-white text-4xl rounded cursor-pointer block float-left mr-2 duration-500 mt-4`}/>
         <button className={`bg-green-400 flex rounded-md px-4 py-2 mr-4 items-center mv-4 shadow-md border-4 font-semibold mt-4 font-sans ${!open && "hidden"}`}
         onClick={handleTrans}>

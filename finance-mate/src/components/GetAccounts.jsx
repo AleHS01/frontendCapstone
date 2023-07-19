@@ -34,7 +34,7 @@ return (
 
     <div className="dashboard">
         <SideBar></SideBar>
-      <div className="content">
+      <div className="content p-7">
         
       <h6 className="text-white my-5 bg-black p-4 rounded-md text-2xl font-extrabold">
           Account Information
