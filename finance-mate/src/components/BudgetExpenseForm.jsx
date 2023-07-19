@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  addExpenseThunk,
-  getBudgetNamesThunk,
   getExpenseOfBudgetThunk,
+  getBudgetsThunk,
+} from "../redux/budget/budget.action";
+import {
+  addExpenseThunk,
   getExpensesThunk,
-  getBudgets,
-} from "../redux/user/user.action";
+} from "../redux/expenses/expense.action";
 import {
   TextField,
   Button,
@@ -66,7 +67,13 @@ const AddExpenseForm = () => {
   const [selectedBudget, setSelectedBudget] = useState(undefined);
 
   useEffect(() => {
-    dispatch(getBudgets());
+    dispatch(getBudgetsThunk());
+    dispatch(getExpensesThunk());
+    setSelectedBudget(budgets.find((budget) => budget.id === selectedBudgetId));
+  }, []);
+
+  useEffect(() => {
+    dispatch(getBudgetsThunk());
     dispatch(getExpensesThunk());
     setSelectedBudget(budgets.find((budget) => budget.id === selectedBudgetId));
     // Add check to ensure selectedBudget is defined before dispatching

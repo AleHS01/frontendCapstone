@@ -19,10 +19,10 @@ import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Link } from "react-router-dom";
 import PageHeader from "./PageHeader";
-import { deleteExpenseThunk } from "../redux/user/user.action";
+import { deleteExpenseThunk } from "../redux/expenses/expense.action";
 
 const ExpensesView = () => {
-  const user = useSelector((state) => state.user.user);
+  const user = useSelector((state) => state.user);
   const [expenses, setExpenses] = useState([]);
   const [pieChartData, setPieChartData] = useState([]);
   const [pieChartFill, setPieChartFill] = useState([]);
