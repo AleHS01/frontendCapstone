@@ -164,7 +164,7 @@ const ExpensesForm = () => {
   return (
     <div className="dashboard">
       <SideBar></SideBar>
-      <div className="content">
+      <div className="content p-3">
         <PageHeader page_name="Expenses Form" />
 
         {expenses && expenses !== [] && expensesList ? (

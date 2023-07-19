@@ -22,8 +22,9 @@ const userReducer = (state = initialState, action) => {
       };
     case userActionTypes.FETCH_USER:
       return action.payload;
+
     case userActionTypes.LOGOUT_USER:
-      return state;
+      return {};
     default:
       return state;
   }
