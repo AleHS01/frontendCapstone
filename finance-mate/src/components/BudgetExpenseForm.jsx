@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector} from "react-redux";
+import { useParams } from 'react-router'
 import {
   getExpenseOfBudgetThunk,
   getBudgetsThunk,
@@ -51,9 +52,10 @@ const BudgetContainer = styled.div`
 
 const AddExpenseForm = () => {
   const dispatch = useDispatch();
+  const {budget_id}=useParams()
   const [expenseName, setExpenseName] = useState("");
   const [expenseAmount, setExpenseAmount] = useState("");
-  const [selectedBudgetId, setSelectedBudgetId] = useState("");
+  const [selectedBudgetId, setSelectedBudgetId] = useState(budget_id);
   const budgets = useSelector((state) => state.budget);
   const all_expenses = useSelector((state) => state.user_expenses);
   const budget_expense_total = useSelector(
@@ -69,13 +71,13 @@ const AddExpenseForm = () => {
   useEffect(() => {
     dispatch(getBudgetsThunk());
     dispatch(getExpensesThunk());
-    setSelectedBudget(budgets.find((budget) => budget.id === selectedBudgetId));
+    setSelectedBudget(budgets.find((budget) => budget.id == selectedBudgetId));
   }, []);
-
+  
   useEffect(() => {
     dispatch(getBudgetsThunk());
     dispatch(getExpensesThunk());
-    setSelectedBudget(budgets.find((budget) => budget.id === selectedBudgetId));
+    setSelectedBudget(budgets.find((budget) => budget.id == selectedBudgetId));
     // Add check to ensure selectedBudget is defined before dispatching
     if (selectedBudget) {
       console.log("budget expense thunk launched");

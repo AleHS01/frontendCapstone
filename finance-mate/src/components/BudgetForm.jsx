@@ -56,7 +56,7 @@ const BudgetForm = () => {
   const handleBudget = (event) => {
     const budget_Id = event.target.value;
     console.log("BudgetID in handleBudget() " + budget_Id);
-    navigate(`/individual-budget/${budget_Id}`);
+    navigate(`/budget-expense/${budget_Id}`);
   };
 
   return (
