@@ -54,7 +54,7 @@ function Home() {
             >
               <BiLogIn className="text-lg mr-1"/>
               <p className="text-black mr-2 ">Log back in!</p>
-              <p className="hover:scale-110 hover:shadow-lg hover:text-black hover:bg-white bg-black p-1.5 rounded-md text-white font-bold">
+              <p className="hover:scale-110 hover:shadow-lg hover:text-black hover:bg-white duration-300 bg-black p-1.5 rounded-md text-white font-bold">
                 Log In
               </p>
             </Link>
@@ -65,11 +65,11 @@ function Home() {
             ><GrUserAdd className="text-lg mr-1"/>
               
               <p className="text-black mr-2">Join Finance Mate</p>
-              <p className="hover:scale-110 hover:shadow-lg hover:text-black hover:bg-white bg-black p-1.5 rounded-md text-white font-bold">
+              <p className="hover:scale-110 hover:shadow-lg hover:text-black hover:bg-white duration-300 bg-black p-1.5 rounded-md text-white font-bold">
                 Sign Up
               </p>
             </Link>
-            <GoogleButton className="m-4 shadow-md" onClick={googleLogin} />
+            <GoogleButton className="m-4 shadow-md hover:scale-105" onClick={googleLogin} />
           </div>
         </div>
       </div>

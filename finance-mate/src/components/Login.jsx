@@ -30,7 +30,7 @@ const Login = () => {
     <div
       style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
         {/* Link to Home */}
-      <Link className="absolute top-0 right-0 bg-green-600 flex rounded-md px-4 py-2 m-4 shadow-md font-semibold font-sans rounded-lg border-4" to="/">
+      <Link className="hover:scale-110 hover:shadow-lg duration-200 absolute top-0 right-0 bg-green-600 flex rounded-md px-4 py-2 m-4 shadow-md font-semibold font-sans rounded-lg border-4" to="/">
         <AiFillHome className="mt-0.5 text-lg"/>
         Home</Link>
 
@@ -55,7 +55,7 @@ const Login = () => {
 
       <button
       //TailWindCSS
-        className="bg-green-600 flex rounded-md px-4 py-2 mr-4 items-center mv-4 shadow-md border-4 font-semibold font-sans"
+        className="hover:scale-110 hover:shadow-lg duration-200 bg-green-600 flex rounded-md px-4 py-2 mr-4 items-center mv-4 shadow-md border-4 font-semibold font-sans"
         onClick={handleLogin} // Call the handleLogin function
         >
           <AiOutlineFileDone className="text-3xl"/>
@@ -64,7 +64,7 @@ const Login = () => {
       <br/>
       <div className="bg-green-600 flex rounded-lg px-4 py-2 mr-4 items-center mb-4 shadow-md border-8 ">
         <p className="text-black mr-2 font-serif text-xl">Don't have an account?</p>
-      <Link className="bg-green-400 flex rounded-md px-4 py-2 mr-2 items-center mt-mb-4 shadow-md " to="/signup">
+      <Link className="hover:scale-110 hover:shadow-lg duration-200 bg-green-400 flex rounded-md px-4 py-2 mr-2 items-center mt-mb-4 shadow-md " to="/signup">
         <GrUserAdd className="text-lg mr-1"/> SIGN UP</Link>
       </div>
 
