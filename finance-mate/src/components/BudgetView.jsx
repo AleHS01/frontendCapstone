@@ -309,7 +309,7 @@ const BudgetView = () => {
                 <BBox>
                   <BudgetInfoContainer>
                     <Link
-                      to={`/individual-budget/${budget.id}`}
+                      to={`/budget-expense/${budget.id}`}
                       key={index}
                       style={{
                         display: "flex",
