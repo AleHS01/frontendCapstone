@@ -132,7 +132,7 @@ const BudgetForm = () => {
                     "&:hover": {
                       backgroundColor: "#05377f",
                     },
-                    minWidth: "500px",
+                    minWidth: "517px",
                   }}
                 />
               </Grid>
