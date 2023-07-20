@@ -33,7 +33,7 @@ export const getExpensesThunk = () => {
         { withCredentials: true }
       );
       const expenses = await response.data;
-      console.log("User Expenses in Thunk:", expenses);
+      // console.log("User Expenses in Thunk:", expenses);
       dispatch(getExpenses(expenses));
       return response.data;
     } catch (error) {
@@ -53,7 +53,7 @@ export const addExpenseThunk = (expenseData) => {
       );
       const expense = response.data;
 
-      dispatch(addExpense(expenseData));
+      dispatch(addExpense(expense));
     } catch (error) {
       console.error(error);
     }

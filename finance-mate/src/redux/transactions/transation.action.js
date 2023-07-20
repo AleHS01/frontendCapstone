@@ -16,8 +16,8 @@ export const getTransactionsThunk = () => {
           withCredentials: true,
         }
       );
-      const transactions = await response;
-      console.log("User bank account types:", transactions);
+      const transactions = await response.data;
+      console.log("Transactions in thunk:", transactions);
       dispatch(getTransactions(transactions));
     } catch (error) {
       console.log(error);

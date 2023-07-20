@@ -159,7 +159,7 @@ const ExpensesView = () => {
     <div className="dashboard">
       <SideBar />
       <div className="content p-3">
-        <PageHeader page_name="My Expenses" />
+        <PageHeader page_name="My Expenses Dashboard" />
         <ExpenseInfoBox />
         <Grid container spacing={2}>
           <Grid item xs={7} style={{ height: "450px" }}>
@@ -199,7 +199,7 @@ const ExpensesView = () => {
         >
           <Grid item sx={{ ml: "40px" }}>
             <Typography variant="h6" sx={{ color: "#05377f" }}>
-              Filter:
+              Sort:
               <Tooltip title="Sort Ascending" placement="top">
                 <IconButton onClick={handleSortAsc}>
                   <ArrowUpwardIcon
