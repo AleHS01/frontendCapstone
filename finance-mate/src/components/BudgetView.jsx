@@ -25,8 +25,6 @@ import BudgetViewBanner from "./BudgetViewBanner";
 import { getBudgetsThunk } from "../redux/budget/budget.action";
 import { getExpensesThunk } from "../redux/expenses/expense.action";
 
-import React from "react";
-import styled from "styled-components";
 const BudgetView = () => {
   const dispatch = useDispatch();
   // const [expenseName, setExpenseName] = useState("");
@@ -40,22 +38,13 @@ const BudgetView = () => {
   useEffect(() => {
     dispatch(getBudgetsThunk());
   }, []);
-const BBox = styled.div`
-  display: flex;
-  justify-content: flex-start;  // change this to adjust horizontal distribution of items
-  
+
   useEffect(() => {
     if (budgets.length > 0) {
       setSelectedBudgetId(budgets[0].id);
       setSelectedBudget(budgets[0]);
     }
   }, [budgets]);
-  border: 3px solid lightgreen;
-  border-radius: 15px;
-  padding: 20px;
-  margin: 20px 0;
-  max-width: 400px;  // add this to limit how wide the component can get
-`;
 
   useEffect(() => {
     const budget = budgets.find((budget) => budget.id === selectedBudgetId);
@@ -65,11 +54,6 @@ const BBox = styled.div`
       setLineChartData(getLineGraphData(budget));
     }
   }, [selectedBudgetId]);
-const BudgetInfoContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-`;
 
   const getLineGraphData = (budget) => {
     if (Array.isArray(budget.Expenses) && budget.Expenses.length > 0) {
