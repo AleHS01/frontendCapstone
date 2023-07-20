@@ -44,7 +44,7 @@ function App() {
             element={<AddExpenseForm></AddExpenseForm>}
           />
           <Route path="/expenses" element={<ExpensesView />} />
-          <Route path="/trans" element={<Transactions />} />
+          <Route path="/transactions" element={<Transactions />} />
           <Route path="/login/success" element={<LoginGoogleSuccess />} />
 
           {/* prettier-ignore */}
