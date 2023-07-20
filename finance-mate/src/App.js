@@ -37,14 +37,16 @@ function App() {
           <Route path="/bank_accounts" element={<Accounts></Accounts>}></Route>
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/expense-form" element={<ExpensesForm />} />
-          <Route path = "/budgetform" element = {<BudgetForm></BudgetForm>}/>
-          <Route path = "/budget-view" element = {<BudgetView></BudgetView>} />
-          <Route path = "/budget-expense" element = {<AddExpenseForm></AddExpenseForm>} />
+          <Route path="/budgetform" element={<BudgetForm></BudgetForm>} />
+          <Route path="/budgets" element={<BudgetView />} />
+          {/* prettier-ignore */}
+          <Route path="/budget-expense" element={<AddExpenseForm></AddExpenseForm>}/>
           <Route path="/expenses" element={<ExpensesView />} />
           <Route path="/trans" element={<Transactions />} />
           <Route path="/login/success" element={<LoginGoogleSuccess />} />
-          <Route path="/individual-budget/:budget_id" element={<IndividualBudget />} />
 
+          {/* prettier-ignore */}
+          <Route path="/individual-budget/:budget_id" element={<IndividualBudget />}/>
         </Routes>
       </div>
     </Router>
