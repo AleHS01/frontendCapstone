@@ -59,7 +59,7 @@ const PieChart = (props) => {
           anchor: "top-right",
           direction: "column",
           justify: false,
-          translateX: 60,
+          translateX: 30,
           translateY: 40,
           itemsSpacing: 10,
           itemWidth: 100,

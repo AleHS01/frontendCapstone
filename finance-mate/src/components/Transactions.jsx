@@ -4,7 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchUserThunk } from "../redux/user/user.action";
 import { getTransactionsThunk } from "../redux/transactions/transation.action";
 import PageHeader from "./PageHeader";
-import { Link } from "react-router-dom";
+import PieChart from "./PieChart";
+import TransactionCatergory from "./TransactionCatergory";
 import {
   Paper,
   Grid,
@@ -125,6 +126,22 @@ function Transactions() {
             </Grid>
           </Grid>
         </Paper>
+        <div
+          style={{
+            height: "450px",
+            width: "60%",
+            margin: "0 auto",
+            textAlign: "center",
+          }}
+        >
+          <Typography
+            variant="h4"
+            sx={{ textAlign: "center", fontWeight: "500", color: "#0e365e" }}
+          >
+            Transactions Summary
+          </Typography>
+          <TransactionCatergory transactions={transactions} />
+        </div>
         <Grid
           container
           alignItems="center"
