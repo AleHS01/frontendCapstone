@@ -21,6 +21,8 @@ import LoginGoogleSuccess from "./components/LoginGoogleSuccess";
 
 import IndividualBudget from "./components/IndividualBudget";
 
+import BudgetPage from "./components/BudgetPage";
+
 function App() {
   return (
     <Router>
@@ -44,6 +46,7 @@ function App() {
           <Route path="/trans" element={<Transactions />} />
           <Route path="/login/success" element={<LoginGoogleSuccess />} />
           <Route path="/individual-budget/:budget_id" element={<IndividualBudget />} />
+          <Route path = "/budgetpage" element = {<BudgetPage/>}/>
 
         </Routes>
       </div>
