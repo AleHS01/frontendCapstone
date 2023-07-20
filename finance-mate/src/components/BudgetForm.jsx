@@ -43,20 +43,27 @@ const BudgetForm = () => {
     console.log("Use Effect");
   }, []);
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const budgetinfo = {
       budget_name: budgetname,
       amount: amount,
     };
-    dispatch(addBudgetThunk(budgetinfo));
-    navigate("/budget-expense");
+    await dispatch(addBudgetThunk(budgetinfo));
+    const objectWithHighestId = budgets.reduce((acc, current) => {
+      if (current.id > acc.id || acc.id === undefined) {
+        return current;
+      }
+      return acc;
+    }, {});
+    console.log(objectWithHighestId)
+    navigate(`/budget-expense/${objectWithHighestId.id}`);
   };
 
   const handleBudget = (event) => {
     const budget_Id = event.target.value;
     console.log("BudgetID in handleBudget() " + budget_Id);
-    navigate(`/individual-budget/${budget_Id}`);
+    navigate(`/budget-expense/${budget_Id}`);
   };
 
   return (

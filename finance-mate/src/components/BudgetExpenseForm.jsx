@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector} from "react-redux";
+import { useParams } from 'react-router'
 import {
   getExpenseOfBudgetThunk,
   getBudgetsThunk,
@@ -20,6 +21,7 @@ import styled from "styled-components";
 import waveBackground from "./layered-waves-haikei.svg";
 import BudgetBox from "./BudgetBox";
 import RecentExpenses from "./RecentExpenses";
+import SideBar from "./side-bar";
 const BackgroundContainer = styled.div``;
 
 const DottedBox = styled.div`
@@ -51,41 +53,48 @@ const BudgetContainer = styled.div`
 
 const AddExpenseForm = () => {
   const dispatch = useDispatch();
+
+  const {budget_id}=useParams()
+
   const [expenseName, setExpenseName] = useState("");
   const [expenseAmount, setExpenseAmount] = useState("");
-  const [selectedBudgetId, setSelectedBudgetId] = useState("");
-  const budgets = useSelector((state) => state.budget);
-  const all_expenses = useSelector((state) => state.user_expenses);
-  const budget_expense_total = useSelector(
-    (state) => state.user_budget_expenses
-  );
-  const expensesForBudget = all_expenses.filter(
-    (expense) => expense.BudgetId === selectedBudgetId
-  );
-  // console.log("expenses for entertainment:", expensesForBudget)
-  // const selectedBudget = budgets.find((budget) => budget.id === selectedBudgetId);
+  //-------------------------------//
+  const [selectedBudgetId, setSelectedBudgetId] = useState(parseInt(budget_id));
   const [selectedBudget, setSelectedBudget] = useState(undefined);
 
-  useEffect(() => {
-    dispatch(getBudgetsThunk());
-    dispatch(getExpensesThunk());
-    setSelectedBudget(budgets.find((budget) => budget.id === selectedBudgetId));
-  }, []);
+  const budgets = useSelector((state) => state.budget);
+  const all_expenses = useSelector((state) => state.user_expenses);
+  const expensesForBudget = all_expenses.filter((expense) => expense.BudgetId === selectedBudgetId);
+  // console.log("expensesForBudget==>",expensesForBudget)
+  const budget_expense_total = expensesForBudget.reduce(((acc, expense) => (acc + parseInt(expense.expense_value))), 0);
+  // console.log(budget_expense_total,expensesForBudget)
+  // const budget_expense_total = useSelector((state) => state.user_budget_expenses);
+  // console.log("expenses for entertainment:", expensesForBudget)
+  // const selectedBudget = budgets.find((budget) => budget.id === selectedBudgetId);
 
+  // useEffect(() => {
+  //   dispatch(getBudgetsThunk());
+  //   dispatch(getExpensesThunk());
+  //   setSelectedBudget(budgets.find((budget) => budget.id == selectedBudgetId));
+  // }, []);
+  
+  /**Each Time the user selects a budget from th edrop down menu, this methods does the following:
+   *  1.
+   */
   useEffect(() => {
     dispatch(getBudgetsThunk());
     dispatch(getExpensesThunk());
-    setSelectedBudget(budgets.find((budget) => budget.id === selectedBudgetId));
+    setSelectedBudget(budgets.find((budget) => budget.id == selectedBudgetId));
     // Add check to ensure selectedBudget is defined before dispatching
-    if (selectedBudget) {
-      console.log("budget expense thunk launched");
-      dispatch(getExpenseOfBudgetThunk(selectedBudget.id));
-    }
+    // if (selectedBudget) {
+    //   // console.log("budget expense thunk launched");
+    //     dispatch(getExpenseOfBudgetThunk(selectedBudget.id));
+    // }
 
-    console.log("Use Effect");
-  }, [selectedBudgetId]); // Add selectedBudget to the dependency array
+    // console.log("Use Effect");
+    }, [selectedBudgetId]);
 
-  console.log("budget_expense_total", budget_expense_total);
+  // console.log("budget_expense_total", budget_expense_total);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -97,18 +106,19 @@ const AddExpenseForm = () => {
     };
 
     dispatch(addExpenseThunk(expenseData));
-    if (selectedBudgetId) {
-      dispatch(getExpenseOfBudgetThunk(selectedBudgetId));
-    }
+    // if (selectedBudgetId) {
+    //   dispatch(getExpenseOfBudgetThunk(selectedBudgetId));
+    // }
 
     setExpenseName("");
     setExpenseAmount("");
   };
 
   return (
-    <BackgroundContainer>
+    <BackgroundContainer className="dashboard">
+      <SideBar></SideBar>
       {/* <WaveImage src={waveBackground} alt="Wave background" /> */}
-      <Container maxWidth="sm">
+      <Container maxWidth="sm" className="content">
         <ContentContainer>
           {/* <BudgetContainer>
             <Typography variant="h6">Selected Budget:</Typography>
@@ -147,7 +157,10 @@ const AddExpenseForm = () => {
                 fullWidth
                 label="Budget Category"
                 value={selectedBudgetId}
-                onChange={(e) => setSelectedBudgetId(e.target.value)}
+                onChange={(e) => {
+                  setSelectedBudgetId(e.target.value);
+                  // console.log("User Selected ID"+e.target.value);
+                }}
               >
                 {budgets.map((budget) => (
                   <MenuItem key={budget.id} value={budget.id}>

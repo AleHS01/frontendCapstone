@@ -79,9 +79,9 @@ function SideBar() {
 
       {/* All other buttons */}
 
-      <div className={`flex items-center rounded-md px-2 py-2  ${!open ? "px-0.5" : "px-4"}`}>
+      <div className={`flex items-center rounded-md px-2 py-2  ${!open ? "px-1" : "px-4"}`}>
         <SlLogout onClick={handleLogout} className={`hover:scale-110 hover:shadow-lg hover:text-green-200  text-4xl rounded cursor-pointer block float-left mr-2 duration-500 mt-4`} />
-        <button className={`hover:scale-110 hover:bg-green-300 bg-green-400 flex rounded-md px-4 py-2 mr-4 items-center mv-4 shadow-md border-4 font-semibold mt-4 font-sans duration-200 ${!open ? "hidden" : "hover:bg-white"}`}
+        <button className={`hover:scale-110 hover:bg-green-300 bg-green-400 flex rounded-md px-4 py-2 mr-4 items-center mv-4 shadow-md border-4 font-semibold mt-4 font-sans duration-200 ${!open && "hidden"}`}
             onClick={handleLogout}
           >
             Sign Out
@@ -90,7 +90,7 @@ function SideBar() {
       </div>
 
 
-      <div className={`flex items-center rounded-md px-2 py-2  ${!open ? "px-0.5" : "px-4"}`}>
+      <div className={`flex items-center rounded-md px-2 py-2  ${!open ? "px-1" : "px-4"}`}>
         <ImUserTie onClick={handleAccount} className={`hover:scale-110 hover:shadow-lg hover:text-green-200  text-4xl rounded cursor-pointer block float-left mr-2 duration-500 mt-4 `}/>
       <button className={`hover:scale-110 hover:bg-green-300 bg-green-400 flex rounded-md px-4 py-2 mr-4 items-center mv-4 shadow-md border-4 font-semibold mt-4 font-sans duration-200  ${!open && "hidden"}`}
       onClick={handleAccount}>
@@ -98,15 +98,15 @@ function SideBar() {
       </button>
       </div>
 
-      <div className={`flex items-center rounded-md px-2 py-2  ${!open ? "px-0.5" : "px-4"}`}>
+      <div className={`flex items-center rounded-md px-2 py-2  ${!open ? "px-1" : "px-4"}`}>
         <ImUsers onClick={handleBankAccount} className={`hover:scale-110 hover:shadow-lg hover:text-green-200  text-4xl rounded cursor-pointer block float-left mr-2 duration-500 mt-4`}/>
         <button className={`hover:scale-110 hover:bg-green-300 bg-green-400 flex rounded-md px-4 py-2 mr-4 items-center mv-4 shadow-md border-4 font-semibold mt-4 font-sans duration-200  ${!open && "hidden"}`}
         onClick={handleBankAccount}>
-        Accounts
+        Bank Accounts
       </button>
       </div>
 
-      <div className={`flex items-center rounded-md px-2 py-2  ${!open ? "px-0.5" : "px-4"}`}>
+      <div className={`flex items-center rounded-md px-2 py-2  ${!open ? "px-1" : "px-4"}`}>
         <SlWallet onClick={handleLinkPlaid} className={`hover:scale-110 hover:shadow-lg hover:text-green-200  text-4xl rounded cursor-pointer block float-left mr-2 duration-500 mt-4 `} />
       <button className={`hover:scale-110 hover:bg-green-300 bg-green-400 flex rounded-md px-4 py-2 mr-4 items-center mv-4 shadow-md border-4 font-semibold mt-4 font-sans duration-200  ${!open && "hidden"}`} 
       onClick={handleLinkPlaid}>
@@ -114,7 +114,7 @@ function SideBar() {
       </button>
       </div>
       
-      <div className={`flex items-center rounded-md px-2 py-2  ${!open ? "px-0.5" : "px-4"}`}>
+      <div className={`flex items-center rounded-md px-2 py-2  ${!open ? "px-1" : "px-4"}`}>
         <AiOutlineForm onClick={handleFinaceForm} className={`hover:scale-110 hover:shadow-lg hover:text-green-200  text-4xl rounded cursor-pointer block float-left mr-2 duration-500 mt-4 `}/>
         <button className={`hover:scale-110 hover:bg-green-300 bg-green-400 flex rounded-md px-4 py-2 mr-4 items-center mv-4 shadow-md border-4 font-semibold mt-4 font-sans duration-200  ${!open && "hidden"}`} 
         onClick={handleFinaceForm}>
@@ -122,7 +122,7 @@ function SideBar() {
       </button>
       </div>
 
-      <div className={`flex items-center rounded-md px-2 py-2  ${!open ? "px-0.5" : "px-4"}`}>
+      <div className={`flex items-center rounded-md px-2 py-2  ${!open ? "px-1" : "px-4"}`}>
       <GiTakeMyMoney onClick={handleExpenseView} className={`hover:scale-110 hover:shadow-lg hover:text-green-200  text-4xl rounded cursor-pointer block float-left mr-2 duration-500 mt-4 `}/>
         <button className={`hover:scale-110 hover:bg-green-300 bg-green-400 flex rounded-md px-4 py-2 mr-4 items-center mv-4 shadow-md border-4 font-semibold mt-4 font-sans duration-200  ${!open && "hidden"}`} 
         onClick={handleExpenseView}>
@@ -130,7 +130,7 @@ function SideBar() {
       </button>
       </div>
 
-      <div className={`flex items-center rounded-md px-2 py-2  ${!open ? "px-0.5" : "px-4"}`}>
+      <div className={`flex items-center rounded-md px-2 py-2  ${!open ? "px-1" : "px-4"}`}>
         <TbReportMoney onClick={handleSetBudget} className={`hover:scale-110 hover:shadow-lg hover:text-green-200 text-4xl rounded cursor-pointer block float-left mr-2 duration-500 mt-4 `}/>
         <button  className={`hover:scale-110 hover:bg-green-300 bg-green-400 flex rounded-md px-4 py-2 mr-4 items-center mv-4 shadow-md border-4 font-semibold mt-4 font-sans duration-200  ${!open && "hidden"}`} 
         onClick={handleSetBudget}>
@@ -138,7 +138,7 @@ function SideBar() {
       </button>
       </div>
 
-      <div className={`flex items-center rounded-md px-2 py-2  ${!open ? "px-0.5" : "px-4"}`}>
+      <div className={`flex items-center rounded-md px-2 py-2  ${!open ? "px-1" : "px-4"}`}>
         <GrTransaction onClick={handleTrans} className={`hover:scale-110 hover:shadow-lg hover:text-white text-4xl rounded cursor-pointer block float-left mr-2 duration-500 mt-4`}/>
         <button className={`hover:scale-110 hover:bg-green-300 bg-green-400 flex rounded-md px-4 py-2 mr-4 items-center mv-4 shadow-md border-4 font-semibold mt-4 font-sans duration-200  ${!open && "hidden"}`}
         onClick={handleTrans}>
