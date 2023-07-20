@@ -58,7 +58,7 @@ function SideBar() {
   };
 
   const handleSetBudget = () => {
-    navigate("/budgetform");
+    navigate("/budget-view");
   };
 
   const [open, setOpen] = useState(true);
