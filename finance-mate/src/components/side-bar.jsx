@@ -247,6 +247,26 @@ function SideBar() {
             Transactions
           </button>
         </div>
+
+        <div
+          className={`flex items-center rounded-md px-2 py-2  ${
+            !open ? "px-1" : "px-4"
+          }`}
+        >
+          <GiTakeMyMoney
+            onClick={handleExpenseView}
+            className={`hover:scale-110 hover:shadow-lg hover:text-green-200  text-4xl rounded cursor-pointer block float-left mr-2 duration-500 mt-4 `}
+          />
+          <button
+            className={`hover:scale-110 hover:bg-green-300 bg-green-400 flex rounded-md px-4 py-2 mr-4 items-center mv-4 shadow-md border-4 font-semibold mt-4 font-sans duration-200  ${
+              !open && "hidden"
+            }`}
+            onClick={()=>navigate("/trans-cat")}
+          >
+            Transaction Breakdown
+          </button>
+        </div>
+
       </div>
     </div>
   );

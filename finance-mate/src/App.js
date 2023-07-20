@@ -9,6 +9,7 @@ import LinkPlaid from "./components/LinkPlaid";
 import Dashboard from "./components/Dashboard";
 import ExpensesForm from "./components/ExpensesForm";
 import Accounts from "./components/GetAccounts";
+import TransactionCatergory from "./components/TransactionCatergory";
 
 import ExpensesView from "./components/ExpensesView";
 import Transactions from "./components/Transactions";
@@ -49,6 +50,7 @@ function App() {
 
           {/* prettier-ignore */}
           <Route path="/individual-budget/:budget_id" element={<IndividualBudget />}/>
+          <Route path="/trans-cat" element={<TransactionCatergory/>}/>
         </Routes>
       </div>
     </Router>
