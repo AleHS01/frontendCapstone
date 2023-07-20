@@ -14,6 +14,7 @@ import {
   Tooltip,
   IconButton,
   Divider,
+  Pagination,
 } from "@mui/material";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
@@ -23,6 +24,9 @@ function Transactions() {
   const transactions = useSelector((state) => state.trans);
   console.log("Transactions here", transactions);
   const user = useSelector((state) => state.user);
+  const [sortedTransactions, setSortedTransactions] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const transactionsPerPage = 30;
 
   const getUser = async () => {
     try {
@@ -36,8 +40,44 @@ function Transactions() {
     getUser().then(() => dispatch(getTransactionsThunk()));
   }, []);
 
-  const handleSortDesc = () => {};
-  const handleSortAsc = () => {};
+  useEffect(() => {
+    if (transactions && transactions.length > 0) {
+      const sortedByRecent = [...transactions].sort(
+        (a, b) => new Date(b.date) - new Date(a.date)
+      );
+      setSortedTransactions(sortedByRecent);
+    }
+  }, [transactions]);
+
+  const handleSortAsc = () => {
+    const sortedByAsc = [...sortedTransactions].sort(
+      (a, b) => b.amount - a.amount
+    );
+    setSortedTransactions(sortedByAsc);
+  };
+
+  const handleSortDesc = () => {
+    const sortedByDesc = [...sortedTransactions].sort(
+      (a, b) => a.amount - b.amount
+    );
+    setSortedTransactions(sortedByDesc);
+  };
+
+  const handleSortRecent = () => {
+    const sortedByRecent = [...sortedTransactions].sort(
+      (a, b) => new Date(b.date) - new Date(a.date)
+    );
+    setSortedTransactions(sortedByRecent);
+  };
+
+  const handleSortOldest = () => {
+    const sortedByOldest = [...sortedTransactions].sort(
+      (a, b) => new Date(a.date) - new Date(b.date)
+    );
+    setSortedTransactions(sortedByOldest);
+  };
+
+  const totalPages = Math.ceil(sortedTransactions.length / transactionsPerPage);
 
   return (
     <div className="dashboard">
@@ -93,21 +133,44 @@ function Transactions() {
         >
           <Grid item sx={{ ml: "40px" }}>
             <Typography variant="h6" sx={{ color: "#05377f" }}>
-              Sort:
-              <Tooltip title="Sort Ascending" placement="top">
+              Amount:
+              <Tooltip title="Ascending" placement="top">
                 <IconButton onClick={handleSortAsc}>
                   <ArrowUpwardIcon
                     fontSize="small"
-                    sx={{ color: "#9da3ab", cursor: "pointer" }}
+                    sx={{ color: "#9da3ab" }}
                     className="filter-arrows"
                   />
                 </IconButton>
               </Tooltip>
-              <Tooltip title="Sort Descending" placement="top">
+              <Tooltip title="Descending" placement="top">
                 <IconButton onClick={handleSortDesc}>
                   <ArrowDownwardIcon
                     fontSize="small"
-                    sx={{ color: "#9da3ab", cursor: "pointer" }}
+                    sx={{ color: "#9da3ab" }}
+                    className="filter-arrows"
+                  />
+                </IconButton>
+              </Tooltip>
+            </Typography>
+          </Grid>
+          <Grid item sx={{ mr: "0px" }}>
+            <Typography variant="h6" sx={{ color: "#05377f" }}>
+              Date:
+              <Tooltip title="Recent" placement="top">
+                <IconButton onClick={handleSortRecent}>
+                  <ArrowUpwardIcon
+                    fontSize="small"
+                    sx={{ color: "#9da3ab" }}
+                    className="filter-arrows"
+                  />
+                </IconButton>
+              </Tooltip>
+              <Tooltip title="Oldest" placement="top">
+                <IconButton onClick={handleSortOldest}>
+                  <ArrowDownwardIcon
+                    fontSize="small"
+                    sx={{ color: "#9da3ab" }}
                     className="filter-arrows"
                   />
                 </IconButton>
@@ -124,7 +187,7 @@ function Transactions() {
           <Grid item>
             <Typography
               variant="h4"
-              sx={{ fontWeight: "500", color: "#0e365e" }}
+              sx={{ fontWeight: "500", color: "#4CAF50" }}
             >
               All Your Transactions
             </Typography>
@@ -136,40 +199,29 @@ function Transactions() {
               sx={{ borderColor: "#4CAF50", height: "100%" }}
             />
           </Grid>
-          <Grid item sx={{ mr: "10px" }}>
-            <Chip
-              label="Add Budget"
-              component={Link}
-              to="/budgetform"
-              clickable
+          <Grid item>
+            <Box
               sx={{
-                backgroundColor: "#03a9f4",
-                color: "#fff",
-                "&:hover": {
-                  backgroundColor: "#05377f",
-                },
+                display: "flex",
+                justifyContent: "center",
+                mt: 0,
               }}
-            />
-          </Grid>
-          <Grid item sx={{ mr: "40px" }}>
-            <Chip
-              label="Add Expense"
-              component={Link}
-              to="/budget-expense"
-              clickable
-              sx={{
-                backgroundColor: "#03a9f4",
-                color: "#fff",
-                "&:hover": {
-                  backgroundColor: "#05377f",
-                },
-              }}
-            />
+            >
+              <Pagination
+                count={totalPages}
+                page={currentPage}
+                onChange={(event, value) => setCurrentPage(value)}
+              />
+            </Box>
           </Grid>
         </Grid>
         <div style={{ margin: "30px auto 10px", width: "90%" }}>
-          {transactions ? (
-            transactions.map((transaction) => {
+          {sortedTransactions
+            .slice(
+              (currentPage - 1) * transactionsPerPage,
+              currentPage * transactionsPerPage
+            )
+            .map((transaction) => {
               const isNegativeAmount = transaction.amount < 0;
               const formattedAmount = isNegativeAmount
                 ? `-$${Math.abs(transaction.amount).toFixed(2)}`
@@ -185,6 +237,7 @@ function Transactions() {
                     flexDirection: "column",
                     width: "100%",
                   }}
+                  key={transaction.transaction_id} // Add a unique key for each transaction
                 >
                   <Box
                     sx={{ display: "flex", justifyContent: "space-between" }}
@@ -218,13 +271,14 @@ function Transactions() {
                   </Box>
                 </Paper>
               );
-            })
-          ) : (
-            <div className="content">
-              <h4>No Transactions</h4>
-              <div>No transaction data available.</div>
-            </div>
-          )}
+            })}
+          <Box sx={{ display: "flex", justifyContent: "center", mt: 3 }}>
+            <Pagination
+              count={totalPages}
+              page={currentPage}
+              onChange={(event, value) => setCurrentPage(value)}
+            />
+          </Box>
         </div>
       </div>
     </div>
