@@ -24,6 +24,44 @@ import PageHeader from "./PageHeader";
 import BudgetViewBanner from "./BudgetViewBanner";
 import { getBudgetsThunk } from "../redux/budget/budget.action";
 import { getExpensesThunk } from "../redux/expenses/expense.action";
+import styled from "styled-components";
+
+const BBox = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;  // change this to adjust horizontal distribution of items
+  border: 3px solid lightgreen;
+  border-radius: 15px;
+  padding: 20px;
+  margin: 5px 0;
+  min-width: 300px;  // add this to limit how wide the component can get
+  justify-content: space-between;
+`;
+
+const BudgetInfoContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+`;
+
+const BudgetName = styled.h1`
+  font-weight: bold;
+  color: black;
+  
+`;
+
+const BudgetAmount = styled.h1`
+  font-weight: bold;
+  color: seagreen;
+`;
+
+const BudgetBoxesContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin: 20px auto 10px;
+  width: 90%;
+`
 
 const BudgetView = () => {
   const dispatch = useDispatch();
@@ -248,6 +286,20 @@ const BudgetView = () => {
             />
           </Grid>
         </Grid>
+      
+      <BudgetBoxesContainer>
+      {budgets.map((budget, index) => {
+        return (
+          <BBox key={index}>
+            <BudgetInfoContainer>
+              <BudgetName>{budget.budget_name}</BudgetName>
+              <BudgetAmount>${budget.amount}</BudgetAmount>
+            </BudgetInfoContainer>
+          </BBox>
+
+        );
+      })}
+      </BudgetBoxesContainer>
       </div>
     </div>
   );
