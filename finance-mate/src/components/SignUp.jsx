@@ -12,6 +12,8 @@ import {
   AiOutlineEye,
 } from "react-icons/ai";
 import { BiLogIn } from "react-icons/bi";
+import GoogleButton from "react-google-button";
+import { googleLoginThunk } from "../redux/user/user.action";
 
 //BiLogIn
 
@@ -59,6 +61,21 @@ const SignUp = () => {
     } catch (error) {
       console.log(error);
     }
+  };
+  const googleLogin = async () => {
+    const newWindow = window.open(
+      "http://localhost:8080/api/login/google",
+      "_blank",
+      "width=400, height=700"
+    );
+    let timer = setInterval(() => {
+      if (newWindow.closed) {
+        console.log("You are logged with google");
+        dispatch(googleLoginThunk());
+        if (timer) clearInterval(timer);
+        navigate("/user");
+      }
+    }, 500);
   };
 
   const handleSubmit = (e) => {
@@ -196,9 +213,6 @@ const SignUp = () => {
       <br />
 
       <div className="bg-green-600 flex rounded-lg px-4 py-2 mr-4 items-center mb-4 shadow-md border-8 ">
-        <p className="text-black mr-2 font-serif text-xl">
-          Already have an account?
-        </p>
         <Link
           className=" hover:scale-110 hover:shadow-lg duration-200 bg-green-400 flex rounded-md px-4 py-2 mr-4 items-center mt-mb-4 shadow-md text-semibol"
           to="/login"
@@ -206,6 +220,12 @@ const SignUp = () => {
           <BiLogIn className="text-lg mr-1" />
           LOGIN
         </Link>
+        <p className="text-black mr-2 font-serif text-2xl">Or sign up with:</p>
+        <GoogleButton className="m-4 shadow-md hover:scale-105" onClick={googleLogin} />  
+      </div>
+
+      <div className="bg-green-600 flex rounded-lg px-4 py-2 mr-4 items-center mb-4 shadow-md border-8 ">
+        <p className="text-black mr-2 font-serif text-xl">Already have an account?</p>
       </div>
 
       <div className="m-4 bg-green-600 flex rounded-lg px-6 py-3 mr-4 items-center mb-4 shadow-md border-8 ">

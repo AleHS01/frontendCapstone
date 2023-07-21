@@ -6,6 +6,10 @@ import { loginUserThunk} from "../redux/user/user.action";
 import { useNavigate } from "react-router-dom";
 import { AiFillHome, AiOutlineFileDone } from "react-icons/ai";
 import { GrUserAdd } from "react-icons/gr";
+import GoogleButton from "react-google-button";
+import { googleLoginThunk } from "../redux/user/user.action";
+import { FcGoogle } from "react-icons/fc";
+//FcGoogle
 
 //GrUserAdd
 
@@ -35,6 +39,21 @@ const Login = () => {
   const handleLogin =  () => {
     dispatch(loginUserThunk({ username, password }));
   }
+  const googleLogin = async () => {
+    const newWindow = window.open(
+      "http://localhost:8080/api/login/google",
+      "_blank",
+      "width=400, height=700"
+    );
+    let timer = setInterval(() => {
+      if (newWindow.closed) {
+        console.log("You are logged with google");
+        dispatch(googleLoginThunk());
+        if (timer) clearInterval(timer);
+        navigate("/user");
+      }
+    }, 500);
+  };
   
 
 
@@ -69,11 +88,14 @@ const Login = () => {
       //TailWindCSS
         className="hover:scale-110 hover:shadow-lg duration-200 bg-green-600 flex rounded-md px-4 py-2 mr-4 items-center mv-4 shadow-md border-4 font-semibold font-sans"
         onClick={handleLogin} // Call the handleLogin function
-        >
-          <AiOutlineFileDone className="text-3xl"/>
-          Submit</button>
+        ><AiOutlineFileDone className="text-3xl"/>Submit</button>
 
       <br/>
+      <div className="bg-green-600 flex rounded-lg px-4 py-2 mr-4 items-center mb-4 shadow-md border-8 ">
+        <p className="text-black mr-2 font-serif text-2xl">Or sign up with:</p>
+        <GoogleButton className="m-4 shadow-md hover:scale-105" onClick={googleLogin} />  
+      </div>
+
       <div className="bg-green-600 flex rounded-lg px-4 py-2 mr-4 items-center mb-4 shadow-md border-8 ">
         <p className="text-black mr-2 font-serif text-xl">Don't have an account?</p>
       <Link className="hover:scale-110 hover:shadow-lg duration-200 bg-green-400 flex rounded-md px-4 py-2 mr-2 items-center mt-mb-4 shadow-md " to="/signup">

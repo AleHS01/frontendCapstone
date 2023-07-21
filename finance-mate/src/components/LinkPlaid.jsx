@@ -16,6 +16,9 @@ import plaidImage2 from "../images/plaid2.webp"; // Import the image
 import plaidImage3 from "../images/plaid3.webp"; // Import the image
 import { ImLink } from "react-icons/im";
 
+import { motion, useInView, useAnimation } from "framer-motion"
+
+
 //ImLink
 //import plaidImage4 from "../images/creditcards.p"; // Import the image
 
@@ -89,7 +92,16 @@ const LinkPlaid = () => {
   return (
     <div className="dashboard">
       <SideBar></SideBar>
-      <div
+      <motion.div
+      variants={{
+        hidden: {opacity: 0, y: 75},
+        visible: {opacity: 1, y: 0},
+      }}
+      initial="hidden"
+      animate="visible"
+      transition={{duration: 0.5, delay: 0.25}}
+
+      //transition={{ duration: 0.7 }}
         className="content p-7"
         style={{
           display: "flex",
@@ -144,7 +156,7 @@ const LinkPlaid = () => {
             style={{ width: "450px", height: "auto" }}
           />
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 };
