@@ -19,6 +19,8 @@ import {
 } from "@mui/material";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
+import { AiOutlineTransaction } from "react-icons/ai";
+//AiOutlineTransaction
 
 function Transactions() {
   const dispatch = useDispatch();
@@ -85,6 +87,7 @@ function Transactions() {
       <SideBar></SideBar>
       <div className="content p-4">
         <PageHeader page_name="My Transactions" />
+        
         <Paper
           elevation={5}
           sx={{
