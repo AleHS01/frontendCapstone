@@ -23,6 +23,7 @@ import LoginGoogleSuccess from "./components/LoginGoogleSuccess";
 import IndividualBudget from "./components/IndividualBudget";
 
 import BudgetPage from "./components/BudgetPage";
+import Wallet from "./components/Wallet";
 
 function App() {
   return (
@@ -49,11 +50,13 @@ function App() {
           <Route path="/expenses" element={<ExpensesView />} />
           <Route path="/transactions" element={<Transactions />} />
           <Route path="/login/success" element={<LoginGoogleSuccess />} />
-          <Route path = "/budgetpage" element = {<BudgetPage/>}/>
+          <Route path="/budgetpage" element={<BudgetPage />} />
 
           {/* prettier-ignore */}
           <Route path="/individual-budget/:budget_id" element={<IndividualBudget />}/>
           {/* <Route path="/trans-cat" element={<TransactionCatergory/>}/> */}
+
+          <Route path="/wallet" element={<Wallet />} />
         </Routes>
       </div>
     </Router>
