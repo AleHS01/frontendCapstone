@@ -103,12 +103,12 @@ const LinkPlaid = () => {
       >
         <motion.img
         variants={{
-          hidden: {opacity: 0, x: -75},
-          visible: {opacity: 1, x: 0},
+          hidden: { opacity: 0, x: -90, scale: 0.5 },
+          visible: { opacity: 1, x: 0, scale: 1 }
         }}
         initial="hidden"
         animate="visible"
-        transition={{duration: 0.5, delay: 0.25}}
+        transition={{duration: 0.5, delay: 0.35}}
           src={plaidImage1}
           alt="Plaid"
           style={{ width: "400px", height: "auto", padding: "10px" }}
@@ -117,12 +117,12 @@ const LinkPlaid = () => {
         <br/>
         <motion.button
         variants={{
-          hidden: {opacity: 0, x: -80},
-          visible: {opacity: 1, x: 0},
+          hidden: { opacity: 0, x: 90, scale: 0.5 },
+          visible: { opacity: 1, x: 0, scale: 1 }
         }}
         initial="hidden"
         animate="visible"
-        transition={{duration: 0.6, delay: 0.40}}
+        transition={{duration: 0.6, delay: 0.45}}
           className="plaid-button flex items-center"
           onClick={popUp}
           disabled={!ready}

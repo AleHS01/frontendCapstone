@@ -48,7 +48,7 @@ const User = () => {
               visible: {opacity: 1, y: 0},
             }}
             initial="hidden"
-            animate = ""
+            animate = "Visible"
             // animate={location.state ? "visible" : ''}
             transition={{duration: 0.5, delay: 0.25}}
           >
