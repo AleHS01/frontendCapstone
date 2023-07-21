@@ -92,15 +92,7 @@ const LinkPlaid = () => {
   return (
     <div className="dashboard">
       <SideBar></SideBar>
-      <motion.div
-      variants={{
-        hidden: {opacity: 0, y: 75},
-        visible: {opacity: 1, y: 0},
-      }}
-      initial="hidden"
-      animate="visible"
-      transition={{duration: 0.5, delay: 0.25}}
-
+      <div
       //transition={{ duration: 0.7 }}
         className="content p-7"
         style={{
@@ -109,23 +101,105 @@ const LinkPlaid = () => {
           alignItems: "center",
         }}
       >
-        <img
+        <motion.img
+        variants={{
+          hidden: {opacity: 0, x: -75},
+          visible: {opacity: 1, x: 0},
+        }}
+        initial="hidden"
+        animate="visible"
+        transition={{duration: 0.5, delay: 0.25}}
           src={plaidImage1}
           alt="Plaid"
           style={{ width: "400px", height: "auto", padding: "10px" }}
         />{" "}
         {/* Replace the <p> tag with this <img> tag */}
-        <button
+        <br/>
+        <motion.button
+        variants={{
+          hidden: {opacity: 0, x: -80},
+          visible: {opacity: 1, x: 0},
+        }}
+        initial="hidden"
+        animate="visible"
+        transition={{duration: 0.6, delay: 0.40}}
           className="plaid-button flex items-center"
           onClick={popUp}
           disabled={!ready}
         >
           Link with Plaid
           <ImLink className="ml-2" />
-        </button>
+        </motion.button>
         <br />
         {/* Existing <p> tag */}
-        <p className="border-8 text-base font-serif p-4 border border-green-500 border-opacity-50 rounded-lg bg-gradient-to-r from-green-100 to-green-200 text-lg">
+        
+        <br />
+        <motion.h1
+        variants={{
+          hidden: {opacity: 0, x: -80},
+          visible: {opacity: 1, x: 0},
+        }}
+        initial="hidden"
+        animate="visible"
+        transition={{duration: 0.7, delay: 0.50}}
+         className="font-bold font-serif text-xl ">
+          Secure Banking with plaid
+        </motion.h1>
+        <motion.div 
+        variants={{
+          hidden: {opacity: 0, x: -80},
+          visible: {opacity: 1, x: 0},
+        }}
+        initial="hidden"
+        animate="visible"
+        transition={{duration: 0.8, delay: 0.50}}
+        className="flex justify-evenly border border-black border-opacity-50 rounded-lg bg-gradient-to-r from-green-200 to-green-400">
+          <motion.img
+          variants={{
+            hidden: {opacity: 0, x: -80},
+            visible: {opacity: 1, x: 0},
+          }}
+          initial="hidden"
+          animate="visible"
+          transition={{duration: 0.8, delay: 0.65}}
+            className="ml-4"
+            src={plaidImage2}
+            alt="Plaid"
+            style={{ width: "450px", height: "auto" }}
+          />
+          <motion.img
+          variants={{
+            hidden: {opacity: 0, x: -80},
+            visible: {opacity: 1, x: 0},
+          }}
+          initial="hidden"
+          animate="visible"
+          transition={{duration: 0.8, delay: 0.80}}
+            className="ml-4"
+            src={plaidImage3}
+            alt="Plaid"
+            style={{ width: "450px", height: "auto" }}
+          />
+        </motion.div>
+        <br/>
+        <motion.p 
+        variants={{
+          hidden: {opacity: 0, x: -80},
+          visible: {opacity: 1, x: 0},
+        }}
+        initial="hidden"
+        animate="visible"
+        transition={{duration: 0.9, delay: 0.90}}
+        className="border-8 text-base font-serif p-4 border border-green-500 border-opacity-50 rounded-lg bg-gradient-to-r from-green-100 to-green-200 text-lg">
+          <motion.h1 
+          variants={{
+            hidden: {opacity: 0, x: -80},
+            visible: {opacity: 1, x: 0},
+          }}
+          initial="hidden"
+          animate="visible"
+          transition={{duration: 0.9, delay: 0.90}}
+          className="flex justify-center font-semibold text-xl font-serif">What is Plaid?</motion.h1>
           Plaid is a vital financial technology solution that provides users of
           our Finance-Mate app with smooth access to their bank accounts and
           critical financial data. We ensure a secure and efficient connection
@@ -137,26 +211,8 @@ const LinkPlaid = () => {
           creates a standardized and dependable channel for our app to retrieve
           critical financial data, allowing us to provide a streamlined and
           tailored finance experience to our valued consumers.
-        </p>
-        <br />
-        <h1 className="font-bold font-serif text-xl ">
-          Secure Banking with plaid
-        </h1>
-        <div className="flex justify-evenly border border-black border-opacity-50 rounded-lg bg-gradient-to-r from-green-200 to-green-400">
-          <img
-            className="ml-4"
-            src={plaidImage2}
-            alt="Plaid"
-            style={{ width: "450px", height: "auto" }}
-          />
-          <img
-            className="ml-4"
-            src={plaidImage3}
-            alt="Plaid"
-            style={{ width: "450px", height: "auto" }}
-          />
-        </div>
-      </motion.div>
+        </motion.p>
+      </div>
     </div>
   );
 };

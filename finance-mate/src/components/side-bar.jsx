@@ -14,6 +14,9 @@ import { GiTakeMyMoney } from "react-icons/gi";
 import { TbReportMoney } from "react-icons/tb";
 import { GrTransaction } from "react-icons/gr";
 
+import { motion, AnimatePresence } from "framer-motion";
+
+
 //GrTransaction
 
 function SideBar() {
@@ -64,6 +67,8 @@ function SideBar() {
   const [open, setOpen] = useState(true);
 
   return (
+    
+
     <div className="flex">
       {/* Arrow to open and close side bar */}
       <div
@@ -248,7 +253,19 @@ function SideBar() {
           </button>
         </div>
 
-        {/* <div
+        
+
+      </div>
+    </div>
+  );
+}
+
+export default SideBar;
+
+
+
+
+{/* <div
           className={`flex items-center rounded-md px-2 py-2  ${
             !open ? "px-1" : "px-4"
           }`}
@@ -266,40 +283,3 @@ function SideBar() {
             Transaction Breakdown
           </button>
         </div> */}
-
-      </div>
-    </div>
-  );
-}
-
-export default SideBar;
-
-{
-  /* <div className="sidebar">
-      <button className="sidebar-button" onClick={handleLogout}>
-        Sign Out
-      </button>
-      <button className="sidebar-button" onClick={handleAccount}>
-        Account
-      </button>
-      <button className="sidebar-button" onClick={handleLinkPlaid}>
-        Add Payment
-      </button>
-      <button className="sidebar-button" onClick={handleBankAccount}>
-        Accounts
-      </button>
-      <button className="sidebar-button" onClick={handleFinaceForm}>
-        Expenses Form
-      </button>
-      <button className="sidebar-button" onClick={handleExpenseView}>
-        Expenses
-      </button>
-      <button className="sidebar-button" onClick={handleSetBudget}>
-        Set Budget
-      </button>
-      <button className="sidebar-button" onClick={handleTrans}>
-        Transactions
-      </button>
-
-    </div> */
-}
