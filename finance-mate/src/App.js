@@ -53,7 +53,7 @@ function App() {
 
           {/* prettier-ignore */}
           <Route path="/individual-budget/:budget_id" element={<IndividualBudget />}/>
-          <Route path="/trans-cat" element={<TransactionCatergory/>}/>
+          {/* <Route path="/trans-cat" element={<TransactionCatergory/>}/> */}
         </Routes>
       </div>
     </Router>

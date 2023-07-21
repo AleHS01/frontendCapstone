@@ -65,7 +65,7 @@ export const getExpenseOfBudgetThunk = (budgetId) => {
 //     };
 //   };
 
-export const deletedubgetThunk = (budgetToDelete) => {
+export const deleteBubgetThunk = (budgetToDelete) => {
   return async (dispatch) => {
     try {
       await axios.delete(

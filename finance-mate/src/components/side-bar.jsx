@@ -58,7 +58,7 @@ function SideBar() {
   };
 
   const handleSetBudget = () => {
-    navigate("/budgetform");
+    navigate("/budget-view");
   };
 
   const [open, setOpen] = useState(true);
@@ -248,7 +248,7 @@ function SideBar() {
           </button>
         </div>
 
-        <div
+        {/* <div
           className={`flex items-center rounded-md px-2 py-2  ${
             !open ? "px-1" : "px-4"
           }`}
@@ -265,7 +265,7 @@ function SideBar() {
           >
             Transaction Breakdown
           </button>
-        </div>
+        </div> */}
 
       </div>
     </div>

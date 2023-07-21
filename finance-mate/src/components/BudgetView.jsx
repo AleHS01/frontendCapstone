@@ -3,7 +3,7 @@ import {useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import SideBar from "./side-bar";
 import LineChart from "./LineChart";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   Grid,
   Typography,
@@ -22,40 +22,73 @@ import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import DeleteIcon from "@mui/icons-material/Delete";
 import PageHeader from "./PageHeader";
 import BudgetViewBanner from "./BudgetViewBanner";
-import { getBudgetsThunk } from "../redux/budget/budget.action";
-import { getExpensesThunk } from "../redux/expenses/expense.action";
-
-import React from "react";
+import {
+  getBudgetsThunk,
+  deleteBubgetThunk,
+} from "../redux/budget/budget.action";
 import styled from "styled-components";
+
+const BBox = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start; // change this to adjust horizontal distribution of items
+  border: 3px solid lightgreen;
+  border-radius: 15px;
+  padding: 20px 40px;
+  margin: 5px 0;
+  min-width: 300px; // add this to limit how wide the component can get
+  justify-content: space-between;
+  position: relative;
+`;
+
+const BudgetInfoContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+`;
+
+const BudgetName = styled.h1`
+  font-weight: bold;
+  color: black;
+`;
+
+const BudgetAmount = styled.h1`
+  font-weight: bold;
+  color: seagreen;
+`;
+
+const BudgetBoxesContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin: 30px auto 10px;
+  width: 90%;
+  justify-content: center;
+`;
+
 const BudgetView = () => {
   const dispatch = useDispatch();
-  // const [expenseName, setExpenseName] = useState("");
-  // const [expenseAmount, setExpenseAmount] = useState("");
+  const navigate = useNavigate();
   const budgets = useSelector((state) => state.budget);
   const [selectedBudgetId, setSelectedBudgetId] = useState(undefined);
   const [selectedBudget, setSelectedBudget] = useState(undefined);
   const [budgetExpenses, setBudgetExpenses] = useState(undefined);
   const [lineChartData, setLineChartData] = useState(undefined);
+  const [sortedBudget, setSortedBudget] = useState([]);
+  
 
   useEffect(() => {
     dispatch(getBudgetsThunk());
   }, []);
-const BBox = styled.div`
-  display: flex;
-  justify-content: flex-start;  // change this to adjust horizontal distribution of items
-  
+
   useEffect(() => {
     if (budgets.length > 0) {
       setSelectedBudgetId(budgets[0].id);
       setSelectedBudget(budgets[0]);
+      const sortArray = [...budgets].sort((a, b) => b.amount - a.amount);
+      setSortedBudget(sortArray);
     }
   }, [budgets]);
-  border: 3px solid lightgreen;
-  border-radius: 15px;
-  padding: 20px;
-  margin: 20px 0;
-  max-width: 400px;  // add this to limit how wide the component can get
-`;
 
   useEffect(() => {
     const budget = budgets.find((budget) => budget.id === selectedBudgetId);
@@ -65,11 +98,6 @@ const BBox = styled.div`
       setLineChartData(getLineGraphData(budget));
     }
   }, [selectedBudgetId]);
-const BudgetInfoContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-`;
 
   const getLineGraphData = (budget) => {
     if (Array.isArray(budget.Expenses) && budget.Expenses.length > 0) {
@@ -123,8 +151,19 @@ const BudgetInfoContainer = styled.div`
     return null;
   };
 
-  const handleSortAsc = () => {};
-  const handleSortDesc = () => {};
+  const deleteBudget = (budget) => {
+    dispatch(deleteBubgetThunk(budget));
+  };
+
+  const handleSortAsc = () => {
+    const sortedByAsc = [...sortedBudget].sort((a, b) => b.amount - a.amount);
+    setSortedBudget(sortedByAsc);
+  };
+
+  const handleSortDesc = () => {
+    const sortedByDesc = [...sortedBudget].sort((a, b) => a.amount - b.amount);
+    setSortedBudget(sortedByDesc);
+  };
 
   return (
     <div className="dashboard">
@@ -190,7 +229,7 @@ const BudgetInfoContainer = styled.div`
         >
           <Grid item sx={{ ml: "40px" }}>
             <Typography variant="h6" sx={{ color: "#05377f" }}>
-              Sort:
+              Sort By Amount:
               <Tooltip title="Sort Ascending" placement="top">
                 <IconButton onClick={handleSortAsc}>
                   <ArrowUpwardIcon
@@ -221,7 +260,7 @@ const BudgetInfoContainer = styled.div`
           <Grid item>
             <Typography
               variant="h4"
-              sx={{ fontWeight: "500", color: "#4CAF50" }}
+              sx={{ fontWeight: "500", color: "black" }}
             >
               Overview of Your Budgets
             </Typography>
@@ -240,7 +279,7 @@ const BudgetInfoContainer = styled.div`
               to="/budgetform"
               clickable
               sx={{
-                backgroundColor: "#03a9f4",
+                backgroundColor: "limegreen",
                 color: "#fff",
                 "&:hover": {
                   backgroundColor: "#05377f",
@@ -252,10 +291,10 @@ const BudgetInfoContainer = styled.div`
             <Chip
               label="Add Expense"
               component={Link}
-              to="/budget-expense"
+              to='/budget-expense/1'
               clickable
               sx={{
-                backgroundColor: "#03a9f4",
+                backgroundColor: "black",
                 color: "#fff",
                 "&:hover": {
                   backgroundColor: "#05377f",
@@ -264,9 +303,65 @@ const BudgetInfoContainer = styled.div`
             />
           </Grid>
         </Grid>
+
+        <BudgetBoxesContainer>
+          {sortedBudget.map((budget, index) => {
+            return (
+              <Tooltip key = {index}title="View Budget Details" placement="bottom">
+                <BBox>
+                  <BudgetInfoContainer>
+                    <Link
+                      to={`/budget-expense/${budget.id}`}
+                      key={index}
+                      style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                        width: "100%",
+                      }}
+                    >
+                      <BudgetName>{budget.budget_name}</BudgetName>
+                      <BudgetAmount style={{ marginRight: "20px" }}>
+                        ${budget.amount}
+                      </BudgetAmount>
+                    </Link>
+                  </BudgetInfoContainer>
+
+                  <Tooltip title="Delete Budget" placement="right">
+                    <IconButton
+                      aria-label="delete"
+                      // onClick={() => handleDeleteExpense(expense.id)}
+                      sx={{
+                        position: "absolute",
+                        top: "10px",
+                        right: "10px",
+                        // marginLeft: "10px",
+                      }}
+                      onClick={() => deleteBudget(budget)}
+                    >
+                      <DeleteIcon style={{ color: "red" }} />
+                    </IconButton>
+                  </Tooltip>
+                </BBox>
+              </Tooltip>
+            );
+          })}
+        </BudgetBoxesContainer>
       </div>
     </div>
   );
 };
 
 export default BudgetView;
+
+{
+  /* <Tooltip title="Delete Expense" placement="bottom">
+                    <IconButton
+                      aria-label="delete"
+                      // onClick={() => handleDeleteExpense(expense.id)}
+                      sx={{ position: "absolute", top: "10px", right: "10px" }}
+                      onClick={() => deleteExpense(index)}
+                    >
+                      <DeleteIcon style={{ color: "red" }} />
+                    </IconButton>
+                  </Tooltip> */
+}

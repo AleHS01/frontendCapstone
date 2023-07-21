@@ -1,12 +1,18 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addBudgetThunk } from "../redux/budget/budget.action";
-import { TextField, Button, Container, Typography } from "@mui/material";
+import {
+  TextField,
+  Button,
+  Container,
+  Typography,
+  Grid,
+  Chip,
+} from "@mui/material";
 import styled from "styled-components";
-import waveBackground from "./layered-waves-haikei.svg";
 import { getBudgetsThunk } from "../redux/budget/budget.action";
-import RecentExpenses from "./RecentExpenses";
+// import RecentExpenses from "./RecentExpenses";
 import SideBar from "./side-bar";
 
 const BackgroundContainer = styled.div``;
@@ -41,7 +47,7 @@ const BudgetForm = () => {
   useEffect(() => {
     dispatch(getBudgetsThunk());
     console.log("Use Effect");
-  }, []);
+  }, [dispatch]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -49,14 +55,14 @@ const BudgetForm = () => {
       budget_name: budgetname,
       amount: amount,
     };
-    await dispatch(addBudgetThunk(budgetinfo));
+    dispatch(addBudgetThunk(budgetinfo));
     const objectWithHighestId = budgets.reduce((acc, current) => {
       if (current.id > acc.id || acc.id === undefined) {
         return current;
       }
       return acc;
     }, {});
-    console.log(objectWithHighestId)
+    console.log(objectWithHighestId);
     navigate(`/budget-expense/${objectWithHighestId.id}`);
   };
 
@@ -114,14 +120,22 @@ const BudgetForm = () => {
                 value={amount}
                 onChange={(e) => setAmount(e.target.value)}
               />
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                color="primary"
-              >
-                Create Budget
-              </Button>
+              <Grid>
+                <Button
+                  variant="contained"
+                  sx={{
+                    backgroundColor: "limegreen",
+                    color: "#fff",
+                    "&:hover": {
+                      backgroundColor: "#05377f",
+                    },
+                    minWidth: "517px",
+                  }}
+                  onClick={handleSubmit}
+                >
+                  Create Budget
+                </Button>
+              </Grid>
             </form>
           </DottedBox>
           {budgets.map((item) => (
@@ -134,7 +148,7 @@ const BudgetForm = () => {
               {item.budget_name} {item.expense_value}
             </button>
           ))}
-          <RecentExpenses></RecentExpenses>
+          {/* <RecentExpenses></RecentExpenses> */}
         </ContentContainer>
       </Container>
     </BackgroundContainer>
