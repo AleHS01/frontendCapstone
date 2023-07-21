@@ -307,7 +307,7 @@ const BudgetView = () => {
         <BudgetBoxesContainer>
           {sortedBudget.map((budget, index) => {
             return (
-              <Tooltip title="View Budget Details" placement="bottom">
+              <Tooltip key = {index}title="View Budget Details" placement="bottom">
                 <BBox>
                   <BudgetInfoContainer>
                     <Link
