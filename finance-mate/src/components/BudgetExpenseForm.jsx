@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector} from "react-redux";
-import { useParams } from 'react-router'
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router";
+import { Link } from "react-router-dom";
 import {
   getExpenseOfBudgetThunk,
   getBudgetsThunk,
@@ -16,6 +17,8 @@ import {
   Select,
   MenuItem,
   Container,
+  Grid,
+  Chip
 } from "@mui/material";
 import styled from "styled-components";
 import waveBackground from "./layered-waves-haikei.svg";
@@ -54,7 +57,7 @@ const BudgetContainer = styled.div`
 const AddExpenseForm = () => {
   const dispatch = useDispatch();
 
-  const {budget_id}=useParams()
+  const { budget_id } = useParams();
 
   const [expenseName, setExpenseName] = useState("");
   const [expenseAmount, setExpenseAmount] = useState("");
@@ -64,9 +67,14 @@ const AddExpenseForm = () => {
 
   const budgets = useSelector((state) => state.budget);
   const all_expenses = useSelector((state) => state.user_expenses);
-  const expensesForBudget = all_expenses.filter((expense) => expense.BudgetId === selectedBudgetId);
+  const expensesForBudget = all_expenses.filter(
+    (expense) => expense.BudgetId === selectedBudgetId
+  );
   // console.log("expensesForBudget==>",expensesForBudget)
-  const budget_expense_total = expensesForBudget.reduce(((acc, expense) => (acc + parseInt(expense.expense_value))), 0);
+  const budget_expense_total = expensesForBudget.reduce(
+    (acc, expense) => acc + parseInt(expense.expense_value),
+    0
+  );
   // console.log(budget_expense_total,expensesForBudget)
   // const budget_expense_total = useSelector((state) => state.user_budget_expenses);
   // console.log("expenses for entertainment:", expensesForBudget)
@@ -77,7 +85,7 @@ const AddExpenseForm = () => {
   //   dispatch(getExpensesThunk());
   //   setSelectedBudget(budgets.find((budget) => budget.id == selectedBudgetId));
   // }, []);
-  
+
   /**Each Time the user selects a budget from th edrop down menu, this methods does the following:
    *  1.
    */
@@ -92,7 +100,7 @@ const AddExpenseForm = () => {
     // }
 
     // console.log("Use Effect");
-    }, [selectedBudgetId]);
+  }, [selectedBudgetId]);
 
   // console.log("budget_expense_total", budget_expense_total);
 
@@ -182,6 +190,39 @@ const AddExpenseForm = () => {
           ) : (
             <p></p>
           )}
+
+<Grid container spacing={2}>
+      <Grid item>
+        <Chip
+          label="Add Budget"
+          component={Link}
+          to="/budgetform"
+          clickable
+          sx={{
+            backgroundColor: "limegreen",
+            color: "#fff",
+            "&:hover": {
+              backgroundColor: "#05377f",
+            },
+          }}
+        />
+      </Grid>
+      <Grid item>
+        <Chip
+          label="Budget Page"
+          component={Link}
+          to="/budget-view"
+          clickable
+          sx={{
+            backgroundColor: "black",
+            color: "white",
+            "&:hover": {
+              backgroundColor: "#05377f",
+            },
+          }}
+        />
+      </Grid>
+    </Grid>
           {/* <BudgetBox
             budget={selectedBudget}
             expenses={expensesForBudget}

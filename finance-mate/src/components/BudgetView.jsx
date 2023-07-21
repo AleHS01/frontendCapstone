@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import SideBar from "./side-bar";
 import LineChart from "./LineChart";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   Grid,
   Typography,
@@ -68,12 +68,14 @@ const BudgetBoxesContainer = styled.div`
 
 const BudgetView = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const budgets = useSelector((state) => state.budget);
   const [selectedBudgetId, setSelectedBudgetId] = useState(undefined);
   const [selectedBudget, setSelectedBudget] = useState(undefined);
   const [budgetExpenses, setBudgetExpenses] = useState(undefined);
   const [lineChartData, setLineChartData] = useState(undefined);
   const [sortedBudget, setSortedBudget] = useState([]);
+  
 
   useEffect(() => {
     dispatch(getBudgetsThunk());
@@ -258,7 +260,7 @@ const BudgetView = () => {
           <Grid item>
             <Typography
               variant="h4"
-              sx={{ fontWeight: "500", color: "#4CAF50" }}
+              sx={{ fontWeight: "500", color: "black" }}
             >
               Overview of Your Budgets
             </Typography>
@@ -277,7 +279,7 @@ const BudgetView = () => {
               to="/budgetform"
               clickable
               sx={{
-                backgroundColor: "#03a9f4",
+                backgroundColor: "limegreen",
                 color: "#fff",
                 "&:hover": {
                   backgroundColor: "#05377f",
@@ -289,10 +291,10 @@ const BudgetView = () => {
             <Chip
               label="Add Expense"
               component={Link}
-              to="/budget-expense"
+              to='/budget-expense/1'
               clickable
               sx={{
-                backgroundColor: "#03a9f4",
+                backgroundColor: "black",
                 color: "#fff",
                 "&:hover": {
                   backgroundColor: "#05377f",
