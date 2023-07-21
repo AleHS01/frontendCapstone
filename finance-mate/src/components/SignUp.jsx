@@ -55,7 +55,7 @@ const SignUp = () => {
         console.log("You are logged with google");
         dispatch(googleLoginThunk());
         if (timer) clearInterval(timer);
-        navigate("/user");
+        navigate("/user", {state: {intro: true}});
       }
     }, 500);
   };

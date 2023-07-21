@@ -26,7 +26,7 @@ const Login = () => {
     if (loginStatus === "failed") {
       alert("Login Failed");
     } else if (loginStatus === "success") {
-      navigate("/user");
+      navigate("/user", {state: {intro: true}});
     }
   }, [loginStatus]);
 
@@ -50,7 +50,7 @@ const Login = () => {
         console.log("You are logged with google");
         dispatch(googleLoginThunk());
         if (timer) clearInterval(timer);
-        navigate("/user");
+        navigate("/user", {state: {intro: true}});
       }
     }, 500);
   };
