@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate, Link} from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addBudgetThunk } from "../redux/budget/budget.action";
 import {
@@ -47,7 +47,7 @@ const BudgetForm = () => {
   useEffect(() => {
     dispatch(getBudgetsThunk());
     console.log("Use Effect");
-  }, []);
+  }, [dispatch]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -55,7 +55,7 @@ const BudgetForm = () => {
       budget_name: budgetname,
       amount: amount,
     };
-    await dispatch(addBudgetThunk(budgetinfo));
+    dispatch(addBudgetThunk(budgetinfo));
     const objectWithHighestId = budgets.reduce((acc, current) => {
       if (current.id > acc.id || acc.id === undefined) {
         return current;
@@ -121,11 +121,8 @@ const BudgetForm = () => {
                 onChange={(e) => setAmount(e.target.value)}
               />
               <Grid>
-                <Chip
-                  label="Create Budget"
-                  component={Link}
-                  to="/budget-expense/1"
-                  clickable
+                <Button
+                  variant="contained"
                   sx={{
                     backgroundColor: "limegreen",
                     color: "#fff",
@@ -134,16 +131,11 @@ const BudgetForm = () => {
                     },
                     minWidth: "517px",
                   }}
-                />
+                  onClick={handleSubmit}
+                >
+                  Create Budget
+                </Button>
               </Grid>
-              {/* <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                color="green"
-              >
-                Create Budget
-              </Button> */}
             </form>
           </DottedBox>
           {budgets.map((item) => (
