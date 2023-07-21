@@ -244,8 +244,8 @@ function Transactions() {
             .map((transaction) => {
               const isNegativeAmount = transaction.amount < 0;
               const formattedAmount = isNegativeAmount
-                ? `-$${Math.abs(transaction.amount).toFixed(2)}`
-                : `$${transaction.amount.toFixed(2)}`;
+                ? `-$${Math.abs(transaction.amount)}` //converting from cents to normal amount
+                : `$${transaction.amount}`; //converting from cents to normal amount
 
               return (
                 <Paper
@@ -284,7 +284,7 @@ function Transactions() {
                     </Typography>
                     <Chip
                       size="small"
-                      label={transaction.category[0]}
+                      label={transaction.category}
                       color="primary"
                       sx={{ fontStyle: "italic" }}
                     />
