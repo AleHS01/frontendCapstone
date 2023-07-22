@@ -38,7 +38,7 @@ const Header = () => (
         <Chip
           label="Home"
           component={Link}
-          to="/budgetform"
+          to="/user"
           clickable
           size='medium'
           sx={{

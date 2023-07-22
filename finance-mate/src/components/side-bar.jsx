@@ -50,16 +50,14 @@ function SideBar() {
     navigate("/transactions");
   };
 
-  const handleIncomeForm = () => {
-    navigate("/income-form");
-  };
-  const handleIncomeView = () => {
-    navigate("/incomes");
-  };
 
   const handleSetBudget = () => {
     navigate("/budget-view");
   };
+
+  const handleCommitteeSan = () => {
+    navigate("/committeesan")
+  }
 
   const [open, setOpen] = useState(true);
 
@@ -246,6 +244,10 @@ function SideBar() {
           >
             Transactions
           </button>
+
+          <button className="Committee-San" onClick={handleCommitteeSan}>
+       CommiteeSan
+      </button>
         </div>
 
         {/* <div
