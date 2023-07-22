@@ -244,13 +244,9 @@ function SideBar() {
           >
             Transactions
           </button>
-
-          <button className="Committee-San" onClick={handleCommitteeSan}>
-       CommiteeSan
-      </button>
         </div>
 
-        {/* <div
+        <div
           className={`flex items-center rounded-md px-2 py-2  ${
             !open ? "px-1" : "px-4"
           }`}
@@ -263,11 +259,11 @@ function SideBar() {
             className={`hover:scale-110 hover:bg-green-300 bg-green-400 flex rounded-md px-4 py-2 mr-4 items-center mv-4 shadow-md border-4 font-semibold mt-4 font-sans duration-200  ${
               !open && "hidden"
             }`}
-            onClick={()=>navigate("/trans-cat")}
+            onClick={()=>navigate("/committeesan")}
           >
-            Transaction Breakdown
+            Committee San
           </button>
-        </div> */}
+        </div>
 
       </div>
     </div>
