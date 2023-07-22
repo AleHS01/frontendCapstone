@@ -24,6 +24,7 @@ import IndividualBudget from "./components/IndividualBudget";
 
 import BudgetPage from "./components/BudgetPage";
 import Wallet from "./components/Wallet";
+import LandingPage from "./components/committeeSan/LandingPage";
 
 function App() {
   return (
@@ -57,6 +58,7 @@ function App() {
           {/* <Route path="/trans-cat" element={<TransactionCatergory/>}/> */}
 
           <Route path="/wallet" element={<Wallet />} />
+          <Route path = "/committeesan" element = {<LandingPage/>}/>
         </Routes>
       </div>
     </Router>
