@@ -7,6 +7,11 @@ export const createGroup = (groupName) => ({
 
 })
 
+export const getGroups = (payload) => ( {
+    type: userTypes.GET_GROUPS,
+    payload: payload
+})
+
 export const createGroupThunk = (groupName) => {
     return async (dispatch) => {
         try {
@@ -15,6 +20,18 @@ export const createGroupThunk = (groupName) => {
             })
             console.log("The group object from server inside Thunk:", response.data)
             dispatch(createGroup(response.data)) // Just in case we add more stuff for the server to return, instead of just the name of the group.
+        } catch (error) {
+            console.log(error)
+            
+        }
+    }
+}
+
+export const getGroupsThunk = () => {
+    return async (dispatch) => {
+        try {
+            const response = await axios.get("http://localhost:8080/api/group/get_all_groups", {withCredentials: true})
+            dispatch(getGroups(response.data))
         } catch (error) {
             console.log(error)
             
