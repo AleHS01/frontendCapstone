@@ -1,26 +1,17 @@
-import { createTheme, ThemeProvider } from "@mui/material/styles";
+
 import {
   AppBar,
   Toolbar,
   Typography,
   Button,
   IconButton,
-  Card,
-  CardContent,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Paper,
-  CssBaseline,
   Grid,
   Chip,
   Box,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => (
   <AppBar position="static">
@@ -86,7 +77,9 @@ const Header = () => (
 );
 
 const LandingPage = () => {
+  const navigate = useNavigate()
   const handleSubmit = () => {
+    navigate("/creategroup")
     // TODO: Handle submit logic
   };
 
