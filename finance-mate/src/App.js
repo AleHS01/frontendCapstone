@@ -25,6 +25,7 @@ import IndividualBudget from "./components/IndividualBudget";
 import BudgetPage from "./components/BudgetPage";
 import Wallet from "./components/Wallet";
 import LandingPage from "./components/committeeSan/LandingPage";
+import GroupForm from "./components/committeeSan/CreateGroup";
 
 function App() {
   return (
@@ -59,6 +60,7 @@ function App() {
 
           <Route path="/wallet" element={<Wallet />} />
           <Route path = "/committeesan" element = {<LandingPage/>}/>
+          <Route path = "creategroup" element = {<GroupForm></GroupForm>} />
         </Routes>
       </div>
     </Router>
