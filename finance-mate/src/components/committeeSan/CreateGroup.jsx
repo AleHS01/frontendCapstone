@@ -58,8 +58,8 @@ const GroupForm = () => {
     setGroupName("");
   };
 
-  const handleButton = async () => {
-    navigate(`/addMembers}`)
+  const handleButton =  (groupId) => {
+    navigate(`/addMembers`, {state: {groupId}})
   }
 
   return (
@@ -106,7 +106,7 @@ const GroupForm = () => {
           </form>
         </DottedBox>
         <Typography variant="h2" align="center" gutterBottom>
-          <span style={{ color: "black", fontWeight: "bold" }}>Your</span>{" "}
+          <span style={{ color: "black", fontWeight: "bold" }}>Available</span>{" "}
           <span style={{ color: "limegreen", fontWeight: "bold" }}>Groups</span>
         </Typography>
 
@@ -120,7 +120,7 @@ const GroupForm = () => {
                 backgroundColor: "black",
               },
             }}
-            onClick={handleButton}
+            onClick={ () => handleButton(item.id)}
           >
             {item.group_name}
           </Button>

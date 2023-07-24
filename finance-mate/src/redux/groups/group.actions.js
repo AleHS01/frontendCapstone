@@ -48,7 +48,7 @@ export const getGroupsThunk = () => {
 export const joinGroupThunk = (GroupId) => {
     return async (dispatch) => {
         try {
-           const response = await axios.post("http://localhost:8080/api/group/add_member", GroupId, { withCredentials: true})
+           const response = await axios.post("http://localhost:8080/api/group/add_member", {GroupId}, { withCredentials: true})
            dispatch(getGroups(response.data))
         } catch (error) {
             console.log(error)
