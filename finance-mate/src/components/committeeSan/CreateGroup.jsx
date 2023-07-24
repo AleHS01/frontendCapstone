@@ -110,7 +110,7 @@ const GroupForm = () => {
           <span style={{ color: "limegreen", fontWeight: "bold" }}>Groups</span>
         </Typography>
 
-        {groups.map((item) => (
+        {groups && groups.map((item) => (
           <Button
             variant="contained"
             sx={{

@@ -17,6 +17,11 @@ export const joinGroup = (payload) => ({
     payload: payload
 })
 
+export const getMembers = (payload) => ( {
+    type: userTypes.GET_MEMBERS,
+    payload: payload
+})
+
 
 export const createGroupThunk = (groupName) => {
     return async (dispatch) => {
@@ -50,6 +55,17 @@ export const joinGroupThunk = (GroupId) => {
         try {
            const response = await axios.post("http://localhost:8080/api/group/add_member", {GroupId}, { withCredentials: true})
            dispatch(getGroups(response.data))
+        } catch (error) {
+            console.log(error)
+        }
+    }
+}
+
+export const getMembersThunk = () => {
+    return async (dispatch) => {
+        try {
+            const response = await axios.get("http://localhost:8080/api/group/all_members", {withCredentials: true})
+            dispatch(response.data)
         } catch (error) {
             console.log(error)
         }
