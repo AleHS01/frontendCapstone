@@ -6,6 +6,10 @@ import { useDispatch } from "react-redux";
 import { googleLoginThunk } from "../redux/user/user.action";
 import HeroSection from "./Home-Components/Hero_Section";
 import NavBar from "./Home-Components/NavBar";
+import CommitteeSanFeature from "./Home-Components/CommitteeSanFeature";
+import HowCommitteeSanWorks from "./Home-Components/HowCommitteeSanWorks";
+import FeaturedFunctionalities from "./Home-Components/FeaturedFunctionalities";
+import TestimonialsCarousel from "./Home-Components/Caourosel";
 function Home() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -30,6 +34,10 @@ function Home() {
     <div>
       <NavBar />
       <HeroSection />
+      <CommitteeSanFeature />
+      <HowCommitteeSanWorks />
+      <FeaturedFunctionalities />
+      <TestimonialsCarousel />
     </div>
   );
 }

@@ -7,7 +7,7 @@ const HeroContainer = styled("div")({
   display: "flex",
   alignItems: "center",
   justifyContent: "space-between",
-  padding: 20,
+  padding: 30,
   backgroundColor: "#EAF2EF",
 });
 
@@ -17,16 +17,16 @@ const TextContainer = styled("div")({
 });
 
 const Headline = styled(Typography)({
-  fontSize: "4.5rem",
+  fontSize: "4.2rem",
   fontWeight: "bold",
   marginBottom: 8,
-  //   color: "#071e22",
-  color: "#07211c",
+  // color: "#07211c",
+  color: "#0a210f",
 });
 
 const Subheadline = styled(Typography)({
-  fontSize: "1.5rem",
-  marginBottom: 16,
+  fontSize: "1.2rem",
+  marginBottom: 30,
   color: "#4bb365",
 });
 
@@ -36,18 +36,19 @@ const CTAButton = styled(Button)({
   "&:hover": {
     backgroundColor: "#071e22",
   },
+  padding: "12px 36px",
 });
 
 const ShapedImage = styled("img")({
   width: "30%",
-  height: "35%",
+  minHeight: "470px",
   clipPath: "circle(50%)",
   marginRight: 30,
 });
 
 const HeroSection = () => {
   return (
-    <HeroContainer>
+    <HeroContainer marginBottom="0">
       <TextContainer>
         <Headline variant="h1">
           Collaborative Savings for Financial Empowerment

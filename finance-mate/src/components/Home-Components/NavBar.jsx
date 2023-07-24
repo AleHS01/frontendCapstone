@@ -1,28 +1,30 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { AppBar, Toolbar, Typography, Button } from "@mui/material";
+import { AppBar, Toolbar, Typography, Button, Box } from "@mui/material";
+import { styled } from "@mui/system";
+
+const StyledAppBar = styled(AppBar)({
+  backgroundColor: "#53ad77",
+});
 
 const NavBar = () => {
   return (
-    <AppBar position="static">
+    <StyledAppBar position="static">
       <Toolbar>
-        <Typography variant="h6" component={Link} to="/">
+        <Typography variant="h4" component={Link} to="/">
           Finance Mate
         </Typography>
 
-        <div style={{ flexGrow: 1 }} />
-
-        <Button component={Link} to="/dashboard" color="inherit">
-          Dashboard
-        </Button>
-        <Button component={Link} to="/committeesan" color="inherit">
-          CommitteeSan
-        </Button>
-        <Button component={Link} to="/expenses" color="inherit">
-          Expenses
-        </Button>
+        <Box ml={2}>
+          <Button component={Link} to="/login" color="inherit">
+            Login
+          </Button>
+          <Button component={Link} to="/signup" color="inherit">
+            Join Finance Mate!
+          </Button>
+        </Box>
       </Toolbar>
-    </AppBar>
+    </StyledAppBar>
   );
 };
 
