@@ -67,7 +67,7 @@ const GroupForm = () => {
       <ContentContainer>
         <Typography variant="h2" align="center" gutterBottom>
           <span style={{ color: "black", fontWeight: "bold" }}>
-            Create a new,
+            Create a new
           </span>{" "}
           <span style={{ color: "limegreen", fontWeight: "bold" }}>
             Committee!
