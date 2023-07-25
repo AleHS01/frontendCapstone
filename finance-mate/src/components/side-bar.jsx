@@ -5,6 +5,7 @@ import { logoutUserThunk } from "../redux/user/user.action";
 
 import {Link} from "react-router-dom";
 
+
 // Imports for sidebar navigation
 import { useState, useRef, useEffect } from "react";
 import { BsFillArrowLeftCircleFill } from "react-icons/bs";
@@ -372,10 +373,6 @@ function SideBar() {
             Committee San
           </button>
         </motion.div>
-        
-
-        
-
       </div>
     </div>
   );

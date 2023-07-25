@@ -14,7 +14,7 @@ const Footer = () => {
         Made By:
       </Typography>
       <Typography variant="h6" component="p">
-        Hamza, Ghulam, Muhammed, Alejandro Hernandez
+        Hamza, Ghulam Ahmed, Muhammed, Alejandro Hernandez
       </Typography>
     </Box>
   );
