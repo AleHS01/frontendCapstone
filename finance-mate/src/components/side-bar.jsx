@@ -1,10 +1,12 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { logoutUserThunk } from "../redux/user/user.action";
 
+import {Link} from "react-router-dom";
+
 // Imports for sidebar navigation
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { BsFillArrowLeftCircleFill } from "react-icons/bs";
 import { RiBankFill } from "react-icons/ri";
 import { SlLogout, SlWallet } from "react-icons/sl";
@@ -13,12 +15,17 @@ import { AiOutlineForm } from "react-icons/ai";
 import { GiTakeMyMoney } from "react-icons/gi";
 import { TbReportMoney } from "react-icons/tb";
 import { GrTransaction } from "react-icons/gr";
+import FadeInWhenVisible from "./FadeInWhenVisible"
+import { motion, AnimatePresence, isInView, useInView, useAnimation } from "framer-motion";
+
 
 //GrTransaction
 
 function SideBar() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [open, setOpen] = useState(true);
+  const [isLoaded, setIsLoaded] = useState(true);
 
   const handleLogout = async () => {
     try {
@@ -29,6 +36,8 @@ function SideBar() {
       console.log(error);
     }
   };
+
+  
 
   const handleLinkPlaid = () => {
     navigate("/link_plaid");
@@ -54,14 +63,31 @@ function SideBar() {
   const handleSetBudget = () => {
     navigate("/budget-view");
   };
-
+  
   const handleCommitteeSan = () => {
     navigate("/committeesan")
   }
 
-  const [open, setOpen] = useState(true);
+  // const controls = useAnimation();
+  // console.log("CONTROLSSS: "+JSON.stringify(controls));
+
+  //const [inView] = useInView();
+
+  const location = useLocation();
+  console.log(JSON.stringify(location))
+  console.log("Location 1: "+location)
+
+  // useEffect(() => {
+  //   if (isLoaded) {
+  //     controls.start("visible");
+  //     isLoaded= false;
+  //   }
+  // }, [controls, isLoaded]);
+  
 
   return (
+    
+
     <div className="flex">
       {/* Arrow to open and close side bar */}
       <div
@@ -77,7 +103,17 @@ function SideBar() {
         />
 
         {/* Header */}
-        <div className="inline-flex">
+        <motion.div 
+        variants={{
+          hidden: location.state ? {opacity: 0, x: -75} : {opacity: 1, x: 0},
+          visible: {opacity: 1, x: 0},
+        }}
+        initial="hidden"
+        animate = "visible"
+        // {location.state ? "visible" : ""}
+        transition={{duration: 0.5, delay: 0.20}}
+        viewport={{ once: true }}
+        className="inline-flex">
           <RiBankFill
             className={`bg-white text-4xl rounded cursor-pointer block float-left mr-2 duration-500 ${
               open && "rotate-[360deg]"
@@ -90,11 +126,21 @@ function SideBar() {
           >
             Finance-Mate
           </h1>
-        </div>
+        </motion.div>
+
+
+         
 
         {/* All other buttons */}
 
-        <div
+        <motion.div
+        variants={{
+          hidden: location.state ? {opacity: 0, x: -75} : {opacity: 1, x: 0},
+          visible: {opacity: 1, x: 0},
+        }}
+        initial="hidden"
+        animate="visible"
+        transition={{duration: 0.5, delay: 0.40}}
           className={`flex items-center rounded-md px-2 py-2  ${
             !open ? "px-1" : "px-4"
           }`}
@@ -111,9 +157,20 @@ function SideBar() {
           >
             Sign Out
           </button>
+        </motion.div>
+
+        <div>
+          <h1></h1>
         </div>
 
-        <div
+        <motion.div
+        variants={{
+          hidden: location.state ? {opacity: 0, x: -75} : {opacity: 1, x: 0},
+          visible: {opacity: 1, x: 0},
+        }}
+        initial="hidden"
+        animate="visible"
+        transition={{duration: 0.5, delay: 0.60}}
           className={`flex items-center rounded-md px-2 py-2  ${
             !open ? "px-1" : "px-4"
           }`}
@@ -126,13 +183,21 @@ function SideBar() {
             className={`hover:scale-110 hover:bg-green-300 bg-green-400 flex rounded-md px-4 py-2 mr-4 items-center mv-4 shadow-md border-4 font-semibold mt-4 font-sans duration-200  ${
               !open && "hidden"
             }`}
+            // to="/User"
             onClick={handleAccount}
           >
             Account
           </button>
-        </div>
+        </motion.div>
 
-        <div
+        <motion.div
+        variants={{
+          hidden: location.state ? {opacity: 0, x: -75} : {opacity: 1, x: 0},
+          visible: {opacity: 1, x: 0},
+        }}
+        initial="hidden"
+        animate="visible"
+        transition={{duration: 0.5, delay: 0.80}}
           className={`flex items-center rounded-md px-2 py-2  ${
             !open ? "px-1" : "px-4"
           }`}
@@ -149,9 +214,16 @@ function SideBar() {
           >
             Bank Accounts
           </button>
-        </div>
+        </motion.div>
 
-        <div
+        <motion.div
+        variants={{
+          hidden: location.state ? {opacity: 0, x: -75} : {opacity: 1, x: 0},
+          visible: {opacity: 1, x: 0},
+        }}
+        initial="hidden"
+        animate="visible"
+        transition={{duration: 0.5, delay: 1}}
           className={`flex items-center rounded-md px-2 py-2  ${
             !open ? "px-1" : "px-4"
           }`}
@@ -168,9 +240,16 @@ function SideBar() {
           >
             Add Payment
           </button>
-        </div>
+        </motion.div>
 
-        <div
+        <motion.div
+        variants={{
+          hidden: location.state ? {opacity: 0, x: -75} : {opacity: 1, x: 0},
+          visible: {opacity: 1, x: 0},
+        }}
+        initial="hidden"
+        animate="visible"
+        transition={{duration: 0.5, delay: 1.20}}
           className={`flex items-center rounded-md px-2 py-2  ${
             !open ? "px-1" : "px-4"
           }`}
@@ -187,9 +266,16 @@ function SideBar() {
           >
             Expenses Form
           </button>
-        </div>
+        </motion.div>
 
-        <div
+        <motion.div
+        variants={{
+          hidden: location.state ? {opacity: 0, x: -75} : {opacity: 1, x: 0},
+          visible: {opacity: 1, x: 0},
+        }}
+        initial="hidden"
+        animate="visible"
+        transition={{duration: 0.5, delay: 1.40}}
           className={`flex items-center rounded-md px-2 py-2  ${
             !open ? "px-1" : "px-4"
           }`}
@@ -206,9 +292,16 @@ function SideBar() {
           >
             Expenses
           </button>
-        </div>
+        </motion.div>
 
-        <div
+        <motion.div
+        variants={{
+          hidden: location.state ? {opacity: 0, x: -75} : {opacity: 1, x: 0},
+          visible: {opacity: 1, x: 0},
+        }}
+        initial="hidden"
+        animate="visible"
+        transition={{duration: 0.5, delay: 1.60}}
           className={`flex items-center rounded-md px-2 py-2  ${
             !open ? "px-1" : "px-4"
           }`}
@@ -225,9 +318,16 @@ function SideBar() {
           >
             Set Budget
           </button>
-        </div>
+        </motion.div>
 
-        <div
+        <motion.div
+        variants={{
+          hidden: location.state ? {opacity: 0, x: -75} : {opacity: 1, x: 0},
+          visible: {opacity: 1, x: 0},
+        }}
+        initial="hidden"
+        animate="visible"
+        transition={{duration: 0.5, delay: 1.80}}
           className={`flex items-center rounded-md px-2 py-2  ${
             !open ? "px-1" : "px-4"
           }`}
@@ -244,7 +344,19 @@ function SideBar() {
           >
             Transactions
           </button>
-        </div>
+        </motion.div>
+
+        
+
+      </div>
+    </div>
+  );
+}
+
+export default SideBar;
+
+
+
 
         <div
           className={`flex items-center rounded-md px-2 py-2  ${
@@ -264,40 +376,3 @@ function SideBar() {
             Committee San
           </button>
         </div>
-
-      </div>
-    </div>
-  );
-}
-
-export default SideBar;
-
-{
-  /* <div className="sidebar">
-      <button className="sidebar-button" onClick={handleLogout}>
-        Sign Out
-      </button>
-      <button className="sidebar-button" onClick={handleAccount}>
-        Account
-      </button>
-      <button className="sidebar-button" onClick={handleLinkPlaid}>
-        Add Payment
-      </button>
-      <button className="sidebar-button" onClick={handleBankAccount}>
-        Accounts
-      </button>
-      <button className="sidebar-button" onClick={handleFinaceForm}>
-        Expenses Form
-      </button>
-      <button className="sidebar-button" onClick={handleExpenseView}>
-        Expenses
-      </button>
-      <button className="sidebar-button" onClick={handleSetBudget}>
-        Set Budget
-      </button>
-      <button className="sidebar-button" onClick={handleTrans}>
-        Transactions
-      </button>
-
-    </div> */
-}

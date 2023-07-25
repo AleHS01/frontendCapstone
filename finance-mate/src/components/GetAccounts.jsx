@@ -7,6 +7,7 @@ import SideBar from "./side-bar";
 import { height } from "@mui/system";
 import creditdebit from "../images/creditdebit.png"; // Import the image
 import { MdOutlineAccountBalanceWallet } from "react-icons/md";
+import { motion, AnimatePresence, isInView, useInView, useAnimation } from "framer-motion";
 
 //MdOutlineAccountBalanceWallet
 
@@ -39,12 +40,27 @@ const Accounts = () => {
         </h6>
 
         {accounts.map((account, index) => (
-          <div
+          <motion.div
+          variants={{
+            hidden: {opacity:0, y:75},
+            visible: {opacity:1, y:0}
+
+          }}
+          initial="hidden"
+          animate="visible"
+          transition={{duration: 1, delay: 0.50}}
             key={index}
             className="bg-green-600 flex rounded-md px-4 py-2 mr-4 items-center mb-4 shadow-md border-8 "
           >
             <h1 className="text-black mr-2 font-serif text-3xl font-semibold w-60">
-              <img
+              <motion.img
+              variants={{
+                hidden: { opacity: 0, x: -90, scale: 0.1 },
+                visible: { opacity: 1, x: 0, scale: 1 }
+              }}
+              initial="hidden"
+              animate="visible"
+              transition={{duration: 1, delay:1}}
                 className="ml-4"
                 src={creditdebit}
                 alt="Plaid"
@@ -52,13 +68,21 @@ const Accounts = () => {
               />
             </h1>
 
-            <span className="bg-black p-6 rounded-md text-white font-semibold font-serif text-xl border-2">
+            <motion.span
+            variants={{
+              hidden: { opacity: 0, x: -90, rotate: -45 },
+              visible: { opacity: 1, x: 0, rotate: 0 }
+            }}
+            initial="hidden"
+            animate="visible"
+            transition={{duration: 1, delay:1}}
+            className="bg-black p-6 rounded-md text-white font-semibold font-serif text-xl border-2">
               <h1>Account Name: {account.name}</h1>
               <h3>Subtype: {account.subtype}</h3>
               <h3>Available Balance: ${account.balances.available}</h3>
               <h3>Current Balance: ${account.balances.current}</h3>
-            </span>
-          </div>
+            </motion.span>
+          </motion.div>
         ))}
       </div>
     </div>
