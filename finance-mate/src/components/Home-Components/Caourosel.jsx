@@ -2,6 +2,27 @@ import React from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { Avatar, Typography, Box, Button } from "@mui/material";
+import { styled } from "@mui/system";
+
+const StyledSlider = styled(Slider)({
+  "& .slick-dots": {
+    bottom: "30px",
+    "& li button:before": {
+      fontSize: "14px", // Increase the size of the dots
+    },
+  },
+  "& .slick-next, .slick-prev": {
+    top: "auto",
+    bottom: "20px",
+    zIndex: 1,
+  },
+  overflowX: "hidden", // Hide overflow on the X-axis
+  overflowY: "hidden", // Hide overflow on the Y-axis
+  minHeight: "320px",
+  padding: "20px 0px",
+  backgroundColor: "#d8f3dc",
+});
 
 const TestimonialsCarousel = () => {
   const testimonials = [
@@ -43,14 +64,54 @@ const TestimonialsCarousel = () => {
   };
 
   return (
-    <Slider {...settings}>
-      {testimonials.map((testimonial) => (
-        <div key={testimonial.id} className="testimonial-slide">
-          <h3>{testimonial.name}</h3>
-          <p>{testimonial.testimonial}</p>
-        </div>
-      ))}
-    </Slider>
+    <div style={{ backgroundColor: "#d8f3dc", padding: "20px" }}>
+      <Typography
+        variant="h2"
+        sx={{
+          color: "#1b4332",
+          textAlign: "center",
+          fontWeight: "bold",
+        }}
+      >
+        Clients Testimonials!
+      </Typography>
+      <StyledSlider {...settings}>
+        {testimonials.map((testimonial) => (
+          <Box
+            key={testimonial.id}
+            className="testimonial-slide"
+            sx={{
+              width: "80%",
+              margin: "0 auto",
+              textAlign: "center",
+              overflowX: "hidden",
+            }}
+          >
+            <Avatar
+              sx={{
+                backgroundColor: "#1b4332",
+                mx: "auto",
+                mb: 2,
+                height: "80px",
+                width: "80px",
+              }}
+              src={`https://randomuser.me/api/portraits/men/${testimonial.id}.jpg`}
+            >
+              {testimonial.name.charAt(0)}
+            </Avatar>
+            <Typography variant="h3" sx={{ color: "#1b4332", mb: 2 }}>
+              {testimonial.name}
+            </Typography>
+            <Typography
+              variant="h5"
+              sx={{ color: "#1b4332", width: "80%", margin: "0 auto" }}
+            >
+              "{testimonial.testimonial}"
+            </Typography>
+          </Box>
+        ))}
+      </StyledSlider>
+    </div>
   );
 };
 
