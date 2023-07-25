@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Button, TextField } from "@mui/material";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -14,7 +14,7 @@ import {
 import { BiLogIn } from "react-icons/bi";
 import GoogleButton from "react-google-button";
 import { googleLoginThunk } from "../redux/user/user.action";
-import { motion } from "framer-motion";
+import { motion, useInView, useAnimation } from "framer-motion"
 
 
 //BiLogIn
@@ -75,7 +75,7 @@ const SignUp = () => {
         console.log("You are logged with google");
         dispatch(googleLoginThunk());
         if (timer) clearInterval(timer);
-        navigate("/user");
+        navigate("/user", {state: {intro: true}});
       }
     }, 500);
   };
@@ -108,16 +108,9 @@ const SignUp = () => {
     );
   };
 
-  const inputStyle = {
-    marginBottom: "10px",
-    padding: "8px 12px",
-    border: "1px solid black",
-    borderRadius: "4px",
-    boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
-    outline: "none",
-    transition: "border-color 0.2s ease-in-out",
-    width: "100%", // Adjust width as needed
-  };
+  const location = useLocation();
+  console.log(JSON.stringify(location))
+  console.log("Location 1: "+location)
 
   return (
     <div
