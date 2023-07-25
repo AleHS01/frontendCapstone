@@ -41,7 +41,7 @@ const FeaturedFunctionalities = () => {
     <div
       style={{
         width: "100%",
-        backgroundColor: "#ccfccb",
+        backgroundColor: "#74c69d",
         padding: "50px 20px",
         marginTop: "0",
       }}
