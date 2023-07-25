@@ -58,8 +58,8 @@ const GroupForm = () => {
     setGroupName("");
   };
 
-  const handleButton =  (groupId) => {
-    navigate(`/addMembers`, {state: {groupId}})
+  const handleButton =  (groupId, groupName) => {
+    navigate(`/addMembers`, {state: {groupId, groupName}})
   }
 
   return (
@@ -120,7 +120,7 @@ const GroupForm = () => {
                 backgroundColor: "black",
               },
             }}
-            onClick={ () => handleButton(item.id)}
+            onClick={ () => handleButton(item.id, item.group_name)}
           >
             {item.group_name}
           </Button>
