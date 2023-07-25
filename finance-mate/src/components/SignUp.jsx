@@ -250,7 +250,6 @@ const SignUp = () => {
       transition={{duration: 1, delay: 1}}
       className="bg-green-600 flex rounded-lg px-4 py-2 mr-4 items-center mb-4 shadow-md border-8 ">
         <p className="text-black mr-2 font-serif text-xl">Already have an account?</p>
-      </div>
       <Link className=" hover:scale-110 hover:shadow-lg duration-200 bg-green-400 flex rounded-md px-4 py-2 mr-4 items-center mt-mb-4 shadow-md text-semibol" to="/login">
       <BiLogIn className="text-lg mr-1"/>LOGIN</Link>
       </motion.div>
@@ -289,6 +288,7 @@ const SignUp = () => {
           </p>
           
         </motion.div>
+        </div>
 
     </div>
   );
