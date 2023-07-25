@@ -128,9 +128,6 @@ function SideBar() {
           </h1>
         </motion.div>
 
-
-         
-
         {/* All other buttons */}
 
         <motion.div
@@ -364,3 +361,5 @@ function SideBar() {
 }
 
 export default SideBar;
+
+
