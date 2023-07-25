@@ -14,6 +14,9 @@ const groupReducer = (state = initialState, action)=> {
         case (userTypes.JOIN_GROUP): {
             return action.payload
         }
+        case (userTypes.GET_MEMBERS): {
+            return action.payload
+        }
         default: {
             return state
         }

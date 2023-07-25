@@ -1,8 +1,8 @@
-import React from "react";
-import { useLocation } from "react-router";
+import React, {useEffect} from "react";
+import { useLocation, useNavigate } from "react-router";
 import { Link } from "react-router-dom";
-import { useDispatch, useNavigate } from "react-redux";
-import { joinGroupThunk } from "../../redux/groups/group.actions";
+import { useDispatch , useSelector} from "react-redux";
+import { joinGroupThunk, getMembersThunk } from "../../redux/groups/group.actions";
 import styled from "styled-components";
 import {
   TextField,
@@ -11,6 +11,7 @@ import {
   Typography,
   Grid,
   Chip,
+  Box
 } from "@mui/material";
 const DottedBox = styled.div`
   border: 4px dotted #000;
@@ -29,14 +30,22 @@ const ContentContainer = styled.div`
 
 const AddMembers = () => {
   const dispatch = useDispatch();
+  const members = useSelector(state => state.committee_groups)
   const location = useLocation();
+  const navigate = useNavigate()
   const groupId = location.state.groupId;
+  console.log(members)
 
+  useEffect(()=> {
+    dispatch(getMembersThunk())
+  }, [dispatch])
+  
   const handleSubmit = () => {
     dispatch(joinGroupThunk(groupId));
     alert("YOURE NOW PART OF COMMITTEETEST1 GROUP!");
   };
 
+   
   return (
     <Container maxWidth="sm">
       <ContentContainer>
@@ -102,10 +111,31 @@ const AddMembers = () => {
               />
             </Grid>
           </Grid>
+          <Typography variant="h2" >
           <span style={{ color: "black", fontWeight: "bold" }}>Group</span>{" "}
           <span style={{ color: "limegreen", fontWeight: "bold" }}>
             Members
           </span>
+          </Typography>
+          <Box display="flex" flexDirection="row" flexWrap="wrap" justifyContent="space-between">
+          {members && members.map((item) => (
+            <Box m={1}>
+          <Button
+            variant="contained"
+            sx={{
+              backgroundColor: "black",
+              color: "#fff",
+              "&:hover": {
+                backgroundColor: "limegreen",
+              },
+            }}
+          >
+            {item.first_name}
+          </Button>
+          </Box>
+        ))}
+        </Box>
+
         </Typography>
       </ContentContainer>
     </Container>
