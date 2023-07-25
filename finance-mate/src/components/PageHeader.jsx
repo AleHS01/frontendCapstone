@@ -23,7 +23,7 @@ const PageHeader = ({ page_name }) => {
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
-        // backgroundColor: "#2c4966",
+        backgroundColor: "#fff",
         color: "#2c4966",
         height: "50px",
         padding: "0 20px",
