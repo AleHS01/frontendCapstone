@@ -130,7 +130,7 @@ const AddMembers = () => {
                   "&:hover": {
                     backgroundColor: "black",
                   },
-                  minWidth: "500px",
+                  minWidth: "450px",
                 }}
                 onClick={handleSubmit}
               >

@@ -346,6 +346,16 @@ function SideBar() {
           </button>
         </motion.div>
 
+        <button
+            className={`hover:scale-110 hover:bg-green-300 bg-green-400 flex rounded-md px-4 py-2 mr-4 items-center mv-4 shadow-md border-4 font-semibold mt-4 font-sans duration-200  ${
+              !open && "hidden"
+            }`}
+            onClick={()=>navigate("/committeesan")}
+          >
+            Committee San
+          </button>
+        
+
         
 
       </div>
