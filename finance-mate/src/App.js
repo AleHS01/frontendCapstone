@@ -28,6 +28,10 @@ import LandingPage from "./components/committeeSan/LandingPage";
 import GroupForm from "./components/committeeSan/CreateGroup";
 import AddMembers from "./components/committeeSan/addMembers";
 
+
+import StripeCeckout from "./components/committeeSan/Stripe/StripeCheckout"
+
+
 function App() {
   return (
     <Router>
@@ -63,6 +67,9 @@ function App() {
           <Route path = "/committeesan" element = {<LandingPage/>}/>
           <Route path = "/creategroup" element = {<GroupForm></GroupForm>} />
           <Route path = "/addMembers" element = {<AddMembers></AddMembers>} />
+          
+
+          <Route path = "/stripe-checkout" element = {<StripeCeckout></StripeCeckout>} />
         </Routes>
       </div>
     </Router>
