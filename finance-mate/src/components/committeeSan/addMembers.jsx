@@ -20,7 +20,7 @@ import {
 const PageBackground = styled.div`
   width: 100%;
   height: 100vh;
-  background: linear-gradient(45deg, #f3f3f3, #ddd);
+  background: linear-gradient(to right, #2d6a4f, #74c69d);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -50,10 +50,9 @@ const ContentContainer = styled.div`
 const Navbar = styled.div`
   position: absolute;
   top: 0;
-  right: 0;
-  padding: 10px;
+  padding: 20px 0 0 30px;
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-start;
 `;
 
 const AddMembers = () => {
@@ -71,7 +70,7 @@ const AddMembers = () => {
 
   const handleSubmit = () => {
     dispatch(joinGroupThunk(groupId));
-    alert("YOURE NOW PART OF COMMITTEETEST1 GROUP!");
+    alert("YOU'RE NOW PART OF A COMMITTEE GROUP!");
   };
 
   return (
@@ -86,6 +85,8 @@ const AddMembers = () => {
               clickable
               size="medium"
               sx={{
+                padding: "20px 30px",
+                fontSize: "1.2rem",
                 backgroundColor: "limegreen",
                 color: "#fff",
                 "&:hover": {
@@ -102,6 +103,8 @@ const AddMembers = () => {
               clickable
               size="medium"
               sx={{
+                padding: "20px 30px",
+                fontSize: "1.2rem",
                 backgroundColor: "black",
                 color: "white",
                 "&:hover": {
@@ -114,10 +117,13 @@ const AddMembers = () => {
       </Navbar>
       <Container maxWidth="sm">
         <ContentContainer>
-          <Typography variant="h2" align="center" gutterBottom>
-            <span style={{ color: "black", fontWeight: "bold" }}>
-              {group_name}
-            </span>{" "}
+          <Typography
+            variant="h2"
+            align="center"
+            sx={{ color: "black", fontWeight: "bold" }}
+            gutterBottom
+          >
+            {group_name}
           </Typography>
 
           <DottedBox>
