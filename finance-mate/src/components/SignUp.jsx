@@ -14,6 +14,8 @@ import {
 import { BiLogIn } from "react-icons/bi";
 import GoogleButton from "react-google-button";
 import { googleLoginThunk } from "../redux/user/user.action";
+import { motion } from "framer-motion";
+
 
 //BiLogIn
 
@@ -106,6 +108,17 @@ const SignUp = () => {
     );
   };
 
+  const inputStyle = {
+    marginBottom: "10px",
+    padding: "8px 12px",
+    border: "1px solid black",
+    borderRadius: "4px",
+    boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
+    outline: "none",
+    transition: "border-color 0.2s ease-in-out",
+    width: "100%", // Adjust width as needed
+  };
+
   return (
     <div
       style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
@@ -157,7 +170,11 @@ const SignUp = () => {
         variant="outlined"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
-        className="mb-4 py-2 px-4 border border-black rounded-md shadow-lg focus:outline-none focus:border-green-500"
+        style={{
+          marginBottom: "10px",
+          width: "12.5%", // Adjust width as needed
+          // Add other styles as needed
+        }}
         InputProps={{
           endAdornment: (
             <>
@@ -176,14 +193,19 @@ const SignUp = () => {
           ),
         }}
       />
-
+      
       <TextField
         type={showPasswordVerified ? "text" : "password"}
         label="Re-enter Password"
         variant="outlined"
         value={passwordVerified}
         onChange={(e) => setPasswordVerified(e.target.value)}
-        className="mb-4 py-2 px-4 border border-black rounded-md shadow-lg focus:outline-none focus:border-green-500"
+        style={{
+          marginBottom: "10px",
+          height:"5%",
+          width: "12.5%", // Adjust width as needed
+          // Add other styles as needed
+        }}
         InputProps={{
           endAdornment: (
             <>
@@ -212,7 +234,31 @@ const SignUp = () => {
       </button>
       <br />
 
-      <div className="bg-green-600 flex rounded-lg px-4 py-2 mr-4 items-center mb-4 shadow-md border-8 ">
+
+
+      <motion.div
+      variants={{
+        hidden: {opacity: 0, x: -75},
+        visible: {opacity: 1, x: 0},
+      }}
+      initial="hidden"
+      animate="visible"
+      transition={{duration: 1, delay: 0.50}}
+      className="bg-green-600 flex rounded-lg px-4 py-2 mr-4 items-center mb-4 shadow-md border-8 ">
+        <p className="text-black mr-2 font-serif text-2xl">Or sign up with:</p>
+        <GoogleButton className="m-4 shadow-md hover:scale-105" onClick={googleLogin} />  
+      </motion.div>
+
+      <motion.div
+      variants={{
+        hidden: {opacity: 0, x: -75},
+        visible: {opacity: 1, x: 0},
+      }}
+      initial="hidden"
+      animate="visible"
+      transition={{duration: 1, delay: 1}}
+      className="bg-green-600 flex rounded-lg px-4 py-2 mr-4 items-center mb-4 shadow-md border-8 ">
+        <p className="text-black mr-2 font-serif text-xl">Already have an account?</p>
         <Link
           className=" hover:scale-110 hover:shadow-lg duration-200 bg-green-400 flex rounded-md px-4 py-2 mr-4 items-center mt-mb-4 shadow-md text-semibol"
           to="/login"
@@ -220,15 +266,17 @@ const SignUp = () => {
           <BiLogIn className="text-lg mr-1" />
           LOGIN
         </Link>
-        <p className="text-black mr-2 font-serif text-2xl">Or sign up with:</p>
-        <GoogleButton className="m-4 shadow-md hover:scale-105" onClick={googleLogin} />  
-      </div>
+      </motion.div>
 
-      <div className="bg-green-600 flex rounded-lg px-4 py-2 mr-4 items-center mb-4 shadow-md border-8 ">
-        <p className="text-black mr-2 font-serif text-xl">Already have an account?</p>
-      </div>
-
-      <div className="m-4 bg-green-600 flex rounded-lg px-6 py-3 mr-4 items-center mb-4 shadow-md border-8 ">
+      <motion.div
+      variants={{
+        hidden: {opacity: 0, y:100},
+        visible: {opacity: 1, y: 0},
+      }}
+      initial="hidden"
+      animate="visible"
+      transition={{duration: 1, delay: 1.50}}
+      className="m-4 bg-green-600 flex rounded-lg px-6 py-3 mr-4 items-center mb-4 shadow-md border-8 ">
         <p className="text-base font-serif p-4 border border-green-500 border-opacity-50 rounded-lg bg-gradient-to-r from-green-100 to-green-200 text-lg">
           <h1 className="flex justify-center font-semibold text-xl font-serif">
             Finance-Mate
@@ -241,7 +289,7 @@ const SignUp = () => {
           convenience, security, and peace of mind. Join us today and embark on
           a rewarding financial journey.
         </p>
-      </div>
+      </motion.div>
     </div>
   );
 };
