@@ -185,3 +185,144 @@ box-shadow: 0px 4px 5.5px 0px rgba(0, 0, 0, 0.07);
 .pay-button:hover{
   box-shadow: 2px 5px 15px 2px rgba(0, 0, 0, 0.2);
 }
+/* Add these styles to your CSS file or component styles */
+
+/* Main Container */
+.sidebar-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 220px; /* Adjust the width as needed */
+  background-color: #2d6a4f; /* Change the background color as needed */
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  z-index: 100;
+  padding-top: 40px;
+}
+
+@media (max-width: 768px) {
+  .sidebar-container {
+    width: "180px";
+  }
+}
+/* Header */
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+
+.sidebar-logo {
+  font-size: 28px;
+  margin-right: 12px;
+}
+
+.sidebar-title {
+  font-size: 24px;
+}
+
+/* Navigation Items */
+.sidebar-navigation {
+  padding-top: 24px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.navigation-item {
+  padding: 10px;
+}
+
+.navigation-icon {
+  font-size: 24px;
+  margin-right: 10px;
+}
+
+.navigation-button {
+  background-color: transparent;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  transition: opacity 0.3s;
+  display: flex;
+  align-items: center;
+}
+
+.navigation-button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  opacity: 0.8;
+}
+
+/* Toggle Button */
+.sidebar-toggle {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}
+
+
+.toggle-icon {
+  font-size: 32px;
+}
+
+/* Logout Button */
+.logout-container {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+}
+
+.logout-icon {
+  font-size: 24px;
+  margin-right: 10px;
+}
+
+.logout-button {
+  background-color: transparent;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  transition: opacity 0.3s;
+}
+
+.logout-button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  opacity: 0.8;
+}
+
+/* Styling for the collapsed state */
+.collapsed {
+  width: 80px;
+}
+
+.collapsed .sidebar-title {
+  display: none;
+}
+
+.collapsed .navigation-button {
+  display: none;
+}
+
+.collapsed .sidebar-toggle {
+  justify-content: flex-start;
+}
+
+.collapsed .logout-container {
+  justify-content: flex-start;
+}
+
+.collapsed .toggle-icon {
+  transform: rotate(180deg);
+}
+
