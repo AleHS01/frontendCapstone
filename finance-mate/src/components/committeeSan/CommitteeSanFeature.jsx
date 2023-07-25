@@ -11,6 +11,7 @@ import {
   Divider,
 } from "@mui/material";
 import CheckIcon from "@mui/icons-material/Check";
+import CreditCardIcon from "@mui/icons-material/CreditCard";
 
 const CommitteeSanFeature = () => {
   return (
@@ -84,6 +85,53 @@ const CommitteeSanFeature = () => {
                 </ListItem>
               </List>
             </Box>
+            
+            <Box mt={4}>
+              <Typography variant="h5">
+                Secure and Efficient Payments with Stripe:
+              </Typography>
+              <List disablePadding sx={{ fontSize: "2rem" }}>
+                <ListItem disableGutters>
+                  <ListItemIcon>
+                    <CreditCardIcon sx={{ color: "#60d394" }} />
+                  </ListItemIcon>
+                  <ListItemText
+                    primary="Upon joining a group, each member is set up as a customer on Stripe, our trusted payment partner. Stripe securely handles your payment information, ensuring the safety of your personal data."
+                    primaryTypographyProps={{
+                      variant: "h6",
+                      fontSize: "1.2rem",
+                    }}
+                  />
+                </ListItem>
+                <Divider />
+                <ListItem disableGutters>
+                  <ListItemIcon>
+                    <CreditCardIcon sx={{ color: "#60d394" }} />
+                  </ListItemIcon>
+                  <ListItemText
+                    primary="As a Stripe customer, you can conveniently manage your payment methods and securely make your contributions to your group. Your financial commitment is handled with ease and security."
+                    primaryTypographyProps={{
+                      variant: "h6",
+                      fontSize: "1.2rem",
+                    }}
+                  />
+                </ListItem>
+                <Divider />
+                <ListItem disableGutters>
+                  <ListItemIcon>
+                    <CreditCardIcon sx={{ color: "#60d394" }} />
+                  </ListItemIcon>
+                  <ListItemText
+                    primary="Whenever it's your turn to receive the pooled funds, the contributions are processed securely and promptly through Stripe, giving you peace of mind and quick access to your funds."
+                    primaryTypographyProps={{
+                      variant: "h6",
+                      fontSize: "1.2rem",
+                    }}
+                  />
+                </ListItem>
+              </List>
+            </Box>
+            
           </CardContent>
         </Card>
       </Box>
