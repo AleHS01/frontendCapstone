@@ -14,8 +14,10 @@ import styled from "styled-components";
 import { getBudgetsThunk } from "../redux/budget/budget.action";
 // import RecentExpenses from "./RecentExpenses";
 import SideBar from "./side-bar";
-
-const BackgroundContainer = styled.div``;
+import PageHeader from "./PageHeader";
+const BackgroundContainer = styled.div`
+  background: linear-gradient(to right, #2d6a4f, #74c69d);
+`;
 
 const DottedBox = styled.div`
   border: 4px dotted #000;
@@ -27,6 +29,10 @@ const DottedBox = styled.div`
 const ContentContainer = styled.div`
   position: relative;
   z-index: 1;
+  background-color: #fafafa;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 `;
 
 const WaveImage = styled.img`
@@ -75,82 +81,101 @@ const BudgetForm = () => {
   return (
     <BackgroundContainer className="dashboard">
       <SideBar></SideBar>
-      {/* <WaveImage src={waveBackground} alt="Wave background" /> */}
-      <Container maxWidth="sm" className="content">
-        <ContentContainer>
-          <Typography variant="h2" align="center" gutterBottom>
-            <span style={{ color: "black", fontWeight: "bold" }}>
-              Welcome back,
-            </span>{" "}
-            <span style={{ color: "darkblue", fontWeight: "bold" }}>User!</span>
-          </Typography>
-
-          <Typography variant="body1" align="center" gutterBottom>
-            Let Finance Mate help you with your budgets
-          </Typography>
-          <Typography variant="body2" align="center" gutterBottom>
-            Create a budget to get started!
-          </Typography>
-
-          <DottedBox>
-            <Typography variant="h5" gutterBottom>
-              Create a Budget
-            </Typography>
-            <form onSubmit={handleSubmit}>
-              <TextField
-                variant="outlined"
-                margin="normal"
-                required
-                fullWidth
-                id="budgetName"
-                label="Budget Name"
-                name="budgetName"
-                value={budgetname}
-                onChange={(e) => setBudgetName(e.target.value)}
-              />
-              <TextField
-                variant="outlined"
-                margin="normal"
-                required
-                fullWidth
-                name="amount"
-                label="Amount"
-                type="number"
-                id="amount"
-                value={amount}
-                onChange={(e) => setAmount(e.target.value)}
-              />
-              <Grid>
-                <Button
-                  variant="contained"
-                  sx={{
-                    backgroundColor: "limegreen",
-                    color: "#fff",
-                    "&:hover": {
-                      backgroundColor: "#05377f",
-                    },
-                    minWidth: "517px",
-                  }}
-                  onClick={handleSubmit}
-                >
-                  Create Budget
-                </Button>
-              </Grid>
-            </form>
-          </DottedBox>
-          {budgets.map((item) => (
-            <button
-              key={item.id}
-              onClick={handleBudget}
-              value={item.id}
-              className="bg-blue-500 text-white hover:bg-green-600 font-bold py-2 px-4 rounded m-4"
+      <div style={{ width: "100%" }}>
+        <PageHeader page_name="Budgets" />
+        <Container sx={{ width: "60%", display: "grid", alignItems: "center" }}>
+          <ContentContainer>
+            <Typography
+              variant="h2"
+              align="center"
+              fontWeight={"bold"}
+              gutterBottom
             >
-              {item.budget_name} {item.expense_value}
-            </button>
-          ))}
-          {/* <RecentExpenses></RecentExpenses> */}
-        </ContentContainer>
-      </Container>
+              Add or View a <span style={{ color: "limegreen" }}>Budget!</span>
+            </Typography>
+
+            <Typography variant="body1" align="center" gutterBottom>
+              Let Finance Mate help you with your budgets. Create a budget to
+              get started!
+            </Typography>
+
+            <DottedBox>
+              <Typography variant="h4" textAlign={"center"} gutterBottom>
+                Create a Budget
+              </Typography>
+              <form
+                onSubmit={handleSubmit}
+                style={{ width: "70%", margin: "0 auto" }}
+              >
+                <TextField
+                  variant="outlined"
+                  margin="normal"
+                  required
+                  fullWidth
+                  id="budgetName"
+                  label="Budget Name"
+                  name="budgetName"
+                  value={budgetname}
+                  onChange={(e) => setBudgetName(e.target.value)}
+                />
+                <TextField
+                  variant="outlined"
+                  margin="normal"
+                  required
+                  fullWidth
+                  name="amount"
+                  label="Amount"
+                  type="number"
+                  id="amount"
+                  value={amount}
+                  onChange={(e) => setAmount(e.target.value)}
+                />
+                <Grid>
+                  <Button
+                    variant="contained"
+                    sx={{
+                      margin: "0 auto",
+                      backgroundColor: "limegreen",
+                      color: "#fff",
+                      "&:hover": {
+                        backgroundColor: "#05377f",
+                      },
+                      minWidth: "517px",
+                    }}
+                    onClick={handleSubmit}
+                  >
+                    Create Budget
+                  </Button>
+                </Grid>
+              </form>
+            </DottedBox>
+            <Typography
+              variant="h2"
+              textAlign={"center"}
+              fontWeight={"bold"}
+              gutterBottom
+            >
+              Your List of <span style={{ color: "limegreen" }}>Budgets!</span>
+            </Typography>
+            {budgets.map((item) => (
+              <button
+                key={item.id}
+                onClick={handleBudget}
+                value={item.id}
+                className="bg-blue-500 text-white hover:bg-green-600 font-bold py-2 px-4 rounded m-4"
+                style={{
+                  padding: "8px 0",
+                  minWidth: "220px",
+                  fontSize: "1.2rem",
+                }}
+              >
+                {item.budget_name} {item.expense_value}
+              </button>
+            ))}
+            {/* <RecentExpenses></RecentExpenses> */}
+          </ContentContainer>
+        </Container>
+      </div>
     </BackgroundContainer>
   );
 };
