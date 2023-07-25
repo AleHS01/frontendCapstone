@@ -9,6 +9,7 @@ import creditdebit from "../images/creditdebit.png"; // Import the image
 import { MdOutlineAccountBalanceWallet } from "react-icons/md";
 import { motion, AnimatePresence, isInView, useInView, useAnimation } from "framer-motion";
 
+
 //MdOutlineAccountBalanceWallet
 
 const Accounts = () => {

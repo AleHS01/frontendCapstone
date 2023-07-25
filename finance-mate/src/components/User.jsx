@@ -12,6 +12,7 @@ import { motion, useInView, useAnimation } from "framer-motion"
 import zIndex from "@mui/material/styles/zIndex";
 import {useLocation} from 'react-router-dom';
 
+
 const User = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
@@ -56,7 +57,6 @@ const User = () => {
           </motion.div>
 
         </div>
-
         <h1>Account</h1>
         {user ? (
           <h2>Welcome {user.username}!!</h2>

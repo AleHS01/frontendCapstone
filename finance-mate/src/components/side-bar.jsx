@@ -16,7 +16,6 @@ import { AiOutlineForm } from "react-icons/ai";
 import { GiTakeMyMoney } from "react-icons/gi";
 import { TbReportMoney } from "react-icons/tb";
 import { GrTransaction } from "react-icons/gr";
-import FadeInWhenVisible from "./FadeInWhenVisible"
 import { RiExchangeFundsFill } from "react-icons/ri";
 import { motion, AnimatePresence, isInView, useInView, useAnimation } from "framer-motion";
 
@@ -355,7 +354,7 @@ function SideBar() {
         }}
         initial="hidden"
         animate="visible"
-        transition={{duration: 0.5, delay: 1.80}}
+        transition={{duration: 0.5, delay: 2}}
           className={`flex items-center rounded-md px-2 py-2  ${
             !open ? "px-1" : "px-4"
           }`}

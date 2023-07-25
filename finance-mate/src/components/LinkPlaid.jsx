@@ -212,6 +212,7 @@ const LinkPlaid = () => {
           critical financial data, allowing us to provide a streamlined and
           tailored finance experience to our valued consumers.
         </motion.p>
+        
       </div>
     </div>
   );
