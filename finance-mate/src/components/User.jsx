@@ -57,6 +57,8 @@ const User = () => {
           </motion.div>
 
         </div>
+            
+
         <h1>Account</h1>
         {user ? (
           <h2>Welcome {user.username}!!</h2>
@@ -70,3 +72,5 @@ const User = () => {
 };
 
 export default User;
+
+
