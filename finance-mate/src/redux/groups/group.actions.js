@@ -26,10 +26,12 @@ export const createGroupThunk = (group) => {
     try {
       const response = await axios.post(
         "http://localhost:8080/api/group/create",
-        { name: group.name },
+        { name: group.name,
+        amount: group.amount },
         {
           withCredentials: true,
         }
+        
       );
       console.log("The group object from server inside Thunk:", response.data);
       dispatch(createGroup(response.data)); // Just in case we add more stuff for the server to return, instead of just the name of the group.
@@ -68,13 +70,16 @@ export const joinGroupThunk = (GroupId) => {
   };
 };
 
-export const getMembersThunk = () => {
+export const getMembersThunk = (GroupId) => {
   return async (dispatch) => {
     try {
-      const response = await axios.get(
-        "http://localhost:8080/api/group/all_members",
+      const response = await axios.post(
+        "http://localhost:8080/api/group/all_members", {GroupId},
         { withCredentials: true }
       );
+      console.log("all members inside thunk-->",response.data);
+
+      
       dispatch(getMembers(response.data));
     } catch (error) {
       console.log(error);

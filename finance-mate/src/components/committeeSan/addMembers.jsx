@@ -6,7 +6,9 @@ import {
   joinGroupThunk,
   getMembersThunk,
 } from "../../redux/groups/group.actions";
+import { createCustomerThunk } from "../../redux/stripe/stripe.actions";
 import styled from "styled-components";
+import axios from "axios";
 import {
   TextField,
   Button,
@@ -58,20 +60,24 @@ const Navbar = styled.div`
 const AddMembers = () => {
   const dispatch = useDispatch();
   const members = useSelector((state) => state.committee_groups);
+  console.log("members inside component", members);
   const location = useLocation();
   const navigate = useNavigate();
   const groupId = location.state.groupId;
   const group_name = location.state.groupName;
-  console.log(members);
 
   useEffect(() => {
-    dispatch(getMembersThunk());
+    dispatch(getMembersThunk(groupId));
   }, [dispatch]);
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     dispatch(joinGroupThunk(groupId));
+    dispatch(createCustomerThunk());
     alert("YOU'RE NOW PART OF A COMMITTEE GROUP!");
   };
+  const handleClick = () => {
+    navigate("/activate")
+  }
 
   return (
     <PageBackground>
@@ -157,25 +163,41 @@ const AddMembers = () => {
             justifyContent="space-between"
           >
             {members &&
-              members.map((item) => (
-                <Box m={1}>
-                  <Button
-                    variant="contained"
-                    sx={{
-                      backgroundColor: "limegreen",
-                      color: "#fff",
-                      "&:hover": {
-                        backgroundColor: "black",
-                      },
-                    }}
-                  >
-                    {item.first_name}
-                  </Button>
-                </Box>
-              ))}
+              members.length > 0 &&
+              members.map(
+                (
+                  item,
+                  index // assuming item has no unique id
+                ) => (
+                  <Box key={index} m={1}>
+                    <Button
+                      variant="contained"
+                      sx={{
+                        backgroundColor: "limegreen",
+                        color: "#fff",
+                        "&:hover": {
+                          backgroundColor: "black",
+                        },
+                      }}
+                    >
+                      {item.first_name}
+                    </Button>
+                  </Box>
+                )
+              )}
           </Box>
         </ContentContainer>
       </Container>
+      <Button
+        variant="contained"
+        sx={{
+          backgroundColor: "limegreen",
+          color: "#fff",
+        }}
+        onClick={handleClick}
+      >
+        Activate
+      </Button>
     </PageBackground>
   );
 };

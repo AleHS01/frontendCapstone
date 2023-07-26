@@ -32,12 +32,12 @@ import AddMembers from "./components/committeeSan/addMembers";
 import StripeCeckout from "./components/committeeSan/Stripe/StripeCheckout"
 import SideBar from "./components/side-bar";
 
+import Activate from "./components/committeeSan/ActivateCommittee";
 
 function App() {
   return (
     <Router>
       <div className="App">
-      <SideBar />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
@@ -72,6 +72,7 @@ function App() {
           
 
           <Route path = "/stripe-checkout" element = {<StripeCeckout></StripeCeckout>} />
+          <Route path = "/activate" element = {<Activate></Activate>} />
         </Routes>
       </div>
     </Router>
