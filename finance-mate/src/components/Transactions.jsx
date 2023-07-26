@@ -84,11 +84,10 @@ function Transactions() {
 
   return (
     <div className="dashboard">
-      <SideBar></SideBar>
       <div className="content p-4">
         <PageHeader page_name="My Transactions" />
         
-        <Paper
+        {/* <Paper
           elevation={5}
           sx={{
             width: "90%",
@@ -128,11 +127,11 @@ function Transactions() {
               />
             </Grid>
           </Grid>
-        </Paper>
+        </Paper> */}
         <div
           style={{
             height: "450px",
-            width: "60%",
+            width: "100%",
             margin: "0 auto",
             textAlign: "center",
           }}

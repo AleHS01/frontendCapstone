@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState} from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { logoutUserThunk } from "../redux/user/user.action";
@@ -177,7 +177,7 @@ function SideBar() {
           </button>
         </motion.div>
 
-        <motion.div
+        {/* <motion.div
         variants={{
           hidden: location.state ? {opacity: 0, x: -75} : {opacity: 1, x: 0},
           visible: {opacity: 1, x: 0},
@@ -201,9 +201,9 @@ function SideBar() {
           >
             Bank Accounts
           </button>
-        </motion.div>
+        </motion.div> */}
 
-        <motion.div
+        {/* <motion.div
         variants={{
           hidden: location.state ? {opacity: 0, x: -75} : {opacity: 1, x: 0},
           visible: {opacity: 1, x: 0},
@@ -227,7 +227,7 @@ function SideBar() {
           >
             Add Payment
           </button>
-        </motion.div>
+        </motion.div> */}
 
         <motion.div
         variants={{
@@ -307,7 +307,7 @@ function SideBar() {
           </button>
         </motion.div>
 
-        <motion.div
+        {/* <motion.div
         variants={{
           hidden: location.state ? {opacity: 0, x: -75} : {opacity: 1, x: 0},
           visible: {opacity: 1, x: 0},
@@ -332,7 +332,7 @@ function SideBar() {
           >
             Transactions
           </button>
-        </motion.div>
+        </motion.div> */}
 
         
           <motion.div
