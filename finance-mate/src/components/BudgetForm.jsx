@@ -140,7 +140,7 @@ const BudgetForm = () => {
                       "&:hover": {
                         backgroundColor: "#05377f",
                       },
-                      minWidth: "517px",
+                      minWidth: "370px",
                     }}
                     onClick={handleSubmit}
                   >
