@@ -37,7 +37,7 @@ function App() {
   return (
     <Router>
       <div className="App">
-      <SideBar />
+      {/* <SideBar /> */}
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
