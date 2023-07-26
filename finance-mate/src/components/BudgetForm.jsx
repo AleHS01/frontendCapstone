@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addBudgetThunk } from "../redux/budget/budget.action";
 import {
@@ -8,7 +8,6 @@ import {
   Container,
   Typography,
   Grid,
-  Chip,
 } from "@mui/material";
 import styled from "styled-components";
 import { getBudgetsThunk } from "../redux/budget/budget.action";

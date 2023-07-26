@@ -167,7 +167,7 @@ const BudgetView = () => {
 
   return (
     <div className="dashboard">
-      {/* <SideBar /> */}
+      <SideBar />
       <div className="content p-3">
         <PageHeader page_name="My Budgets Dashboard" />
         <BudgetViewBanner />

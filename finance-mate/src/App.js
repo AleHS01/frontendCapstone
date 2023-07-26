@@ -9,7 +9,7 @@ import LinkPlaid from "./components/LinkPlaid";
 import Dashboard from "./components/Dashboard";
 import ExpensesForm from "./components/ExpensesForm";
 import Accounts from "./components/GetAccounts";
-import TransactionCatergory from "./components/TransactionCatergory";
+
 
 import ExpensesView from "./components/ExpensesView";
 import Transactions from "./components/Transactions";
@@ -30,7 +30,6 @@ import AddMembers from "./components/committeeSan/addMembers";
 
 
 import StripeCeckout from "./components/committeeSan/Stripe/StripeCheckout"
-import SideBar from "./components/side-bar";
 
 import Activate from "./components/committeeSan/ActivateCommittee";
 import Success from "./components/committeeSan/PaymentSuccess";

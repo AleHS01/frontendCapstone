@@ -4,13 +4,12 @@ import { useDispatch } from "react-redux";
 import { logoutUserThunk } from "../redux/user/user.action";
 
 import { RiBankFill } from "react-icons/ri";
-import { ImUserTie, ImUsers } from "react-icons/im";
+import { ImUserTie } from "react-icons/im";
 import { BsFillArrowLeftCircleFill } from "react-icons/bs";
 import { SlLogout, SlWallet } from "react-icons/sl";
 import { AiOutlineForm } from "react-icons/ai";
 import { GiTakeMyMoney } from "react-icons/gi";
 import { TbReportMoney } from "react-icons/tb";
-import { GrTransaction } from "react-icons/gr";
 import { RiExchangeFundsFill } from "react-icons/ri";
 import { motion } from "framer-motion";
 
@@ -36,27 +35,27 @@ function SideBar() {
   const handleAccount = () => {
     navigate("/user");
   };
-  const handleBankAccount = () => {
-    navigate("/bank_accounts");
-  };
+  // const handleBankAccount = () => {
+  //   navigate("/bank_accounts");
+  // };
   const handleFinaceForm = () => {
     navigate("/expense-form");
   };
   const handleExpenseView = () => {
     navigate("/expenses");
   };
-  const handleTrans = () => {
-    navigate("/transactions");
-  };
+  // const handleTrans = () => {
+  // //   navigate("/transactions");
+  // // };
 
 
   const handleSetBudget = () => {
     navigate("/budget-view");
   };
   
-  const handleCommitteeSan = () => {
-    navigate("/committeesan")
-  }
+  // const handleCommitteeSan = () => {
+  //   navigate("/committeesan")
+  // }
 
   // const controls = useAnimation();
   // console.log("CONTROLSSS: "+JSON.stringify(controls));
@@ -173,33 +172,6 @@ function SideBar() {
             Account
           </button>
         </motion.div>
-
-        {/* <motion.div
-        variants={{
-          hidden: location.state ? {opacity: 0, x: -75} : {opacity: 1, x: 0},
-          visible: {opacity: 1, x: 0},
-        }}
-        initial="hidden"
-        animate="visible"
-        transition={{duration: 0.5, delay: 0.80}}
-          className={`flex items-center rounded-md px-2 py-2  ${
-            !open ? "px-1" : "px-4"
-          }`}
-        >
-          <ImUsers
-            onClick={handleBankAccount}
-            className={`hover:scale-110 hover:shadow-lg text-white text-4xl rounded cursor-pointer block float-left mr-2 duration-500 mt-4`}
-          />
-          <button
-            className={`hover:scale-110 hover:text-white text-white flex rounded-md px-4 py-2 mr-4 items-center mv-4  border-4 font-bold mt-4 font-sans duration-200  ${
-              !open && "hidden"
-            }`}
-            onClick={handleBankAccount}
-          >
-            Bank Accounts
-          </button>
-        </motion.div> */}
-
         <motion.div
         variants={{
           hidden: location.state ? {opacity: 0, x: -75} : {opacity: 1, x: 0},

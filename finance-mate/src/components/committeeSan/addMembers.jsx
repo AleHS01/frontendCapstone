@@ -8,9 +8,7 @@ import {
 } from "../../redux/groups/group.actions";
 import { createCustomerThunk } from "../../redux/stripe/stripe.actions";
 import styled from "styled-components";
-import axios from "axios";
 import {
-  TextField,
   Button,
   Container,
   Typography,

@@ -1,16 +1,7 @@
 import {
-  AppBar,
-  Toolbar,
-  Typography,
-  Button,
-  IconButton,
-  Grid,
-  Chip,
   Box,
 } from "@mui/material";
-import MenuIcon from "@mui/icons-material/Menu";
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+
 import NavBar from "./NavBar";
 import CultureComponent from "./Culture";
 import CommitteeSanFeature from "./CommitteeSanFeature";
