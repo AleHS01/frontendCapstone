@@ -81,7 +81,7 @@ function SideBar() {
     <div className="flex">
       {/* Arrow to open and close side bar */}
       <div
-        className={`bg-light-green h-screen p-5 pt-8 ${
+        className={`bg-light-green h-auto p-5 pt-8 ${
           open ? "w-72" : "w-20"
         }  relative duration-300`}
       >
@@ -203,7 +203,7 @@ function SideBar() {
           </button>
         </motion.div> */}
 
-        {/* <motion.div
+        <motion.div
         variants={{
           hidden: location.state ? {opacity: 0, x: -75} : {opacity: 1, x: 0},
           visible: {opacity: 1, x: 0},
@@ -227,7 +227,7 @@ function SideBar() {
           >
             Add Payment
           </button>
-        </motion.div> */}
+        </motion.div>
 
         <motion.div
         variants={{
