@@ -4,8 +4,6 @@ import { activateCommitteeThunk, getCommitteeProductThunk, createCheckoutSession
 import { loadStripe } from '@stripe/stripe-js';
 import { Container, Typography, Grid, Button, Box } from "@mui/material";
 import styled from "styled-components";
-
-// Replace with your actual Stripe public key
 const stripePromise = loadStripe('pk_test_51NU5vjGCLtTMWEv9kIf39oFsZe8DbDdKLPRY1gPanYNdHt7lbEnXAMHLngLWiXzJtltIBlxThpMvMPZlh5eDynIT002L4K7MzI');
 
 const PageBackground = styled.div`
@@ -30,7 +28,7 @@ const ContentContainer = styled.div`
 const Activate = () => {
     const dispatch = useDispatch();
 
-    // Fetch the data from your state using useSelector
+    
     const committeeData = useSelector(state => state.stripe);
 
     // Dispatch the thunk on button click
@@ -64,8 +62,6 @@ const Activate = () => {
     };
 
     useEffect(() => {
-        // If you want to dispatch the action as soon as the component mounts
-        // dispatch(activateCommitteeThunk());
     }, [dispatch]);
 
     return (
