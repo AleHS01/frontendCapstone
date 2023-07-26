@@ -34,6 +34,7 @@ import SideBar from "./components/side-bar";
 
 import Activate from "./components/committeeSan/ActivateCommittee";
 import Success from "./components/committeeSan/PaymentSuccess";
+import FailurePage from "./components/committeeSan/PaymentFailure";
 
 function App() {
   return (
@@ -75,6 +76,7 @@ function App() {
           <Route path = "/stripe-checkout" element = {<StripeCeckout></StripeCeckout>} />
           <Route path = "/activate" element = {<Activate></Activate>} />
           <Route path = "/success" element = {<Success></Success>}/>
+          <Route path = "failure" element = {<FailurePage></FailurePage>}/>
         </Routes>
       </div>
     </Router>
