@@ -11,6 +11,8 @@ import { dispatch } from "d3";
 import { motion, useInView, useAnimation } from "framer-motion"
 import zIndex from "@mui/material/styles/zIndex";
 import {useLocation} from 'react-router-dom';
+import Accounts from "./GetAccounts"
+import Transactions from "./Transactions"
 
 
 const User = () => {
@@ -53,15 +55,28 @@ const User = () => {
             // animate={location.state ? "visible" : ''}
             transition={{duration: 0.5, delay: 0.25}}
           >
-            This is a Framer Motion animated div!
           </motion.div>
 
         </div>
             
 
-        <h1>Account</h1>
+        
         {user ? (
-          <h2>Welcome {user.username}!!</h2>
+       <div class="bg-gray-100 min-h-screen py-8 px-4">
+        <h1 class="text-3xl font-bold text-center text-light-green mb-4">Welcome {user.first_name}</h1>
+        <h3 class="text-xl font-semibold text-center text-gray-800 mb-4">Dashboard</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+         <div class="bg-white rounded-lg shadow-md p-4">
+
+           <Accounts></Accounts>
+         </div>
+         <div class="bg-white rounded-lg shadow-md p-4">
+
+           <Transactions></Transactions>
+         </div>
+       </div>
+     </div>
+     
         ) : (
           <h2>Loading User data...</h2>
           )}
