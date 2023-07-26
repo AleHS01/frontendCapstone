@@ -83,51 +83,10 @@ function Transactions() {
   const totalPages = Math.ceil(sortedTransactions.length / transactionsPerPage);
 
   return (
-    <div className="dashboard">
-      <div className="content p-4">
+
+      <div >
         <PageHeader page_name="My Transactions" />
-        
-        {/* <Paper
-          elevation={5}
-          sx={{
-            width: "90%",
-            padding: "10px",
-            margin: "20px auto 40px",
-            overflow: "hidden",
-            // backgroundColor: "#7BCCC4",
-            backgroundColor: "#fff",
-          }}
-        >
-          <Grid container spacing={2} alignItems="center">
-            <Grid item xs={9} sx={{ display: "flex", alignItems: "center" }}>
-              <Box>
-                <Typography
-                  variant="h3"
-                  color="#0e365e"
-                  sx={{ fontWeight: "500" }}
-                >
-                  Welcome To Your Transactions!
-                </Typography>
-                <Typography variant="subtitle1" color="#2c4966">
-                  Welcome to your Transactions page! Easily explore and
-                  understand your financial activities, track expenses, and
-                  monitor income. Start now to gain complete visibility into
-                  your financial journey and plan for a prosperous future.
-                </Typography>
-              </Box>
-            </Grid>
-            <Grid item xs={3}>
-              <img
-                src="https://i.postimg.cc/R0TxKyPv/Mobile-payments-rafiki.png"
-                alt="Budget Administration"
-                style={{
-                  width: "220px",
-                  height: "220px",
-                }}
-              />
-            </Grid>
-          </Grid>
-        </Paper> */}
+
         <div
           style={{
             height: "450px",
@@ -144,13 +103,22 @@ function Transactions() {
           </Typography>
           <TransactionCatergory transactions={transactions} />
         </div>
+
         <Grid
           container
           alignItems="center"
           spacing={2}
           sx={{ mt: "20px", height: "40px" }}
         >
-          <Grid item sx={{ ml: "40px" }}>
+          <Grid item>
+            <Typography
+              variant="h4"
+              sx={{ fontWeight: "500", color: "#4CAF50" }}
+            >
+              All Your Transactions
+            </Typography>
+          </Grid>
+          <Grid item >
             <Typography variant="h6" sx={{ color: "#05377f" }}>
               Amount:
               <Tooltip title="Ascending" placement="top">
@@ -203,14 +171,7 @@ function Transactions() {
               sx={{ borderColor: "#4CAF50", height: "100%" }}
             />
           </Grid>
-          <Grid item>
-            <Typography
-              variant="h4"
-              sx={{ fontWeight: "500", color: "#4CAF50" }}
-            >
-              All Your Transactions
-            </Typography>
-          </Grid>
+          
           <Grid item xs>
             <Divider
               orientation="vertical"
@@ -218,7 +179,7 @@ function Transactions() {
               sx={{ borderColor: "#4CAF50", height: "100%" }}
             />
           </Grid>
-          <Grid item>
+          {/* <Grid item>
             <Box
               sx={{
                 display: "flex",
@@ -232,8 +193,9 @@ function Transactions() {
                 onChange={(event, value) => setCurrentPage(value)}
               />
             </Box>
-          </Grid>
-        </Grid>
+          </Grid> */}
+        </Grid >
+        {/* --------------------- */}
         <div style={{ margin: "30px auto 10px", width: "90%" }}>
           {sortedTransactions
             .slice(
@@ -291,16 +253,18 @@ function Transactions() {
                 </Paper>
               );
             })}
-          <Box sx={{ display: "flex", justifyContent: "center", mt: 3 }}>
+          {/* <Box sx={{ display: "flex", justifyContent: "center", mt: 3 }}>
             <Pagination
               count={totalPages}
               page={currentPage}
               onChange={(event, value) => setCurrentPage(value)}
             />
-          </Box>
+          </Box> */}
         </div>
+
+        
       </div>
-    </div>
+
   );
 }
 

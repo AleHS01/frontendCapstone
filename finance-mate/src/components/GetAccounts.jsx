@@ -21,8 +21,8 @@ const Accounts = () => {
   }, []);
 
   return (
-    <div className="dashboard">
-      <div className="content p-4">
+    <div className="">
+      <div className="">
         <h6 className="text-white my-2 bg-light-green p-3 rounded-md text-2xl font-extrabold flex items-center">
           <MdOutlineAccountBalanceWallet className="text-4xl mr-2" />
           Account Information

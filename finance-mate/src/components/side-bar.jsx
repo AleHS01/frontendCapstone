@@ -146,9 +146,6 @@ function SideBar() {
           </button>
         </motion.div>
 
-        <div>
-          <h1></h1>
-        </div>
 
         <motion.div
         variants={{
