@@ -15,7 +15,7 @@ import {
 } from "@mui/material";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import stripelogo from "/Users/hamzakhaliq/Desktop/frontendcapstone/frontendCapstone/finance-mate/src/components/committeeSan/Stripe wordmark - blurple.svg";
+import stripelogo from "./Stripe wordmark - blurple.svg";
 const PageBackground = styled.div`
   width: 100%;
   height: 100vh;
