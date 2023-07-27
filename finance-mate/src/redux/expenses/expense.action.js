@@ -1,6 +1,8 @@
 import expenseTypes from "./expense.type";
 import axios from "axios";
 
+axios.defaults.withCredentials = true;
+
 export const getExpenses = (expenses) => ({
   type: expenseTypes.GET_EXPENSES,
   payload: expenses,
@@ -28,10 +30,8 @@ export const addExpense = (expense) => ({
 export const getExpensesThunk = (UserId) => {
   return async (dispatch) => {
     try {
-      const response = await axios.post(
-        `${process.env.REACT_APP_BACKEND_URL}/api/expense/getExpenses`,
-        {},
-        { withCredentials: true }
+      const response = await axios.get(
+        `${process.env.REACT_APP_BACKEND_URL}/api/expense/getExpenses`
       );
       const expenses = await response.data;
       console.log(
