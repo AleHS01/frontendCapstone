@@ -28,6 +28,10 @@ export const createGroupThunk = (group) => {
         "http://localhost:8080/api/group/create",
         { name: group.name },
         {
+          headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "http://localhost:3000",
+          },
           withCredentials: true,
         }
       );
@@ -44,7 +48,13 @@ export const getGroupsThunk = () => {
     try {
       const response = await axios.get(
         "http://localhost:8080/api/group/get_all_groups",
-        { withCredentials: true }
+        {
+          headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "http://localhost:3000",
+          },
+          withCredentials: true,
+        }
       );
       dispatch(getGroups(response.data));
     } catch (error) {
@@ -59,7 +69,13 @@ export const joinGroupThunk = (GroupId) => {
       const response = await axios.post(
         "http://localhost:8080/api/group/add_member",
         { GroupId },
-        { withCredentials: true }
+        {
+          headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "http://localhost:3000",
+          },
+          withCredentials: true,
+        }
       );
       dispatch(getGroups(response.data));
     } catch (error) {
@@ -73,7 +89,13 @@ export const getMembersThunk = () => {
     try {
       const response = await axios.get(
         "http://localhost:8080/api/group/all_members",
-        { withCredentials: true }
+        {
+          headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "http://localhost:3000",
+          },
+          withCredentials: true,
+        }
       );
       dispatch(getMembers(response.data));
     } catch (error) {

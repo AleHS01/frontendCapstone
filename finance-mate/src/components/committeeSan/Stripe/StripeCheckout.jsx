@@ -1,53 +1,56 @@
-import React,{useState,useEffect} from 'react'
-import { loadStripe } from '@stripe/stripe-js';
-import axios from 'axios';
-import { redirect } from 'react-router';
-import { red } from '@mui/material/colors';
+import React, { useState, useEffect } from "react";
+import { loadStripe } from "@stripe/stripe-js";
+import axios from "axios";
+import { redirect } from "react-router";
+import { red } from "@mui/material/colors";
 
-import {Elements, useStripe,useElements} from '@stripe/react-stripe-js';
-import {CardElement} from '@stripe/react-stripe-js';
+import { Elements, useStripe, useElements } from "@stripe/react-stripe-js";
+import { CardElement } from "@stripe/react-stripe-js";
 
+const stripePromise = loadStripe(
+  "pk_test_51NU5vjGCLtTMWEv9kIf39oFsZe8DbDdKLPRY1gPanYNdHt7lbEnXAMHLngLWiXzJtltIBlxThpMvMPZlh5eDynIT002L4K7MzI"
+);
 
+const StripeCheckout = () => {
+  const [client_secret, setClientSecret] = useState();
 
+  useEffect(() => {
+    async function fetchSetUpIntent() {
+      const response = await axios.post(
+        "http://localhost:8080/api/stripe/setup_intent",
+        {},
+        {
+          headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "http://localhost:3000",
+          },
+          withCredentials: true,
+        }
+      );
+      setClientSecret(response.data.setupIntent);
 
-const stripePromise = loadStripe('pk_test_51NU5vjGCLtTMWEv9kIf39oFsZe8DbDdKLPRY1gPanYNdHt7lbEnXAMHLngLWiXzJtltIBlxThpMvMPZlh5eDynIT002L4K7MzI');
+      console.log("setupIntent", response.data.setupIntent);
+    }
+    fetchSetUpIntent();
+  }, []);
 
-
-const StripeCheckout=()=> {
-  const [client_secret,setClientSecret]=useState();
-
-  
-    useEffect(()=>{
-      async function  fetchSetUpIntent(){
-        const response = await axios.post("http://localhost:8080/api/stripe/setup_intent",{},{withCredentials:true})
-        setClientSecret(response.data.setupIntent)
-
-        console.log("setupIntent",response.data.setupIntent)
-      }
-      fetchSetUpIntent();
-    },[])
-
-
-
-    const options = {
-      // passing the client secret obtained from the server
-      clientSecret: client_secret
-    };
-  
+  const options = {
+    // passing the client secret obtained from the server
+    clientSecret: client_secret,
+  };
 
   return (
     <Elements stripe={stripePromise} options={options}>
-      <CheckoutForm clientSecret={client_secret}/>
+      <CheckoutForm clientSecret={client_secret} />
     </Elements>
-  )
-}
+  );
+};
 
-function CheckoutForm({clientSecret}) {
+function CheckoutForm({ clientSecret }) {
   const [isPaymentLoading, setPaymentLoading] = useState(false);
-  const stripe=useStripe();
+  const stripe = useStripe();
   const elements = useElements();
 
-  
   const handlePay = async () => {
     setPaymentLoading(true);
     try {
@@ -55,32 +58,34 @@ function CheckoutForm({clientSecret}) {
       const cardElement = elements.getElement(CardElement);
 
       // Create a SetupIntent to attach the payment method to the customer
-      const { setupIntent, error } = await stripe.confirmCardSetup(clientSecret, {
-        payment_method: {
-          card: cardElement,
-          billing_details: {
-            name: "Shoaib Ashfaq",
+      const { setupIntent, error } = await stripe.confirmCardSetup(
+        clientSecret,
+        {
+          payment_method: {
+            card: cardElement,
+            billing_details: {
+              name: "Shoaib Ashfaq",
+            },
           },
-        },
-      });
+        }
+      );
       if (error) {
         // Handle any errors
         console.error(error);
         setPaymentLoading(false);
       } else {
         // Payment method added successfully
-        console.log('Payment method added:', setupIntent.payment_method);
+        console.log("Payment method added:", setupIntent.payment_method);
         setPaymentLoading(false);
         // You can update your UI here to indicate that the payment method was added.
-        alert("Sucess!!!!!")
+        alert("Sucess!!!!!");
       }
     } catch (error) {
       // Handle any unexpected errors
       console.error(error);
       setPaymentLoading(false);
     }
-  }
-
+  };
 
   return (
     <div
@@ -112,8 +117,8 @@ function CheckoutForm({clientSecret}) {
               options={{
                 style: {
                   base: {
-                    backgroundColor: "white"
-                  } 
+                    backgroundColor: "white",
+                  },
                 },
               }}
             />
@@ -131,5 +136,4 @@ function CheckoutForm({clientSecret}) {
   );
 }
 
-
-export default StripeCheckout
+export default StripeCheckout;

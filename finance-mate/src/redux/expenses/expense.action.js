@@ -28,9 +28,16 @@ export const addExpense = (expense) => ({
 export const getExpensesThunk = () => {
   return async (dispatch) => {
     try {
-      const response = await axios.get(
+      const response = await axios.post(
         "http://localhost:8080/api/expense/getExpenses",
-        { withCredentials: true }
+        {},
+        {
+          headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "http://localhost:3000",
+          },
+          withCredentials: true,
+        }
       );
       const expenses = await response.data;
       // console.log("User Expenses in Thunk:", expenses);
@@ -49,7 +56,13 @@ export const addExpenseThunk = (expenseData) => {
       const response = await axios.post(
         "http://localhost:8080/api/expense/addExpense",
         expenseData,
-        { withCredentials: true }
+        {
+          headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "http://localhost:3000",
+          },
+          withCredentials: true,
+        }
       );
       const expense = response.data;
 
@@ -67,6 +80,10 @@ export const createExpensesThunk = (expenses) => {
         "http://localhost:8080/api/expense",
         { expenses },
         {
+          headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "http://localhost:3000",
+          },
           withCredentials: true,
         }
       );
@@ -88,6 +105,10 @@ export const updateExpenseThunk = (expenseToUpdpate) => {
         `http://localhost:8080/api/expense/${expenseToUpdpate.id}`,
         expenseToUpdpate,
         {
+          headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "http://localhost:3000",
+          },
           withCredentials: true,
         }
       );
@@ -106,6 +127,10 @@ export const deleteExpenseThunk = (expenseToDelete) => {
       await axios.delete(
         `http://localhost:8080/api/expense/${expenseToDelete.id}`,
         {
+          headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "http://localhost:3000",
+          },
           withCredentials: true,
         }
       );

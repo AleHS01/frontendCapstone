@@ -13,6 +13,10 @@ export const getAccountsThunk = () => {
         "http://localhost:8080/api/plaid/accounts",
         {},
         {
+          headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "http://localhost:3000",
+          },
           withCredentials: true,
         }
       );

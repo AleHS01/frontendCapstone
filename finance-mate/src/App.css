@@ -3,8 +3,6 @@ body {
   /* background-color: #131316; */
 }
 
-
-
 .dashboard {
   display: flex;
   min-height: 100vh; /* Set the minimum height of the dashboard to the full viewport height */
@@ -150,7 +148,6 @@ button::after {
   transition: opacity 300ms, transform 300ms;
 }
 
-
 .card {
   background-color: white;
   padding: 10px 20px 11px;
@@ -158,9 +155,9 @@ button::after {
   width: 100%;
   border: 1px solid #afafaf;
 
-box-shadow: 0px 4px 5.5px 0px rgba(0, 0, 0, 0.07);
+  box-shadow: 0px 4px 5.5px 0px rgba(0, 0, 0, 0.07);
 }
-.pay-button{
+.pay-button {
   padding: 0.7rem 2rem;
   width: 100%;
   margin: 1rem 0;
@@ -174,33 +171,34 @@ box-shadow: 0px 4px 5.5px 0px rgba(0, 0, 0, 0.07);
   transition: box-shadow 500ms;
   cursor: pointer;
 }
-.pay-button:disabled{
+.pay-button:disabled {
   background-color: #afafaf;
   box-shadow: none;
   cursor: default;
 }
-.pay-button:disabled:hover{
+.pay-button:disabled:hover {
   box-shadow: none;
 }
-.pay-button:hover{
+.pay-button:hover {
   box-shadow: 2px 5px 15px 2px rgba(0, 0, 0, 0.2);
 }
 /* Add these styles to your CSS file or component styles */
 
 /* Main Container */
 .sidebar-container {
-  position: fixed;
+  position: sticky;
   top: 0;
   left: 0;
   bottom: 0;
-  width: 220px; /* Adjust the width as needed */
+  height: 100vh;
+  width: 250px; /* Adjust the width as needed */
   background-color: #2d6a4f; /* Change the background color as needed */
   color: #fff;
   display: flex;
   flex-direction: column;
-  overflow-y: auto;
   z-index: 100;
   padding-top: 40px;
+  overflow-x: hidden;
 }
 
 @media (max-width: 768px) {
@@ -233,12 +231,18 @@ box-shadow: 0px 4px 5.5px 0px rgba(0, 0, 0, 0.07);
 }
 
 .navigation-item {
-  padding: 10px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  padding: 0px 20px;
+  gap: 15px;
+  margin-bottom: 20px;
+  width: 100%;
 }
 
 .navigation-icon {
-  font-size: 24px;
-  margin-right: 10px;
+  font-size: 32px;
+  color: white;
 }
 
 .navigation-button {
@@ -246,7 +250,7 @@ box-shadow: 0px 4px 5.5px 0px rgba(0, 0, 0, 0.07);
   color: #fff;
   border: none;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 1.2rem;
   font-weight: 500;
   transition: opacity 0.3s;
   display: flex;
@@ -266,9 +270,8 @@ box-shadow: 0px 4px 5.5px 0px rgba(0, 0, 0, 0.07);
   cursor: pointer;
 }
 
-
 .toggle-icon {
-  font-size: 32px;
+  font-size: 24px;
 }
 
 /* Logout Button */
@@ -282,8 +285,7 @@ box-shadow: 0px 4px 5.5px 0px rgba(0, 0, 0, 0.07);
 }
 
 .logout-icon {
-  font-size: 24px;
-  margin-right: 10px;
+  font-size: 32px;
 }
 
 .logout-button {
@@ -325,4 +327,3 @@ box-shadow: 0px 4px 5.5px 0px rgba(0, 0, 0, 0.07);
 .collapsed .toggle-icon {
   transform: rotate(180deg);
 }
-

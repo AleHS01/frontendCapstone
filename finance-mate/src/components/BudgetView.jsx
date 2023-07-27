@@ -1,5 +1,4 @@
-
-import {useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import SideBar from "./side-bar";
 import LineChart from "./LineChart";
@@ -75,7 +74,6 @@ const BudgetView = () => {
   const [budgetExpenses, setBudgetExpenses] = useState(undefined);
   const [lineChartData, setLineChartData] = useState(undefined);
   const [sortedBudget, setSortedBudget] = useState([]);
-  
 
   useEffect(() => {
     dispatch(getBudgetsThunk());
@@ -167,7 +165,7 @@ const BudgetView = () => {
 
   return (
     <div className="dashboard">
-      {/* <SideBar /> */}
+      <SideBar />
       <div className="content p-3">
         <PageHeader page_name="My Budgets Dashboard" />
         <BudgetViewBanner />
@@ -258,10 +256,7 @@ const BudgetView = () => {
             />
           </Grid>
           <Grid item>
-            <Typography
-              variant="h4"
-              sx={{ fontWeight: "500", color: "black" }}
-            >
+            <Typography variant="h4" sx={{ fontWeight: "500", color: "black" }}>
               Overview of Your Budgets
             </Typography>
           </Grid>
@@ -291,7 +286,7 @@ const BudgetView = () => {
             <Chip
               label="Add Expense"
               component={Link}
-              to='/budget-expense/1'
+              to="/budget-expense/1"
               clickable
               sx={{
                 backgroundColor: "black",
@@ -307,7 +302,11 @@ const BudgetView = () => {
         <BudgetBoxesContainer>
           {sortedBudget.map((budget, index) => {
             return (
-              <Tooltip key = {index}title="View Budget Details" placement="bottom">
+              <Tooltip
+                key={index}
+                title="View Budget Details"
+                placement="bottom"
+              >
                 <BBox>
                   <BudgetInfoContainer>
                     <Link

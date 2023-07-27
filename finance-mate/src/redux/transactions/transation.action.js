@@ -13,6 +13,10 @@ export const getTransactionsThunk = () => {
         "http://localhost:8080/api/plaid/transactions",
         {},
         {
+          headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "http://localhost:3000",
+          },
           withCredentials: true,
         }
       );

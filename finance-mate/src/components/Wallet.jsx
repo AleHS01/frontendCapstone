@@ -30,6 +30,10 @@ const Wallet = () => {
           senderId: 3,
         },
         {
+          headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "http://localhost:3000",
+          },
           withCredentials: true,
         }
       );

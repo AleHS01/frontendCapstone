@@ -80,7 +80,7 @@ const BudgetForm = () => {
 
   return (
     <BackgroundContainer className="dashboard">
-      <SideBar></SideBar>
+      <SideBar />
       <div style={{ width: "100%" }}>
         <PageHeader page_name="Budgets" />
         <Container sx={{ width: "60%", display: "grid", alignItems: "center" }}>

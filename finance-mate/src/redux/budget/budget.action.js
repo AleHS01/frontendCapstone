@@ -39,6 +39,10 @@ export const getExpenseOfBudgetThunk = (budgetId) => {
       const response = await axios.get(
         `http://localhost:8080/api/expense/totalExpenses/${budgetId}`,
         {
+          headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "http://localhost:3000",
+          },
           withCredentials: true,
         }
       );
@@ -55,7 +59,13 @@ export const getExpenseOfBudgetThunk = (budgetId) => {
 //       try {
 //         const response = await axios.get(
 //           "http://localhost:8080/api/budget/budgetNames",
-//           { withCredentials: true }
+//           {
+//   headers: {
+//     "Content-Type": "application/json",
+//     "Access-Control-Allow-Origin": "http://localhost:3000",
+//   },
+//   withCredentials: true,
+// }
 //         );
 //         // const filteredBudgets = response.data.filter((budget) => budget.budget_name !== null);
 //         dispatch(getBudgetName(response.data));
@@ -71,6 +81,10 @@ export const deleteBubgetThunk = (budgetToDelete) => {
       await axios.delete(
         `http://localhost:8080/api/budget/${budgetToDelete.id}`,
         {
+          headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "http://localhost:3000",
+          },
           withCredentials: true,
         }
       );
@@ -89,6 +103,10 @@ export const getBudgetAmountThunk = (budgetId) => {
         "http://localhost:8080/api/budget/budgetAmount",
         budgetId,
         {
+          headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "http://localhost:3000",
+          },
           withCredentials: true,
         }
       );
@@ -105,7 +123,13 @@ export const getBudgetsThunk = () => {
     try {
       const response = await axios.get(
         "http://localhost:8080/api/budget/budgetDetails",
-        { withCredentials: true }
+        {
+          headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "http://localhost:3000",
+          },
+          withCredentials: true,
+        }
       );
       // console.log(response);
       dispatch(getBudget(response.data));
@@ -122,6 +146,10 @@ export const addBudgetThunk = (budgetInfo) => {
         "http://localhost:8080/api/budget/addBudget",
         budgetInfo,
         {
+          headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "http://localhost:3000",
+          },
           withCredentials: true,
         }
       );

@@ -48,7 +48,13 @@ const ExpensesView = () => {
       try {
         const response = await axios.get(
           "http://localhost:8080/api/expense/getExpenses",
-          { withCredentials: true }
+          {
+            headers: {
+              "Content-Type": "application/json",
+              "Access-Control-Allow-Origin": "http://localhost:3000",
+            },
+            withCredentials: true,
+          }
         );
 
         console.log("Response.data in ExpenseView\n", response.data);

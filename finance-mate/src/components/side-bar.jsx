@@ -67,7 +67,7 @@ function SideBar() {
     <div className={`sidebar-container ${open ? "expanded" : "collapsed"}`}>
       {/* Header */}
       <div className={`sidebar-header ${open ? "expanded" : "collapsed"}`}>
-        <RiBankFill className="sidebar-logo" />
+        <RiBankFill className="sidebar-logo navigation-icon" />
         {open && <h1 className="sidebar-title">Finance-Mate</h1>}
       </div>
 
@@ -77,81 +77,73 @@ function SideBar() {
           className="navigation-item"
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
+          onClick={handleAccount}
         >
           <ImUserTie className="navigation-icon" />
-          <button className="navigation-button" onClick={handleAccount}>
-            Account
-          </button>
+          <button className="navigation-button">Account</button>
         </motion.div>
         <motion.div
           className="navigation-item"
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
+          onClick={handleBankAccount}
         >
           <ImUsers className="navigation-icon" />
-          <button className="navigation-button" onClick={handleBankAccount}>
-            Bank Accounts
-          </button>
+          <button className="navigation-button">Bank Accounts</button>
         </motion.div>
         <motion.div
           className="navigation-item"
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
+          onClick={handleLinkPlaid}
         >
           <SlWallet className="navigation-icon" />
-          <button className="navigation-button" onClick={handleLinkPlaid}>
-            Add Payment
-          </button>
+          <button className="navigation-button">Add Payment</button>
         </motion.div>
         <motion.div
           className="navigation-item"
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
+          onClick={handleFinaceForm}
         >
           <AiOutlineForm className="navigation-icon" />
-          <button className="navigation-button" onClick={handleFinaceForm}>
-            Expenses Form
-          </button>
+          <button className="navigation-button">Expenses Form</button>
         </motion.div>
         <motion.div
           className="navigation-item"
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
+          onClick={handleExpenseView}
         >
           <GiTakeMyMoney className="navigation-icon" />
-          <button className="navigation-button" onClick={handleExpenseView}>
-            Expenses
-          </button>
+          <button className="navigation-button">Expenses</button>
         </motion.div>
         <motion.div
           className="navigation-item"
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
+          onClick={handleSetBudget}
         >
           <TbReportMoney className="navigation-icon" />
-          <button className="navigation-button" onClick={handleSetBudget}>
-            Set Budget
-          </button>
+          <button className="navigation-button">Set Budget</button>
         </motion.div>
         <motion.div
           className="navigation-item"
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
+          onClick={handleTrans}
         >
           <GrTransaction className="navigation-icon" />
-          <button className="navigation-button" onClick={handleTrans}>
-            Transactions
-          </button>
+          <button className="navigation-button">Transactions</button>
         </motion.div>
         <motion.div
           className="navigation-item"
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
+          onClick={handleCommitteeSan}
         >
           <RiExchangeFundsFill className="navigation-icon" />
-          <button className="navigation-button" onClick={handleCommitteeSan}>
-            Committee San
-          </button>
+          <button className="navigation-button">Committee San</button>
         </motion.div>
       </div>
 
@@ -163,13 +155,21 @@ function SideBar() {
       </div>
 
       {/* Logout Button */}
-      <motion.div
-        className={`logout-container ${open ? "expanded" : "collapsed"}`}
+      {/* <motion.div
+        className={`navigation-item ${open ? "expanded" : "collapsed"}`}
+        onClick={handleLogout}
       >
         <SlLogout onClick={handleLogout} className="logout-icon" />
-        <button className="logout-button" onClick={handleLogout}>
-          Sign Out
-        </button>
+        <button className="logout-button">Sign Out</button>
+      </motion.div> */}
+      <motion.div
+        className="navigation-item"
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
+        onClick={handleLogout}
+      >
+        <SlLogout className="navigation-icon" />
+        <button className="navigation-button">Sign Out</button>
       </motion.div>
     </div>
   );

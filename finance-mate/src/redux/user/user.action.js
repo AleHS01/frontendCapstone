@@ -103,6 +103,10 @@ export const fetchUserThunk = () => {
 
     try {
       const response = await axios.get("http://localhost:8080/api/user", {
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "http://localhost:3000",
+        },
         withCredentials: true,
       });
       await dispatch(fetchUser(response.data));
@@ -124,7 +128,13 @@ export const logoutUserThunk = () => {
       const response = await axios.post(
         "http://localhost:8080/api/logout",
         {},
-        { withCredentials: true }
+        {
+          headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "http://localhost:3000",
+          },
+          withCredentials: true,
+        }
       );
       dispatch(logoutUser());
       console.log(response.data); // Assuming the backend sends a "Logout successful" message
@@ -136,21 +146,26 @@ export const logoutUserThunk = () => {
 };
 
 export const loginUserThunk = (credentials) => {
+  console.log("login thunk, credentials: ", credentials);
   return async (dispatch) => {
     try {
       const response = await axios.post(
         "http://localhost:8080/api/login",
         credentials,
         {
+          headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "http://localhost:3000",
+          },
           withCredentials: true,
         }
       );
-      if (!(response.data==="No User Exists")){
+      if (!(response.data === "No User Exists")) {
         const user_info = response.data; // Assuming the login API response contains the user data
-        console.log("User\n", response.data);
+        console.log("User that just login\n", response.data);
         dispatch(loginSuccess(user_info));
-      }else{
-        alert(response.data)
+      } else {
+        alert(response.data);
       }
     } catch (error) {
       // alert(error);
@@ -163,6 +178,10 @@ export const googleLoginThunk = () => {
     console.log("IN GOOGLE THUNK");
     try {
       const response = await axios.get("http://localhost:8080/api/user", {
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "http://localhost:3000",
+        },
         withCredentials: true,
       });
       const user = await response.data;
@@ -182,6 +201,10 @@ export const getAccessTokenThunk = (public_token) => {
         "http://localhost:8080/api/plaid/exchange_public_token",
         { public_token: public_token },
         {
+          headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "http://localhost:3000",
+          },
           withCredentials: true,
         }
       );
@@ -239,7 +262,13 @@ export const getAccessTokenThunk = (public_token) => {
 //     try {
 //       const response = await axios.get(
 //         "http://localhost:8080/api/expense/getExpenses",
-//         { withCredentials: true }
+//         {
+//   headers: {
+//     "Content-Type": "application/json",
+//     "Access-Control-Allow-Origin": "http://localhost:3000",
+//   },
+//   withCredentials: true,
+// }
 //       );
 //       const expenses = await response.data;
 //       console.log("User Expenses in Thunk:", expenses);
@@ -258,7 +287,13 @@ export const getAccessTokenThunk = (public_token) => {
 //       const response = await axios.post(
 //         "http://localhost:8080/api/expense/addExpense",
 //         expenseData,
-//         { withCredentials: true }
+//         {
+//   headers: {
+//     "Content-Type": "application/json",
+//     "Access-Control-Allow-Origin": "http://localhost:3000",
+//   },
+//   withCredentials: true,
+// }
 //       );
 //       const expense = response.data;
 
@@ -350,7 +385,13 @@ export const getAccessTokenThunk = (public_token) => {
 //     try {
 //       const response = await axios.get(
 //         "http://localhost:8080/api/budget/budgetNames",
-//         { withCredentials: true }
+//         {
+//   headers: {
+//     "Content-Type": "application/json",
+//     "Access-Control-Allow-Origin": "http://localhost:3000",
+//   },
+//   withCredentials: true,
+// }
 //       );
 //       // const filteredBudgets = response.data.filter((budget) => budget.budget_name !== null);
 //       dispatch(getBudgetName(response.data));
@@ -400,7 +441,13 @@ export const getAccessTokenThunk = (public_token) => {
 //     try {
 //       const response = await axios.get(
 //         "http://localhost:8080/api/budget/budgetDetails",
-//         { withCredentials: true }
+//         {
+//   headers: {
+//     "Content-Type": "application/json",
+//     "Access-Control-Allow-Origin": "http://localhost:3000",
+//   },
+//   withCredentials: true,
+// }
 //       );
 //       console.log(response);
 //       dispatch(getBudget(response.data));
