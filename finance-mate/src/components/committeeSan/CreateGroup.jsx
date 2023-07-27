@@ -43,9 +43,7 @@ const GroupForm = () => {
 
   const groups = useSelector((state) => state.committee_groups);
   const [groupName, setGroupName] = useState("");
-  const [committeeAmount, setCommitteeAmount] = useState(0)
-
-  console.log(groups);
+  const [committeeAmount, setCommitteeAmount] = useState(0);
 
   /*
   The useEffect here prevents react to go into an infinte loop whilst displaying
@@ -59,7 +57,7 @@ const GroupForm = () => {
     event.preventDefault();
     const group = {
       name: groupName,
-      amount: committeeAmount
+      amount: committeeAmount,
     };
     dispatch(createGroupThunk(group));
     dispatch(createCustomerThunk());

@@ -5,7 +5,7 @@ import { getExpensesThunk } from "../redux/expenses/expense.action";
 
 function IndividualBudget() {
   const { budget_id } = useParams();
-  console.log("budget_id in Individual Budget: " + budget_id);
+
   //take in the budget_id from the Budget_Form
 
   //make an redux call to get all the expenses with the user_id and

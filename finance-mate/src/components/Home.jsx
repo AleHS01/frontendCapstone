@@ -12,7 +12,7 @@ import HowFinanceMateWorks from "./Home-Components/HowFinanceMateWorks";
 import WhyChooseUs from "./Home-Components/WhyUs";
 import CTA from "./Home-Components/CTA";
 import Footer from "./Home-Components/Footer";
-import { motion, useInView, useAnimation } from "framer-motion"
+import { motion, useInView, useAnimation } from "framer-motion";
 
 function Home() {
   const navigate = useNavigate();
@@ -20,13 +20,12 @@ function Home() {
 
   const googleLogin = async () => {
     const newWindow = window.open(
-      "http://localhost:8080/api/login/google",
+      `${process.env.REACT_APP_BACKEND_URL}/api/login/google`,
       "_blank",
       "width=400, height=700"
     );
     let timer = setInterval(() => {
       if (newWindow.closed) {
-        console.log("You are logged with google");
         dispatch(googleLoginThunk());
         if (timer) clearInterval(timer);
         navigate("/user");
@@ -38,27 +37,57 @@ function Home() {
     <div>
       <NavBar />
 
-      <motion.div variants={fadeInR} initial="hidden" animate="visible" transition={{duration: 0.5, delay: 0.50}}>
+      <motion.div
+        variants={fadeInR}
+        initial="hidden"
+        animate="visible"
+        transition={{ duration: 0.5, delay: 0.5 }}
+      >
         <HeroSection />
       </motion.div>
 
-      <motion.div variants={fadeInL} initial="hidden" animate="visible" transition={{duration: 0.5, delay: 1}}>
+      <motion.div
+        variants={fadeInL}
+        initial="hidden"
+        animate="visible"
+        transition={{ duration: 0.5, delay: 1 }}
+      >
         <FeaturedFunctionalities />
       </motion.div>
 
-      <motion.div variants={fadeInR} initial="hidden" animate="visible" transition={{duration: 0.5, delay: 1.50}}>
+      <motion.div
+        variants={fadeInR}
+        initial="hidden"
+        animate="visible"
+        transition={{ duration: 0.5, delay: 1.5 }}
+      >
         <WhyChooseUs />
       </motion.div>
 
-      <motion.div variants={fadeInL} initial="hidden" animate="visible" transition={{duration: 0.5, delay: 2}}>
+      <motion.div
+        variants={fadeInL}
+        initial="hidden"
+        animate="visible"
+        transition={{ duration: 0.5, delay: 2 }}
+      >
         <TestimonialsCarousel />
       </motion.div>
 
-      <motion.div variants={fadeInR} initial="hidden" animate="visible" transition={{duration: 0.5, delay: 2.50}}>
+      <motion.div
+        variants={fadeInR}
+        initial="hidden"
+        animate="visible"
+        transition={{ duration: 0.5, delay: 2.5 }}
+      >
         <CTA />
       </motion.div>
 
-      <motion.div variants={fadeInL} initial="hidden" animate="visible" transition={{duration: 0.5, delay: 3}}>
+      <motion.div
+        variants={fadeInL}
+        initial="hidden"
+        animate="visible"
+        transition={{ duration: 0.5, delay: 3 }}
+      >
         <Footer />
       </motion.div>
     </div>
@@ -67,14 +96,14 @@ function Home() {
 
 export default Home;
 const fadeInR = {
-    hidden: {opacity: 0, x: -80},
-    visible: {opacity: 1, x: 0},
-}
+  hidden: { opacity: 0, x: -80 },
+  visible: { opacity: 1, x: 0 },
+};
 
 const fadeInL = {
-  hidden: {opacity: 0, x: 80},
-  visible: {opacity: 1, x: 0},
-}
+  hidden: { opacity: 0, x: 80 },
+  visible: { opacity: 1, x: 0 },
+};
 
 {
   /* <div>

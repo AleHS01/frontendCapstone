@@ -35,7 +35,6 @@ const PageBackground = styled.div`
   justify-content: center;
   align-items: center;
   position: relative;
-
 `;
 
 const DottedBox = styled.div`
@@ -49,13 +48,13 @@ const DottedBox = styled.div`
 `;
 
 const ContentContainer = styled.div`
-position: relative;
-z-index: 1;
-background-color: #fafafa;
-padding: 20px;
-border-radius: 15px;
-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-margin-top: 80px; 
+  position: relative;
+  z-index: 1;
+  background-color: #fafafa;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  margin-top: 80px;
 `;
 
 const Navbar = styled.div`
@@ -65,9 +64,6 @@ const Navbar = styled.div`
   display: flex;
   justify-content: flex-start;
 `;
-
-
-
 
 const AddExpenseForm = () => {
   const dispatch = useDispatch();
@@ -115,99 +111,99 @@ const AddExpenseForm = () => {
     <PageBackground>
       <Navbar>
         <Grid container spacing={2}>
-        <Grid item>
-                <Chip
-                  label="Add Budget"
-                  component={Link}
-                  to="/budgetform"
-                  clickable
-                  sx={{
-                    backgroundColor: "limegreen",
-                    color: "#fff",
-                    "&:hover": {
-                      backgroundColor: "#05377f",
-                    },
-                  }}
-                />
-              </Grid>
-              <Grid item>
-                <Chip
-                  label="Budget Page"
-                  component={Link}
-                  to="/budget-view"
-                  clickable
-                  sx={{
-                    backgroundColor: "black",
-                    color: "white",
-                    "&:hover": {
-                      backgroundColor: "#05377f",
-                    },
-                  }}
-                />
-              </Grid>
+          <Grid item>
+            <Chip
+              label="Add Budget"
+              component={Link}
+              to="/budgetform"
+              clickable
+              sx={{
+                backgroundColor: "limegreen",
+                color: "#fff",
+                "&:hover": {
+                  backgroundColor: "#05377f",
+                },
+              }}
+            />
+          </Grid>
+          <Grid item>
+            <Chip
+              label="Budget Page"
+              component={Link}
+              to="/budget-view"
+              clickable
+              sx={{
+                backgroundColor: "black",
+                color: "white",
+                "&:hover": {
+                  backgroundColor: "#05377f",
+                },
+              }}
+            />
+          </Grid>
         </Grid>
       </Navbar>
-          <ContentContainer>
-          <Typography
-            variant="h2"
-            align="center"
-            sx={{ color: "black", fontWeight: "bold" }}
-            gutterBottom
-          >
-            Add Expenses
-          </Typography>
-            <DottedBox>
-              <form onSubmit={handleSubmit}>
-                <TextField
-                  variant="outlined"
-                  margin="normal"
-                  required
-                  fullWidth
-                  label="Expense Name"
-                  value={expenseName}
-                  onChange={(e) => setExpenseName(e.target.value)}
-                />
-                <TextField
-                  variant="outlined"
-                  margin="normal"
-                  required
-                  fullWidth
-                  label="Amount"
-                  type="number"
-                  value={expenseAmount}
-                  onChange={(e) => setExpenseAmount(e.target.value)}
-                />
-                <Select
-                  variant="outlined"
-                  fullWidth
-                  label="Budget Category"
-                  value={selectedBudgetId}
-                  onChange={(e) => {
-                    setSelectedBudgetId(e.target.value);
-                    // console.log("User Selected ID"+e.target.value);
-                  }}
-                >
-                  {budgets.map((budget) => (
-                    <MenuItem key={budget.id} value={budget.id}>
-                      {budget.budget_name}
-                    </MenuItem>
-                  ))}
-                </Select>
-                <Button type="submit" variant="contained" color="primary">
-                  Add Expense
-                </Button>
-              </form>
-            </DottedBox>
-            {selectedBudget ? (
-              <BudgetBox
-                budget={selectedBudget}
-                expenses={expensesForBudget}
-                expense_total={budget_expense_total}
-              />
-            ) : (
-              <p></p>
-            )}
-          </ContentContainer>
+      <ContentContainer>
+        <Typography
+          variant="h2"
+          align="center"
+          sx={{ color: "black", fontWeight: "bold" }}
+          gutterBottom
+        >
+          Add Expenses
+        </Typography>
+        <DottedBox>
+          <form onSubmit={handleSubmit}>
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              label="Expense Name"
+              value={expenseName}
+              onChange={(e) => setExpenseName(e.target.value)}
+            />
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              label="Amount"
+              type="number"
+              value={expenseAmount}
+              onChange={(e) => setExpenseAmount(e.target.value)}
+            />
+            <Select
+              variant="outlined"
+              fullWidth
+              label="Budget Category"
+              value={selectedBudgetId}
+              onChange={(e) => {
+                setSelectedBudgetId(e.target.value);
+                //
+              }}
+            >
+              {budgets.map((budget) => (
+                <MenuItem key={budget.id} value={budget.id}>
+                  {budget.budget_name}
+                </MenuItem>
+              ))}
+            </Select>
+            <Button type="submit" variant="contained" color="primary">
+              Add Expense
+            </Button>
+          </form>
+        </DottedBox>
+        {selectedBudget ? (
+          <BudgetBox
+            budget={selectedBudget}
+            expenses={expensesForBudget}
+            expense_total={budget_expense_total}
+          />
+        ) : (
+          <p></p>
+        )}
+      </ContentContainer>
     </PageBackground>
   );
 };

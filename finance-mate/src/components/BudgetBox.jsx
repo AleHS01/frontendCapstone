@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
@@ -80,13 +79,11 @@ const BudgetBox = ({ budget, expenses, expense_total }) => {
       const budgetExpenses = expenses;
       setBudgetExpenses(budgetExpenses);
       setBudgetExpenseAmount(expense_total);
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   }, [budget, expenses, expense_total]);
 
   let fillpercentage = (budgetexpenseamount / budgetamount) * 100;
-  fillpercentage = Math.min(fillpercentage, 100)
+  fillpercentage = Math.min(fillpercentage, 100);
   const remainingBal = (budgetamount - budgetexpenseamount).toFixed(1);
 
   return (

@@ -15,7 +15,7 @@ import {
 } from "@mui/material";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import stripelogo from "/Users/hamzakhaliq/Desktop/frontendcapstone/frontendCapstone/finance-mate/src/components/committeeSan/Stripe wordmark - blurple.svg";
+// import stripelogo from "./src/components/committeeSan/Stripe wordmark - blurple.svg";
 const PageBackground = styled.div`
   width: 100%;
   height: 100vh;
@@ -39,7 +39,6 @@ const Success = () => {
   const [session, setSession] = useState(null);
   const location = useLocation();
   const sessionId = new URLSearchParams(location.search).get("session_id");
-  console.log("sessionId,", sessionId);
 
   useEffect(() => {
     if (sessionId) {
@@ -83,11 +82,11 @@ const Success = () => {
           >
             Payment secured safely by
           </Typography>
-          <img
+          {/* <img
             src={stripelogo}
             alt="Stripe Logo"
             style={{ width: "100px", height: "auto", marginTop: "10px" }} // adjust width as needed to match your text size
-          />
+          /> */}
         </Box>
 
         <TableContainer component={Paper}>

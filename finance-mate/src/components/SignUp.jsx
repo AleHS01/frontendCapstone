@@ -14,8 +14,7 @@ import {
 import { BiLogIn } from "react-icons/bi";
 import GoogleButton from "react-google-button";
 import { googleLoginThunk } from "../redux/user/user.action";
-import { motion, useInView, useAnimation } from "framer-motion"
-
+import { motion, useInView, useAnimation } from "framer-motion";
 
 //BiLogIn
 
@@ -36,7 +35,7 @@ const SignUp = () => {
   const signUp = async () => {
     try {
       const response = await axios.post(
-        "http://localhost:8080/api/signup",
+        `${process.env.REACT_APP_BACKEND_URL}/api/signup`,
         {
           username: username,
           password: password,
@@ -48,7 +47,7 @@ const SignUp = () => {
           withCredentials: true,
         }
       );
-      console.log("Response: ", response);
+
       await dispatch(loginUserThunk({ username, password }));
       //need to dispatch Login, to login the user as soon as submit the data
 
@@ -60,22 +59,19 @@ const SignUp = () => {
       setFormError("");
 
       navigate("/user");
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   };
   const googleLogin = async () => {
     const newWindow = window.open(
-      "http://localhost:8080/api/login/google",
+      `${process.env.REACT_APP_BACKEND_URL}/api/login/google`,
       "_blank",
       "width=400, height=700"
     );
     let timer = setInterval(() => {
       if (newWindow.closed) {
-        console.log("You are logged with google");
         dispatch(googleLoginThunk());
         if (timer) clearInterval(timer);
-        navigate("/user", {state: {intro: true}});
+        navigate("/user", { state: { intro: true } });
       }
     }, 500);
   };
@@ -109,8 +105,6 @@ const SignUp = () => {
   };
 
   const location = useLocation();
-  console.log(JSON.stringify(location))
-  console.log("Location 1: "+location)
 
   return (
     <div
@@ -186,7 +180,7 @@ const SignUp = () => {
           ),
         }}
       />
-      
+
       <TextField
         type={showPasswordVerified ? "text" : "password"}
         label="Re-enter Password"
@@ -195,7 +189,7 @@ const SignUp = () => {
         onChange={(e) => setPasswordVerified(e.target.value)}
         style={{
           marginBottom: "10px",
-          height:"5%",
+          height: "5%",
           width: "12.5%", // Adjust width as needed
           // Add other styles as needed
         }}
@@ -227,31 +221,36 @@ const SignUp = () => {
       </button>
       <br />
 
-
-
       <motion.div
-      variants={{
-        hidden: {opacity: 0, x: -75},
-        visible: {opacity: 1, x: 0},
-      }}
-      initial="hidden"
-      animate="visible"
-      transition={{duration: 1, delay: 0.50}}
-      className="bg-green-600 flex rounded-lg px-4 py-2 mr-4 items-center mb-4 shadow-md border-8 ">
+        variants={{
+          hidden: { opacity: 0, x: -75 },
+          visible: { opacity: 1, x: 0 },
+        }}
+        initial="hidden"
+        animate="visible"
+        transition={{ duration: 1, delay: 0.5 }}
+        className="bg-green-600 flex rounded-lg px-4 py-2 mr-4 items-center mb-4 shadow-md border-8 "
+      >
         <p className="text-black mr-2 font-serif text-2xl">Or sign up with:</p>
-        <GoogleButton className="m-4 shadow-md hover:scale-105" onClick={googleLogin} />  
+        <GoogleButton
+          className="m-4 shadow-md hover:scale-105"
+          onClick={googleLogin}
+        />
       </motion.div>
 
       <motion.div
-      variants={{
-        hidden: {opacity: 0, x: -75},
-        visible: {opacity: 1, x: 0},
-      }}
-      initial="hidden"
-      animate="visible"
-      transition={{duration: 1, delay: 1}}
-      className="bg-green-600 flex rounded-lg px-4 py-2 mr-4 items-center mb-4 shadow-md border-8 ">
-        <p className="text-black mr-2 font-serif text-xl">Already have an account?</p>
+        variants={{
+          hidden: { opacity: 0, x: -75 },
+          visible: { opacity: 1, x: 0 },
+        }}
+        initial="hidden"
+        animate="visible"
+        transition={{ duration: 1, delay: 1 }}
+        className="bg-green-600 flex rounded-lg px-4 py-2 mr-4 items-center mb-4 shadow-md border-8 "
+      >
+        <p className="text-black mr-2 font-serif text-xl">
+          Already have an account?
+        </p>
         <Link
           className=" hover:scale-110 hover:shadow-lg duration-200 bg-green-400 flex rounded-md px-4 py-2 mr-4 items-center mt-mb-4 shadow-md text-semibol"
           to="/login"
@@ -262,14 +261,15 @@ const SignUp = () => {
       </motion.div>
 
       <motion.div
-      variants={{
-        hidden: {opacity: 0, y:100},
-        visible: {opacity: 1, y: 0},
-      }}
-      initial="hidden"
-      animate="visible"
-      transition={{duration: 1, delay: 1.50}}
-      className="m-4 bg-green-600 flex rounded-lg px-6 py-3 mr-4 items-center mb-4 shadow-md border-8 ">
+        variants={{
+          hidden: { opacity: 0, y: 100 },
+          visible: { opacity: 1, y: 0 },
+        }}
+        initial="hidden"
+        animate="visible"
+        transition={{ duration: 1, delay: 1.5 }}
+        className="m-4 bg-green-600 flex rounded-lg px-6 py-3 mr-4 items-center mb-4 shadow-md border-8 "
+      >
         <p className="text-base font-serif p-4 border border-green-500 border-opacity-50 rounded-lg bg-gradient-to-r from-green-100 to-green-200 text-lg">
           <h1 className="flex justify-center font-semibold text-xl font-serif">
             Finance-Mate

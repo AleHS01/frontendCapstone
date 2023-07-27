@@ -37,16 +37,14 @@ export const getExpenseOfBudgetThunk = (budgetId) => {
   return async (dispatch) => {
     try {
       const response = await axios.get(
-        `http://localhost:8080/api/expense/totalExpenses/${budgetId}`,
+        `${process.env.REACT_APP_BACKEND_URL}/api/expense/totalExpenses/${budgetId}`,
         {
           withCredentials: true,
         }
       );
-      console.log("Total expense done inside this budget: ", response.data);
+
       dispatch(getExpenseOfBudget(response.data));
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   };
 };
 
@@ -54,13 +52,13 @@ export const getExpenseOfBudgetThunk = (budgetId) => {
 //     return async (dispatch) => {
 //       try {
 //         const response = await axios.get(
-//           "http://localhost:8080/api/budget/budgetNames",
+//           `${process.env.REACT_APP_BACKEND_URL}/api/budget/budgetNames",
 //           { withCredentials: true }
 //         );
 //         // const filteredBudgets = response.data.filter((budget) => budget.budget_name !== null);
 //         dispatch(getBudgetName(response.data));
 //       } catch (error) {
-//         console.log(error);
+//
 //       }
 //     };
 //   };
@@ -69,16 +67,14 @@ export const deleteBubgetThunk = (budgetToDelete) => {
   return async (dispatch) => {
     try {
       await axios.delete(
-        `http://localhost:8080/api/budget/${budgetToDelete.id}`,
+        `${process.env.REACT_APP_BACKEND_URL}/api/budget/${budgetToDelete.id}`,
         {
           withCredentials: true,
         }
       );
 
       dispatch(deleteABudget(budgetToDelete));
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   };
 };
 
@@ -86,17 +82,15 @@ export const getBudgetAmountThunk = (budgetId) => {
   return async (dispatch) => {
     try {
       const response = await axios.post(
-        "http://localhost:8080/api/budget/budgetAmount",
+        `${process.env.REACT_APP_BACKEND_URL}/api/budget/budgetAmount`,
         budgetId,
         {
           withCredentials: true,
         }
       );
-      console.log("Budget total retrieved by thunk: ", response.data);
+
       dispatch(getBudgetAmount(response.data));
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   };
 };
 
@@ -104,14 +98,12 @@ export const getBudgetsThunk = () => {
   return async (dispatch) => {
     try {
       const response = await axios.get(
-        "http://localhost:8080/api/budget/budgetDetails",
+        `${process.env.REACT_APP_BACKEND_URL}/api/budget/budgetDetails`,
         { withCredentials: true }
       );
-      // console.log(response);
+      //
       dispatch(getBudget(response.data));
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   };
 };
 
@@ -119,16 +111,14 @@ export const addBudgetThunk = (budgetInfo) => {
   return async (dispatch) => {
     try {
       const response = await axios.post(
-        "http://localhost:8080/api/budget/addBudget",
+        `${process.env.REACT_APP_BACKEND_URL}/api/budget/addBudget`,
         budgetInfo,
         {
           withCredentials: true,
         }
       );
-      console.log("RESPONSE FROM addBudgetThunk" + response.data);
+
       dispatch(addBudget(response.data));
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   };
 };

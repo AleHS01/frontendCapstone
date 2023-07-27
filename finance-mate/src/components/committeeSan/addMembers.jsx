@@ -8,14 +8,7 @@ import {
 } from "../../redux/groups/group.actions";
 import { createCustomerThunk } from "../../redux/stripe/stripe.actions";
 import styled from "styled-components";
-import {
-  Button,
-  Container,
-  Typography,
-  Grid,
-  Chip,
-  Box,
-} from "@mui/material";
+import { Button, Container, Typography, Grid, Chip, Box } from "@mui/material";
 
 const PageBackground = styled.div`
   width: 100%;
@@ -58,7 +51,7 @@ const Navbar = styled.div`
 const AddMembers = () => {
   const dispatch = useDispatch();
   const members = useSelector((state) => state.committee_groups);
-  console.log("members inside component", members);
+
   const location = useLocation();
   const navigate = useNavigate();
   const groupId = location.state.groupId;
@@ -74,8 +67,8 @@ const AddMembers = () => {
     alert("YOU'RE NOW PART OF A COMMITTEE GROUP!");
   };
   const handleClick = () => {
-    navigate("/activate")
-  }
+    navigate("/activate");
+  };
 
   return (
     <PageBackground>

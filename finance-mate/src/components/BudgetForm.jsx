@@ -2,13 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addBudgetThunk } from "../redux/budget/budget.action";
-import {
-  TextField,
-  Button,
-  Container,
-  Typography,
-  Grid,
-} from "@mui/material";
+import { TextField, Button, Container, Typography, Grid } from "@mui/material";
 import styled from "styled-components";
 import { getBudgetsThunk } from "../redux/budget/budget.action";
 // import RecentExpenses from "./RecentExpenses";
@@ -51,7 +45,6 @@ const BudgetForm = () => {
 
   useEffect(() => {
     dispatch(getBudgetsThunk());
-    console.log("Use Effect");
   }, [dispatch]);
 
   const handleSubmit = async (event) => {
@@ -67,13 +60,13 @@ const BudgetForm = () => {
       }
       return acc;
     }, {});
-    console.log(objectWithHighestId);
+
     navigate(`/budget-expense/${objectWithHighestId.id}`);
   };
 
   const handleBudget = (event) => {
     const budget_Id = event.target.value;
-    console.log("BudgetID in handleBudget() " + budget_Id);
+
     navigate(`/budget-expense/${budget_Id}`);
   };
 
