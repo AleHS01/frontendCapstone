@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -16,6 +16,10 @@ import {
   Chip,
   Box,
 } from "@mui/material";
+
+import StripeCheckout from "./Stripe/StripeCheckout"
+
+import axios  from "axios";
 
 const PageBackground = styled.div`
   width: 100%;
@@ -73,9 +77,33 @@ const AddMembers = () => {
     dispatch(createCustomerThunk());
     alert("YOU'RE NOW PART OF A COMMITTEE GROUP!");
   };
-  const handleClick = () => {
-    navigate("/activate")
+  const handleClick = async () => {
+    // navigate("/activate")
+    try {
+      // console.log("Local Storage",localStorage.getItem("setupIntent"))
+      // const client_secret=localStorage.getItem("setupIntent")
+      await axios.post("http://localhost:8080/api/stripe/payment_intent",{},{withCredentials:true}).then(
+        navigate("/success")
+      )
+    }catch (error) {
+        console.error("Error:", error);
+    }
   }
+
+  const [activateButton,setActivateButton]=useState(true);
+  useEffect(()=>{
+    const getCommitteeStatus=async()=>{
+      const response=await axios.post("http://localhost:8080/api/stripe/is_Committee_Ready",{},{withCredentials:true})
+      console.log(response.data)
+      setActivateButton(response.data)
+    }
+    try {
+      
+      getCommitteeStatus()
+    } catch (error) {
+      console.log(error)
+    }
+  },[])
 
   return (
     <PageBackground>
@@ -184,18 +212,17 @@ const AddMembers = () => {
                 )
               )}
           </Box>
+          <StripeCheckout></StripeCheckout>
         </ContentContainer>
-      </Container>
-      <Button
+      <button
         variant="contained"
-        sx={{
-          backgroundColor: "limegreen",
-          color: "#fff",
-        }}
+        className="pay-button"
         onClick={handleClick}
+        disabled={true}
       >
         Activate
-      </Button>
+      </button>
+      </Container>
     </PageBackground>
   );
 };

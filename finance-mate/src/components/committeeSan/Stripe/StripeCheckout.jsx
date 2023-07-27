@@ -21,8 +21,9 @@ const StripeCheckout=()=> {
       async function  fetchSetUpIntent(){
         const response = await axios.post("http://localhost:8080/api/stripe/setup_intent",{},{withCredentials:true})
         setClientSecret(response.data.setupIntent)
-
+        
         console.log("setupIntent",response.data.setupIntent)
+        localStorage.setItem("setupIntent",JSON.stringify(response.data.setupIntent))
       }
       fetchSetUpIntent();
     },[])
@@ -63,6 +64,8 @@ function CheckoutForm({clientSecret}) {
           },
         },
       });
+
+
       if (error) {
         // Handle any errors
         console.error(error);
@@ -122,7 +125,7 @@ function CheckoutForm({clientSecret}) {
               disabled={isPaymentLoading}
               onClick={handlePay}
             >
-              {isPaymentLoading ? "Loading..." : "Pay"}
+              {isPaymentLoading ? "Loading..." : "Attach Payment"}
             </button>
           </div>
         </form>
