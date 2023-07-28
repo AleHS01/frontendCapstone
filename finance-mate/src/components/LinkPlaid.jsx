@@ -156,7 +156,7 @@ const LinkPlaid = () => {
         animate="visible"
         transition={{duration: 0.8, delay: 0.50}}
         className="flex justify-evenly border border-black border-opacity-50 rounded-lg bg-gradient-to-r from-green-200 to-green-400">
-          <motion.img
+          <motion.img 
           variants={{
             hidden: {opacity: 0, x: -80},
             visible: {opacity: 1, x: 0},
@@ -169,7 +169,8 @@ const LinkPlaid = () => {
             alt="Plaid"
             style={{ width: "450px", height: "auto" }}
           />
-          <motion.img
+          
+          <motion.img 
           variants={{
             hidden: {opacity: 0, x: -80},
             visible: {opacity: 1, x: 0},
