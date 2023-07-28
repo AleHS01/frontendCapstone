@@ -41,7 +41,7 @@ const Accounts = () => {
                 }}
                 initial="hidden"
                 animate="visible"
-                transition={{ duration: 1, delay: 1 }}
+                transition={{ duration: 1, delay: 0.45 }}
                 className="ml-2"
                 src={creditdebit}
                 alt="Plaid"
@@ -56,7 +56,7 @@ const Accounts = () => {
               }}
               initial="hidden"
               animate="visible"
-              transition={{ duration: 1, delay: 1 }}
+              transition={{ duration: 1, delay: 0.45 }}
               className="bg-white p-4 rounded-md text-black font-semibold font-serif text-base border-2"
             >
               <h1>Account Name: {account.name}</h1>

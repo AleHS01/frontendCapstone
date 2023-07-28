@@ -90,7 +90,9 @@ const LinkPlaid = () => {
   // }
 
   return (
-    <div className="dashboard">
+    <div className="dashboard" >
+        {/* style={{ backgroundImage: 'url("https://plaid.com/assets/img/social-card-landscape.jpg")' }} */}
+      
       <SideBar></SideBar>
       <div
       //transition={{ duration: 0.7 }}
