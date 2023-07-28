@@ -62,7 +62,6 @@ const Navbar = styled.div`
 const AddMembers = () => {
   const dispatch = useDispatch();
   const members = useSelector((state) => state.committee_groups);
-  console.log("members inside component", members);
   const location = useLocation();
   const navigate = useNavigate();
   const groupId = location.state.groupId;
@@ -72,38 +71,63 @@ const AddMembers = () => {
     dispatch(getMembersThunk(groupId));
   }, [dispatch]);
 
+  const [activateStatus, setActivateStatus] = useState(false);
+  
+  const checkAllUsersPaymentStatus = async () => {
+    let allUsersHavePaymentMethods = false;
+    try {
+      const response = await axios.post("http://localhost:8080/api/stripe/checkPaymentStatus", {groupId}, {withCredentials: true})
+      allUsersHavePaymentMethods = response.data;
+  
+      setActivateStatus(allUsersHavePaymentMethods);
+
+      return allUsersHavePaymentMethods;
+    } catch (error) {
+      console.error("Error:", error);
+      setActivateStatus(false);
+      return false;
+    }
+  };
+  useEffect(() => {
+    checkAllUsersPaymentStatus();
+  }, [groupId]);
+
+  const handleClick = async () => {
+    try {
+      const allUsersHavePaymentMethods = await checkAllUsersPaymentStatus();
+  
+      if (!allUsersHavePaymentMethods) {
+        alert("Not all users have a payment method. Please add a payment method to all users before activating.");
+        return;
+      }
+  
+      navigate("/activate");
+  
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
+  
+
+
   const handleSubmit = async () => {
     dispatch(joinGroupThunk(groupId));
     dispatch(createCustomerThunk());
     alert("YOU'RE NOW PART OF A COMMITTEE GROUP!");
   };
-  const handleClick = async () => {
-    // navigate("/activate")
-    try {
-      // console.log("Local Storage",localStorage.getItem("setupIntent"))
-      // const client_secret=localStorage.getItem("setupIntent")
-      await axios.post("http://localhost:8080/api/stripe/payment_intent",{},{withCredentials:true}).then(
-        navigate("/success")
-      )
-    }catch (error) {
-        console.error("Error:", error);
-    }
-  }
 
-  const [activateButton,setActivateButton]=useState(true);
-  useEffect(()=>{
-    const getCommitteeStatus=async()=>{
-      const response=await axios.post("http://localhost:8080/api/stripe/is_Committee_Ready",{},{withCredentials:true})
-      console.log(response.data)
-      setActivateButton(response.data)
-    }
-    try {
-      
-      getCommitteeStatus()
-    } catch (error) {
-      console.log(error)
-    }
-  },[])
+  // const [activateButton,setActivateButton]=useState(true);
+  // useEffect(()=>{
+  //   const getCommitteeStatus=async()=>{
+  //     const response=await axios.post("http://localhost:8080/api/stripe/is_Committee_Ready",{},{withCredentials:true})
+  //     setActivateButton(response.data)
+  //   }
+  //   try {
+  //     getCommitteeStatus()
+  //   } catch (error) {
+  //     console.log(error)
+  //   }
+  // },[])
 
   return (
     <PageBackground>
@@ -160,7 +184,7 @@ const AddMembers = () => {
 
           <DottedBox>
             <Grid>
-              <Button
+            <Button
                 variant="contained"
                 sx={{
                   backgroundColor: "limegreen",
@@ -218,7 +242,7 @@ const AddMembers = () => {
         variant="contained"
         className="pay-button"
         onClick={handleClick}
-        disabled={true}
+        disabled={!activateStatus} // The Activate button is disabled when activateStatus is false
       >
         Activate
       </button>

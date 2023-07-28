@@ -77,6 +77,20 @@ function CheckoutForm({clientSecret}) {
         // You can update your UI here to indicate that the payment method was added.
         alert("Sucess!!!!!")
       }
+      try {
+        const response = await axios.post("http://localhost:8080/api/stripe/updatePaymentStatus", { hasValidPayment: true }, { withCredentials: true });
+        console.log("Update payment status response:", response.data);
+      } catch (error) {
+        console.error("Error:", error);
+      }
+
+      try {
+        const response = await axios.post("http://localhost:8080/api/stripe/payment_intent", { paymentMethodId: setupIntent.payment_method }, { withCredentials: true });
+        console.log("PaymentIntent response:", response.data);
+      } catch (error) {
+        console.error("Error:", error);
+      }
+
     } catch (error) {
       // Handle any unexpected errors
       console.error(error);

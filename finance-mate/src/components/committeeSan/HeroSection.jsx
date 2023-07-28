@@ -40,6 +40,23 @@ const HeroSection = () => {
       >
         Create Group
       </Button>
+      <Button
+        variant="contained"
+        sx={{
+          backgroundColor: "limegreen",
+          color: "#fff",
+          "&:hover": {
+            backgroundColor: "#05377f",
+          },
+          minWidth: "250px",
+          padding: "12px 32px",
+          fontSize: "1.2rem",
+          fontWeight: "bold",
+        }}
+        onClick={() => navigate("/addMembers/1")}
+      >
+        View Groups
+      </Button>
     </Box>
   );
 };
