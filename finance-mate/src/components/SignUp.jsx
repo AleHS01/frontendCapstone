@@ -14,7 +14,9 @@ import {
 import { BiLogIn } from "react-icons/bi";
 import GoogleButton from "react-google-button";
 import { googleLoginThunk } from "../redux/user/user.action";
-import { motion, useInView, useAnimation } from "framer-motion"
+import { motion, useInView, useAnimation } from "framer-motion";
+import signup from "../images/picforsignup.svg"; // Import the image
+
 
 
 //BiLogIn
@@ -117,22 +119,38 @@ const SignUp = () => {
       style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
     >
       <Link
-        className="hover:scale-110 hover:shadow-lg duration-200 absolute top-0 right-0 bg-green-600 flex rounded-md px-4 py-2 m-4 shadow-md font-semibold font-sans rounded-lg border-4"
+        className="hover:scale-110 hover:shadow-lg duration-200 absolute top-0 right-0 bg-green-400 flex rounded-md px-4 py-2 m-4 shadow-md font-semibold font-sans rounded-lg border-4"
         to="/"
       >
         <AiFillHome className="mt-0.5 text-lg" />
         Home
       </Link>
+      <motion.img 
+          variants={{
+            hidden: {opacity: 0, x: -80},
+            visible: {opacity: 1, x: 0},
+          }}
+          initial="hidden"
+          animate="visible"
+          transition={{duration: 0.8, delay: 0.80}}
+            className="ml-4 my-2"
+            src={signup}
+            alt="Plaid"
+            style={{ width: "200px", height: "auto" }}
+          />
 
-      <h1 className=" flex justify-center text-white my-5 bg-black p-4 rounded-md text-2xl font-extrabold border-8 shadow-lg">
-        Join Finance-Mate Today <br /> Unlock the Power of Financial Freedom
-      </h1>
+
+      <div className="border shadow-xl rounded-md bg-green-300 p-4 py-6 px-4 my-2 mb-2 border-black flex flex-col items-center"
+      style={{width: "400px", height: "650px"}}
+      >
+        <h1 className="flex justify-center font-extrabold text-4xl font-serif mb-2"> Sign Up</h1>
       <input
         type="text"
         placeholder="First Name"
         value={firstName}
         onChange={(e) => setFirstName(e.target.value)}
         className="mb-4 py-2 px-4 border border-black rounded-md shadow-lg focus:outline-none focus:border-green-500"
+        style={{width: "300px"}}
       />
       <input
         type="text"
@@ -140,6 +158,7 @@ const SignUp = () => {
         value={lastName}
         onChange={(e) => setLastName(e.target.value)}
         className="mb-4 py-2 px-4 border border-black rounded-md shadow-lg focus:outline-none focus:border-green-500"
+        style={{width: "300px"}}
       />
       <input
         type="text"
@@ -147,6 +166,7 @@ const SignUp = () => {
         value={username}
         onChange={(e) => setUsername(e.target.value)}
         className="mb-4 py-2 px-4 border border-black rounded-md shadow-lg focus:outline-none focus:border-green-500"
+        style={{width: "300px"}}
       />
 
       <input
@@ -155,9 +175,27 @@ const SignUp = () => {
         value={email}
         onChange={(e) => setEmail(e.target.value)}
         className="mb-4 py-2 px-4 border border-black rounded-md shadow-lg focus:outline-none focus:border-green-500"
+        style={{width: "300px"}}
+      />
+      <input
+        type={showPassword ? "text" : "password"}
+        placeholder="Password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+        className="mb-4 py-2 px-4 border border-black rounded-md shadow-lg focus:outline-none focus:border-green-500"
+        style={{width: "300px"}}
       />
 
-      <TextField
+      <input
+        type={showPasswordVerified ? "text" : "password"}
+        placeholder="Re-enter Password"
+        value={passwordVerified}
+        onChange={(e) => setPasswordVerified(e.target.value)}
+        className="mb-4 py-2 px-4 border border-black rounded-md shadow-lg focus:outline-none focus:border-green-500"
+        style={{width: "300px"}}
+      />
+
+      {/* <TextField
         type={showPassword ? "text" : "password"}
         label="Password"
         variant="outlined"
@@ -216,20 +254,46 @@ const SignUp = () => {
             </>
           ),
         }}
-      />
+      /> */}
       {formError && <p style={{ color: "red" }}>{formError}</p>}
       <button
+      style={{width: "150px"}}
         onClick={handleSubmit}
-        className="hover:scale-110 hover:shadow-lg duration-200 bg-green-600 flex rounded-md px-4 py-2 mr-4 items-center mv-4 shadow-md border-4 font-semibold font-sans"
+        className="flex justify-center hover:scale-110 hover:shadow-lg hover:bg-white duration-200 bg-green-500 flex rounded-md px-2 py-2 mr-4 items-center mv-4 shadow-md border-4 font-semibold font-sans"
       >
         <AiOutlineFileDone className="text-3xl" />
-        Submit
+        Sign Up
       </button>
+      <GoogleButton className="m-4 shadow-md hover:scale-105" onClick={googleLogin} />
+
+      <motion.div
+      variants={{
+        hidden: { opacity: 0, x: -75 },
+        visible: { opacity: 1, x: 0 },
+      }}
+      initial="hidden"
+      animate="visible"
+      transition={{ duration: 1, delay: 1 }}
+      className="bg-green-200 flex rounded-lg px-4 py-2 items-center shadow-md border-2"
+    >
+      <p className="text-black mr-2 font-serif text-lg">Already have an account?</p>
+      <Link
+        className="hover:scale-110 hover:shadow-lg duration-200 bg-green-400 flex rounded-md px-2 py-2 mr-4 items-center mt-mb-4 shadow-md text-semibold"
+        to="/login"
+      >
+        <BiLogIn className="text-lg mr-2 text" />
+        LOGIN
+      </Link>
+    </motion.div>
+
+
+      </div>
+      
       <br />
 
 
 
-      <motion.div
+      {/* <motion.div
       variants={{
         hidden: {opacity: 0, x: -75},
         visible: {opacity: 1, x: 0},
@@ -240,9 +304,9 @@ const SignUp = () => {
       className="bg-green-600 flex rounded-lg px-4 py-2 mr-4 items-center mb-4 shadow-md border-8 ">
         <p className="text-black mr-2 font-serif text-2xl">Or sign up with:</p>
         <GoogleButton className="m-4 shadow-md hover:scale-105" onClick={googleLogin} />  
-      </motion.div>
+      </motion.div> */}
 
-      <motion.div
+      {/* <motion.div
       variants={{
         hidden: {opacity: 0, x: -75},
         visible: {opacity: 1, x: 0},
@@ -259,7 +323,7 @@ const SignUp = () => {
           <BiLogIn className="text-lg mr-1" />
           LOGIN
         </Link>
-      </motion.div>
+      </motion.div> */}
 
       <motion.div
       variants={{
