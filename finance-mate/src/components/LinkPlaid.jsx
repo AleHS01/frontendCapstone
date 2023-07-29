@@ -157,6 +157,7 @@ const LinkPlaid = () => {
               <ImLink className="ml-2" />
             </motion.button> */}
             <br />
+            
             <motion.h1
               variants={{
                 hidden: { opacity: 0, x: -80 },
@@ -179,6 +180,7 @@ const LinkPlaid = () => {
               transition={{ duration: 0.8, delay: 0.5 }}
               //className="flex justify-evenly border border-black border-opacity-50 rounded-lg bg-gradient-to-r from-green-200 to-green-400"
             >
+              <div style={{ display: "flex", justifyContent: "center" }}>
               <motion.img
                 variants={{
                   hidden: { opacity: 0, x: -80 },
@@ -192,6 +194,8 @@ const LinkPlaid = () => {
                 alt="Plaid"
                 style={{ width: "700px", height: "auto" }}
               />
+              </div>
+             
               {/* <motion.img
                 variants={{
                   hidden: { opacity: 0, x: -80 },
