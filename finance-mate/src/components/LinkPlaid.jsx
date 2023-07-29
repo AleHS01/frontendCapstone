@@ -105,7 +105,7 @@ const LinkPlaid = () => {
   return (
 <div className="dashboard" style={{ display: "flex", flexDirection: "column" }}>
       <SideBar />
-      <div className="content p-3">
+      <div className="content p-1">
         <PageHeader page_name="Link Banks with Plaid" />
         <LinkPlaidBanner />
         <Grid container spacing={1} sx={{ marginBottom: "100px" }}>
@@ -113,7 +113,7 @@ const LinkPlaid = () => {
         </Grid>
       </div>
       <div
-        className="content p-7"
+        className="content p-1"
         style={{
           display: "flex",
           flexDirection: "column",
