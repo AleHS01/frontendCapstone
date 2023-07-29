@@ -12,7 +12,7 @@ import { getAccountsThunk } from "../redux/accounts/account.action";
 import Accounts from "./GetAccounts";
 import SideBar from "./side-bar";
 import plaidImage1 from "../images/plaid.png"; // Import the image
-import plaidImage2 from "../images/plaid-link-img.webp"; // Import the image
+import plaidImage2 from "frontendCapstone/finance-mate/src/images/plaid-link-img.webp"; // Import the image
 import plaidImage3 from "../images/plaid3.webp"; // Import the image
 import { ImLink } from "react-icons/im";
 
@@ -384,7 +384,7 @@ const LinkPlaid = () => {
                 alt="Plaid"
                 style={{ width: "450px", height: "auto" }}
               />
-              <motion.img
+              {/* <motion.img
                 variants={{
                   hidden: { opacity: 0, x: -80 },
                   visible: { opacity: 1, x: 0 },
@@ -396,7 +396,7 @@ const LinkPlaid = () => {
                 src={plaidImage3}
                 alt="Plaid"
                 style={{ width: "450px", height: "auto" }}
-              />
+              /> */}
             </motion.div>
             <br />
           </Grid>
