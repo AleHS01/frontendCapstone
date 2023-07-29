@@ -167,36 +167,36 @@ const AddMembers = () => {
   //     console.log(error)
   //   }
   // },[])
-  const handleClick = async () => {
-    // navigate("/activate")
-    try {
-      // console.log("Local Storage",localStorage.getItem("setupIntent"))
-      // const client_secret=localStorage.getItem("setupIntent")
-      await axios.post("http://localhost:8080/api/stripe/payment_intent",{},{withCredentials:true}).then(
-        navigate("/success")
-      )
-    }catch (error) {
-        console.error("Error:", error);
-    }
-  }
-  // const handleClick = () => {
-  //   navigate("/activate");
-  // };
+  // const handleClick = async () => {
+  //   // navigate("/activate")
+  //   try {
+  //     // console.log("Local Storage",localStorage.getItem("setupIntent"))
+  //     // const client_secret=localStorage.getItem("setupIntent")
+  //     await axios.post("http://localhost:8080/api/stripe/payment_intent",{},{withCredentials:true}).then(
+  //       navigate("/success")
+  //     )
+  //   }catch (error) {
+  //       console.error("Error:", error);
+  //   }
+  // }
+  // // const handleClick = () => {
+  // //   navigate("/activate");
+  // // };
 
-  const [activateButton,setActivateButton]=useState(true);
-  useEffect(()=>{
-    const getCommitteeStatus=async()=>{
-      const response=await axios.post("http://localhost:8080/api/stripe/is_Committee_Ready",{},{withCredentials:true})
-      console.log(response.data)
-      setActivateButton(response.data)
-    }
-    try {
+  // const [activateButton,setActivateButton]=useState(true);
+  // useEffect(()=>{
+  //   const getCommitteeStatus=async()=>{
+  //     const response=await axios.post("http://localhost:8080/api/stripe/is_Committee_Ready",{},{withCredentials:true})
+  //     console.log(response.data)
+  //     setActivateButton(response.data)
+  //   }
+  //   try {
       
-      getCommitteeStatus()
-    } catch (error) {
-      console.log(error)
-    }
-  },[])
+  //     getCommitteeStatus()
+  //   } catch (error) {
+  //     console.log(error)
+  //   }
+  // },[])
 
   return (
     <PageBackground>
