@@ -21,7 +21,7 @@ const Footer = () => {
         Made By:
       </Typography>
       <Typography variant="h6" component="div">
-      Muhammed Ashfaq, Alejhandro Hernandez, Hamza Khaliq, Ghulam Ahmed
+      Muhammed Ashfaq  Alejhandro Hernandez  Hamza Khaliq  Ghulam Ahmed
       </Typography>
       <Box
         sx={{
