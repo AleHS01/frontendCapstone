@@ -95,7 +95,7 @@ const LinkPlaid = () => {
     <div className="dashboard">
       <SideBar />
       <div className="content p-3">
-        <PageHeader page_name="My Budgets Dashboard" />
+        <PageHeader page_name="Plaid Dashboard" />
         <LinkPlaidBanner />
         <Grid container spacing={1} sx={{ marginBottom: "100px" }}>
           <Grid item xs={12} style={{ height: "400px" }}>
@@ -121,18 +121,6 @@ const LinkPlaid = () => {
               <ImLink className="ml-2" />
             </motion.button>
 
-            {/* <motion.img
-              variants={{
-                hidden: { opacity: 0, x: -90, scale: 0.5 },
-                visible: { opacity: 1, x: 0, scale: 1 },
-              }}
-              initial="hidden"
-              animate="visible"
-              transition={{ duration: 0.5, delay: 0.35 }}
-              src={plaidImage1}
-              alt="Plaid"
-              style={{ width: "400px", height: "auto", padding: "10px" }}
-            /> */}
             <br />
             {/* <motion.button
               variants={{
@@ -190,20 +178,6 @@ const LinkPlaid = () => {
                   style={{ width: "700px", height: "auto" }}
                 />
               </div>
-
-              {/* <motion.img
-                variants={{
-                  hidden: { opacity: 0, x: -80 },
-                  visible: { opacity: 1, x: 0 },
-                }}
-                initial="hidden"
-                animate="visible"
-                transition={{ duration: 0.8, delay: 0.8 }}
-                className="ml-4"
-                src={plaidImage3}
-                alt="Plaid"
-                style={{ width: "450px", height: "auto" }}
-              /> */}
             </motion.div>
             <br />
           </Grid>
