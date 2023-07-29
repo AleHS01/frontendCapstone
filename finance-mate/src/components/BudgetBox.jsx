@@ -85,9 +85,9 @@ const BudgetBox = ({ budget, expenses, expense_total }) => {
   let fillpercentage = (budgetexpenseamount / budgetamount) * 100;
   fillpercentage = Math.min(fillpercentage, 100);
   const remainingBal = (budgetamount - budgetexpenseamount).toFixed(1);
-  if(remainingBal < 10 && budgetamount !== remainingBal){
-    alert("YOURE BROKE BOI STOOOOOOOOOOOOOOP") 
-  }
+  // if(remainingBal < 10 && budgetamount !== remainingBal){
+  //   alert("YOURE BROKE BOI STOOOOOOOOOOOOOOP") 
+  // }
 
   return (
     <DottedBox>
