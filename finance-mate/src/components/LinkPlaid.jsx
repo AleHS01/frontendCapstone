@@ -106,9 +106,6 @@ const LinkPlaid = () => {
 
     
     <div className="dashboard">
-
-
-      <SideBar></SideBar>
       <div className="dashboard">
       <SideBar />
       <div className="content p-3">
@@ -210,7 +207,7 @@ const LinkPlaid = () => {
           />
         </motion.div>
         <br />
-        <motion.p
+        {/* <motion.p
           variants={{
             hidden: { opacity: 0, x: -80 },
             visible: { opacity: 1, x: 0 },
@@ -243,7 +240,7 @@ const LinkPlaid = () => {
           creates a standardized and dependable channel for our app to retrieve
           critical financial data, allowing us to provide a streamlined and
           tailored finance experience to our valued consumers.
-        </motion.p>
+        </motion.p> */}
       </div>
     </div>
   );
