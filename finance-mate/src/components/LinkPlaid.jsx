@@ -190,7 +190,7 @@ const LinkPlaid = () => {
                 className="ml-4"
                 src = "https://i.postimg.cc/j2SWn1x6/plaid-link-img.webp"
                 alt="Plaid"
-                style={{ width: "450px", height: "auto" }}
+                style={{ width: "700px", height: "auto" }}
               />
               {/* <motion.img
                 variants={{
