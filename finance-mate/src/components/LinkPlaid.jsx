@@ -369,7 +369,7 @@ const LinkPlaid = () => {
               initial="hidden"
               animate="visible"
               transition={{ duration: 0.8, delay: 0.5 }}
-              className="flex justify-evenly border border-black border-opacity-50 rounded-lg bg-gradient-to-r from-green-200 to-green-400"
+              //className="flex justify-evenly border border-black border-opacity-50 rounded-lg bg-gradient-to-r from-green-200 to-green-400"
             >
               <motion.img
                 variants={{
