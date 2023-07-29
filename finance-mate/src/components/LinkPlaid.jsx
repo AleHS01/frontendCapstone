@@ -301,19 +301,6 @@ const LinkPlaid = () => {
             >
               Budgets Overview
             </Typography>
-            <motion.img
-              variants={{
-                hidden: { opacity: 0, x: -90, scale: 0.5 },
-                visible: { opacity: 1, x: 0, scale: 1 },
-              }}
-              initial="hidden"
-              animate="visible"
-              transition={{ duration: 0.5, delay: 0.35 }}
-              src={plaidImage1}
-              alt="Plaid"
-              style={{ width: "400px", height: "auto", padding: "10px" }}
-            />
-            <br />
             <motion.button
               variants={{
                 hidden: { opacity: 0, x: 90, scale: 0.5 },
@@ -329,6 +316,38 @@ const LinkPlaid = () => {
               Link with Plaid
               <ImLink className="ml-2" />
             </motion.button>
+
+
+
+
+            {/* <motion.img
+              variants={{
+                hidden: { opacity: 0, x: -90, scale: 0.5 },
+                visible: { opacity: 1, x: 0, scale: 1 },
+              }}
+              initial="hidden"
+              animate="visible"
+              transition={{ duration: 0.5, delay: 0.35 }}
+              src={plaidImage1}
+              alt="Plaid"
+              style={{ width: "400px", height: "auto", padding: "10px" }}
+            /> */}
+            <br />
+            {/* <motion.button
+              variants={{
+                hidden: { opacity: 0, x: 90, scale: 0.5 },
+                visible: { opacity: 1, x: 0, scale: 1 },
+              }}
+              initial="hidden"
+              animate="visible"
+              transition={{ duration: 0.6, delay: 0.45 }}
+              className="plaid-button flex items-center"
+              onClick={popUp}
+              disabled={!ready}
+            >
+              Link with Plaid
+              <ImLink className="ml-2" />
+            </motion.button> */}
             <br />
             <motion.h1
               variants={{
@@ -389,104 +408,4 @@ const LinkPlaid = () => {
 };
 
 export default LinkPlaid;
-
-/**
- * {/* <div className="dashboard" style={{ display: "flex", flexDirection: "column" }}>
-      <SideBar />
-      <div className="content p-1">
-        <PageHeader page_name="Link Banks with Plaid" />
-        <LinkPlaidBanner />
-        <Grid container spacing={1} sx={{ marginBottom: "100px" }}>
-          <Grid item xs={12} style={{ height: "400px" }}></Grid>
-        </Grid>
-      </div>
-      <div
-        className="content p-1"
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-        }}
-      >
-        <motion.img
-          variants={{
-            hidden: { opacity: 0, x: -90, scale: 0.5 },
-            visible: { opacity: 1, x: 0, scale: 1 },
-          }}
-          initial="hidden"
-          animate="visible"
-          transition={{ duration: 0.5, delay: 0.35 }}
-          src={plaidImage1}
-          alt="Plaid"
-          style={{ width: "400px", height: "auto", padding: "10px" }}
-        />
-        <br />
-        <motion.button
-          variants={{
-            hidden: { opacity: 0, x: 90, scale: 0.5 },
-            visible: { opacity: 1, x: 0, scale: 1 },
-          }}
-          initial="hidden"
-          animate="visible"
-          transition={{ duration: 0.6, delay: 0.45 }}
-          className="plaid-button flex items-center"
-          onClick={popUp}
-          disabled={!ready}
-        >
-          Link with Plaid
-          <ImLink className="ml-2" />
-        </motion.button>
-        <br />
-        <motion.h1
-          variants={{
-            hidden: { opacity: 0, x: -80 },
-            visible: { opacity: 1, x: 0 },
-          }}
-          initial="hidden"
-          animate="visible"
-          transition={{ duration: 0.7, delay: 0.5 }}
-          className="font-bold font-serif text-xl "
-        >
-          Secure Banking with Plaid
-        </motion.h1>
-        <motion.div
-          variants={{
-            hidden: { opacity: 0, x: -80 },
-            visible: { opacity: 1, x: 0 },
-          }}
-          initial="hidden"
-          animate="visible"
-          transition={{ duration: 0.8, delay: 0.5 }}
-          className="flex justify-evenly border border-black border-opacity-50 rounded-lg bg-gradient-to-r from-green-200 to-green-400"
-        >
-          <motion.img
-            variants={{
-              hidden: { opacity: 0, x: -80 },
-              visible: { opacity: 1, x: 0 },
-            }}
-            initial="hidden"
-            animate="visible"
-            transition={{ duration: 0.8, delay: 0.65 }}
-            className="ml-4"
-            src={plaidImage2}
-            alt="Plaid"
-            style={{ width: "450px", height: "auto" }}
-          />
-          <motion.img
-            variants={{
-              hidden: { opacity: 0, x: -80 },
-              visible: { opacity: 1, x: 0 },
-            }}
-            initial="hidden"
-            animate="visible"
-            transition={{ duration: 0.8, delay: 0.8 }}
-            className="ml-4"
-            src={plaidImage3}
-            alt="Plaid"
-            style={{ width: "450px", height: "auto" }}
-          />
-        </motion.div>
-        <br />
-      </div>
-    </div> */
 
