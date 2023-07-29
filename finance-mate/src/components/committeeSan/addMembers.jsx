@@ -6,20 +6,15 @@ import {
   joinGroupThunk,
   getMembersThunk,
 } from "../../redux/groups/group.actions";
+import { fetchUserThunk } from "../../redux/user/user.action";
+
 import { createCustomerThunk } from "../../redux/stripe/stripe.actions";
 import styled from "styled-components";
-import {
-  Button,
-  Container,
-  Typography,
-  Grid,
-  Chip,
-  Box,
-} from "@mui/material";
+import { Button, Container, Typography, Grid, Chip, Box } from "@mui/material";
 
-import StripeCheckout from "./Stripe/StripeCheckout"
+import StripeCheckout from "./Stripe/StripeCheckout";
 
-import axios  from "axios";
+import axios from "axios";
 const PageBackground = styled.div`
   width: 100%;
   height: 100vh;
@@ -61,6 +56,7 @@ const Navbar = styled.div`
 const AddMembers = () => {
   const dispatch = useDispatch();
   const members = useSelector((state) => state.committee_groups);
+  const user = useSelector((state) => state.user);
   const location = useLocation();
   const navigate = useNavigate();
   const groupId = location.state.groupId;
@@ -72,16 +68,17 @@ const AddMembers = () => {
 
   const [activateStatus, setActivateStatus] = useState(false);
   const [paymentMethodId, setPaymentMethodId] = useState(null);
+  const [isCardAttached, setIsCardAttached] = useState(false);
 
-  
   const checkAllUsersPaymentStatus = async () => {
     let allUsersHavePaymentMethods = false;
     try {
-      const response = await axios.post("http://localhost:8080/api/stripe/checkPaymentStatus", {groupId}, {withCredentials: true})
+      const response = await axios.post(
+        "http://localhost:8080/api/stripe/checkPaymentStatus",
+        { groupId },
+        { withCredentials: true }
+      );
       allUsersHavePaymentMethods = response.data;
-  
-      setActivateStatus(allUsersHavePaymentMethods);
-
       return allUsersHavePaymentMethods;
     } catch (error) {
       console.error("Error:", error);
@@ -90,38 +87,69 @@ const AddMembers = () => {
     }
   };
   useEffect(() => {
-    checkAllUsersPaymentStatus();
-  }, [groupId]);
+    const isAdminFunc = async () => {
+      const allUsersHavePaymentMethods = await checkAllUsersPaymentStatus();
+      console.log(
+        "do all user have payment method?",
+        await allUsersHavePaymentMethods
+      );
+      if (
+        allUsersHavePaymentMethods &&
+        user.Group &&
+        user.Group.id === groupId &&
+        user.isAdmin
+      ) {
+        setActivateStatus(true);
+      } else {
+        setActivateStatus(false);
+      }
+    };
+    isAdminFunc();
+    dispatch(fetchUserThunk());
+    dispatch(getMembersThunk(groupId));
+  }, [groupId, user]);
 
   const handleClick = async () => {
     try {
       const allUsersHavePaymentMethods = await checkAllUsersPaymentStatus();
-  
+
       if (!allUsersHavePaymentMethods) {
-        alert("Not all users have a payment method. Please add a payment method to all users before activating.");
+        alert(
+          "Not all users have a payment method. Please add a payment method to all users before activating."
+        );
         return;
       }
       if (allUsersHavePaymentMethods) {
         try {
-          const response = await axios.post("http://localhost:8080/api/stripe/payment_intent", {},{withCredentials: true });
+          const response = await axios.post(
+            "http://localhost:8080/api/stripe/payment_intent",
+            {},
+            { withCredentials: true }
+          );
           console.log("PaymentIntent response:", response.data);
         } catch (error) {
           console.error("Error:", error);
         }
       }
+      dispatch(fetchUserThunk());
+      dispatch(getMembersThunk(groupId));
+
       navigate("/activate");
-  
     } catch (error) {
       console.error("Error:", error);
     }
   };
-  
-
 
   const handleSubmit = async () => {
     dispatch(joinGroupThunk(groupId));
     dispatch(createCustomerThunk());
+    dispatch(fetchUserThunk());
+    dispatch(getMembersThunk(groupId));
     alert("YOU'RE NOW PART OF A COMMITTEE GROUP!");
+  };
+
+  const handleCardAttach = () => {
+    setIsCardAttached(!isCardAttached);
   };
 
   // const [activateButton,setActivateButton]=useState(true);
@@ -181,7 +209,7 @@ const AddMembers = () => {
       </Navbar>
       <Container maxWidth="sm">
         <ContentContainer>
-        <Typography
+          <Typography
             variant="h2"
             align="center"
             sx={{ color: "black", fontWeight: "bold" }}
@@ -192,7 +220,7 @@ const AddMembers = () => {
 
           <DottedBox>
             <Grid>
-            <Button
+              <Button
                 variant="contained"
                 sx={{
                   backgroundColor: "limegreen",
@@ -203,9 +231,25 @@ const AddMembers = () => {
                   minWidth: "450px",
                 }}
                 onClick={handleSubmit}
+                disabled={!!user.GroupId}
               >
                 Join Group
               </Button>
+              {user.GroupId !== groupId && user.GroupId ? (
+                <h1
+                  style={{
+                    fontSize: "1.3rem",
+                    color: "red",
+                    fontWeight: 600,
+                    textAlign: "center",
+                    marginTop: "15px",
+                  }}
+                >
+                  You Belong to Another group
+                </h1>
+              ) : (
+                <></>
+              )}
             </Grid>
           </DottedBox>
           <Typography variant="h2">
@@ -244,16 +288,36 @@ const AddMembers = () => {
                 )
               )}
           </Box>
-          <StripeCheckout setPaymentMethodId={setPaymentMethodId} />
+          {user.Stripe_Customer_id &&
+          !user.hasValidPayment &&
+          user.GroupId === groupId ? (
+            <StripeCheckout
+              setPaymentMethodId={setPaymentMethodId}
+              handleCardAttach={handleCardAttach}
+            />
+          ) : user.hasValidPayment ? (
+            <></>
+          ) : (
+            <h1
+              style={{
+                textAlign: "center",
+                margin: "10px 0",
+                fontWeight: "bold",
+                fontSize: "1.5rem",
+              }}
+            >
+              Please Join a Group
+            </h1>
+          )}
         </ContentContainer>
-      <button
-        variant="contained"
-        className="pay-button"
-        onClick={handleClick}
-        disabled={!activateStatus} // The Activate button is disabled when activateStatus is false
-      >
-        Activate
-      </button>
+        <button
+          variant="contained"
+          className="pay-button"
+          onClick={handleClick}
+          disabled={!activateStatus} // The Activate button is disabled when activateStatus is false
+        >
+          Activate
+        </button>
       </Container>
     </PageBackground>
   );
