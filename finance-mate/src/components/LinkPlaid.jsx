@@ -299,7 +299,7 @@ const LinkPlaid = () => {
               variant="h4"
               sx={{ textAlign: "center", fontWeight: "500", color: "#0e365e" }}
             >
-              Budgets Overview
+              Get Started With Plaid
             </Typography>
             <motion.button
               variants={{
@@ -313,7 +313,7 @@ const LinkPlaid = () => {
               onClick={popUp}
               disabled={!ready}
             >
-             Get Started With Plaid
+             Link with Plaid
               <ImLink className="ml-2" />
             </motion.button>
 
