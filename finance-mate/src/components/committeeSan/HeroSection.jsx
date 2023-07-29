@@ -18,10 +18,10 @@ const HeroSection = () => {
       }}
     >
       <Typography variant="h1" fontWeight="bold" mb={2}>
-        Welcome to Finance Mate
+        Welcome to CommitteeSan
       </Typography>
       <Typography variant="h5" mb={4}>
-        Your Ultimate Financial Companion
+        Powered by FinanceMate
       </Typography>
       <Button
         variant="contained"

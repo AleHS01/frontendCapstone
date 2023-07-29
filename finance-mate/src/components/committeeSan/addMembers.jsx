@@ -14,7 +14,6 @@ import { Button, Container, Typography, Grid, Chip, Box } from "@mui/material";
 import StripeCheckout from "./Stripe/StripeCheckout";
 
 import axios from "axios";
-
 const PageBackground = styled.div`
   width: 100%;
   height: 100vh;
@@ -62,6 +61,7 @@ const AddMembers = () => {
   const groupId = location.state.groupId;
   const group_name = location.state.groupName;
   const [activateStatus, setActivateStatus] = useState(false);
+  const [paymentMethodId, setPaymentMethodId] = useState(null);
 
   useEffect(() => {
     dispatch(getMembersThunk(groupId));
@@ -116,8 +116,19 @@ const AddMembers = () => {
         );
         return;
       }
-
-      // navigate("/activate");
+      if (allUsersHavePaymentMethods) {
+        try {
+          const response = await axios.post(
+            "http://localhost:8080/api/stripe/payment_intent",
+            {},
+            { withCredentials: true }
+          );
+          console.log("PaymentIntent response:", response.data);
+        } catch (error) {
+          console.error("Error:", error);
+        }
+      }
+      navigate("/activate");
     } catch (error) {
       console.error("Error:", error);
     }
@@ -239,7 +250,7 @@ const AddMembers = () => {
                 )
               )}
           </Box>
-          <StripeCheckout></StripeCheckout>
+          <StripeCheckout setPaymentMethodId={setPaymentMethodId} />
         </ContentContainer>
         <button
           variant="contained"
