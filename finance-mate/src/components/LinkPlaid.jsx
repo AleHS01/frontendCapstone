@@ -103,7 +103,7 @@ const LinkPlaid = () => {
   // }
 
   return (
-<div className="dashboard">
+<div className="dashboard" style={{ display: "flex", flexDirection: "column" }}>
       <SideBar />
       <div className="content p-3">
         <PageHeader page_name="Link Banks with Plaid" />
