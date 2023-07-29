@@ -13,11 +13,9 @@ const Logout = () => {
       // Simulating a logout request with a delay
       await new Promise((resolve) => setTimeout(resolve, 2000));
       await dispatch(logoutUserThunk());
-      console.log("Logout successful");
+
       navigate("/");
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   };
 
   useEffect(() => {

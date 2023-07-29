@@ -13,11 +13,9 @@ const Accounts = () => {
 
   useEffect(() => {
     try {
-      dispatch(fetchUserThunk());
+      // dispatch(fetchUserThunk());
       dispatch(getAccountsThunk());
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   }, []);
 
   return (
@@ -37,7 +35,7 @@ const Accounts = () => {
               <motion.img
                 variants={{
                   hidden: { opacity: 0, x: -90, scale: 0.1 },
-                  visible: { opacity: 1, x: 0, scale: 1 }
+                  visible: { opacity: 1, x: 0, scale: 1 },
                 }}
                 initial="hidden"
                 animate="visible"
@@ -52,7 +50,7 @@ const Accounts = () => {
             <motion.span
               variants={{
                 hidden: { opacity: 0, x: -90, rotate: -45 },
-                visible: { opacity: 1, x: 0, rotate: 0 }
+                visible: { opacity: 1, x: 0, rotate: 0 },
               }}
               initial="hidden"
               animate="visible"

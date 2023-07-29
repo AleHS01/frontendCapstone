@@ -25,22 +25,20 @@ import { AiOutlineTransaction } from "react-icons/ai";
 function Transactions() {
   const dispatch = useDispatch();
   const transactions = useSelector((state) => state.trans);
-  console.log("Transactions here", transactions);
-  const user = useSelector((state) => state.user);
+
+  // const user = useSelector((state) => state.user);
   const [sortedTransactions, setSortedTransactions] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const transactionsPerPage = 30;
 
-  const getUser = async () => {
-    try {
-      dispatch(fetchUserThunk());
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // const getUser = async () => {
+  //   try {
+  //     dispatch(fetchUserThunk());
+  //   } catch (error) {}
+  // };
 
   useEffect(() => {
-    getUser().then(() => dispatch(getTransactionsThunk()));
+    dispatch(getTransactionsThunk());
   }, []);
 
   useEffect(() => {
@@ -83,103 +81,99 @@ function Transactions() {
   const totalPages = Math.ceil(sortedTransactions.length / transactionsPerPage);
 
   return (
+    <div>
+      <PageHeader page_name="My Transactions" />
 
-      <div >
-        <PageHeader page_name="My Transactions" />
-
-        <div
-          style={{
-            height: "450px",
-            width: "100%",
-            margin: "0 auto",
-            textAlign: "center",
-          }}
+      <div
+        style={{
+          height: "450px",
+          width: "100%",
+          margin: "0 auto",
+          textAlign: "center",
+        }}
+      >
+        <Typography
+          variant="h4"
+          sx={{ textAlign: "center", fontWeight: "500", color: "#0e365e" }}
         >
-          <Typography
-            variant="h4"
-            sx={{ textAlign: "center", fontWeight: "500", color: "#0e365e" }}
-          >
-            Transactions Summary
+          Transactions Summary
+        </Typography>
+        <TransactionCatergory transactions={transactions} />
+      </div>
+
+      <Grid
+        container
+        alignItems="center"
+        spacing={2}
+        sx={{ mt: "20px", height: "40px" }}
+      >
+        <Grid item>
+          <Typography variant="h4" sx={{ fontWeight: "500", color: "#4CAF50" }}>
+            All Your Transactions
           </Typography>
-          <TransactionCatergory transactions={transactions} />
-        </div>
+        </Grid>
+        <Grid item>
+          <Typography variant="h6" sx={{ color: "#05377f" }}>
+            Amount:
+            <Tooltip title="Ascending" placement="top">
+              <IconButton onClick={handleSortAsc}>
+                <ArrowUpwardIcon
+                  fontSize="small"
+                  sx={{ color: "#9da3ab" }}
+                  className="filter-arrows"
+                />
+              </IconButton>
+            </Tooltip>
+            <Tooltip title="Descending" placement="top">
+              <IconButton onClick={handleSortDesc}>
+                <ArrowDownwardIcon
+                  fontSize="small"
+                  sx={{ color: "#9da3ab" }}
+                  className="filter-arrows"
+                />
+              </IconButton>
+            </Tooltip>
+          </Typography>
+        </Grid>
+        <Grid item sx={{ mr: "0px" }}>
+          <Typography variant="h6" sx={{ color: "#05377f" }}>
+            Date:
+            <Tooltip title="Recent" placement="top">
+              <IconButton onClick={handleSortRecent}>
+                <ArrowUpwardIcon
+                  fontSize="small"
+                  sx={{ color: "#9da3ab" }}
+                  className="filter-arrows"
+                />
+              </IconButton>
+            </Tooltip>
+            <Tooltip title="Oldest" placement="top">
+              <IconButton onClick={handleSortOldest}>
+                <ArrowDownwardIcon
+                  fontSize="small"
+                  sx={{ color: "#9da3ab" }}
+                  className="filter-arrows"
+                />
+              </IconButton>
+            </Tooltip>
+          </Typography>
+        </Grid>
+        <Grid item xs>
+          <Divider
+            orientation="vertical"
+            variant="middle"
+            sx={{ borderColor: "#4CAF50", height: "100%" }}
+          />
+        </Grid>
 
-        <Grid
-          container
-          alignItems="center"
-          spacing={2}
-          sx={{ mt: "20px", height: "40px" }}
-        >
-          <Grid item>
-            <Typography
-              variant="h4"
-              sx={{ fontWeight: "500", color: "#4CAF50" }}
-            >
-              All Your Transactions
-            </Typography>
-          </Grid>
-          <Grid item >
-            <Typography variant="h6" sx={{ color: "#05377f" }}>
-              Amount:
-              <Tooltip title="Ascending" placement="top">
-                <IconButton onClick={handleSortAsc}>
-                  <ArrowUpwardIcon
-                    fontSize="small"
-                    sx={{ color: "#9da3ab" }}
-                    className="filter-arrows"
-                  />
-                </IconButton>
-              </Tooltip>
-              <Tooltip title="Descending" placement="top">
-                <IconButton onClick={handleSortDesc}>
-                  <ArrowDownwardIcon
-                    fontSize="small"
-                    sx={{ color: "#9da3ab" }}
-                    className="filter-arrows"
-                  />
-                </IconButton>
-              </Tooltip>
-            </Typography>
-          </Grid>
-          <Grid item sx={{ mr: "0px" }}>
-            <Typography variant="h6" sx={{ color: "#05377f" }}>
-              Date:
-              <Tooltip title="Recent" placement="top">
-                <IconButton onClick={handleSortRecent}>
-                  <ArrowUpwardIcon
-                    fontSize="small"
-                    sx={{ color: "#9da3ab" }}
-                    className="filter-arrows"
-                  />
-                </IconButton>
-              </Tooltip>
-              <Tooltip title="Oldest" placement="top">
-                <IconButton onClick={handleSortOldest}>
-                  <ArrowDownwardIcon
-                    fontSize="small"
-                    sx={{ color: "#9da3ab" }}
-                    className="filter-arrows"
-                  />
-                </IconButton>
-              </Tooltip>
-            </Typography>
-          </Grid>
-          <Grid item xs>
-            <Divider
-              orientation="vertical"
-              variant="middle"
-              sx={{ borderColor: "#4CAF50", height: "100%" }}
-            />
-          </Grid>
-          
-          <Grid item xs>
-            <Divider
-              orientation="vertical"
-              variant="middle"
-              sx={{ borderColor: "#4CAF50", height: "100%" }}
-            />
-          </Grid>
-          {/* <Grid item>
+        <Grid item xs>
+          <Divider
+            orientation="vertical"
+            variant="middle"
+            sx={{ borderColor: "#4CAF50", height: "100%" }}
+          />
+        </Grid>
+        {/* <Grid item>
             <Box
               sx={{
                 display: "flex",
@@ -194,77 +188,70 @@ function Transactions() {
               />
             </Box>
           </Grid> */}
-        </Grid >
-        {/* --------------------- */}
-        <div style={{ margin: "30px auto 10px", width: "90%" }}>
-          {sortedTransactions
-            .slice(
-              (currentPage - 1) * transactionsPerPage,
-              currentPage * transactionsPerPage
-            )
-            .map((transaction) => {
-              const isNegativeAmount = transaction.amount < 0;
-              const formattedAmount = isNegativeAmount
-                ? `-$${Math.abs(transaction.amount)}` //converting from cents to normal amount
-                : `$${transaction.amount}`; //converting from cents to normal amount
+      </Grid>
+      {/* --------------------- */}
+      <div style={{ margin: "30px auto 10px", width: "90%" }}>
+        {sortedTransactions
+          .slice(
+            (currentPage - 1) * transactionsPerPage,
+            currentPage * transactionsPerPage
+          )
+          .map((transaction) => {
+            const isNegativeAmount = transaction.amount < 0;
+            const formattedAmount = isNegativeAmount
+              ? `-$${Math.abs(transaction.amount)}` //converting from cents to normal amount
+              : `$${transaction.amount}`; //converting from cents to normal amount
 
-              return (
-                <Paper
-                  elevation={3}
-                  sx={{
-                    p: 2,
-                    mt: 2,
-                    display: "flex",
-                    flexDirection: "column",
-                    width: "100%",
-                  }}
-                  key={transaction.transaction_id} // Add a unique key for each transaction
-                >
-                  <Box
-                    sx={{ display: "flex", justifyContent: "space-between" }}
+            return (
+              <Paper
+                elevation={3}
+                sx={{
+                  p: 2,
+                  mt: 2,
+                  display: "flex",
+                  flexDirection: "column",
+                  width: "100%",
+                }}
+                key={transaction.transaction_id} // Add a unique key for each transaction
+              >
+                <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+                  <Typography variant="body1" sx={{ fontWeight: "bold" }}>
+                    Merchant: {transaction.merchant_name}
+                  </Typography>
+                  <Typography
+                    variant="body1"
+                    sx={{
+                      fontWeight: "bold",
+                      color: isNegativeAmount ? "red" : "inherit",
+                    }}
                   >
-                    <Typography variant="body1" sx={{ fontWeight: "bold" }}>
-                      Merchant: {transaction.merchant_name}
-                    </Typography>
-                    <Typography
-                      variant="body1"
-                      sx={{
-                        fontWeight: "bold",
-                        color: isNegativeAmount ? "red" : "inherit",
-                      }}
-                    >
-                      {formattedAmount}
-                    </Typography>
-                  </Box>
-                  <Typography variant="body2">{transaction.name}</Typography>
-                  <Box
-                    sx={{ display: "flex", justifyContent: "space-between" }}
-                  >
-                    <Typography variant="caption" sx={{ fontStyle: "italic" }}>
-                      Date: {transaction.date}
-                    </Typography>
-                    <Chip
-                      size="small"
-                      label={transaction.category}
-                      color="primary"
-                      sx={{ fontStyle: "italic" }}
-                    />
-                  </Box>
-                </Paper>
-              );
-            })}
-          {/* <Box sx={{ display: "flex", justifyContent: "center", mt: 3 }}>
+                    {formattedAmount}
+                  </Typography>
+                </Box>
+                <Typography variant="body2">{transaction.name}</Typography>
+                <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+                  <Typography variant="caption" sx={{ fontStyle: "italic" }}>
+                    Date: {transaction.date}
+                  </Typography>
+                  <Chip
+                    size="small"
+                    label={transaction.category}
+                    color="primary"
+                    sx={{ fontStyle: "italic" }}
+                  />
+                </Box>
+              </Paper>
+            );
+          })}
+        {/* <Box sx={{ display: "flex", justifyContent: "center", mt: 3 }}>
             <Pagination
               count={totalPages}
               page={currentPage}
               onChange={(event, value) => setCurrentPage(value)}
             />
           </Box> */}
-        </div>
-
-        
       </div>
-
+    </div>
   );
 }
 

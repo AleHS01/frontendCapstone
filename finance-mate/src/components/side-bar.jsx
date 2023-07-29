@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { logoutUserThunk } from "../redux/user/user.action";
@@ -21,11 +21,9 @@ function SideBar() {
   const handleLogout = async () => {
     try {
       dispatch(logoutUserThunk());
-      console.log("Logout successful");
+
       navigate("/");
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   };
 
   const handleLinkPlaid = () => {
@@ -48,23 +46,20 @@ function SideBar() {
   // //   navigate("/transactions");
   // // };
 
-
   const handleSetBudget = () => {
     navigate("/budget-view");
   };
-  
+
   // const handleCommitteeSan = () => {
   //   navigate("/committeesan")
   // }
 
   // const controls = useAnimation();
-  // console.log("CONTROLSSS: "+JSON.stringify(controls));
+  //
 
   //const [inView] = useInView();
 
   const location = useLocation();
-  console.log(JSON.stringify(location))
-  console.log("Location 1: "+location)
 
   // useEffect(() => {
   //   if (isLoaded) {
@@ -72,11 +67,8 @@ function SideBar() {
   //     isLoaded= false;
   //   }
   // }, [controls, isLoaded]);
-  
 
   return (
-    
-
     <div className="flex">
       {/* Arrow to open and close side bar */}
       <div
@@ -92,17 +84,20 @@ function SideBar() {
         />
 
         {/* Header */}
-        <motion.div 
-        variants={{
-          hidden: location.state ? {opacity: 0, x: -75} : {opacity: 1, x: 0},
-          visible: {opacity: 1, x: 0},
-        }}
-        initial="hidden"
-        animate = "visible"
-        // {location.state ? "visible" : ""}
-        transition={{duration: 0.5, delay: 0.20}}
-        viewport={{ once: true }}
-        className="inline-flex">
+        <motion.div
+          variants={{
+            hidden: location.state
+              ? { opacity: 0, x: -75 }
+              : { opacity: 1, x: 0 },
+            visible: { opacity: 1, x: 0 },
+          }}
+          initial="hidden"
+          animate="visible"
+          // {location.state ? "visible" : ""}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          viewport={{ once: true }}
+          className="inline-flex"
+        >
           <RiBankFill
             className={`bg-white text-4xl rounded cursor-pointer block float-left mr-2 duration-500 ${
               open && "rotate-[360deg]"
@@ -120,13 +115,15 @@ function SideBar() {
         {/* All other buttons */}
 
         <motion.div
-        variants={{
-          hidden: location.state ? {opacity: 0, x: -75} : {opacity: 1, x: 0},
-          visible: {opacity: 1, x: 0},
-        }}
-        initial="hidden"
-        animate="visible"
-        transition={{duration: 0.5, delay: 0.40}}
+          variants={{
+            hidden: location.state
+              ? { opacity: 0, x: -75 }
+              : { opacity: 1, x: 0 },
+            visible: { opacity: 1, x: 0 },
+          }}
+          initial="hidden"
+          animate="visible"
+          transition={{ duration: 0.5, delay: 0.4 }}
           className={`flex items-center rounded-md px-2 py-2  ${
             !open ? "px-1" : "px-4"
           }`}
@@ -145,15 +142,16 @@ function SideBar() {
           </button>
         </motion.div>
 
-
         <motion.div
-        variants={{
-          hidden: location.state ? {opacity: 0, x: -75} : {opacity: 1, x: 0},
-          visible: {opacity: 1, x: 0},
-        }}
-        initial="hidden"
-        animate="visible"
-        transition={{duration: 0.5, delay: 0.60}}
+          variants={{
+            hidden: location.state
+              ? { opacity: 0, x: -75 }
+              : { opacity: 1, x: 0 },
+            visible: { opacity: 1, x: 0 },
+          }}
+          initial="hidden"
+          animate="visible"
+          transition={{ duration: 0.5, delay: 0.6 }}
           className={`flex items-center rounded-md px-2 py-2  ${
             !open ? "px-1" : "px-4"
           }`}
@@ -173,13 +171,15 @@ function SideBar() {
           </button>
         </motion.div>
         <motion.div
-        variants={{
-          hidden: location.state ? {opacity: 0, x: -75} : {opacity: 1, x: 0},
-          visible: {opacity: 1, x: 0},
-        }}
-        initial="hidden"
-        animate="visible"
-        transition={{duration: 0.5, delay: 1}}
+          variants={{
+            hidden: location.state
+              ? { opacity: 0, x: -75 }
+              : { opacity: 1, x: 0 },
+            visible: { opacity: 1, x: 0 },
+          }}
+          initial="hidden"
+          animate="visible"
+          transition={{ duration: 0.5, delay: 1 }}
           className={`flex items-center rounded-md px-2 py-2  ${
             !open ? "px-1" : "px-4"
           }`}
@@ -199,13 +199,15 @@ function SideBar() {
         </motion.div>
 
         <motion.div
-        variants={{
-          hidden: location.state ? {opacity: 0, x: -75} : {opacity: 1, x: 0},
-          visible: {opacity: 1, x: 0},
-        }}
-        initial="hidden"
-        animate="visible"
-        transition={{duration: 0.5, delay: 1.20}}
+          variants={{
+            hidden: location.state
+              ? { opacity: 0, x: -75 }
+              : { opacity: 1, x: 0 },
+            visible: { opacity: 1, x: 0 },
+          }}
+          initial="hidden"
+          animate="visible"
+          transition={{ duration: 0.5, delay: 1.2 }}
           className={`flex items-center rounded-md px-2 py-2  ${
             !open ? "px-1" : "px-4"
           }`}
@@ -225,13 +227,15 @@ function SideBar() {
         </motion.div>
 
         <motion.div
-        variants={{
-          hidden: location.state ? {opacity: 0, x: -75} : {opacity: 1, x: 0},
-          visible: {opacity: 1, x: 0},
-        }}
-        initial="hidden"
-        animate="visible"
-        transition={{duration: 0.5, delay: 1.40}}
+          variants={{
+            hidden: location.state
+              ? { opacity: 0, x: -75 }
+              : { opacity: 1, x: 0 },
+            visible: { opacity: 1, x: 0 },
+          }}
+          initial="hidden"
+          animate="visible"
+          transition={{ duration: 0.5, delay: 1.4 }}
           className={`flex items-center rounded-md px-2 py-2  ${
             !open ? "px-1" : "px-4"
           }`}
@@ -251,13 +255,15 @@ function SideBar() {
         </motion.div>
 
         <motion.div
-        variants={{
-          hidden: location.state ? {opacity: 0, x: -75} : {opacity: 1, x: 0},
-          visible: {opacity: 1, x: 0},
-        }}
-        initial="hidden"
-        animate="visible"
-        transition={{duration: 0.5, delay: 1.60}}
+          variants={{
+            hidden: location.state
+              ? { opacity: 0, x: -75 }
+              : { opacity: 1, x: 0 },
+            visible: { opacity: 1, x: 0 },
+          }}
+          initial="hidden"
+          animate="visible"
+          transition={{ duration: 0.5, delay: 1.6 }}
           className={`flex items-center rounded-md px-2 py-2  ${
             !open ? "px-1" : "px-4"
           }`}
@@ -303,29 +309,30 @@ function SideBar() {
           </button>
         </motion.div> */}
 
-        
-          <motion.div
-        variants={{
-          hidden: location.state ? {opacity: 0, x: -75} : {opacity: 1, x: 0},
-          visible: {opacity: 1, x: 0},
-        }}
-        initial="hidden"
-        animate="visible"
-        transition={{duration: 0.5, delay: 2}}
+        <motion.div
+          variants={{
+            hidden: location.state
+              ? { opacity: 0, x: -75 }
+              : { opacity: 1, x: 0 },
+            visible: { opacity: 1, x: 0 },
+          }}
+          initial="hidden"
+          animate="visible"
+          transition={{ duration: 0.5, delay: 2 }}
           className={`flex items-center rounded-md px-2 py-2  ${
             !open ? "px-1" : "px-4"
           }`}
         >
-         <RiExchangeFundsFill
-          onClick={() => navigate("/committeesan")} 
-          className={`hover:scale-110 hover:shadow-lg text-white text-4xl rounded cursor-pointer block float-left mr-2 duration-500 mt-4`}
+          <RiExchangeFundsFill
+            onClick={() => navigate("/committeesan")}
+            className={`hover:scale-110 hover:shadow-lg text-white text-4xl rounded cursor-pointer block float-left mr-2 duration-500 mt-4`}
           />
 
           <button
             className={`hover:scale-110 hover:text-white text-white flex rounded-md px-4 py-2 mr-4 items-center mv-4  border-4 font-bold mt-4 font-sans duration-200  ${
               !open && "hidden"
             }`}
-            onClick={()=>navigate("/committeesan")}
+            onClick={() => navigate("/committeesan")}
           >
             Committee San
           </button>
@@ -336,4 +343,3 @@ function SideBar() {
 }
 
 export default SideBar;
-

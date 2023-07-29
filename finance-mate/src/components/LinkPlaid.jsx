@@ -16,8 +16,7 @@ import plaidImage2 from "../images/plaid2.webp"; // Import the image
 import plaidImage3 from "../images/plaid3.webp"; // Import the image
 import { ImLink } from "react-icons/im";
 
-import { motion, useInView, useAnimation } from "framer-motion"
-
+import { motion, useInView, useAnimation } from "framer-motion";
 
 //ImLink
 //import plaidImage4 from "../images/creditcards.p"; // Import the image
@@ -27,17 +26,16 @@ import { withTheme } from "@emotion/react";
 const LinkPlaid = () => {
   const [link_token, setLinkToken] = useState("");
   const user = useSelector((state) => state.user);
-  console.log(user);
+
   const dispatch = useDispatch();
 
   async function getLinkToken() {
     const response = await axios.post(
-      "http://localhost:8080/api/plaid/create_link_token",
+      `${process.env.REACT_APP_BACKEND_URL}/api/plaid/create_link_token`,
       {},
       { withCredentials: true }
     );
 
-    console.log("Response 'FrontEnd' link_token:\n", response.data.link_token);
     setLinkToken(response.data.link_token);
   }
 
@@ -52,15 +50,14 @@ const LinkPlaid = () => {
       // The metadata contains info about the institution the
       // user selected and the account ID or IDs, if the
       // Select Account view is enabled.
-      console.log(public_token);
+
       const response = await axios.post(
-        "http://localhost:8080/api/plaid/exchange_public_token",
+        `${process.env.REACT_APP_BACKEND_URL}/api/plaid/exchange_public_token`,
         {
           public_token: public_token,
         },
         { withCredentials: true }
       );
-      console.log("access_token:", response.data);
     },
     onExit: (err, metadata) => {
       // handle the case when your user exits Link
@@ -70,7 +67,6 @@ const LinkPlaid = () => {
     },
     onEvent: (eventName, metadata) => {
       // Optionally capture Link flow events, streamed through this callback as your users connect an Item
-      console.log(eventName, metadata);
     },
     receivedRedirectUri: null,
   };
@@ -84,16 +80,16 @@ const LinkPlaid = () => {
   // const access_token = user.plaidAccessToken
   // try {
   //   const accounts = dispatch(getAccountsThunk(access_token))
-  //   console.log(accounts)
+  //
   // } catch (error) {
-  //   console.log(error)
+  //
   // }
 
   return (
     <div className="dashboard">
       <SideBar></SideBar>
       <div
-      //transition={{ duration: 0.7 }}
+        //transition={{ duration: 0.7 }}
         className="content p-7"
         style={{
           display: "flex",
@@ -102,27 +98,27 @@ const LinkPlaid = () => {
         }}
       >
         <motion.img
-        variants={{
-          hidden: { opacity: 0, x: -90, scale: 0.5 },
-          visible: { opacity: 1, x: 0, scale: 1 }
-        }}
-        initial="hidden"
-        animate="visible"
-        transition={{duration: 0.5, delay: 0.35}}
+          variants={{
+            hidden: { opacity: 0, x: -90, scale: 0.5 },
+            visible: { opacity: 1, x: 0, scale: 1 },
+          }}
+          initial="hidden"
+          animate="visible"
+          transition={{ duration: 0.5, delay: 0.35 }}
           src={plaidImage1}
           alt="Plaid"
           style={{ width: "400px", height: "auto", padding: "10px" }}
         />{" "}
         {/* Replace the <p> tag with this <img> tag */}
-        <br/>
+        <br />
         <motion.button
-        variants={{
-          hidden: { opacity: 0, x: 90, scale: 0.5 },
-          visible: { opacity: 1, x: 0, scale: 1 }
-        }}
-        initial="hidden"
-        animate="visible"
-        transition={{duration: 0.6, delay: 0.45}}
+          variants={{
+            hidden: { opacity: 0, x: 90, scale: 0.5 },
+            visible: { opacity: 1, x: 0, scale: 1 },
+          }}
+          initial="hidden"
+          animate="visible"
+          transition={{ duration: 0.6, delay: 0.45 }}
           className="plaid-button flex items-center"
           onClick={popUp}
           disabled={!ready}
@@ -132,74 +128,79 @@ const LinkPlaid = () => {
         </motion.button>
         <br />
         {/* Existing <p> tag */}
-        
         <br />
         <motion.h1
-        variants={{
-          hidden: {opacity: 0, x: -80},
-          visible: {opacity: 1, x: 0},
-        }}
-        initial="hidden"
-        animate="visible"
-        transition={{duration: 0.7, delay: 0.50}}
-         className="font-bold font-serif text-xl ">
-          Secure Banking with plaid
-        </motion.h1>
-        <motion.div 
-        variants={{
-          hidden: {opacity: 0, x: -80},
-          visible: {opacity: 1, x: 0},
-        }}
-        initial="hidden"
-        animate="visible"
-        transition={{duration: 0.8, delay: 0.50}}
-        className="flex justify-evenly border border-black border-opacity-50 rounded-lg bg-gradient-to-r from-green-200 to-green-400">
-          <motion.img
           variants={{
-            hidden: {opacity: 0, x: -80},
-            visible: {opacity: 1, x: 0},
+            hidden: { opacity: 0, x: -80 },
+            visible: { opacity: 1, x: 0 },
           }}
           initial="hidden"
           animate="visible"
-          transition={{duration: 0.8, delay: 0.65}}
+          transition={{ duration: 0.7, delay: 0.5 }}
+          className="font-bold font-serif text-xl "
+        >
+          Secure Banking with plaid
+        </motion.h1>
+        <motion.div
+          variants={{
+            hidden: { opacity: 0, x: -80 },
+            visible: { opacity: 1, x: 0 },
+          }}
+          initial="hidden"
+          animate="visible"
+          transition={{ duration: 0.8, delay: 0.5 }}
+          className="flex justify-evenly border border-black border-opacity-50 rounded-lg bg-gradient-to-r from-green-200 to-green-400"
+        >
+          <motion.img
+            variants={{
+              hidden: { opacity: 0, x: -80 },
+              visible: { opacity: 1, x: 0 },
+            }}
+            initial="hidden"
+            animate="visible"
+            transition={{ duration: 0.8, delay: 0.65 }}
             className="ml-4"
             src={plaidImage2}
             alt="Plaid"
             style={{ width: "450px", height: "auto" }}
           />
           <motion.img
-          variants={{
-            hidden: {opacity: 0, x: -80},
-            visible: {opacity: 1, x: 0},
-          }}
-          initial="hidden"
-          animate="visible"
-          transition={{duration: 0.8, delay: 0.80}}
+            variants={{
+              hidden: { opacity: 0, x: -80 },
+              visible: { opacity: 1, x: 0 },
+            }}
+            initial="hidden"
+            animate="visible"
+            transition={{ duration: 0.8, delay: 0.8 }}
             className="ml-4"
             src={plaidImage3}
             alt="Plaid"
             style={{ width: "450px", height: "auto" }}
           />
         </motion.div>
-        <br/>
-        <motion.p 
-        variants={{
-          hidden: {opacity: 0, x: -80},
-          visible: {opacity: 1, x: 0},
-        }}
-        initial="hidden"
-        animate="visible"
-        transition={{duration: 0.9, delay: 0.90}}
-        className="border-8 text-base font-serif p-4 border border-green-500 border-opacity-50 rounded-lg bg-gradient-to-r from-green-100 to-green-200 text-lg">
-          <motion.h1 
+        <br />
+        <motion.p
           variants={{
-            hidden: {opacity: 0, x: -80},
-            visible: {opacity: 1, x: 0},
+            hidden: { opacity: 0, x: -80 },
+            visible: { opacity: 1, x: 0 },
           }}
           initial="hidden"
           animate="visible"
-          transition={{duration: 0.9, delay: 0.90}}
-          className="flex justify-center font-semibold text-xl font-serif">What is Plaid?</motion.h1>
+          transition={{ duration: 0.9, delay: 0.9 }}
+          className="border-8 text-base font-serif p-4 border border-green-500 border-opacity-50 rounded-lg bg-gradient-to-r from-green-100 to-green-200 text-lg"
+        >
+          <motion.h1
+            variants={{
+              hidden: { opacity: 0, x: -80 },
+              visible: { opacity: 1, x: 0 },
+            }}
+            initial="hidden"
+            animate="visible"
+            transition={{ duration: 0.9, delay: 0.9 }}
+            className="flex justify-center font-semibold text-xl font-serif"
+          >
+            What is Plaid?
+          </motion.h1>
           Plaid is a vital financial technology solution that provides users of
           our Finance-Mate app with smooth access to their bank accounts and
           critical financial data. We ensure a secure and efficient connection
@@ -212,7 +213,6 @@ const LinkPlaid = () => {
           critical financial data, allowing us to provide a streamlined and
           tailored finance experience to our valued consumers.
         </motion.p>
-        
       </div>
     </div>
   );

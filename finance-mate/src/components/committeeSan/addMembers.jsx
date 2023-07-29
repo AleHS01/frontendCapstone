@@ -8,14 +8,7 @@ import {
 } from "../../redux/groups/group.actions";
 import { createCustomerThunk } from "../../redux/stripe/stripe.actions";
 import styled from "styled-components";
-import {
-  Button,
-  Container,
-  Typography,
-  Grid,
-  Chip,
-  Box,
-} from "@mui/material";
+import { Button, Container, Typography, Grid, Chip, Box } from "@mui/material";
 
 import StripeCheckout from "./Stripe/StripeCheckout"
 
@@ -62,7 +55,7 @@ const Navbar = styled.div`
 const AddMembers = () => {
   const dispatch = useDispatch();
   const members = useSelector((state) => state.committee_groups);
-  console.log("members inside component", members);
+
   const location = useLocation();
   const navigate = useNavigate();
   const groupId = location.state.groupId;
@@ -89,6 +82,9 @@ const AddMembers = () => {
         console.error("Error:", error);
     }
   }
+  const handleClick = () => {
+    navigate("/activate");
+  };
 
   const [activateButton,setActivateButton]=useState(true);
   useEffect(()=>{
