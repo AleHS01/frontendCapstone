@@ -103,21 +103,16 @@ const LinkPlaid = () => {
   // }
 
   return (
-
-    
-    <div className="dashboard">
-      <div className="dashboard">
+<div className="dashboard">
       <SideBar />
       <div className="content p-3">
-        <PageHeader page_name = "Link Banks with Plaid"></PageHeader>
-        <LinkPlaidBanner></LinkPlaidBanner>
+        <PageHeader page_name="Link Banks with Plaid" />
+        <LinkPlaidBanner />
         <Grid container spacing={1} sx={{ marginBottom: "100px" }}>
-          <Grid item xs={12} style={{ height: "400px" }}>
-         </Grid></Grid>
-         </div>
-         </div>
+          <Grid item xs={12} style={{ height: "400px" }}></Grid>
+        </Grid>
+      </div>
       <div
-        //transition={{ duration: 0.7 }}
         className="content p-7"
         style={{
           display: "flex",
@@ -136,8 +131,7 @@ const LinkPlaid = () => {
           src={plaidImage1}
           alt="Plaid"
           style={{ width: "400px", height: "auto", padding: "10px" }}
-        />{" "}
-        {/* Replace the <p> tag with this <img> tag */}
+        />
         <br />
         <motion.button
           variants={{
@@ -155,8 +149,6 @@ const LinkPlaid = () => {
           <ImLink className="ml-2" />
         </motion.button>
         <br />
-        {/* Existing <p> tag */}
-        <br />
         <motion.h1
           variants={{
             hidden: { opacity: 0, x: -80 },
@@ -167,7 +159,7 @@ const LinkPlaid = () => {
           transition={{ duration: 0.7, delay: 0.5 }}
           className="font-bold font-serif text-xl "
         >
-          Secure Banking with plaid
+          Secure Banking with Plaid
         </motion.h1>
         <motion.div
           variants={{
@@ -207,40 +199,6 @@ const LinkPlaid = () => {
           />
         </motion.div>
         <br />
-        {/* <motion.p
-          variants={{
-            hidden: { opacity: 0, x: -80 },
-            visible: { opacity: 1, x: 0 },
-          }}
-          initial="hidden"
-          animate="visible"
-          transition={{ duration: 0.9, delay: 0.9 }}
-          className="border-8 text-base font-serif p-4 border border-green-500 border-opacity-50 rounded-lg bg-gradient-to-r from-green-100 to-green-200 text-lg"
-        >
-          <motion.h1
-            variants={{
-              hidden: { opacity: 0, x: -80 },
-              visible: { opacity: 1, x: 0 },
-            }}
-            initial="hidden"
-            animate="visible"
-            transition={{ duration: 0.9, delay: 0.9 }}
-            className="flex justify-center font-semibold text-xl font-serif"
-          >
-            What is Plaid?
-          </motion.h1>
-          Plaid is a vital financial technology solution that provides users of
-          our Finance-Mate app with smooth access to their bank accounts and
-          critical financial data. We ensure a secure and efficient connection
-          to multiple financial institutions by integrating Plaid's cutting-edge
-          APIs into our application. Plaid allows our users to easily view their
-          bank and credit union account information, transaction details, and
-          balances. Manual data entry and the sharing of critical login
-          credentials are no longer viable options. Plaid's solid infrastructure
-          creates a standardized and dependable channel for our app to retrieve
-          critical financial data, allowing us to provide a streamlined and
-          tailored finance experience to our valued consumers.
-        </motion.p> */}
       </div>
     </div>
   );
