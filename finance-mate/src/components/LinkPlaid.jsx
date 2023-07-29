@@ -158,7 +158,7 @@ const LinkPlaid = () => {
             </motion.button> */}
             <br />
             
-            <motion.h1
+            {/* <motion.h1
               variants={{
                 hidden: { opacity: 0, x: -80 },
                 visible: { opacity: 1, x: 0 },
@@ -169,7 +169,7 @@ const LinkPlaid = () => {
               className="font-bold font-serif text-xl "
             >
               Secure Banking with Plaid
-            </motion.h1>
+            </motion.h1> */}
             <motion.div
               variants={{
                 hidden: { opacity: 0, x: -80 },
@@ -181,6 +181,18 @@ const LinkPlaid = () => {
               //className="flex justify-evenly border border-black border-opacity-50 rounded-lg bg-gradient-to-r from-green-200 to-green-400"
             >
               <div style={{ display: "flex", justifyContent: "center" }}>
+              <motion.h1
+              variants={{
+                hidden: { opacity: 0, x: -80 },
+                visible: { opacity: 1, x: 0 },
+              }}
+              initial="hidden"
+              animate="visible"
+              transition={{ duration: 0.7, delay: 0.5 }}
+              className="font-bold font-serif text-xl "
+            >
+              Experience Secure Banking, Powered by Plaid
+            </motion.h1>
               <motion.img
                 variants={{
                   hidden: { opacity: 0, x: -80 },
