@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -6,9 +6,14 @@ import {
   joinGroupThunk,
   getMembersThunk,
 } from "../../redux/groups/group.actions";
+import { fetchUserThunk } from "../../redux/user/user.action";
 import { createCustomerThunk } from "../../redux/stripe/stripe.actions";
 import styled from "styled-components";
 import { Button, Container, Typography, Grid, Chip, Box } from "@mui/material";
+
+import StripeCheckout from "./Stripe/StripeCheckout";
+
+import axios from "axios";
 
 const PageBackground = styled.div`
   width: 100%;
@@ -51,24 +56,81 @@ const Navbar = styled.div`
 const AddMembers = () => {
   const dispatch = useDispatch();
   const members = useSelector((state) => state.committee_groups);
-
+  const user = useSelector((state) => state.user);
   const location = useLocation();
   const navigate = useNavigate();
   const groupId = location.state.groupId;
   const group_name = location.state.groupName;
+  const [activateStatus, setActivateStatus] = useState(false);
 
   useEffect(() => {
     dispatch(getMembersThunk(groupId));
   }, [dispatch]);
+
+  const checkAllUsersPaymentStatus = async () => {
+    let allUsersHavePaymentMethods = false;
+    try {
+      const response = await axios.post(
+        "http://localhost:8080/api/stripe/checkPaymentStatus",
+        { groupId },
+        { withCredentials: true }
+      );
+      allUsersHavePaymentMethods = response.data;
+
+      // setActivateStatus(allUsersHavePaymentMethods);
+
+      return allUsersHavePaymentMethods;
+    } catch (error) {
+      console.error("Error:", error);
+      // setActivateStatus(false);
+      return false;
+    }
+  };
+  useEffect(() => {
+    dispatch(fetchUserThunk());
+    const allUsersHavePaymentMethods = checkAllUsersPaymentStatus();
+    console.log("User with Group:\n", user);
+    if (
+      allUsersHavePaymentMethods &&
+      user.Group &&
+      user.Group.id === groupId &&
+      user.isAdmin &&
+      activateStatus
+    ) {
+      setActivateStatus(true);
+    } else {
+      setActivateStatus(false);
+    }
+  }, [groupId, activateStatus]);
+
+  const handleClick = async () => {
+    try {
+      const allUsersHavePaymentMethods = await checkAllUsersPaymentStatus();
+      console.log(
+        "all user have a valid payment method? : ",
+        allUsersHavePaymentMethods
+      );
+      if (!allUsersHavePaymentMethods) {
+        alert(
+          "Not all users have a payment method. Please add a payment method to all users before activating."
+        );
+        return;
+      }
+
+      // navigate("/activate");
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
 
   const handleSubmit = async () => {
     dispatch(joinGroupThunk(groupId));
     dispatch(createCustomerThunk());
     alert("YOU'RE NOW PART OF A COMMITTEE GROUP!");
   };
-  const handleClick = () => {
-    navigate("/activate");
-  };
+  // const handleClick = () => {
+  //   navigate("/activate");
+  // };
 
   return (
     <PageBackground>
@@ -177,18 +239,18 @@ const AddMembers = () => {
                 )
               )}
           </Box>
+          <StripeCheckout></StripeCheckout>
         </ContentContainer>
+        <button
+          variant="contained"
+          className="pay-button"
+          onClick={handleClick}
+          // onClick={() => console.log("active status: ", activateStatus)}
+          disabled={!activateStatus} // The Activate button is disabled when activateStatus is false
+        >
+          Activate
+        </button>
       </Container>
-      <Button
-        variant="contained"
-        sx={{
-          backgroundColor: "limegreen",
-          color: "#fff",
-        }}
-        onClick={handleClick}
-      >
-        Activate
-      </Button>
     </PageBackground>
   );
 };

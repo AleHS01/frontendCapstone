@@ -16,6 +16,7 @@ import {
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 // import stripelogo from "./src/components/committeeSan/Stripe wordmark - blurple.svg";
+import stripelogo from "./Stripe wordmark - blurple.svg";
 const PageBackground = styled.div`
   width: 100%;
   height: 100vh;
@@ -134,7 +135,7 @@ const Success = () => {
           <Button
             variant="contained"
             component={Link}
-            to="/"
+            to="/user"
             sx={{
               backgroundColor: "limegreen",
               color: "#fff",

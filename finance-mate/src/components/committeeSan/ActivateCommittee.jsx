@@ -4,6 +4,8 @@ import { activateCommitteeThunk, getCommitteeProductThunk, createCheckoutSession
 import { loadStripe } from '@stripe/stripe-js';
 import { Container, Typography, Grid, Button, Box } from "@mui/material";
 import styled from "styled-components";
+import axios from "axios";
+import { local } from "d3";
 const stripePromise = loadStripe('pk_test_51NU5vjGCLtTMWEv9kIf39oFsZe8DbDdKLPRY1gPanYNdHt7lbEnXAMHLngLWiXzJtltIBlxThpMvMPZlh5eDynIT002L4K7MzI');
 
 const PageBackground = styled.div`
@@ -36,30 +38,38 @@ const Activate = () => {
         dispatch(activateCommitteeThunk());
     }
 
-    const handleGetProduct = () => {
-        dispatch(getCommitteeProductThunk());
-    }
+    // const handleGetProduct = () => {
+    //     dispatch(getCommitteeProductThunk());
+    // }
+    // const handleCheckout = async () => {
+    //   try {
+    //     // console.log("Local Storage",localStorage.getItem("setupIntent"))
+    //     // const client_secret=localStorage.getItem("setupIntent")
+    //     await axios.post("http://localhost:8080/api/stripe/payment_intent",{},{withCredentials:true})
+    //   }catch (error) {
+    //       console.error("Error:", error);
+    //   }
+    // };
+    // const handleCheckout = async () => {
+    //     try {
+    //         dispatch(createCheckoutSessionThunk());
+    //         const stripe = await stripePromise;
 
-    const handleCheckout = async () => {
-        try {
-            dispatch(createCheckoutSessionThunk());
-            const stripe = await stripePromise;
+    //         const session = committeeData.sessionId.sessionId;
 
-            const session = committeeData.sessionId.sessionId;
+    //         if (session) {
+    //             const result = await stripe.redirectToCheckout({
+    //                 sessionId: session,
+    //             });
 
-            if (session) {
-                const result = await stripe.redirectToCheckout({
-                    sessionId: session,
-                });
-
-                if (result.error) {
-                    alert(result.error.message);
-                }
-            }
-        } catch (error) {
-            console.error("Error:", error);
-        }
-    };
+    //             if (result.error) {
+    //                 alert(result.error.message);
+    //             }
+    //         }
+    //     } catch (error) {
+    //         console.error("Error:", error);
+    //     }
+    // };
 
     useEffect(() => {
     }, [dispatch]);
@@ -77,7 +87,7 @@ const Activate = () => {
                     Activate Committee
                   </Button>
                 </Grid>
-                <Grid item>
+                {/* <Grid item>
                   <Button variant="contained" color="primary" onClick={handleGetProduct}>
                     Get Product Info
                   </Button>
@@ -86,7 +96,7 @@ const Activate = () => {
                   <Button variant="contained" color="primary" onClick={handleCheckout}>
                     Checkout
                   </Button>
-                </Grid>
+                </Grid> */}
               </Grid>
   
               {/* Display product and committee details here */}
