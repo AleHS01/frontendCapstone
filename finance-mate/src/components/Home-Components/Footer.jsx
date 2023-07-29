@@ -21,7 +21,7 @@ const Footer = () => {
         Made By:
       </Typography>
       <Typography variant="h6" component="div">
-        The Boys
+      Muhammed Ashfaq, Alejhandro Hernandez, Hamza Khaliq, Ghulam Ahmed
       </Typography>
       <Box
         sx={{
@@ -56,7 +56,7 @@ const Footer = () => {
         </Link>
       </Box>
       <Typography variant="body2" component="div">
-        &copy; {new Date().getFullYear()} The Boys
+        &copy; {new Date().getFullYear()} FinanceMate
       </Typography>
     </Box>
   );
