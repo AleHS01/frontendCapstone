@@ -103,7 +103,7 @@ const AddMembers = () => {
       }
       if (allUsersHavePaymentMethods) {
         try {
-          const response = await axios.post("http://localhost:8080/api/stripe/payment_intent", { paymentMethodId: paymentMethodId }, { withCredentials: true });
+          const response = await axios.post("http://localhost:8080/api/stripe/payment_intent", {},{withCredentials: true });
           console.log("PaymentIntent response:", response.data);
         } catch (error) {
           console.error("Error:", error);
@@ -181,7 +181,7 @@ const AddMembers = () => {
       </Navbar>
       <Container maxWidth="sm">
         <ContentContainer>
-          <Typography
+        <Typography
             variant="h2"
             align="center"
             sx={{ color: "black", fontWeight: "bold" }}

@@ -61,6 +61,13 @@ function CheckoutForm({clientSecret, setPaymentMethodId}) {
         alert("Sucess!!!!!")
       }
 
+      /**
+       * try catch --> payment-intnet 
+       * user 1 --> payment --> 10
+       * user 2 --> patment --> 5
+       * user 3 --> 10/3 --> 3.3
+       */
+
       const response = await axios.post("http://localhost:8080/api/stripe/updatePaymentStatus", { hasValidPayment: true }, { withCredentials: true });
       console.log("Update payment status response:", response.data);
     } catch (error) {

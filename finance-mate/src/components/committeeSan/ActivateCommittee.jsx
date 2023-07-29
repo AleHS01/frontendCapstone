@@ -38,39 +38,6 @@ const Activate = () => {
         dispatch(activateCommitteeThunk());
     }
 
-    // const handleGetProduct = () => {
-    //     dispatch(getCommitteeProductThunk());
-    // }
-    // const handleCheckout = async () => {
-    //   try {
-    //     // console.log("Local Storage",localStorage.getItem("setupIntent"))
-    //     // const client_secret=localStorage.getItem("setupIntent")
-    //     await axios.post("http://localhost:8080/api/stripe/payment_intent",{},{withCredentials:true})
-    //   }catch (error) {
-    //       console.error("Error:", error);
-    //   }
-    // };
-    // const handleCheckout = async () => {
-    //     try {
-    //         dispatch(createCheckoutSessionThunk());
-    //         const stripe = await stripePromise;
-
-    //         const session = committeeData.sessionId.sessionId;
-
-    //         if (session) {
-    //             const result = await stripe.redirectToCheckout({
-    //                 sessionId: session,
-    //             });
-
-    //             if (result.error) {
-    //                 alert(result.error.message);
-    //             }
-    //         }
-    //     } catch (error) {
-    //         console.error("Error:", error);
-    //     }
-    // };
-
     useEffect(() => {
     }, [dispatch]);
 
@@ -87,16 +54,6 @@ const Activate = () => {
                     Activate Committee
                   </Button>
                 </Grid>
-                {/* <Grid item>
-                  <Button variant="contained" color="primary" onClick={handleGetProduct}>
-                    Get Product Info
-                  </Button>
-                </Grid>
-                <Grid item>
-                  <Button variant="contained" color="primary" onClick={handleCheckout}>
-                    Checkout
-                  </Button>
-                </Grid> */}
               </Grid>
   
               {/* Display product and committee details here */}
