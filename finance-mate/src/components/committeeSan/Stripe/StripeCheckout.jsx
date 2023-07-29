@@ -3,13 +3,15 @@ import { loadStripe } from "@stripe/stripe-js";
 import axios from "axios";
 import { Elements, useStripe, useElements } from "@stripe/react-stripe-js";
 import { CardElement } from "@stripe/react-stripe-js";
-
+import { useDispatch } from "react-redux";
+import { fetchUserThunk } from "../../../redux/user/user.action";
 const stripePromise = loadStripe(
   "pk_test_51NU5vjGCLtTMWEv9kIf39oFsZe8DbDdKLPRY1gPanYNdHt7lbEnXAMHLngLWiXzJtltIBlxThpMvMPZlh5eDynIT002L4K7MzI"
 );
 
-const StripeCheckout = ({ setPaymentMethodId }) => {
+const StripeCheckout = ({ setPaymentMethodId, handleCardAttach }) => {
   const [client_secret, setClientSecret] = useState();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     async function fetchSetUpIntent() {
@@ -27,6 +29,7 @@ const StripeCheckout = ({ setPaymentMethodId }) => {
       );
     }
     fetchSetUpIntent();
+    dispatch(fetchUserThunk());
   }, []);
 
   const options = {
@@ -39,12 +42,14 @@ const StripeCheckout = ({ setPaymentMethodId }) => {
       <CheckoutForm
         clientSecret={client_secret}
         setPaymentMethodId={setPaymentMethodId}
+        handleCardAttach={handleCardAttach}
       />
     </Elements>
   );
 };
 
-function CheckoutForm({ clientSecret, setPaymentMethodId }) {
+function CheckoutForm({ clientSecret, setPaymentMethodId, handleCardAttach }) {
+  const dispatch = useDispatch();
   const [isPaymentLoading, setPaymentLoading] = useState(false);
   const stripe = useStripe();
   const elements = useElements();
@@ -59,7 +64,7 @@ function CheckoutForm({ clientSecret, setPaymentMethodId }) {
           payment_method: {
             card: cardElement,
             billing_details: {
-              name: "Shoaib Ashfaq",
+              name: "Finance Mate",
             },
           },
         }
@@ -73,6 +78,7 @@ function CheckoutForm({ clientSecret, setPaymentMethodId }) {
         setPaymentLoading(false);
         setPaymentMethodId(setupIntent.payment_method);
         alert("Sucess!!!!!");
+        dispatch(fetchUserThunk());
       }
 
       /**
@@ -88,6 +94,7 @@ function CheckoutForm({ clientSecret, setPaymentMethodId }) {
         { withCredentials: true }
       );
       console.log("Update payment status response:", response.data);
+      dispatch(fetchUserThunk());
     } catch (error) {
       console.error(error);
       setPaymentLoading(false);
