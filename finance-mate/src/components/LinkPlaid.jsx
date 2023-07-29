@@ -151,30 +151,8 @@ const LinkPlaid = () => {
             </motion.button> */}
             <br />
 
-            {/* <motion.h1
-              variants={{
-                hidden: { opacity: 0, x: -80 },
-                visible: { opacity: 1, x: 0 },
-              }}
-              initial="hidden"
-              animate="visible"
-              transition={{ duration: 0.7, delay: 0.5 }}
-              className="font-bold font-serif text-xl "
-            >
-              Secure Banking with Plaid
-            </motion.h1> */}
-            <motion.div
-              variants={{
-                hidden: { opacity: 0, x: -80 },
-                visible: { opacity: 1, x: 0 },
-              }}
-              initial="hidden"
-              animate="visible"
-              transition={{ duration: 0.8, delay: 0.5 }}
-              //className="flex justify-evenly border border-black border-opacity-50 rounded-lg bg-gradient-to-r from-green-200 to-green-400"
-            >
-              <div style={{ display: "flex", justifyContent: "center" }}>
-                <motion.h1
+            <div style={{ display: "flex", justifyContent: "center" }}>
+            <motion.h1
                   variants={{
                     hidden: { opacity: 0, x: -80 },
                     visible: { opacity: 1, x: 0 },
@@ -186,28 +164,18 @@ const LinkPlaid = () => {
                 >
                   Experience Secure Banking, Powered by Plaid
                 </motion.h1>
-                <motion.p
-                  variants={{
-                    hidden: { opacity: 0, x: -80 },
-                    visible: { opacity: 1, x: 0 },
-                  }}
-                  initial="hidden"
-                  animate="visible"
-                  transition={{ duration: 0.7, delay: 0.5 }}
-                  className="font-serif text-md "
-                >
-                  Plaid is a trusted financial services company that uses
-                  technology to connect with banks and manage your financial
-                  data. By integrating with Plaid, we provide you with a
-                  seamless, secure banking experience. With Plaid, your
-                  transactions and financial data remain secure and private. In
-                  fact, Plaid uses the same encryption and security measures as
-                  other world-leading financial institutions. So, you can rest
-                  assured that your banking is safe with us.
-                </motion.p>
-                This is just an example. You can change the content to match the
-                exact details and benefits of the Plaid service in relation to
-                your application.
+                </div>
+            <motion.div
+              variants={{
+                hidden: { opacity: 0, x: -80 },
+                visible: { opacity: 1, x: 0 },
+              }}
+              initial="hidden"
+              animate="visible"
+              transition={{ duration: 0.8, delay: 0.5 }}
+              //className="flex justify-evenly border border-black border-opacity-50 rounded-lg bg-gradient-to-r from-green-200 to-green-400"
+            >
+              <div style={{ display: "flex", justifyContent: "center" }}>
                 <motion.img
                   variants={{
                     hidden: { opacity: 0, x: -80 },
