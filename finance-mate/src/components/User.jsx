@@ -63,8 +63,8 @@ const User = () => {
 
         
         {user ? (
-       <div class="bg-gray-100 min-h-screen py-8 px-4">
-        <h1 class="text-3xl font-bold text-center text-light-green mb-4">Welcome {user.first_name}</h1>
+       <div class="bg-gray-100 min-h-screen py-8 px-4" style={{ backgroundColor: "#2E8B57", minHeight: "100vh" }}>
+        <h1 class="text-3xl font-bold text-center text-white mb-4">Welcome {user.first_name}</h1>
         <h3 class="text-xl font-semibold text-center text-gray-800 mb-4">Dashboard</h3>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         <motion.div

@@ -115,6 +115,7 @@ const SignUp = () => {
   console.log("Location 1: "+location)
 
   return (
+    <div style={{ backgroundColor: "#2E8B57", minHeight: "100vh" }}>
     <div
       style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
     >
@@ -132,7 +133,7 @@ const SignUp = () => {
           }}
           initial="hidden"
           animate="visible"
-          transition={{duration: 0.8, delay: 0.80}}
+          transition={{duration: 0.8, delay: 0.25}}
             className="ml-4 my-2"
             src={signup}
             alt="Plaid"
@@ -225,11 +226,9 @@ const SignUp = () => {
         LOGIN
       </Link>
     </motion.div>
-
-
       </div>
-      
       <br />
+    </div>
     </div>
   );
 };

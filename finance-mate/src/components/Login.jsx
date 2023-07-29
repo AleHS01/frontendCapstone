@@ -10,7 +10,8 @@ import GoogleButton from "react-google-button";
 import { googleLoginThunk } from "../redux/user/user.action";
 import { FcGoogle } from "react-icons/fc";
 import { motion, AnimatePresence, isInView, useInView, useAnimation } from "framer-motion";
-//GrUserAdd
+import space from "../images/space.webp"; // Import the image
+
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -60,6 +61,7 @@ const Login = () => {
 
 
   return (
+    <div style={{ backgroundColor: "#2E8B57", minHeight: "100vh" }}>
     <div
       style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
         {/* Link to Home */}
@@ -67,10 +69,13 @@ const Login = () => {
         <AiFillHome className="mt-0.5 text-lg"/>
         Home</Link>
 
-      <h1 className=" flex justify-center text-white my-5 bg-black p-4 rounded-md text-2xl font-extrabold border-8 shadow-lg">Welcome to Finance-Mate </h1>
-
+        <h1 className="flex justify-center text-white my-8 bg-black p-4 rounded-md text-2xl font-extrabold border-8 shadow-lg">
+          
+        Welcome Back!
+      </h1>
+      
       <div className="border shadow-xl rounded-md bg-green-300 p-4 py-6 px-4 my-2 mb-2 border-black flex flex-col items-center"
-      style={{width: "400px", height: "400px"}}
+      style={{width: "400px", height: "450px"}}
       >
         <h1 className="flex justify-center font-extrabold text-4xl font-serif mb-2"> Login</h1>
         <input
@@ -111,8 +116,8 @@ const Login = () => {
       <Link className="hover:scale-110 hover:shadow-lg duration-200 bg-green-400 flex rounded-md px-4 py-2 mr-2 items-center mt-mb-4 shadow-md " to="/signup">
         <GrUserAdd className="text-lg mr-1"/> SIGN UP</Link>
       </motion.div>
-
       </div>
+    </div>
     </div>
   );
 };
