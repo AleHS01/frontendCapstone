@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Typography, Link } from "@mui/material";
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -11,46 +11,63 @@ const Footer = () => {
         color: "#fff",
         py: 2,
         px: 3,
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        gap: 2
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        gap: 2,
       }}
     >
       <Typography variant="h4" component="div">
         Made By:
       </Typography>
       <Typography variant="h6" component="div">
-      Muhammed Ashfaq  Alejhandro Hernandez  Hamza Khaliq  Ghulam Ahmed
+        <Typography variant="h6" component="div">
+          <span style={{ marginRight: "20px" }}>Muhammed Ashfaq</span>
+          <span style={{ marginRight: "20px" }}>Alejhandro Hernandez</span>
+          <span style={{ marginRight: "20px" }}>Hamza Khaliq</span>
+          <span style={{ marginRight: "20px" }}>Ghulam Ahmed</span>
+        </Typography>
       </Typography>
       <Box
         sx={{
-          display: 'flex',
-          flexDirection: 'row',
-          justifyContent: 'space-between',
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "space-between",
           gap: 3,
-          width: '100%',
-          maxWidth: 500
+          width: "100%",
+          maxWidth: 500,
         }}
       >
-        <Link 
-          to="/" 
-          component={RouterLink} 
-          sx={{ color: 'inherit', textDecoration: 'none', ':hover': { color: '#ccc' } }}
+        <Link
+          to="/"
+          component={RouterLink}
+          sx={{
+            color: "inherit",
+            textDecoration: "none",
+            ":hover": { color: "#ccc" },
+          }}
         >
           Home
         </Link>
-        <Link 
-          to="/about" 
-          component={RouterLink} 
-          sx={{ color: 'inherit', textDecoration: 'none', ':hover': { color: '#ccc' } }}
+        <Link
+          to="/about"
+          component={RouterLink}
+          sx={{
+            color: "inherit",
+            textDecoration: "none",
+            ":hover": { color: "#ccc" },
+          }}
         >
           About
         </Link>
-        <Link 
-          to="/contact" 
-          component={RouterLink} 
-          sx={{ color: 'inherit', textDecoration: 'none', ':hover': { color: '#ccc' } }}
+        <Link
+          to="/contact"
+          component={RouterLink}
+          sx={{
+            color: "inherit",
+            textDecoration: "none",
+            ":hover": { color: "#ccc" },
+          }}
         >
           Contact
         </Link>
