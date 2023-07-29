@@ -82,9 +82,9 @@ const AddMembers = () => {
         console.error("Error:", error);
     }
   }
-  const handleClick = () => {
-    navigate("/activate");
-  };
+  // const handleClick = () => {
+  //   navigate("/activate");
+  // };
 
   const [activateButton,setActivateButton]=useState(true);
   useEffect(()=>{

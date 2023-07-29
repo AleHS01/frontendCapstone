@@ -16,7 +16,24 @@ import plaidImage2 from "../images/plaid2.webp"; // Import the image
 import plaidImage3 from "../images/plaid3.webp"; // Import the image
 import { ImLink } from "react-icons/im";
 
+import {
+  Grid,
+  Typography,
+  Divider,
+  Chip,
+  IconButton,
+  Card,
+  CardContent,
+  Tooltip,
+  Skeleton,
+  Select,
+  MenuItem,
+} from "@mui/material";
 import { motion, useInView, useAnimation } from "framer-motion";
+import LinkPlaidBanner from "./LinkPlaidBanner";
+import PageHeader from "./PageHeader";
+
+
 
 //ImLink
 //import plaidImage4 from "../images/creditcards.p"; // Import the image
@@ -86,8 +103,22 @@ const LinkPlaid = () => {
   // }
 
   return (
+
+    
     <div className="dashboard">
+
+
       <SideBar></SideBar>
+      <div className="dashboard">
+      <SideBar />
+      <div className="content p-3">
+        <PageHeader page_name = "Link Banks with Plaid"></PageHeader>
+        <LinkPlaidBanner></LinkPlaidBanner>
+        <Grid container spacing={1} sx={{ marginBottom: "100px" }}>
+          <Grid item xs={12} style={{ height: "400px" }}>
+         </Grid></Grid>
+         </div>
+         </div>
       <div
         //transition={{ duration: 0.7 }}
         className="content p-7"
