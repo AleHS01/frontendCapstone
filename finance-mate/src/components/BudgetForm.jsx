@@ -83,7 +83,7 @@ const BudgetForm = () => {
               fontWeight={"bold"}
               gutterBottom
             >
-              Add or View a <span style={{ color: "limegreen" }}>Budget!</span>
+              Add a <span style={{ color: "limegreen" }}>Budget!</span>
             </Typography>
 
             <Typography variant="body1" align="center" gutterBottom>
@@ -141,30 +141,6 @@ const BudgetForm = () => {
                 </Grid>
               </form>
             </DottedBox>
-            {/* <Typography
-              variant="h2"
-              textAlign={"center"}
-              fontWeight={"bold"}
-              gutterBottom
-            > */}
-              {/* Your List of <span style={{ color: "limegreen" }}>Budgets!</span>
-            </Typography>
-            {budgets.map((item) => (
-              <button
-                key={item.id}
-                onClick={handleBudget}
-                value={item.id}
-                className="bg-blue-500 text-white hover:bg-green-600 font-bold py-2 px-4 rounded m-4"
-                style={{
-                  padding: "8px 0",
-                  minWidth: "220px",
-                  fontSize: "1.2rem",
-                }}
-              >
-                {item.budget_name} {item.expense_value}
-              </button>
-            ))} */}
-            {/* <RecentExpenses></RecentExpenses> */}
           </ContentContainer>
         </Container>
       </div>
