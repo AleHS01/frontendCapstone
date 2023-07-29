@@ -12,7 +12,7 @@ import { getAccountsThunk } from "../redux/accounts/account.action";
 import Accounts from "./GetAccounts";
 import SideBar from "./side-bar";
 import plaidImage1 from "../images/plaid.png"; // Import the image
-import plaidImage2 from "../images/plaid2.webp"; // Import the image
+import plaidImage2 from "../images/plaid-link-img.webp"; // Import the image
 import plaidImage3 from "../images/plaid3.webp"; // Import the image
 import { ImLink } from "react-icons/im";
 
@@ -313,7 +313,7 @@ const LinkPlaid = () => {
               onClick={popUp}
               disabled={!ready}
             >
-              Link with Plaid
+             Get Started With Plaid
               <ImLink className="ml-2" />
             </motion.button>
 
