@@ -21,7 +21,7 @@ const CTA = () => {
         fontSize="3.5rem"
         textAlign="center"
       >
-        Join Finance Mate and take control of your finances today!
+        Be our mate, Get Your Finances Straight!
       </Typography>
       <Button
         variant="contained"
