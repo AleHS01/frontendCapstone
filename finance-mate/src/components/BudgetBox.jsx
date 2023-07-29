@@ -69,6 +69,7 @@ const BudgetBox = ({ budget, expenses, expense_total }) => {
   const [budgetamount, setBudgetAmount] = useState(budget.amount);
   const [budgetexpenses, setBudgetExpenses] = useState(expenses);
   const [budgetexpenseamount, setBudgetExpenseAmount] = useState(0);
+  const [alertShown, setAlertShown] = useState(false);
 
   useEffect(() => {
     try {
@@ -88,6 +89,16 @@ const BudgetBox = ({ budget, expenses, expense_total }) => {
   // if(remainingBal < 10 && budgetamount !== remainingBal){
   //   alert("YOURE BROKE BOI STOOOOOOOOOOOOOOP") 
   // }
+
+  useEffect(() => {
+    if (remainingBal < 5 && !alertShown) {
+      alert("You're running low on budget. Please check your expenses.");
+      setAlertShown(true);
+    }
+    if (remainingBal >= 5 && alertShown) {
+      setAlertShown(false);
+    }
+  }, [remainingBal, alertShown]);
 
   return (
     <DottedBox>
