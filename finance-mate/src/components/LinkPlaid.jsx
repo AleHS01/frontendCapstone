@@ -122,21 +122,6 @@ const LinkPlaid = () => {
             </motion.button>
 
             <br />
-            {/* <motion.button
-              variants={{
-                hidden: { opacity: 0, x: 90, scale: 0.5 },
-                visible: { opacity: 1, x: 0, scale: 1 },
-              }}
-              initial="hidden"
-              animate="visible"
-              transition={{ duration: 0.6, delay: 0.45 }}
-              className="plaid-button flex items-center"
-              onClick={popUp}
-              disabled={!ready}
-            >
-              Link with Plaid
-              <ImLink className="ml-2" />
-            </motion.button> */}
             <br />
 
             <div style={{ display: "flex", justifyContent: "center" }}>
@@ -175,7 +160,7 @@ const LinkPlaid = () => {
                   className="ml-4"
                   src="https://i.postimg.cc/j2SWn1x6/plaid-link-img.webp"
                   alt="Plaid"
-                  style={{ width: "700px", height: "auto" }}
+                  style={{ width: "900px", height: "auto" }}
                 />
               </div>
             </motion.div>
