@@ -141,13 +141,13 @@ const BudgetForm = () => {
                 </Grid>
               </form>
             </DottedBox>
-            <Typography
+            {/* <Typography
               variant="h2"
               textAlign={"center"}
               fontWeight={"bold"}
               gutterBottom
-            >
-              Your List of <span style={{ color: "limegreen" }}>Budgets!</span>
+            > */}
+              {/* Your List of <span style={{ color: "limegreen" }}>Budgets!</span>
             </Typography>
             {budgets.map((item) => (
               <button
@@ -163,7 +163,7 @@ const BudgetForm = () => {
               >
                 {item.budget_name} {item.expense_value}
               </button>
-            ))}
+            ))} */}
             {/* <RecentExpenses></RecentExpenses> */}
           </ContentContainer>
         </Container>
