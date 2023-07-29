@@ -20,7 +20,6 @@ import {
 import StripeCheckout from "./Stripe/StripeCheckout"
 
 import axios  from "axios";
-
 const PageBackground = styled.div`
   width: 100%;
   height: 100vh;
@@ -72,6 +71,8 @@ const AddMembers = () => {
   }, [dispatch]);
 
   const [activateStatus, setActivateStatus] = useState(false);
+  const [paymentMethodId, setPaymentMethodId] = useState(null);
+
   
   const checkAllUsersPaymentStatus = async () => {
     let allUsersHavePaymentMethods = false;
@@ -100,7 +101,14 @@ const AddMembers = () => {
         alert("Not all users have a payment method. Please add a payment method to all users before activating.");
         return;
       }
-  
+      if (allUsersHavePaymentMethods) {
+        try {
+          const response = await axios.post("http://localhost:8080/api/stripe/payment_intent", { paymentMethodId: paymentMethodId }, { withCredentials: true });
+          console.log("PaymentIntent response:", response.data);
+        } catch (error) {
+          console.error("Error:", error);
+        }
+      }
       navigate("/activate");
   
     } catch (error) {
@@ -236,7 +244,7 @@ const AddMembers = () => {
                 )
               )}
           </Box>
-          <StripeCheckout></StripeCheckout>
+          <StripeCheckout setPaymentMethodId={setPaymentMethodId} />
         </ContentContainer>
       <button
         variant="contained"
