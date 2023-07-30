@@ -109,7 +109,6 @@ const SignUp = () => {
   const location = useLocation();
 
   return (
-    <div style={{ backgroundColor: "#2E8B57", minHeight: "100vh" }}>
     <div
       style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
     >
@@ -223,8 +222,6 @@ const SignUp = () => {
       </div>
       <br />
     </div>
-    </div>
-   
   );
 };
 

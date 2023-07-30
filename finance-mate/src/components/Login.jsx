@@ -55,7 +55,6 @@ const Login = () => {
   const location = useLocation();
 
   return (
-    <div style={{ backgroundColor: "#2E8B57", minHeight: "100vh" }}>
     <div
       style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
         {/* Link to Home */}
@@ -100,22 +99,8 @@ const Login = () => {
       </button>
 
       <br />
-      <motion.div
-        variants={{
-          hidden: { opacity: 0, x: -75 },
-          visible: { opacity: 1, x: 0 },
-        }}
-        initial="hidden"
-        animate="visible"
-        transition={{ duration: 1, delay: 0.5 }}
-        className="bg-green-600 flex rounded-lg px-4 py-2 mr-4 items-center mb-4 shadow-md border-8 "
-      >
-        <p className="text-black mr-2 font-serif text-2xl">Or sign up with:</p>
-        <a href={`${process.env.REACT_APP_BACKEND_URL}/api/login/google`}>
-          <GoogleButton className="m-4 shadow-md hover:scale-105" />
-        </a>
-      </motion.div>
-
+      <GoogleButton className="m-4 shadow-md hover:scale-105" />
+    
         <motion.div
       variants={{
         hidden: {opacity: 0, x: -75},
@@ -131,7 +116,7 @@ const Login = () => {
       </motion.div>
       </div>
     </div>
-    </div>
+
   );
 };
 
