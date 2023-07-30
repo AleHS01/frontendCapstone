@@ -98,7 +98,7 @@ const LinkPlaid = () => {
         <PageHeader page_name="Plaid Dashboard" />
         <LinkPlaidBanner />
         <Grid container spacing={1} sx={{ marginBottom: "100px" }}>
-          <Grid item xs={12} style={{ height: "400px" }}>
+          <Grid item xs={12} style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", height: "100%" }}>
             <Typography
               variant="h4"
               sx={{ textAlign: "center", fontWeight: "500", color: "#0e365e" }}
@@ -113,7 +113,7 @@ const LinkPlaid = () => {
               initial="hidden"
               animate="visible"
               transition={{ duration: 0.6, delay: 0.45 }}
-              className="hover:scale-110 hover:shadow-lg duration-200 bg-green-600 flex rounded-md px-4 py-2 mr-4 justify-center mv-4 shadow-md border-4 font-semibold font-sans"
+              className="hover:scale-125 hover:shadow-lg duration-200 bg-green-600 flex rounded-md px-4 py-2 mr-4 justify-center mv-4 shadow-md border-4 font-semibold font-sans"
               onClick={popUp}
               disabled={!ready}
             >
