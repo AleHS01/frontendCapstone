@@ -81,8 +81,6 @@ const User = () => {
         >
           <Transactions></Transactions>
         </motion.div>
-
-           <Transactions></Transactions>
          </div>
        </div>
      </div>
