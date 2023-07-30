@@ -1,4 +1,10 @@
 import stripeActionTypes from "./stripe.action.types"
+const initialState = {
+  customer: null,
+  product: null,
+  sessionId: null,
+  new_committee: null
+};
 const stripeReducer = (state = initialState, action) => {
   switch (action.type) {
     case stripeActionTypes.CREATE_CUSTOMER:
