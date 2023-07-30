@@ -109,7 +109,7 @@ function CheckoutForm({ clientSecret, setPaymentMethodId, handleCardAttach }) {
         setPaymentLoading(false);
         setPaymentMethodId(setupIntent.payment_method);
         alert("Sucess!!!!!");
-        dispatch(fetchUserThunk());
+        // dispatch(fetchUserThunk());
       }
 
       /**
@@ -125,7 +125,7 @@ function CheckoutForm({ clientSecret, setPaymentMethodId, handleCardAttach }) {
         { withCredentials: true }
       );
       console.log("Update payment status response:", response.data);
-      dispatch(fetchUserThunk());
+      // dispatch(fetchUserThunk());
     } catch (error) {
       console.error(error);
       setPaymentLoading(false);
