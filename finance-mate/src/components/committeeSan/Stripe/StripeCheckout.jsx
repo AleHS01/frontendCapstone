@@ -53,12 +53,12 @@ const StripeCheckout = ({ setPaymentMethodId, handleCardAttach }) => {
         );
       }
       fetchSetUpIntent();
-      dispatch(fetchUserThunk());
+      // dispatch(fetchUserThunk());
       
     } catch (error) {
       console.log(error)
     }
-  }, [dispatch]);
+  }, []);
 
  
 
