@@ -105,6 +105,7 @@ const LinkPlaid = () => {
             >
               Get Started With Plaid
             </Typography>
+            <br/>
             <motion.button
               variants={{
                 hidden: { opacity: 0, x: 90, scale: 0.5 },
