@@ -63,6 +63,7 @@ const GroupForm = () => {
     dispatch(createCustomerThunk());
 
     setGroupName("");
+    setCommitteeAmount("")
   };
 
   const handleButton = (groupId, groupName) => {
