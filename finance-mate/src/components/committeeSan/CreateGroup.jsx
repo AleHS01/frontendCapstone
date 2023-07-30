@@ -81,12 +81,13 @@ const GroupForm = () => {
     >
       <nav
         style={{
-          position: "absolute",
+          position: "relative",
           top: 0,
           padding: "20px 0 0 30px",
           display: "flex",
           justifyContent: "center",
           width: "100%",
+          margin: "0 0 10px",
         }}
       >
         <Grid container spacing={1} width={"100%"} justifyContent={"center"}>
