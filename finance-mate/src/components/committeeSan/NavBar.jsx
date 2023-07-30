@@ -15,6 +15,13 @@ const NavBar = () => {
   return (
     <StyledAppBar position="static">
       <Toolbar>
+        <img
+          src="https://i.postimg.cc/L4nGKX73/Screen-Shot-2023-07-30-at-2-11-04-AM.png"
+          alt="FinanceMate Logo"
+          width={"64px"}
+          height={"64px"}
+          style={{ marginRight: "10px" }}
+        />
         <Typography variant="h4" component={Link} to="/committeesan">
           CommitteeSan{" "}
           <span style={{ fontSize: "1rem", color: "#081c15" }}>
