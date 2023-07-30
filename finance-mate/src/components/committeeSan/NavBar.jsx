@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 import { AppBar, Toolbar, Typography, Button, Box } from "@mui/material";
 import { styled } from "@mui/system";
 import { Home, Person, ExitToApp } from "@mui/icons-material";
-import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
-import LinkIcon from '@mui/icons-material/Link';
-import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
+import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
+import LinkIcon from "@mui/icons-material/Link";
+import CurrencyExchangeIcon from "@mui/icons-material/CurrencyExchange";
 
 const StyledAppBar = styled(AppBar)({
   backgroundColor: "#53ad77",
@@ -23,22 +23,21 @@ const NavBar = () => {
         </Typography>
 
         <Box ml={3}>
-          <Button component={Link} to="/user" color="inherit">
+          {/* <Button component={Link} to="/user" color="inherit">
             <Person /> Profile
-          </Button>
-          <Button component={Link} to="/bank_accounts" color="inherit">
-            <AccountBalanceIcon /> Bank Accounts
+          </Button> */}
+          <Button component={Link} to="/user" color="inherit">
+            <AccountBalanceIcon sx={{ mr: "5px" }} /> Home
           </Button>
           <Button component={Link} to="/link_plaid" color="inherit">
-            <LinkIcon /> Add Payment
+            <LinkIcon sx={{ mr: "5px" }} /> Add Payment
           </Button>
           <Button component={Link} to="/expenses" color="inherit">
-            <CurrencyExchangeIcon /> Expenses
+            <CurrencyExchangeIcon sx={{ mr: "5px" }} /> Expenses
           </Button>
           <Button component={Link} to="/logout" color="inherit">
-            <ExitToApp /> Logout
+            <ExitToApp sx={{ mr: "5px" }} /> Logout
           </Button>
-          
         </Box>
       </Toolbar>
     </StyledAppBar>

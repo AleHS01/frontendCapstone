@@ -102,7 +102,7 @@ const AddExpenseForm = () => {
     };
 
     dispatch(addExpenseThunk(expenseData));
-
+    dispatch(getBudgetsThunk());
     setExpenseName("");
     setExpenseAmount("");
   };

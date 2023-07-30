@@ -25,17 +25,12 @@ import { AiOutlineTransaction } from "react-icons/ai";
 function Transactions() {
   const dispatch = useDispatch();
   const transactions = useSelector((state) => state.trans);
+  const user = useSelector((state) => state.user);
 
   // const user = useSelector((state) => state.user);
   const [sortedTransactions, setSortedTransactions] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const transactionsPerPage = 30;
-
-  // const getUser = async () => {
-  //   try {
-  //     dispatch(fetchUserThunk());
-  //   } catch (error) {}
-  // };
 
   useEffect(() => {
     dispatch(getTransactionsThunk());
@@ -82,7 +77,7 @@ function Transactions() {
 
   return (
     <div>
-      <PageHeader page_name="My Transactions" />
+      {/* <PageHeader page_name="My Transactions" /> */}
 
       <div
         style={{
@@ -107,11 +102,6 @@ function Transactions() {
         spacing={2}
         sx={{ mt: "20px", height: "40px" }}
       >
-        <Grid item>
-          <Typography variant="h4" sx={{ fontWeight: "500", color: "#4CAF50" }}>
-            All Your Transactions
-          </Typography>
-        </Grid>
         <Grid item>
           <Typography variant="h6" sx={{ color: "#05377f" }}>
             Amount:
@@ -165,7 +155,11 @@ function Transactions() {
             sx={{ borderColor: "#4CAF50", height: "100%" }}
           />
         </Grid>
-
+        <Grid item>
+          <Typography variant="h4" sx={{ fontWeight: "500", color: "#4CAF50" }}>
+            All Your Transactions
+          </Typography>
+        </Grid>
         <Grid item xs>
           <Divider
             orientation="vertical"
@@ -173,84 +167,91 @@ function Transactions() {
             sx={{ borderColor: "#4CAF50", height: "100%" }}
           />
         </Grid>
-        {/* <Grid item>
-            <Box
-              sx={{
-                display: "flex",
-                justifyContent: "center",
-                mt: 0,
-              }}
-            >
-              <Pagination
-                count={totalPages}
-                page={currentPage}
-                onChange={(event, value) => setCurrentPage(value)}
-              />
-            </Box>
-          </Grid> */}
-      </Grid>
-      {/* --------------------- */}
-      <div style={{ margin: "30px auto 10px", width: "90%" }}>
-        {sortedTransactions
-          .slice(
-            (currentPage - 1) * transactionsPerPage,
-            currentPage * transactionsPerPage
-          )
-          .map((transaction) => {
-            const isNegativeAmount = transaction.amount < 0;
-            const formattedAmount = isNegativeAmount
-              ? `-$${Math.abs(transaction.amount)}` //converting from cents to normal amount
-              : `$${transaction.amount}`; //converting from cents to normal amount
-
-            return (
-              <Paper
-                elevation={3}
-                sx={{
-                  p: 2,
-                  mt: 2,
-                  display: "flex",
-                  flexDirection: "column",
-                  width: "100%",
-                }}
-                key={transaction.transaction_id} // Add a unique key for each transaction
-              >
-                <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-                  <Typography variant="body1" sx={{ fontWeight: "bold" }}>
-                    Merchant: {transaction.merchant_name}
-                  </Typography>
-                  <Typography
-                    variant="body1"
-                    sx={{
-                      fontWeight: "bold",
-                      color: isNegativeAmount ? "red" : "inherit",
-                    }}
-                  >
-                    {formattedAmount}
-                  </Typography>
-                </Box>
-                <Typography variant="body2">{transaction.name}</Typography>
-                <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-                  <Typography variant="caption" sx={{ fontStyle: "italic" }}>
-                    Date: {transaction.date}
-                  </Typography>
-                  <Chip
-                    size="small"
-                    label={transaction.category}
-                    color="primary"
-                    sx={{ fontStyle: "italic" }}
-                  />
-                </Box>
-              </Paper>
-            );
-          })}
-        {/* <Box sx={{ display: "flex", justifyContent: "center", mt: 3 }}>
+        <Grid item>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              mt: 0,
+            }}
+          >
             <Pagination
               count={totalPages}
               page={currentPage}
               onChange={(event, value) => setCurrentPage(value)}
             />
-          </Box> */}
-      </div>
+          </Box>
+        </Grid>
+      </Grid>
+      {!user.plaidAccessToken ? (
+        <h1>Please Add a Payment or Connect bank account</h1>
+      ) : (
+        <div style={{ margin: "30px auto 10px", width: "90%" }}>
+          {sortedTransactions
+            .slice(
+              (currentPage - 1) * transactionsPerPage,
+              currentPage * transactionsPerPage
+            )
+            .map((transaction) => {
+              const isNegativeAmount = transaction.amount < 0;
+              const formattedAmount = isNegativeAmount
+                ? `-$${Math.abs(transaction.amount)}` //converting from cents to normal amount
+                : `$${transaction.amount}`; //converting from cents to normal amount
+
+              return (
+                <Paper
+                  elevation={3}
+                  sx={{
+                    p: 2,
+                    mt: 2,
+                    display: "flex",
+                    flexDirection: "column",
+                    width: "100%",
+                  }}
+                  key={transaction.transaction_id} // Add a unique key for each transaction
+                >
+                  <Box
+                    sx={{ display: "flex", justifyContent: "space-between" }}
+                  >
+                    <Typography variant="body1" sx={{ fontWeight: "bold" }}>
+                      Merchant: {transaction.merchant_name}
+                    </Typography>
+                    <Typography
+                      variant="body1"
+                      sx={{
+                        fontWeight: "bold",
+                        color: isNegativeAmount ? "red" : "inherit",
+                      }}
+                    >
+                      {formattedAmount}
+                    </Typography>
+                  </Box>
+                  <Typography variant="body2">{transaction.name}</Typography>
+                  <Box
+                    sx={{ display: "flex", justifyContent: "space-between" }}
+                  >
+                    <Typography variant="caption" sx={{ fontStyle: "italic" }}>
+                      Date: {transaction.date}
+                    </Typography>
+                    <Chip
+                      size="small"
+                      label={transaction.category}
+                      color="primary"
+                      sx={{ fontStyle: "italic" }}
+                    />
+                  </Box>
+                </Paper>
+              );
+            })}
+          <Box sx={{ display: "flex", justifyContent: "center", mt: 3 }}>
+            <Pagination
+              count={totalPages}
+              page={currentPage}
+              onChange={(event, value) => setCurrentPage(value)}
+            />
+          </Box>
+        </div>
+      )}
     </div>
   );
 }

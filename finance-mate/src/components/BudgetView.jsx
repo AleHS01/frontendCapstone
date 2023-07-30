@@ -1,5 +1,4 @@
-
-import {useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import SideBar from "./side-bar";
 import LineChart from "./LineChart";
@@ -75,7 +74,6 @@ const BudgetView = () => {
   const [budgetExpenses, setBudgetExpenses] = useState(undefined);
   const [lineChartData, setLineChartData] = useState(undefined);
   const [sortedBudget, setSortedBudget] = useState([]);
-  
 
   useEffect(() => {
     dispatch(getBudgetsThunk());
@@ -171,7 +169,7 @@ const BudgetView = () => {
       <div className="content p-3">
         <PageHeader page_name="My Budgets Dashboard" />
         <BudgetViewBanner />
-        <Grid container spacing={1} sx={{ marginBottom: "100px" }}>
+        <Grid container spacing={1} sx={{ marginBottom: "140px" }}>
           <Grid item xs={12} style={{ height: "400px" }}>
             <Typography
               variant="h4"
@@ -188,6 +186,9 @@ const BudgetView = () => {
                   margin: "0 auto",
                 }}
               >
+                <Typography variant="body1" sx={{ color: "#0e365e" }}>
+                  Select a budget:
+                </Typography>
                 <Select
                   variant="outlined"
                   label="Budget Category"
@@ -201,6 +202,20 @@ const BudgetView = () => {
                     </MenuItem>
                   ))}
                 </Select>
+                {budgetExpenses.length > 0 ? (
+                  <></>
+                ) : (
+                  <Typography
+                    variant="body1"
+                    sx={{
+                      color: "#0e365e",
+                      textAlign: "center",
+                    }}
+                  >
+                    If the budget don't have any expense, the graph will display
+                    sample data.
+                  </Typography>
+                )}
                 <LineChart data={lineChartData} />
               </div>
             ) : (
@@ -215,7 +230,8 @@ const BudgetView = () => {
                     mt: 2,
                   }}
                 >
-                 Create Budgets!
+                  Your expense overview is loading... If you don't have any
+                  budget yet, please add one
                 </Typography>
               </div>
             )}
@@ -258,10 +274,7 @@ const BudgetView = () => {
             />
           </Grid>
           <Grid item>
-            <Typography
-              variant="h4"
-              sx={{ fontWeight: "500", color: "black" }}
-            >
+            <Typography variant="h4" sx={{ fontWeight: "500", color: "black" }}>
               Overview of Your Budgets
             </Typography>
           </Grid>
@@ -291,7 +304,7 @@ const BudgetView = () => {
             <Chip
               label="Add Expense"
               component={Link}
-              to='/budget-expense/1'
+              to="/budget-expense/1"
               clickable
               sx={{
                 backgroundColor: "black",
@@ -305,46 +318,54 @@ const BudgetView = () => {
         </Grid>
 
         <BudgetBoxesContainer>
-          {sortedBudget.map((budget, index) => {
-            return (
-              <Tooltip key = {index}title="View Budget Details" placement="bottom">
-                <BBox>
-                  <BudgetInfoContainer>
-                    <Link
-                      to={`/budget-expense/${budget.id}`}
-                      key={index}
-                      style={{
-                        display: "flex",
-                        justifyContent: "space-between",
-                        width: "100%",
-                      }}
-                    >
-                      <BudgetName>{budget.budget_name}</BudgetName>
-                      <BudgetAmount style={{ marginRight: "20px" }}>
-                        ${budget.amount}
-                      </BudgetAmount>
-                    </Link>
-                  </BudgetInfoContainer>
+          {sortedBudget.length > 0 ? (
+            sortedBudget.map((budget, index) => {
+              return (
+                <Tooltip
+                  key={index}
+                  title="View Budget Details"
+                  placement="bottom"
+                >
+                  <BBox>
+                    <BudgetInfoContainer>
+                      <Link
+                        to={`/budget-expense/${budget.id}`}
+                        key={index}
+                        style={{
+                          display: "flex",
+                          justifyContent: "space-between",
+                          width: "100%",
+                        }}
+                      >
+                        <BudgetName>{budget.budget_name}</BudgetName>
+                        <BudgetAmount style={{ marginRight: "20px" }}>
+                          ${budget.amount}
+                        </BudgetAmount>
+                      </Link>
+                    </BudgetInfoContainer>
 
-                  <Tooltip title="Delete Budget" placement="right">
-                    <IconButton
-                      aria-label="delete"
-                      // onClick={() => handleDeleteExpense(expense.id)}
-                      sx={{
-                        position: "absolute",
-                        top: "10px",
-                        right: "10px",
-                        // marginLeft: "10px",
-                      }}
-                      onClick={() => deleteBudget(budget)}
-                    >
-                      <DeleteIcon style={{ color: "red" }} />
-                    </IconButton>
-                  </Tooltip>
-                </BBox>
-              </Tooltip>
-            );
-          })}
+                    <Tooltip title="Delete Budget" placement="right">
+                      <IconButton
+                        aria-label="delete"
+                        // onClick={() => handleDeleteExpense(expense.id)}
+                        sx={{
+                          position: "absolute",
+                          top: "10px",
+                          right: "10px",
+                          // marginLeft: "10px",
+                        }}
+                        onClick={() => deleteBudget(budget)}
+                      >
+                        <DeleteIcon style={{ color: "red" }} />
+                      </IconButton>
+                    </Tooltip>
+                  </BBox>
+                </Tooltip>
+              );
+            })
+          ) : (
+            <Typography variant="h6">No Budget Found</Typography>
+          )}
         </BudgetBoxesContainer>
       </div>
     </div>
