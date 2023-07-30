@@ -13,6 +13,7 @@ import { motion, AnimatePresence, isInView, useInView, useAnimation } from "fram
 import space from "../images/space.webp"; // Import the image
 
 
+
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -62,10 +63,19 @@ const Login = () => {
         <AiFillHome className="mt-0.5 text-lg"/>
         Home</Link>
 
-        <h1 className="flex justify-center text-white my-8 bg-black p-4 rounded-md text-2xl font-extrabold border-8 shadow-lg">
-          
-        Welcome Back!
-      </h1>
+        <motion.img 
+          variants={{
+            hidden: {opacity: 0, x: -80},
+            visible: {opacity: 1, x: 0},
+          }}
+          initial="hidden"
+          animate="visible"
+          transition={{duration: 0.8, delay: 0.25}}
+            className="ml-4 my-2"
+            src="https://i.postimg.cc/x1rYdyrp/Welcome-to-scribie-512x391-1.png"
+            alt="Plaid"
+            style={{ width: "200px", height: "auto" }}
+          />
       
       <div className="border shadow-xl rounded-md bg-green-300 p-4 py-6 px-4 my-2 mb-2 border-black flex flex-col items-center"
       style={{width: "400px", height: "450px"}}
@@ -98,7 +108,6 @@ const Login = () => {
         Submit
       </button>
 
-      <br />
       <GoogleButton className="m-4 shadow-md hover:scale-105" />
     
         <motion.div
