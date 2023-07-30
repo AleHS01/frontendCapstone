@@ -113,7 +113,7 @@ const LinkPlaid = () => {
               initial="hidden"
               animate="visible"
               transition={{ duration: 0.6, delay: 0.45 }}
-              className="plaid-button flex justify-center"
+              className="hover:scale-110 hover:shadow-lg duration-200 bg-green-600 flex rounded-md px-4 py-2 mr-4 items-center mv-4 shadow-md border-4 font-semibold font-sans"
               onClick={popUp}
               disabled={!ready}
             >
