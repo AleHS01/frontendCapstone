@@ -154,8 +154,8 @@ const AddMembers = () => {
       }
     };
     isAdminFunc();
-    // dispatch(fetchUserThunk());
-    // dispatch(getMembersThunk(groupId));
+    dispatch(fetchUserThunk());
+    dispatch(getMembersThunk(groupId));
     fetchMemberInPayoutOrder();
     setIsGroupActive(
       Array.isArray(members) && members.length > 0
