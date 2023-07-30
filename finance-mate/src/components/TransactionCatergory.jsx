@@ -5,32 +5,6 @@ import PieChart from "./PieChart";
 
 function TransactionCatergory({ transactions }) {
   const [all_categories, setAllCategories] = useState(new Set());
-  // const [cat_map_trans, set_Cat_Map_Tras] = useState(new Map());
-
-  //extracting categories from all the transactions
-  // for (let i = 0; i < transactions.length; i++) {
-  //   all_categories.add(transactions[i].personal_finance_category);
-  // }
-
-  // /**Create a map, that has a category as a Key and an array of transactions as an
-  //  * value
-  //  */
-  // for (const element of all_categories) {
-  //   cat_map_trans.set(element, []); // Set any desired value here
-  // }
-
-  // transactions.forEach((item) => {
-  //   cat_map_trans.set(item.personal_finance_category, [
-  //     ...cat_map_trans.get(item.personal_finance_category),
-  //     item,
-  //   ]);
-  // });
-
-  // cat_map_trans.forEach((value, key) => {
-  //   //
-  //   const total_amount = value.reduce((acc, item) => acc + item.amount, 0);
-  //   cat_map_trans.set(key, total_amount);
-  // });
 
   const cat_map_trans = new Map();
   for (const transaction of transactions) {
@@ -118,7 +92,7 @@ function TransactionCatergory({ transactions }) {
     processPieData();
     processPieFill();
     // }, 250);
-  }, []);
+  }, [transactions]);
 
   return (
     <PieChart className="content" data={pieChartData} fill={pieChartFill} />

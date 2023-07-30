@@ -9,7 +9,7 @@ import LinkPlaid from "./components/LinkPlaid";
 import Dashboard from "./components/Dashboard";
 import ExpensesForm from "./components/ExpensesForm";
 import Accounts from "./components/GetAccounts";
-
+import PayoutSuccess from "./components/committeeSan/Stripe/PayoutSucess";
 import ExpensesView from "./components/ExpensesView";
 import Transactions from "./components/Transactions";
 
@@ -89,8 +89,12 @@ function App() {
               element={<StripeCeckout></StripeCeckout>}
             />
             <Route path="/activate" element={<Activate></Activate>} />
-            <Route path="/success" element={<Success></Success>} />
+            {/* <Route path="/success" element={<Success></Success>} />     this was not in use, the component was fully commendted out*/}
             <Route path="failure" element={<FailurePage></FailurePage>} />
+            <Route
+              path="/payout-success/:firstName"
+              element={<PayoutSuccess />}
+            />
           </Route>
         </Routes>
       </div>
