@@ -15,6 +15,7 @@ import { BiLogIn } from "react-icons/bi";
 import GoogleButton from "react-google-button";
 import { googleLoginThunk } from "../redux/user/user.action";
 import { motion, useInView, useAnimation } from "framer-motion"
+import signup from "../images"
 
 
 //BiLogIn
@@ -128,7 +129,7 @@ const SignUp = () => {
           animate="visible"
           transition={{duration: 0.8, delay: 0.25}}
             className="ml-4 my-2"
-            src={signup}
+            src="https://i.postimg.cc/1tFf8RCD/img-thanks.png"
             alt="Plaid"
             style={{ width: "200px", height: "auto" }}
           />
