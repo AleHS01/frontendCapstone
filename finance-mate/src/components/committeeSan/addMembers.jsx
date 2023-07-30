@@ -524,7 +524,7 @@ const AddMembers = () => {
               Committe <span style={{ color: "limegreen" }}>Payout</span> Order
             </Typography>
             {user.isAdmin &&
-            !user.Group.isActive &&
+            !user.Group?.isActive &&
             user.Group?.id === groupId ? (
               <Typography
                 variant="body1"
