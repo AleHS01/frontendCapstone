@@ -16,6 +16,7 @@ import {
 } from "../../redux/groups/group.actions";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
+import { createCustomerThunk } from "../../redux/stripe/stripe.actions";
 
 const DottedBox = styled.div`
   border: 4px dotted #000;
@@ -42,8 +43,7 @@ const GroupForm = () => {
 
   const groups = useSelector((state) => state.committee_groups);
   const [groupName, setGroupName] = useState("");
-
-  console.log(groups);
+  const [committeeAmount, setCommitteeAmount] = useState(0);
 
   /*
   The useEffect here prevents react to go into an infinte loop whilst displaying
@@ -57,8 +57,10 @@ const GroupForm = () => {
     event.preventDefault();
     const group = {
       name: groupName,
+      amount: committeeAmount,
     };
     dispatch(createGroupThunk(group));
+    dispatch(createCustomerThunk());
 
     setGroupName("");
   };
@@ -135,6 +137,16 @@ const GroupForm = () => {
                 label="Group Name"
                 value={groupName}
                 onChange={(e) => setGroupName(e.target.value)}
+                sx={{ margin: "10px 0  20px" }}
+              />
+              <TextField
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                label="CommitteeSan Amount"
+                value={committeeAmount}
+                onChange={(e) => setCommitteeAmount(e.target.value)}
                 sx={{ margin: "10px 0  20px" }}
               />
               <Grid>

@@ -4,13 +4,12 @@ import { useDispatch } from "react-redux";
 import { logoutUserThunk } from "../redux/user/user.action";
 
 import { RiBankFill } from "react-icons/ri";
-import { ImUserTie, ImUsers } from "react-icons/im";
+import { ImUserTie } from "react-icons/im";
 import { BsFillArrowLeftCircleFill } from "react-icons/bs";
 import { SlLogout, SlWallet } from "react-icons/sl";
 import { AiOutlineForm } from "react-icons/ai";
 import { GiTakeMyMoney } from "react-icons/gi";
 import { TbReportMoney } from "react-icons/tb";
-import { GrTransaction } from "react-icons/gr";
 import { RiExchangeFundsFill } from "react-icons/ri";
 import { motion } from "framer-motion";
 
@@ -22,11 +21,9 @@ function SideBar() {
   const handleLogout = async () => {
     try {
       dispatch(logoutUserThunk());
-      console.log("Logout successful");
-      navigate("/");
-    } catch (error) {
-      console.log(error);
-    }
+
+      navigate("/logout");
+    } catch (error) {}
   };
 
   const handleLinkPlaid = () => {
@@ -36,141 +33,311 @@ function SideBar() {
   const handleAccount = () => {
     navigate("/user");
   };
-
-  const handleBankAccount = () => {
-    navigate("/bank_accounts");
-  };
-
+  // const handleBankAccount = () => {
+  //   navigate("/bank_accounts");
+  // };
   const handleFinaceForm = () => {
     navigate("/expense-form");
   };
-
   const handleExpenseView = () => {
     navigate("/expenses");
   };
-
-  const handleTrans = () => {
-    navigate("/transactions");
-  };
+  // const handleTrans = () => {
+  // //   navigate("/transactions");
+  // // };
 
   const handleSetBudget = () => {
     navigate("/budget-view");
   };
 
-  const handleCommitteeSan = () => {
-    navigate("/committeesan");
-  };
+  // const handleCommitteeSan = () => {
+  //   navigate("/committeesan")
+  // }
+
+  // const controls = useAnimation();
+  //
+
+  //const [inView] = useInView();
 
   const location = useLocation();
 
-  return (
-    <div className={`sidebar-container ${open ? "expanded" : "collapsed"}`}>
-      {/* Header */}
-      <div className={`sidebar-header ${open ? "expanded" : "collapsed"}`}>
-        <RiBankFill className="sidebar-logo" />
-        {open && <h1 className="sidebar-title">Finance-Mate</h1>}
-      </div>
+  // useEffect(() => {
+  //   if (isLoaded) {
+  //     controls.start("visible");
+  //     isLoaded= false;
+  //   }
+  // }, [controls, isLoaded]);
 
-      {/* Navigation Items */}
-      <div className={`sidebar-navigation ${open ? "expanded" : "collapsed"}`}>
+  return (
+    <div className="flex">
+      {/* Arrow to open and close side bar */}
+      <div
+        className={`bg-light-green h-auto p-5 pt-8 ${
+          open ? "w-72" : "w-20"
+        }  relative duration-300`}
+      >
+        <BsFillArrowLeftCircleFill
+          className={`hover:scale-110 hover:text-black bg-white text-dark-green text-3xl rounded-full absolute -right-3 top-9 border border-white cursor-pointer ${
+            !open && "rotate-180"
+          }`}
+          onClick={() => setOpen(!open)}
+        />
+
+        {/* Header */}
         <motion.div
-          className="navigation-item"
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
+          variants={{
+            hidden: location.state
+              ? { opacity: 0, x: -75 }
+              : { opacity: 1, x: 0 },
+            visible: { opacity: 1, x: 0 },
+          }}
+          initial="hidden"
+          animate="visible"
+          // {location.state ? "visible" : ""}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          viewport={{ once: true }}
+          className="inline-flex"
         >
-          <ImUserTie className="navigation-icon" />
-          <button className="navigation-button" onClick={handleAccount}>
+          <RiBankFill
+            className={`bg-white text-4xl rounded cursor-pointer block float-left mr-2 duration-500 ${
+              open && "rotate-[360deg]"
+            }`}
+          />
+          <h1
+            className={`hover:scale-110 hover:shadow-lg hover:text-black text-white origin-left font-medium text-2xl duration-300 ${
+              !open && "scale-0"
+            }`}
+          >
+            Finance-Mate
+          </h1>
+        </motion.div>
+
+        {/* All other buttons */}
+
+        <motion.div
+          variants={{
+            hidden: location.state
+              ? { opacity: 0, x: -75 }
+              : { opacity: 1, x: 0 },
+            visible: { opacity: 1, x: 0 },
+          }}
+          initial="hidden"
+          animate="visible"
+          transition={{ duration: 0.5, delay: 0.4 }}
+          className={`flex items-center rounded-md px-2 py-2  ${
+            !open ? "px-1" : "px-4"
+          }`}
+        >
+          <SlLogout
+            onClick={handleLogout}
+            className={`hover:scale-110 hover:shadow-lg text-white text-4xl rounded cursor-pointer block float-left mr-2 duration-500 mt-4`}
+          />
+          <button
+            className={`hover:scale-110 hover:text-white text-white flex rounded-md px-4 py-2 mr-4 items-center mv-4  border-4 font-bold mt-4 font-sans duration-200  ${
+              !open && "hidden"
+            }`}
+            onClick={handleLogout}
+          >
+            Sign Out
+          </button>
+        </motion.div>
+
+        <motion.div
+          variants={{
+            hidden: location.state
+              ? { opacity: 0, x: -75 }
+              : { opacity: 1, x: 0 },
+            visible: { opacity: 1, x: 0 },
+          }}
+          initial="hidden"
+          animate="visible"
+          transition={{ duration: 0.5, delay: 0.6 }}
+          className={`flex items-center rounded-md px-2 py-2  ${
+            !open ? "px-1" : "px-4"
+          }`}
+        >
+          <ImUserTie
+            onClick={handleAccount}
+            className={`hover:scale-110 hover:shadow-lg text-white text-4xl rounded cursor-pointer block float-left mr-2 duration-500 mt-4`}
+          />
+          <button
+            className={`hover:scale-110 hover:text-white text-white flex rounded-md px-4 py-2 mr-4 items-center mv-4  border-4 font-bold mt-4 font-sans duration-200  ${
+              !open && "hidden"
+            }`}
+            // to="/User"
+            onClick={handleAccount}
+          >
             Account
           </button>
         </motion.div>
         <motion.div
-          className="navigation-item"
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
+          variants={{
+            hidden: location.state
+              ? { opacity: 0, x: -75 }
+              : { opacity: 1, x: 0 },
+            visible: { opacity: 1, x: 0 },
+          }}
+          initial="hidden"
+          animate="visible"
+          transition={{ duration: 0.5, delay: 1 }}
+          className={`flex items-center rounded-md px-2 py-2  ${
+            !open ? "px-1" : "px-4"
+          }`}
         >
-          <ImUsers className="navigation-icon" />
-          <button className="navigation-button" onClick={handleBankAccount}>
-            Bank Accounts
-          </button>
-        </motion.div>
-        <motion.div
-          className="navigation-item"
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
-        >
-          <SlWallet className="navigation-icon" />
-          <button className="navigation-button" onClick={handleLinkPlaid}>
+          <SlWallet
+            onClick={handleLinkPlaid}
+            className={`hover:scale-110 hover:shadow-lg text-white text-4xl rounded cursor-pointer block float-left mr-2 duration-500 mt-4`}
+          />
+          <button
+            className={`hover:scale-110 hover:text-white text-white flex rounded-md px-4 py-2 mr-4 items-center mv-4  border-4 font-bold mt-4 font-sans duration-200  ${
+              !open && "hidden"
+            }`}
+            onClick={handleLinkPlaid}
+          >
             Add Payment
           </button>
         </motion.div>
-        <motion.div
-          className="navigation-item"
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
+
+        {/* <motion.div
+          variants={{
+            hidden: location.state
+              ? { opacity: 0, x: -75 }
+              : { opacity: 1, x: 0 },
+            visible: { opacity: 1, x: 0 },
+          }}
+          initial="hidden"
+          animate="visible"
+          transition={{ duration: 0.5, delay: 1.2 }}
+          className={`flex items-center rounded-md px-2 py-2  ${
+            !open ? "px-1" : "px-4"
+          }`}
         >
-          <AiOutlineForm className="navigation-icon" />
-          <button className="navigation-button" onClick={handleFinaceForm}>
+          <AiOutlineForm
+            onClick={handleFinaceForm}
+            className={`hover:scale-110 hover:shadow-lg text-white text-4xl rounded cursor-pointer block float-left mr-2 duration-500 mt-4`}
+          />
+          <button
+            className={`hover:scale-110 hover:text-white text-white flex rounded-md px-4 py-2 mr-4 items-center mv-4  border-4 font-bold mt-4 font-sans duration-200  ${
+              !open && "hidden"
+            }`}
+            onClick={handleFinaceForm}
+          >
             Expenses Form
           </button>
-        </motion.div>
+        </motion.div> */}
+
         <motion.div
-          className="navigation-item"
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
+          variants={{
+            hidden: location.state
+              ? { opacity: 0, x: -75 }
+              : { opacity: 1, x: 0 },
+            visible: { opacity: 1, x: 0 },
+          }}
+          initial="hidden"
+          animate="visible"
+          transition={{ duration: 0.5, delay: 1.4 }}
+          className={`flex items-center rounded-md px-2 py-2  ${
+            !open ? "px-1" : "px-4"
+          }`}
         >
-          <GiTakeMyMoney className="navigation-icon" />
-          <button className="navigation-button" onClick={handleExpenseView}>
+          <GiTakeMyMoney
+            onClick={handleExpenseView}
+            className={`hover:scale-110 hover:shadow-lg text-white text-4xl rounded cursor-pointer block float-left mr-2 duration-500 mt-4`}
+          />
+          <button
+            className={`hover:scale-110 hover:text-white text-white flex rounded-md px-4 py-2 mr-4 items-center mv-4  border-4 font-bold mt-4 font-sans duration-200  ${
+              !open && "hidden"
+            }`}
+            onClick={handleExpenseView}
+          >
             Expenses
           </button>
         </motion.div>
+
         <motion.div
-          className="navigation-item"
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
+          variants={{
+            hidden: location.state
+              ? { opacity: 0, x: -75 }
+              : { opacity: 1, x: 0 },
+            visible: { opacity: 1, x: 0 },
+          }}
+          initial="hidden"
+          animate="visible"
+          transition={{ duration: 0.5, delay: 1.6 }}
+          className={`flex items-center rounded-md px-2 py-2  ${
+            !open ? "px-1" : "px-4"
+          }`}
         >
-          <TbReportMoney className="navigation-icon" />
-          <button className="navigation-button" onClick={handleSetBudget}>
-            Set Budget
+          <TbReportMoney
+            onClick={handleSetBudget}
+            className={`hover:scale-110 hover:shadow-lg text-white text-4xl rounded cursor-pointer block float-left mr-2 duration-500 mt-4`}
+          />
+          <button
+            className={`hover:scale-110 hover:text-white text-white flex rounded-md px-4 py-2 mr-4 items-center mv-4  border-4 font-bold mt-4 font-sans duration-200  ${
+              !open && "hidden"
+            }`}
+            onClick={handleSetBudget}
+          >
+            Budgets
           </button>
         </motion.div>
-        <motion.div
-          className="navigation-item"
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
+
+        {/* <motion.div
+        variants={{
+          hidden: location.state ? {opacity: 0, x: -75} : {opacity: 1, x: 0},
+          visible: {opacity: 1, x: 0},
+        }}
+        initial="hidden"
+        animate="visible"
+        transition={{duration: 0.5, delay: 1.80}}
+          className={`flex items-center rounded-md px-2 py-2  ${
+            !open ? "px-1" : "px-4"
+          }`}
         >
-          <GrTransaction className="navigation-icon" />
-          <button className="navigation-button" onClick={handleTrans}>
+          <GrTransaction
+            onClick={handleTrans} 
+            className={`hover:scale-110 hover:text-white  text-white text-4xl rounded cursor-pointer block float-left mr-2 duration-500 mt-4`}
+            style={{ color: 'white' }} 
+          />
+          <button
+            className={`hover:scale-110 hover:text-white text-white flex rounded-md px-4 py-2 mr-4 items-center mv-4  border-4 font-bold mt-4 font-sans duration-200  ${
+              !open && "hidden"
+            }`}
+            onClick={handleTrans}
+          >
             Transactions
           </button>
-        </motion.div>
+        </motion.div> */}
+
         <motion.div
-          className="navigation-item"
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
+          variants={{
+            hidden: location.state
+              ? { opacity: 0, x: -75 }
+              : { opacity: 1, x: 0 },
+            visible: { opacity: 1, x: 0 },
+          }}
+          initial="hidden"
+          animate="visible"
+          transition={{ duration: 0.5, delay: 2 }}
+          className={`flex items-center rounded-md px-2 py-2  ${
+            !open ? "px-1" : "px-4"
+          }`}
         >
-          <RiExchangeFundsFill className="navigation-icon" />
-          <button className="navigation-button" onClick={handleCommitteeSan}>
+          <RiExchangeFundsFill
+            onClick={() => navigate("/committeesan")}
+            className={`hover:scale-110 hover:shadow-lg text-white text-4xl rounded cursor-pointer block float-left mr-2 duration-500 mt-4`}
+          />
+
+          <button
+            className={`hover:scale-110 hover:text-white text-white flex rounded-md px-4 py-2 mr-4 items-center mv-4  border-4 font-bold mt-4 font-sans duration-200  ${
+              !open && "hidden"
+            }`}
+            onClick={() => navigate("/committeesan")}
+          >
             Committee San
           </button>
         </motion.div>
       </div>
-
-      {/* Toggle Button */}
-      <div className="sidebar-toggle" onClick={() => setOpen(!open)}>
-        <BsFillArrowLeftCircleFill
-          className={`toggle-icon ${!open && "rotate-180"}`}
-        />
-      </div>
-
-      {/* Logout Button */}
-      <motion.div
-        className={`logout-container ${open ? "expanded" : "collapsed"}`}
-      >
-        <SlLogout onClick={handleLogout} className="logout-icon" />
-        <button className="logout-button" onClick={handleLogout}>
-          Sign Out
-        </button>
-      </motion.div>
     </div>
   );
 }

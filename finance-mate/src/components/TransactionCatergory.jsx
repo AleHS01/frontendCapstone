@@ -27,7 +27,7 @@ function TransactionCatergory({ transactions }) {
   // });
 
   // cat_map_trans.forEach((value, key) => {
-  //   // console.log(value)
+  //   //
   //   const total_amount = value.reduce((acc, item) => acc + item.amount, 0);
   //   cat_map_trans.set(key, total_amount);
   // });
@@ -44,7 +44,7 @@ function TransactionCatergory({ transactions }) {
     );
   }
 
-  // console.log(cat_map_trans)
+  //
   //all_trans now contains categories mapped to accounts
 
   // const user = useSelector((state) => state.user);
@@ -59,14 +59,14 @@ function TransactionCatergory({ transactions }) {
       if (cat_map_trans.size > 0) {
         let data = Array.from(cat_map_trans.entries()).map(([key, value]) => {
           if (value < 1) return {};
-          // console.log(`Key: ${key} value: ${value}`);
+          //
           return {
             id: key,
             label: key,
             value: parseInt(value),
           };
         });
-        console.log("data:\n", data);
+
         data = data.filter((obj) => Object.keys(obj).length !== 0);
         setPieChartData(data);
       } else {
@@ -78,7 +78,7 @@ function TransactionCatergory({ transactions }) {
             value: Math.floor(Math.random() * 951) + 50,
           });
         }
-        console.log("defaultData:\n", defaultData);
+
         setPieChartData(defaultData);
       }
     };
@@ -95,7 +95,7 @@ function TransactionCatergory({ transactions }) {
             id: randomPattern,
           };
         });
-        console.log("fill:\n", fill);
+
         setPieChartFill(fill);
       } else {
         const defaultFill = [];
@@ -109,7 +109,7 @@ function TransactionCatergory({ transactions }) {
             id: randomPattern,
           });
         }
-        console.log("default fill:\n", defaultFill);
+
         setPieChartFill(defaultFill);
       }
     };

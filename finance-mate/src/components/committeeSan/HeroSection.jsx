@@ -18,10 +18,10 @@ const HeroSection = () => {
       }}
     >
       <Typography variant="h1" fontWeight="bold" mb={2}>
-        Welcome to Finance Mate
+        Welcome to CommitteeSan
       </Typography>
       <Typography variant="h5" mb={4}>
-        Your Ultimate Financial Companion
+        Powered by FinanceMate
       </Typography>
       <Button
         variant="contained"
@@ -38,8 +38,25 @@ const HeroSection = () => {
         }}
         onClick={() => navigate("/creategroup")}
       >
-        Create Group
+        Create or Join a Group
       </Button>
+      {/* <Button
+        variant="contained"
+        sx={{
+          backgroundColor: "limegreen",
+          color: "#fff",
+          "&:hover": {
+            backgroundColor: "#05377f",
+          },
+          minWidth: "250px",
+          padding: "12px 32px",
+          fontSize: "1.2rem",
+          fontWeight: "bold",
+        }}
+        onClick={() => navigate("/addMembers/1")}
+      >
+        View Groups
+      </Button> */}
     </Box>
   );
 };

@@ -28,6 +28,8 @@ const ExpensesForm = () => {
   const [editedExpenseIndex, setEditedExpenseIndex] = useState(null);
   const dispatch = useDispatch();
   const expenses = useSelector((state) => state.user_expenses);
+  const user = useSelector((state) => state.user);
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -68,9 +70,9 @@ const ExpensesForm = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log("Expenses array before send:\n", expensesList);
+
     const response = await dispatch(createExpensesThunk(expensesList));
-    console.log("Response Expenses:\n", response);
+
     setExpensesList(await response);
 
     setTimeout(() => {
@@ -85,7 +87,6 @@ const ExpensesForm = () => {
 
     const response = await dispatch(updateExpenseThunk(updatedExpense));
 
-    console.log("Expense updated:", response);
     setEditedExpenseIndex(null);
   };
 

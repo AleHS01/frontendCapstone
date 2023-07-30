@@ -1,6 +1,6 @@
 import axios from "axios";
 import userActionTypes from "./user.type";
-
+axios.defaults.withCredentials = true;
 //------------------USER--------------------
 export const fetchUser = (payload) => ({
   type: userActionTypes.FETCH_USER,
@@ -97,24 +97,23 @@ export const getAccessToken = (access_token, item_id) => ({
 //-------------------------------------Thunks----------------------------------------
 
 export const fetchUserThunk = () => {
-  console.log("got to the fetch_user_thunk");
   return async (dispatch, getState) => {
     // Check if the user is logged in
 
     try {
-      const response = await axios.get("http://localhost:8080/api/user", {
-        withCredentials: true,
-      });
+      const response = await axios.get(
+        `${process.env.REACT_APP_BACKEND_URL}/api/user`,
+        {
+          withCredentials: true,
+        }
+      );
       await dispatch(fetchUser(response.data));
-      console.log("Response: ", response);
+
       const isLoggedIn = getState().user.user !== null;
       if (!isLoggedIn) {
-        console.log("not logged :(");
         return;
       }
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   };
 };
 
@@ -122,16 +121,14 @@ export const logoutUserThunk = () => {
   return async (dispatch) => {
     try {
       const response = await axios.post(
-        "http://localhost:8080/api/logout",
+        `${process.env.REACT_APP_BACKEND_URL}/api/logout`,
         {},
         { withCredentials: true }
       );
       dispatch(logoutUser());
-      console.log(response.data); // Assuming the backend sends a "Logout successful" message
+
       // Add any additional logic after successful logout if needed
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   };
 };
 
@@ -139,18 +136,18 @@ export const loginUserThunk = (credentials) => {
   return async (dispatch) => {
     try {
       const response = await axios.post(
-        "http://localhost:8080/api/login",
+        `${process.env.REACT_APP_BACKEND_URL}/api/login`,
         credentials,
         {
           withCredentials: true,
         }
       );
-      if (!(response.data==="No User Exists")){
+      if (!(response.data === "No User Exists")) {
         const user_info = response.data; // Assuming the login API response contains the user data
-        console.log("User\n", response.data);
+
         dispatch(loginSuccess(user_info));
-      }else{
-        alert(response.data)
+      } else {
+        alert(response.data);
       }
     } catch (error) {
       // alert(error);
@@ -160,18 +157,18 @@ export const loginUserThunk = (credentials) => {
 
 export const googleLoginThunk = () => {
   return async (dispatch) => {
-    console.log("IN GOOGLE THUNK");
     try {
-      const response = await axios.get("http://localhost:8080/api/user", {
-        withCredentials: true,
-      });
+      const response = await axios.get(
+        `${process.env.REACT_APP_BACKEND_URL}/api/user`,
+        {
+          withCredentials: true,
+        }
+      );
       const user = await response.data;
-      console.log("User\n", await response.data);
+
       dispatch(googleLoginSuccess(user));
       localStorage.setItem("user", JSON.stringify(user));
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   };
 };
 
@@ -179,251 +176,15 @@ export const getAccessTokenThunk = (public_token) => {
   return async (dispatch) => {
     try {
       const response = await axios.post(
-        "http://localhost:8080/api/plaid/exchange_public_token",
+        `${process.env.REACT_APP_BACKEND_URL}/api/plaid/exchange_public_token`,
         { public_token: public_token },
         {
           withCredentials: true,
         }
       );
-      console.log("Response data", response.data);
+
       const { access_token, item_id } = response.data;
       dispatch(getAccessToken(access_token, item_id));
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   };
 };
-
-// export const getAccountsThunk = () => {
-//   return async (dispatch) => {
-//     try {
-//       const response = await axios.post(
-//         "http://localhost:8080/api/plaid/accounts",
-//         {},
-//         {
-//           withCredentials: true,
-//         }
-//       );
-//       const accounts = response.data.accounts;
-//       console.log("User bank account types:", accounts);
-//       dispatch(getAccounts(accounts));
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   };
-// };
-
-// export const getTransactionsThunk = () => {
-//   return async (dispatch) => {
-//     try {
-//       const response = await axios.post(
-//         "http://localhost:8080/api/plaid/transactions",
-//         {},
-//         {
-//           withCredentials: true,
-//         }
-//       );
-//       const transactions = await response;
-//       console.log("User bank account types:", transactions);
-//       dispatch(getTransactions(transactions));
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   };
-// };
-
-//---------------ExpensesThunk-----------
-
-// export const getExpensesThunk = () => {
-//   return async (dispatch) => {
-//     try {
-//       const response = await axios.get(
-//         "http://localhost:8080/api/expense/getExpenses",
-//         { withCredentials: true }
-//       );
-//       const expenses = await response.data;
-//       console.log("User Expenses in Thunk:", expenses);
-//       dispatch(getExpenses(expenses));
-//       return response.data;
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   };
-// };
-
-// export const addExpenseThunk = (expenseData) => {
-//   return async (dispatch) => {
-//     try {
-//       // Make a POST request to the API endpoint to add the expense
-//       const response = await axios.post(
-//         "http://localhost:8080/api/expense/addExpense",
-//         expenseData,
-//         { withCredentials: true }
-//       );
-//       const expense = response.data;
-
-//       dispatch(addExpense(expenseData));
-//     } catch (error) {
-//       console.error(error);
-//     }
-//   };
-// };
-
-// export const createExpensesThunk = (expenses) => {
-//   return async (dispatch) => {
-//     try {
-//       const response = await axios.post(
-//         "http://localhost:8080/api/expense",
-//         { expenses },
-//         {
-//           withCredentials: true,
-//         }
-//       );
-//       const expensesList = await response.data;
-//       console.log("Created Expense List:", expensesList);
-//       dispatch(createExpenses(expensesList));
-
-//       return response.data;
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   };
-// };
-
-// export const updateExpenseThunk = (expenseToUpdpate) => {
-//   return async (dispatch) => {
-//     try {
-//       const response = await axios.put(
-//         `http://localhost:8080/api/expense/${expenseToUpdpate.id}`,
-//         expenseToUpdpate,
-//         {
-//           withCredentials: true,
-//         }
-//       );
-//       const updatedExpense = await response.data;
-//       console.log("Updated Expense", updatedExpense);
-//       dispatch(updateAExpense(updatedExpense));
-//       return response.data;
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   };
-// };
-// export const deleteExpenseThunk = (expenseToDelete) => {
-//   return async (dispatch) => {
-//     try {
-//       await axios.delete(
-//         `http://localhost:8080/api/expense/${expenseToDelete.id}`,
-//         {
-//           withCredentials: true,
-//         }
-//       );
-
-//       dispatch(deleteAExpense(expenseToDelete));
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   };
-// };
-
-//-----------------------------------Budget Thunk-----------------------------------
-
-// export const getExpenseOfBudgetThunk = (budgetId) => {
-//   return async (dispatch) => {
-//     try {
-//       const response = await axios.get(
-//         `http://localhost:8080/api/expense/totalExpenses/${budgetId}`,
-//         {
-//           withCredentials: true,
-//         }
-//       );
-//       console.log("Total expense done inside this budget: ", response.data);
-//       dispatch(getExpenseOfBudget(response.data));
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   };
-// };
-
-// export const getBudgetNamesThunk = () => {
-//   return async (dispatch) => {
-//     try {
-//       const response = await axios.get(
-//         "http://localhost:8080/api/budget/budgetNames",
-//         { withCredentials: true }
-//       );
-//       // const filteredBudgets = response.data.filter((budget) => budget.budget_name !== null);
-//       dispatch(getBudgetName(response.data));
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   };
-// };
-
-// export const deletedubgetThunk = (budgetToDelete) => {
-//   return async (dispatch) => {
-//     try {
-//       await axios.delete(
-//         `http://localhost:8080/api/budget/${budgetToDelete.id}`,
-//         {
-//           withCredentials: true,
-//         }
-//       );
-
-//       dispatch(deleteABudget(budgetToDelete));
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   };
-// };
-
-// export const getBudgetAmountThunk = (budgetId) => {
-//   return async (dispatch) => {
-//     try {
-//       const response = await axios.post(
-//         "http://localhost:8080/api/budget/budgetAmount",
-//         budgetId,
-//         {
-//           withCredentials: true,
-//         }
-//       );
-//       console.log("Budget total retrieved by thunk: ", response.data);
-//       dispatch(getBudgetAmount(response.data));
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   };
-// };
-
-// export const getBudgets = () => {
-//   return async (dispatch) => {
-//     try {
-//       const response = await axios.get(
-//         "http://localhost:8080/api/budget/budgetDetails",
-//         { withCredentials: true }
-//       );
-//       console.log(response);
-//       dispatch(getBudget(response.data));
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   };
-// };
-
-// export const addBudgetThunk = (budgetInfo) => {
-//   return async (dispatch) => {
-//     try {
-//       const response = await axios.post(
-//         "http://localhost:8080/api/budget/addBudget",
-//         budgetInfo,
-//         {
-//           withCredentials: true,
-//         }
-//       );
-//       console.log("RESPONSE FROM addBudgetThunk" + response.data);
-//       dispatch(addBudget(response.data));
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   };
-// };

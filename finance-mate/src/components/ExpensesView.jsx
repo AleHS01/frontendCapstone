@@ -47,15 +47,12 @@ const ExpensesView = () => {
     const getExpenses = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:8080/api/expense/getExpenses",
+          `${process.env.REACT_APP_BACKEND_URL}/api/expense/getExpenses`,
           { withCredentials: true }
         );
 
-        console.log("Response.data in ExpenseView\n", response.data);
         setExpenses(response.data);
-      } catch (error) {
-        console.log(error);
-      }
+      } catch (error) {}
     };
     getExpenses();
   }, []);
@@ -70,7 +67,7 @@ const ExpensesView = () => {
           label: expense.expense_name,
           value: parseFloat(expense.expense_value),
         }));
-        console.log("data:\n", data);
+
         setPieChartData(data);
       } else {
         const defaultData = [];
@@ -81,7 +78,7 @@ const ExpensesView = () => {
             value: Math.floor(Math.random() * 951) + 50,
           });
         }
-        console.log("defaultData:\n", defaultData);
+
         setPieChartData(defaultData);
       }
     };
@@ -97,7 +94,7 @@ const ExpensesView = () => {
             id: randomPattern,
           };
         });
-        console.log("fill:\n", fill);
+
         setPieChartFill(fill);
       } else {
         const defaultFill = [];
@@ -111,7 +108,7 @@ const ExpensesView = () => {
             id: randomPattern,
           });
         }
-        console.log("default fill:\n", defaultFill);
+
         setPieChartFill(defaultFill);
       }
     };
@@ -244,7 +241,7 @@ const ExpensesView = () => {
           </Grid>
           <Grid item sx={{ mr: "40px" }}>
             <Chip
-              label="Edit Expenses"
+              label="Edit or Add Expenses"
               component={Link}
               to="/expense-form"
               clickable

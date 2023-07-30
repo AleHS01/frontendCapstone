@@ -25,22 +25,15 @@ import { AiOutlineTransaction } from "react-icons/ai";
 function Transactions() {
   const dispatch = useDispatch();
   const transactions = useSelector((state) => state.trans);
-  console.log("Transactions here", transactions);
   const user = useSelector((state) => state.user);
+
+  // const user = useSelector((state) => state.user);
   const [sortedTransactions, setSortedTransactions] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const transactionsPerPage = 30;
 
-  const getUser = async () => {
-    try {
-      dispatch(fetchUserThunk());
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   useEffect(() => {
-    getUser().then(() => dispatch(getTransactionsThunk()));
+    dispatch(getTransactionsThunk());
   }, []);
 
   useEffect(() => {
@@ -83,158 +76,116 @@ function Transactions() {
   const totalPages = Math.ceil(sortedTransactions.length / transactionsPerPage);
 
   return (
-    <div className="dashboard">
-      <SideBar></SideBar>
-      <div className="content p-4">
-        <PageHeader page_name="My Transactions" />
-        
-        <Paper
-          elevation={5}
-          sx={{
-            width: "90%",
-            padding: "10px",
-            margin: "20px auto 40px",
-            overflow: "hidden",
-            // backgroundColor: "#7BCCC4",
-            backgroundColor: "#fff",
-          }}
+    <div>
+      {/* <PageHeader page_name="My Transactions" /> */}
+
+      <div
+        style={{
+          height: "450px",
+          width: "100%",
+          margin: "0 auto",
+          textAlign: "center",
+        }}
+      >
+        <Typography
+          variant="h4"
+          sx={{ textAlign: "center", fontWeight: "500", color: "#0e365e" }}
         >
-          <Grid container spacing={2} alignItems="center">
-            <Grid item xs={9} sx={{ display: "flex", alignItems: "center" }}>
-              <Box>
-                <Typography
-                  variant="h3"
-                  color="#0e365e"
-                  sx={{ fontWeight: "500" }}
-                >
-                  Welcome To Your Transactions!
-                </Typography>
-                <Typography variant="subtitle1" color="#2c4966">
-                  Welcome to your Transactions page! Easily explore and
-                  understand your financial activities, track expenses, and
-                  monitor income. Start now to gain complete visibility into
-                  your financial journey and plan for a prosperous future.
-                </Typography>
-              </Box>
-            </Grid>
-            <Grid item xs={3}>
-              <img
-                src="https://i.postimg.cc/R0TxKyPv/Mobile-payments-rafiki.png"
-                alt="Budget Administration"
-                style={{
-                  width: "220px",
-                  height: "220px",
-                }}
-              />
-            </Grid>
-          </Grid>
-        </Paper>
-        <div
-          style={{
-            height: "450px",
-            width: "60%",
-            margin: "0 auto",
-            textAlign: "center",
-          }}
-        >
-          <Typography
-            variant="h4"
-            sx={{ textAlign: "center", fontWeight: "500", color: "#0e365e" }}
-          >
-            Transactions Summary
+          Transactions Summary
+        </Typography>
+        <TransactionCatergory transactions={transactions} />
+      </div>
+
+      <Grid
+        container
+        alignItems="center"
+        spacing={2}
+        sx={{ mt: "20px", height: "40px" }}
+      >
+        <Grid item>
+          <Typography variant="h6" sx={{ color: "#05377f" }}>
+            Amount:
+            <Tooltip title="Ascending" placement="top">
+              <IconButton onClick={handleSortAsc}>
+                <ArrowUpwardIcon
+                  fontSize="small"
+                  sx={{ color: "#9da3ab" }}
+                  className="filter-arrows"
+                />
+              </IconButton>
+            </Tooltip>
+            <Tooltip title="Descending" placement="top">
+              <IconButton onClick={handleSortDesc}>
+                <ArrowDownwardIcon
+                  fontSize="small"
+                  sx={{ color: "#9da3ab" }}
+                  className="filter-arrows"
+                />
+              </IconButton>
+            </Tooltip>
           </Typography>
-          <TransactionCatergory transactions={transactions} />
-        </div>
-        <Grid
-          container
-          alignItems="center"
-          spacing={2}
-          sx={{ mt: "20px", height: "40px" }}
-        >
-          <Grid item sx={{ ml: "40px" }}>
-            <Typography variant="h6" sx={{ color: "#05377f" }}>
-              Amount:
-              <Tooltip title="Ascending" placement="top">
-                <IconButton onClick={handleSortAsc}>
-                  <ArrowUpwardIcon
-                    fontSize="small"
-                    sx={{ color: "#9da3ab" }}
-                    className="filter-arrows"
-                  />
-                </IconButton>
-              </Tooltip>
-              <Tooltip title="Descending" placement="top">
-                <IconButton onClick={handleSortDesc}>
-                  <ArrowDownwardIcon
-                    fontSize="small"
-                    sx={{ color: "#9da3ab" }}
-                    className="filter-arrows"
-                  />
-                </IconButton>
-              </Tooltip>
-            </Typography>
-          </Grid>
-          <Grid item sx={{ mr: "0px" }}>
-            <Typography variant="h6" sx={{ color: "#05377f" }}>
-              Date:
-              <Tooltip title="Recent" placement="top">
-                <IconButton onClick={handleSortRecent}>
-                  <ArrowUpwardIcon
-                    fontSize="small"
-                    sx={{ color: "#9da3ab" }}
-                    className="filter-arrows"
-                  />
-                </IconButton>
-              </Tooltip>
-              <Tooltip title="Oldest" placement="top">
-                <IconButton onClick={handleSortOldest}>
-                  <ArrowDownwardIcon
-                    fontSize="small"
-                    sx={{ color: "#9da3ab" }}
-                    className="filter-arrows"
-                  />
-                </IconButton>
-              </Tooltip>
-            </Typography>
-          </Grid>
-          <Grid item xs>
-            <Divider
-              orientation="vertical"
-              variant="middle"
-              sx={{ borderColor: "#4CAF50", height: "100%" }}
-            />
-          </Grid>
-          <Grid item>
-            <Typography
-              variant="h4"
-              sx={{ fontWeight: "500", color: "#4CAF50" }}
-            >
-              All Your Transactions
-            </Typography>
-          </Grid>
-          <Grid item xs>
-            <Divider
-              orientation="vertical"
-              variant="middle"
-              sx={{ borderColor: "#4CAF50", height: "100%" }}
-            />
-          </Grid>
-          <Grid item>
-            <Box
-              sx={{
-                display: "flex",
-                justifyContent: "center",
-                mt: 0,
-              }}
-            >
-              <Pagination
-                count={totalPages}
-                page={currentPage}
-                onChange={(event, value) => setCurrentPage(value)}
-              />
-            </Box>
-          </Grid>
         </Grid>
+        <Grid item sx={{ mr: "0px" }}>
+          <Typography variant="h6" sx={{ color: "#05377f" }}>
+            Date:
+            <Tooltip title="Recent" placement="top">
+              <IconButton onClick={handleSortRecent}>
+                <ArrowUpwardIcon
+                  fontSize="small"
+                  sx={{ color: "#9da3ab" }}
+                  className="filter-arrows"
+                />
+              </IconButton>
+            </Tooltip>
+            <Tooltip title="Oldest" placement="top">
+              <IconButton onClick={handleSortOldest}>
+                <ArrowDownwardIcon
+                  fontSize="small"
+                  sx={{ color: "#9da3ab" }}
+                  className="filter-arrows"
+                />
+              </IconButton>
+            </Tooltip>
+          </Typography>
+        </Grid>
+        <Grid item xs>
+          <Divider
+            orientation="vertical"
+            variant="middle"
+            sx={{ borderColor: "#4CAF50", height: "100%" }}
+          />
+        </Grid>
+        <Grid item>
+          <Typography variant="h4" sx={{ fontWeight: "500", color: "#4CAF50" }}>
+            All Your Transactions
+          </Typography>
+        </Grid>
+        <Grid item xs>
+          <Divider
+            orientation="vertical"
+            variant="middle"
+            sx={{ borderColor: "#4CAF50", height: "100%" }}
+          />
+        </Grid>
+        <Grid item>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              mt: 0,
+            }}
+          >
+            <Pagination
+              count={totalPages}
+              page={currentPage}
+              onChange={(event, value) => setCurrentPage(value)}
+            />
+          </Box>
+        </Grid>
+      </Grid>
+      {!user.plaidAccessToken ? (
+        <h1>Please Add a Payment or Connect bank account</h1>
+      ) : (
         <div style={{ margin: "30px auto 10px", width: "90%" }}>
           {sortedTransactions
             .slice(
@@ -300,7 +251,7 @@ function Transactions() {
             />
           </Box>
         </div>
-      </div>
+      )}
     </div>
   );
 }

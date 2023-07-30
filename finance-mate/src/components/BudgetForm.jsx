@@ -1,15 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addBudgetThunk } from "../redux/budget/budget.action";
-import {
-  TextField,
-  Button,
-  Container,
-  Typography,
-  Grid,
-  Chip,
-} from "@mui/material";
+import { TextField, Button, Container, Typography, Grid } from "@mui/material";
 import styled from "styled-components";
 import { getBudgetsThunk } from "../redux/budget/budget.action";
 // import RecentExpenses from "./RecentExpenses";
@@ -52,7 +45,6 @@ const BudgetForm = () => {
 
   useEffect(() => {
     dispatch(getBudgetsThunk());
-    console.log("Use Effect");
   }, [dispatch]);
 
   const handleSubmit = async (event) => {
@@ -68,13 +60,13 @@ const BudgetForm = () => {
       }
       return acc;
     }, {});
-    console.log(objectWithHighestId);
+
     navigate(`/budget-expense/${objectWithHighestId.id}`);
   };
 
   const handleBudget = (event) => {
     const budget_Id = event.target.value;
-    console.log("BudgetID in handleBudget() " + budget_Id);
+
     navigate(`/budget-expense/${budget_Id}`);
   };
 
@@ -91,7 +83,7 @@ const BudgetForm = () => {
               fontWeight={"bold"}
               gutterBottom
             >
-              Add or View a <span style={{ color: "limegreen" }}>Budget!</span>
+              Add a <span style={{ color: "limegreen" }}>Budget!</span>
             </Typography>
 
             <Typography variant="body1" align="center" gutterBottom>
@@ -140,7 +132,7 @@ const BudgetForm = () => {
                       "&:hover": {
                         backgroundColor: "#05377f",
                       },
-                      minWidth: "517px",
+                      minWidth: "370px",
                     }}
                     onClick={handleSubmit}
                   >
@@ -149,30 +141,6 @@ const BudgetForm = () => {
                 </Grid>
               </form>
             </DottedBox>
-            <Typography
-              variant="h2"
-              textAlign={"center"}
-              fontWeight={"bold"}
-              gutterBottom
-            >
-              Your List of <span style={{ color: "limegreen" }}>Budgets!</span>
-            </Typography>
-            {budgets.map((item) => (
-              <button
-                key={item.id}
-                onClick={handleBudget}
-                value={item.id}
-                className="bg-blue-500 text-white hover:bg-green-600 font-bold py-2 px-4 rounded m-4"
-                style={{
-                  padding: "8px 0",
-                  minWidth: "220px",
-                  fontSize: "1.2rem",
-                }}
-              >
-                {item.budget_name} {item.expense_value}
-              </button>
-            ))}
-            {/* <RecentExpenses></RecentExpenses> */}
           </ContentContainer>
         </Container>
       </div>

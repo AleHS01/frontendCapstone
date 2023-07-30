@@ -1,6 +1,8 @@
 import expenseTypes from "./expense.type";
 import axios from "axios";
 
+axios.defaults.withCredentials = true;
+
 export const getExpenses = (expenses) => ({
   type: expenseTypes.GET_EXPENSES,
   payload: expenses,
@@ -25,20 +27,20 @@ export const addExpense = (expense) => ({
 });
 
 //----------------------Thunks----------------------
-export const getExpensesThunk = () => {
+export const getExpensesThunk = (UserId) => {
   return async (dispatch) => {
     try {
       const response = await axios.get(
-        "http://localhost:8080/api/expense/getExpenses",
-        { withCredentials: true }
+        `${process.env.REACT_APP_BACKEND_URL}/api/expense/getExpenses`
       );
       const expenses = await response.data;
-      // console.log("User Expenses in Thunk:", expenses);
+      console.log(
+        "GET EXPENSES RESPONSE DATA INSIDE THUNK\n",
+        await response.data
+      );
       dispatch(getExpenses(expenses));
       return response.data;
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   };
 };
 
@@ -47,7 +49,7 @@ export const addExpenseThunk = (expenseData) => {
     try {
       // Make a POST request to the API endpoint to add the expense
       const response = await axios.post(
-        "http://localhost:8080/api/expense/addExpense",
+        `${process.env.REACT_APP_BACKEND_URL}/api/expense/addExpense`,
         expenseData,
         { withCredentials: true }
       );
@@ -64,20 +66,18 @@ export const createExpensesThunk = (expenses) => {
   return async (dispatch) => {
     try {
       const response = await axios.post(
-        "http://localhost:8080/api/expense",
+        `${process.env.REACT_APP_BACKEND_URL}/api/expense`,
         { expenses },
         {
           withCredentials: true,
         }
       );
       const expensesList = await response.data;
-      console.log("Created Expense List:", expensesList);
+
       dispatch(createExpenses(expensesList));
 
       return response.data;
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   };
 };
 
@@ -85,34 +85,30 @@ export const updateExpenseThunk = (expenseToUpdpate) => {
   return async (dispatch) => {
     try {
       const response = await axios.put(
-        `http://localhost:8080/api/expense/${expenseToUpdpate.id}`,
+        `${process.env.REACT_APP_BACKEND_URL}/api/expense/${expenseToUpdpate.id}`,
         expenseToUpdpate,
         {
           withCredentials: true,
         }
       );
       const updatedExpense = await response.data;
-      console.log("Updated Expense", updatedExpense);
+
       dispatch(updateAExpense(updatedExpense));
       return response.data;
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   };
 };
 export const deleteExpenseThunk = (expenseToDelete) => {
   return async (dispatch) => {
     try {
       await axios.delete(
-        `http://localhost:8080/api/expense/${expenseToDelete.id}`,
+        `${process.env.REACT_APP_BACKEND_URL}/api/expense/${expenseToDelete.id}`,
         {
           withCredentials: true,
         }
       );
 
       dispatch(deleteAExpense(expenseToDelete));
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   };
 };

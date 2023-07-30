@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { Button, Typography } from "@mui/material";
+import { Button, Typography, Box } from "@mui/material";
 import { useDispatch } from "react-redux";
 import { logoutUserThunk } from "../redux/user/user.action";
 
@@ -11,13 +11,11 @@ const Logout = () => {
   const handleLogout = async () => {
     try {
       // Simulating a logout request with a delay
-      await new Promise((resolve) => setTimeout(resolve, 2000));
+      await new Promise((resolve) => setTimeout(resolve, 1000));
       await dispatch(logoutUserThunk());
-      console.log("Logout successful");
+
       navigate("/");
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   };
 
   useEffect(() => {
@@ -25,13 +23,25 @@ const Logout = () => {
   }, []);
 
   return (
-    <div>
-      <Typography variant="h1">Logging out</Typography>
-      <Typography variant="body1">Logout successful</Typography>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+        height: "100vh",
+      }}
+    >
+      <Typography variant="h1" sx={{ mb: 2 }}>
+        Logging You Out
+      </Typography>
+      <Typography variant="body1" sx={{ mb: 2 }}>
+        Logout successful
+      </Typography>
       <Button variant="contained" onClick={() => navigate("/")}>
         Go Back Home
       </Button>
-    </div>
+    </Box>
   );
 };
 

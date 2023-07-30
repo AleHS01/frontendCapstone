@@ -1,5 +1,3 @@
-
-import { isMuiElement } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
@@ -71,6 +69,7 @@ const BudgetBox = ({ budget, expenses, expense_total }) => {
   const [budgetamount, setBudgetAmount] = useState(budget.amount);
   const [budgetexpenses, setBudgetExpenses] = useState(expenses);
   const [budgetexpenseamount, setBudgetExpenseAmount] = useState(0);
+  const [alertShown, setAlertShown] = useState(false);
 
   useEffect(() => {
     try {
@@ -81,14 +80,25 @@ const BudgetBox = ({ budget, expenses, expense_total }) => {
       const budgetExpenses = expenses;
       setBudgetExpenses(budgetExpenses);
       setBudgetExpenseAmount(expense_total);
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   }, [budget, expenses, expense_total]);
 
   let fillpercentage = (budgetexpenseamount / budgetamount) * 100;
-  fillpercentage = Math.min(fillpercentage, 100)
+  fillpercentage = Math.min(fillpercentage, 100);
   const remainingBal = (budgetamount - budgetexpenseamount).toFixed(1);
+  // if(remainingBal < 10 && budgetamount !== remainingBal){
+  //   alert("YOURE BROKE BOI STOOOOOOOOOOOOOOP") 
+  // }
+
+  useEffect(() => {
+    if (remainingBal < 5 && !alertShown) {
+      alert("You're running low on budget. Please check your expenses.");
+      setAlertShown(true);
+    }
+    if (remainingBal >= 5 && alertShown) {
+      setAlertShown(false);
+    }
+  }, [remainingBal, alertShown]);
 
   return (
     <DottedBox>

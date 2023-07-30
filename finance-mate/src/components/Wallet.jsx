@@ -5,7 +5,7 @@ const Wallet = () => {
   const handleSend = async () => {
     try {
       //   const response = await axios.put(
-      //     "http://localhost:8080/api/transactions/send",
+      //     `${process.env.REACT_APP_BACKEND_URL}/api/transactions/send",
       //     {
       //       amount: 50,
       //       recipientId: 2,
@@ -14,17 +14,15 @@ const Wallet = () => {
       //       withCredentials: true,
       //     }
       //   );
-      //   console.log("Send in wallet: ", response);
+      //
 
       handleRecieve();
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   };
   const handleRecieve = async () => {
     try {
       const response = await axios.put(
-        "http://localhost:8080/api/transactions/receive",
+        `${process.env.REACT_APP_BACKEND_URL}/api/transactions/receive`,
         {
           amount: 30,
           senderId: 3,
@@ -33,10 +31,7 @@ const Wallet = () => {
           withCredentials: true,
         }
       );
-      console.log("Recieved in wallet: ", response.data);
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   };
 
   return (
