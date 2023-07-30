@@ -215,7 +215,7 @@ const BudgetView = () => {
                     mt: 2,
                   }}
                 >
-                  Your Budgets are loading...
+                 Create Budgets!
                 </Typography>
               </div>
             )}
