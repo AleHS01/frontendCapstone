@@ -22,7 +22,7 @@ function SideBar() {
     try {
       dispatch(logoutUserThunk());
 
-      navigate("/");
+      navigate("/logout");
     } catch (error) {}
   };
 
@@ -198,7 +198,7 @@ function SideBar() {
           </button>
         </motion.div>
 
-        <motion.div
+        {/* <motion.div
           variants={{
             hidden: location.state
               ? { opacity: 0, x: -75 }
@@ -224,7 +224,7 @@ function SideBar() {
           >
             Expenses Form
           </button>
-        </motion.div>
+        </motion.div> */}
 
         <motion.div
           variants={{
@@ -278,7 +278,7 @@ function SideBar() {
             }`}
             onClick={handleSetBudget}
           >
-            Set Budget
+            Budgets
           </button>
         </motion.div>
 

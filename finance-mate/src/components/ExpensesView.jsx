@@ -241,7 +241,7 @@ const ExpensesView = () => {
           </Grid>
           <Grid item sx={{ mr: "40px" }}>
             <Chip
-              label="Edit Expenses"
+              label="Edit or Add Expenses"
               component={Link}
               to="/expense-form"
               clickable

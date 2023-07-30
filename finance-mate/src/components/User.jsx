@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchUserThunk } from "../redux/user/user.action";
 import { getBudgetsThunk } from "../redux/budget/budget.action";
 import { getExpensesThunk } from "../redux/expenses/expense.action";
+import { getTransactionsThunk } from "../redux/transactions/transation.action";
+import PageHeader from "./PageHeader";
 
 import SideBar from "./side-bar";
 import { dispatch } from "d3";
@@ -28,7 +30,8 @@ const User = () => {
 
     dispatch(getBudgetsThunk());
     dispatch(getExpensesThunk());
-    // dispatch(fetchUserThunk());
+    dispatch(getTransactionsThunk());
+    dispatch(fetchUserThunk());
   }, []);
 
   //
@@ -37,6 +40,8 @@ const User = () => {
     <div className="dashboard">
       <SideBar></SideBar>
       <div className="content p-5">
+        <PageHeader page_name="My Accounts" />
+
         <div className="">
           <motion.div
             variants={{
@@ -53,12 +58,12 @@ const User = () => {
         {user ? (
           <div class="bg-gray-100 min-h-screen py-8 px-4">
             <h1 class="text-3xl font-bold text-center text-light-green mb-4">
-              Welcome {user.first_name}
+              Welcome {user.first_name + " " + user.last_name}
             </h1>
             <h3 class="text-xl font-semibold text-center text-gray-800 mb-4">
-              Dashboard
+              To Your Dashboard
             </h3>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="grid grid-cols-1 md:grid-cols-1 gap-6">
               <div class="bg-white rounded-lg shadow-md p-4">
                 <Accounts></Accounts>
               </div>

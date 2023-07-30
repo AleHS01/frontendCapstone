@@ -38,9 +38,9 @@ const HeroSection = () => {
         }}
         onClick={() => navigate("/creategroup")}
       >
-        Create Group
+        Create or Join a Group
       </Button>
-      <Button
+      {/* <Button
         variant="contained"
         sx={{
           backgroundColor: "limegreen",
@@ -56,7 +56,7 @@ const HeroSection = () => {
         onClick={() => navigate("/addMembers/1")}
       >
         View Groups
-      </Button>
+      </Button> */}
     </Box>
   );
 };
