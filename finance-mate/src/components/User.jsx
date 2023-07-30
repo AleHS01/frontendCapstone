@@ -36,48 +36,49 @@ const User = () => {
 
   //
 
-  return (
-    <div className="dashboard">
-      <SideBar></SideBar>
-      <div className="content p-5">
-        <PageHeader page_name="My Accounts" />
 
-        <div className="">
-          <motion.div
-            variants={{
-              hidden: { opacity: 0, y: 75 },
-              visible: { opacity: 1, y: 0 },
-            }}
-            initial="hidden"
-            animate="Visible"
-            // animate={location.state ? "visible" : ''}
-            transition={{ duration: 0.5, delay: 0.25 }}
-          ></motion.div>
-        </div>
-
-        {user ? (
-          <div class="bg-gray-100 min-h-screen py-8 px-4">
-            <h1 class="text-3xl font-bold text-center text-light-green mb-4">
-              Welcome {user.first_name + " " + user.last_name}
-            </h1>
-            <h3 class="text-xl font-semibold text-center text-gray-800 mb-4">
-              To Your Dashboard
-            </h3>
-            <div class="grid grid-cols-1 md:grid-cols-1 gap-6">
-              <div class="bg-white rounded-lg shadow-md p-4">
-                <Accounts></Accounts>
-              </div>
-              <div class="bg-white rounded-lg shadow-md p-4">
-                <Transactions></Transactions>
+    return (
+      <div className="dashboard">
+        <SideBar />
+        <div className="content p-5">
+          <PageHeader page_name="My Accounts" />
+          {user ? (
+            <div className="bg-gray-100 min-h-screen py-8 px-4">
+              <h1 className="text-3xl font-bold text-center text-light-green mb-4">
+                Welcome {user.first_name}
+              </h1>
+              <h3 className="text-xl font-semibold text-center text-gray-800 mb-4">
+                Dashboard
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-1 gap-6">
+                <div className="bg-white rounded-lg shadow-md p-4">
+                  <motion.div
+                    className="bg-white rounded-lg shadow-md p-4"
+                    initial={{ opacity: 0, x: -50 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.5, delay: 0.25 }}
+                  >
+                    <Accounts />
+                  </motion.div>
+                  <motion.div
+                    className="bg-white rounded-lg shadow-md p-4"
+                    initial={{ opacity: 0, x: 50 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.5, delay: 0.25 }}
+                  >
+                    <Transactions />
+                  </motion.div>
+                </div>
               </div>
             </div>
-          </div>
-        ) : (
-          <h2>Loading User data...</h2>
-        )}
+          ) : (
+            <h2>Loading User data...</h2>
+          )}
+        </div>
       </div>
-    </div>
-  );
-};
+    );
+  
+  }
+
 
 export default User;

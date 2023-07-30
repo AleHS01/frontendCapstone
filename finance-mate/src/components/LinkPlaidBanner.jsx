@@ -17,7 +17,7 @@ const LinkPlaidBanner = () => {
       <Grid container spacing={2} alignItems="center">
         <Grid item xs={9} sx={{ display: "flex", alignItems: "center" }}>
           <Box>
-            <Typography variant="h2" color="#0e365e" sx={{ fontWeight: "500" }}>
+            <Typography variant="h3" color="#0e365e" sx={{ fontWeight: "425" }}>
               Welcome to Plaid Integration!
             </Typography>
             <Typography variant="subtitle1" color="#2c4966">
@@ -35,7 +35,7 @@ const LinkPlaidBanner = () => {
             alt="Plaid"
             style={{
               width: "220px",
-              height: "220px",
+              height: "auto",
             }}
           />
         </Grid>

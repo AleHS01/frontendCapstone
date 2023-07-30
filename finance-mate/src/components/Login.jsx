@@ -9,14 +9,10 @@ import { GrUserAdd } from "react-icons/gr";
 import GoogleButton from "react-google-button";
 import { googleLoginThunk } from "../redux/user/user.action";
 import { FcGoogle } from "react-icons/fc";
-import {
-  motion,
-  AnimatePresence,
-  isInView,
-  useInView,
-  useAnimation,
-} from "framer-motion";
-//GrUserAdd
+import { motion, AnimatePresence, isInView, useInView, useAnimation } from "framer-motion";
+import space from "../images/space.webp"; // Import the image
+
+
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -61,27 +57,37 @@ const Login = () => {
 
   return (
     <div
-      style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
-    >
-      {/* Link to Home */}
-      <Link
-        className="hover:scale-110 hover:shadow-lg duration-200 absolute top-0 right-0 bg-green-600 flex rounded-md px-4 py-2 m-4 shadow-md font-semibold font-sans rounded-lg border-4"
-        to="/"
-      >
-        <AiFillHome className="mt-0.5 text-lg" />
-        Home
-      </Link>
+      style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+        {/* Link to Home */}
+      <Link className="hover:scale-110 hover:shadow-lg duration-200 absolute top-0 right-0 bg-green-400 flex rounded-md px-4 py-2 m-4 shadow-md font-semibold font-sans rounded-lg border-4" to="/">
+        <AiFillHome className="mt-0.5 text-lg"/>
+        Home</Link>
 
-      <h1 className=" flex justify-center text-white my-5 bg-black p-4 rounded-md text-2xl font-extrabold border-8 shadow-lg">
-        Welcome to Finance-Mate <br /> Take Control of Your Finances
-      </h1>
-      <input
+        <motion.img 
+          variants={{
+            hidden: {opacity: 0, x: -80},
+            visible: {opacity: 1, x: 0},
+          }}
+          initial="hidden"
+          animate="visible"
+          transition={{duration: 0.8, delay: 0.25}}
+            className="ml-4 my-2"
+            src="https://i.postimg.cc/x1rYdyrp/Welcome-to-scribie-512x391-1.png"
+            alt="Plaid"
+            style={{ width: "200px", height: "auto" }}
+          />
+      
+      <div className="border shadow-xl rounded-md bg-green-300 p-4 py-6 px-4 my-2 mb-2 border-black flex flex-col items-center"
+      style={{width: "400px", height: "450px"}}
+      >
+        <h1 className="flex justify-center font-extrabold text-4xl font-serif mb-2"> Login</h1>
+        <input
         type="text"
         placeholder="Username"
         value={username}
         onChange={(e) => setUsername(e.target.value)}
         //TailWindCSS
-        className="mb-4 py-2 px-4 border border-black rounded-md shadow-lg focus:outline-none focus:border-green-500"
+        className="mb-4 py-2 px-4 border border-black rounded-md shadow-xl focus:outline-none focus:border-green-500"
       />
 
       <input
@@ -90,7 +96,7 @@ const Login = () => {
         value={password}
         onChange={(e) => setPassword(e.target.value)}
         //TailWindCSS
-        className="mb-4 py-2 px-4 border border-black rounded-md shadow-lg focus:outline-none focus:border-green-500"
+        className="mb-4 py-2 px-4 border border-black rounded-md shadow-xl focus:outline-none focus:border-green-500"
       />
 
       <button
@@ -102,72 +108,24 @@ const Login = () => {
         Submit
       </button>
 
-      <br />
-      <motion.div
-        variants={{
-          hidden: { opacity: 0, x: -75 },
-          visible: { opacity: 1, x: 0 },
-        }}
-        initial="hidden"
-        animate="visible"
-        transition={{ duration: 1, delay: 0.5 }}
-        className="bg-green-600 flex rounded-lg px-4 py-2 mr-4 items-center mb-4 shadow-md border-8 "
-      >
-        <p className="text-black mr-2 font-serif text-2xl">Or sign up with:</p>
-        <a href={`${process.env.REACT_APP_BACKEND_URL}/api/login/google`}>
-          <GoogleButton className="m-4 shadow-md hover:scale-105" />
-        </a>
+      <GoogleButton className="m-4 shadow-md hover:scale-105" />
+    
+        <motion.div
+      variants={{
+        hidden: {opacity: 0, x: -75},
+        visible: {opacity: 1, x: 0},
+      }}
+      initial="hidden"
+      animate="visible"
+      transition={{duration: 1, delay: 1}}
+       className="bg-green-200 flex rounded-lg px-4 py-2 items-center shadow-md border-2">
+        <p className="text-black mr-2 font-serif text-lg">Don't have an account?</p>
+      <Link className="hover:scale-110 hover:shadow-lg duration-200 bg-green-400 flex rounded-md px-4 py-2 mr-2 items-center mt-mb-4 shadow-md " to="/signup">
+        <GrUserAdd className="text-lg mr-1"/> SIGN UP</Link>
       </motion.div>
-
-      <motion.div
-        variants={{
-          hidden: { opacity: 0, x: -75 },
-          visible: { opacity: 1, x: 0 },
-        }}
-        initial="hidden"
-        animate="visible"
-        transition={{ duration: 1, delay: 1 }}
-        className="bg-green-600 flex rounded-lg px-4 py-2 mr-4 items-center mb-4 shadow-md border-8 "
-      >
-        <p className="text-black mr-2 font-serif text-xl">
-          Don't have an account?
-        </p>
-        <Link
-          className="hover:scale-110 hover:shadow-lg duration-200 bg-green-400 flex rounded-md px-4 py-2 mr-2 items-center mt-mb-4 shadow-md "
-          to="/signup"
-        >
-          <GrUserAdd className="text-lg mr-1" /> SIGN UP
-        </Link>
-      </motion.div>
-
-      <motion.div
-        variants={{
-          hidden: { opacity: 0, y: 100 },
-          visible: { opacity: 1, y: 0 },
-        }}
-        initial="hidden"
-        animate="visible"
-        transition={{ duration: 1, delay: 1.5 }}
-        className="m-4 bg-green-600 flex rounded-lg px-6 py-3 mr-4 items-center mb-4 shadow-md border-8 "
-      >
-        <p className="text-base font-serif p-4 border border-green-500 border-opacity-50 rounded-lg bg-gradient-to-r from-green-100 to-green-200 text-lg">
-          <h1 className="flex justify-center font-semibold text-xl font-serif">
-            Finance-Mate
-          </h1>
-          Welcome to Finance-Mate, your trusted companion for financial
-          management. Unlock the power to take control of your money and achieve
-          your financial goals with ease. Our user-friendly platform provides
-          intuitive tools and comprehensive insights to simplify your financial
-          journey. Seamlessly track your expenses, analyze your spending
-          patterns, and effortlessly budget for a secure future. With
-          Finance-Mate, you can securely manage your accounts, make seamless
-          transactions, and stay informed about your financial health, all in
-          one place. Experience the convenience, security, and peace of mind
-          that comes with Finance-Mate. Join us today and embark on a smarter,
-          more rewarding financial journey.
-        </p>
-      </motion.div>
+      </div>
     </div>
+
   );
 };
 
