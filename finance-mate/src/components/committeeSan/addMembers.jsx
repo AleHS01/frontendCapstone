@@ -72,8 +72,8 @@ const AddMembers = () => {
   const group_name = location.state.groupName;
   const [activateStatus, setActivateStatus] = useState(false);
   const [orderBtnStatus, setOrderBtnStatus] = useState(false);
+  const [isGroupActive, setIsGroupActive] = useState(false);
   const [membersInPayoutOrder, setMembersInPayoutOrder] = useState([]);
-
   const [paymentMethodId, setPaymentMethodId] = useState(null);
 
   useEffect(() => {
@@ -107,8 +107,13 @@ const AddMembers = () => {
           GroupId: groupId,
         }
       );
-      setMembersInPayoutOrder(response.data);
-      console.log("Members in order:\n", response.data);
+
+      const sortedMembers = response.data.sort(
+        (a, b) => a.committee_order - b.committee_order
+      );
+
+      setMembersInPayoutOrder(sortedMembers);
+      console.log("Members in order:\n", sortedMembers);
     } catch (error) {
       console.log(error);
     }
@@ -151,7 +156,12 @@ const AddMembers = () => {
     isAdminFunc();
     // dispatch(fetchUserThunk());
     // dispatch(getMembersThunk(groupId));
-    // fetchMemberInPayoutOrder();
+    fetchMemberInPayoutOrder();
+    setIsGroupActive(
+      Array.isArray(members) && members.length > 0
+        ? members.some((member) => member.Group?.isActive !== null)
+        : false
+    );
   }, [groupId, user]);
 
   const handleClick = async () => {
@@ -292,7 +302,46 @@ const AddMembers = () => {
     }
   };
 
-  const carryPayout = () => {};
+  const payoutUser = async (chosenUserId) => {
+    try {
+      await axios.post(
+        `${process.env.REACT_APP_BACKEND_URL}/api/stripe/payout_user`,
+        {
+          chosenUserId,
+          groupId: groupId,
+        },
+        { withCredentials: true }
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const removeOrderNumber = async (userId) => {
+    try {
+      await axios.put(
+        `${process.env.REACT_APP_BACKEND_URL}/api/user/remove_order/${userId}`,
+        {},
+        { withCredentials: true }
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const carryPayout = async () => {
+    if (membersInPayoutOrder.length > 0) {
+      const chosenUser = membersInPayoutOrder[0];
+
+      await payoutUser(chosenUser.id);
+
+      await removeOrderNumber(chosenUser.id);
+
+      setMembersInPayoutOrder((prevMembers) => prevMembers.slice(1));
+
+      navigate(`/payout-success/${chosenUser.first_name}`);
+    }
+  };
 
   return (
     <PageBackground>
@@ -367,7 +416,7 @@ const AddMembers = () => {
                       minWidth: "450px",
                     }}
                     onClick={handleSubmit}
-                    disabled={!!user.GroupId}
+                    disabled={!!user.GroupId && !isGroupActive}
                   >
                     Join Group
                   </Button>
@@ -525,7 +574,10 @@ const AddMembers = () => {
                 </Table>
               </TableContainer>
             )}
-            {user.Group?.isActive && user.Group?.isOrdered && user.isAdmin ? (
+            {user.Group?.isActive &&
+            user.Group?.isOrdered &&
+            user.isAdmin &&
+            membersInPayoutOrder.length > 0 ? (
               <Button
                 variant="contained"
                 sx={{

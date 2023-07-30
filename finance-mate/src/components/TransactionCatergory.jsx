@@ -92,7 +92,7 @@ function TransactionCatergory({ transactions }) {
     processPieData();
     processPieFill();
     // }, 250);
-  }, []);
+  }, [transactions]);
 
   return (
     <PieChart className="content" data={pieChartData} fill={pieChartFill} />
