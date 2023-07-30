@@ -26,7 +26,8 @@ const Login = () => {
     if (loginStatus === "failed") {
       alert("Login Failed");
     } else if (loginStatus === "success") {
-      navigate("/user", { state: { intro: true } });
+      // navigate("/user", { state: { intro: true } });
+      navigate("/link_plaid")
     }
   }, [loginStatus]);
 

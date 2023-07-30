@@ -73,7 +73,7 @@ const SignUp = () => {
       if (newWindow.closed) {
         dispatch(googleLoginThunk());
         if (timer) clearInterval(timer);
-        navigate("/user", { state: { intro: true } });
+        navigate("/link_plaid", { state: { intro: true } });
       }
     }, 500);
   };
