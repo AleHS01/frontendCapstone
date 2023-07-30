@@ -15,7 +15,7 @@ import { BiLogIn } from "react-icons/bi";
 import GoogleButton from "react-google-button";
 import { googleLoginThunk } from "../redux/user/user.action";
 import { motion, useInView, useAnimation } from "framer-motion"
-import signup from "../images"
+
 
 
 //BiLogIn
