@@ -58,7 +58,7 @@ const StripeCheckout = ({ setPaymentMethodId, handleCardAttach }) => {
     } catch (error) {
       console.log(error)
     }
-  }, []);
+  }, [dispatch]);
 
  
 
