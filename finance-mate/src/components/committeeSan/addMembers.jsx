@@ -55,12 +55,11 @@ const ContentContainer = styled.div`
 `;
 
 const Navbar = styled.div`
-  position: relative;
+  position: absolute;
   top: 0;
   padding: 20px 0 0 30px;
   display: flex;
   justify-content: flex-start;
-  margin: 0 0 10px;
 `;
 
 const AddMembers = () => {
