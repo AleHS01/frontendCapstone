@@ -35,7 +35,7 @@ const LinkPlaidBanner = () => {
             alt="Plaid"
             style={{
               width: "220px",
-              height: "220px",
+              height: "auto",
             }}
           />
         </Grid>

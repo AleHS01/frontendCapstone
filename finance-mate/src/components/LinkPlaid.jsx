@@ -93,7 +93,7 @@ const LinkPlaid = () => {
 
   return (
     <div className="dashboard">
-      <SideBar />
+      <SideBar></SideBar>
       <div className="content p-3">
         <PageHeader page_name="Plaid Dashboard" />
         <LinkPlaidBanner />
@@ -113,7 +113,7 @@ const LinkPlaid = () => {
               initial="hidden"
               animate="visible"
               transition={{ duration: 0.6, delay: 0.45 }}
-              className="plaid-button flex items-center"
+              className="plaid-button flex justify-center"
               onClick={popUp}
               disabled={!ready}
             >
