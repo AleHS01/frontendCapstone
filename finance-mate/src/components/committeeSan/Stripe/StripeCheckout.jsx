@@ -17,7 +17,7 @@ const StripeCheckout = ({ setPaymentMethodId, handleCardAttach }) => {
     useEffect(()=>{
       try {
         async function  fetchSetUpIntent(){
-          const response = await axios.post("http://localhost:8080/api/stripe/setup_intent",{},{withCredentials:true})
+          const response = await axios.post(   `${process.env.REACT_APP_BACKEND_URL}/api/stripe/setup_intent`,{},{withCredentials:true})
           setClientSecret(response.data.setupIntent)
   
           console.log("setupIntent",response.data.setupIntent)
@@ -40,7 +40,7 @@ const StripeCheckout = ({ setPaymentMethodId, handleCardAttach }) => {
     try {
       async function fetchSetUpIntent() {
         const response = await axios.post(
-          "http://localhost:8080/api/stripe/setup_intent",
+          `${process.env.REACT_APP_BACKEND_URL}/api/stripe/setup_intent`,
           {},
           { withCredentials: true }
         );
@@ -120,7 +120,7 @@ function CheckoutForm({ clientSecret, setPaymentMethodId, handleCardAttach }) {
        */
 
       const response = await axios.post(
-        "http://localhost:8080/api/stripe/updatePaymentStatus",
+        `${process.env.REACT_APP_BACKEND_URL}/api/stripe/updatePaymentStatus`,
         { hasValidPayment: true },
         { withCredentials: true }
       );
