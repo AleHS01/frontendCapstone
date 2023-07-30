@@ -94,7 +94,7 @@ const LinkPlaid = () => {
   return (
     <div className="dashboard">
       <SideBar></SideBar>
-      <div className="content p-3">
+      <div className="content p-3 flex justify items-center">
         <PageHeader page_name="Plaid Dashboard" />
         <LinkPlaidBanner />
         <Grid container spacing={1} sx={{ marginBottom: "100px" }}>
