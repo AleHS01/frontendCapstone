@@ -56,22 +56,37 @@ const User = () => {
         </div>
 
         {user ? (
-          <div class="bg-gray-100 min-h-screen py-8 px-4">
-            <h1 class="text-3xl font-bold text-center text-light-green mb-4">
-              Welcome {user.first_name + " " + user.last_name}
-            </h1>
-            <h3 class="text-xl font-semibold text-center text-gray-800 mb-4">
-              To Your Dashboard
-            </h3>
-            <div class="grid grid-cols-1 md:grid-cols-1 gap-6">
-              <div class="bg-white rounded-lg shadow-md p-4">
-                <Accounts></Accounts>
-              </div>
-              <div class="bg-white rounded-lg shadow-md p-4">
-                <Transactions></Transactions>
-              </div>
-            </div>
-          </div>
+       <div class="bg-gray-100 min-h-screen py-8 px-4">
+        <h1 class="text-3xl font-bold text-center text-light-green mb-4">Welcome {user.first_name}</h1>
+        <h3 class="text-xl font-semibold text-center text-gray-800 mb-4">Dashboard</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+         <div class="bg-white rounded-lg shadow-md p-4">
+
+           <Accounts></Accounts>
+         </div>
+         <div class="bg-white rounded-lg shadow-md p-4">
+         <motion.div
+          className="bg-white rounded-lg shadow-md p-4"
+          initial={{ opacity: 0, x: -50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5, delay: 0.25 }}
+        >
+          <Accounts></Accounts>
+        </motion.div>
+        <motion.div
+          className="bg-white rounded-lg shadow-md p-4"
+          initial={{ opacity: 0, x: 50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5, delay: 0.25 }}
+        >
+          <Transactions></Transactions>
+        </motion.div>
+
+           <Transactions></Transactions>
+         </div>
+       </div>
+     </div>
+     
         ) : (
           <h2>Loading User data...</h2>
         )}

@@ -14,7 +14,8 @@ import {
 import { BiLogIn } from "react-icons/bi";
 import GoogleButton from "react-google-button";
 import { googleLoginThunk } from "../redux/user/user.action";
-import { motion, useInView, useAnimation } from "framer-motion";
+import { motion, useInView, useAnimation } from "framer-motion"
+
 
 //BiLogIn
 
@@ -107,26 +108,43 @@ const SignUp = () => {
   const location = useLocation();
 
   return (
+    <div style={{ backgroundColor: "#2E8B57", minHeight: "100vh" }}>
     <div
       style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
     >
       <Link
-        className="hover:scale-110 hover:shadow-lg duration-200 absolute top-0 right-0 bg-green-600 flex rounded-md px-4 py-2 m-4 shadow-md font-semibold font-sans rounded-lg border-4"
+        className="hover:scale-110 hover:shadow-lg duration-200 absolute top-0 right-0 bg-green-400 flex rounded-md px-4 py-2 m-4 shadow-md font-semibold font-sans rounded-lg border-4"
         to="/"
       >
         <AiFillHome className="mt-0.5 text-lg" />
         Home
       </Link>
+      <motion.img 
+          variants={{
+            hidden: {opacity: 0, x: -80},
+            visible: {opacity: 1, x: 0},
+          }}
+          initial="hidden"
+          animate="visible"
+          transition={{duration: 0.8, delay: 0.25}}
+            className="ml-4 my-2"
+            src={signup}
+            alt="Plaid"
+            style={{ width: "200px", height: "auto" }}
+          />
 
-      <h1 className=" flex justify-center text-white my-5 bg-black p-4 rounded-md text-2xl font-extrabold border-8 shadow-lg">
-        Join Finance-Mate Today <br /> Unlock the Power of Financial Freedom
-      </h1>
+
+      <div className="border shadow-xl rounded-md bg-green-300 p-4 py-6 px-4 my-2 mb-2 border-black flex flex-col items-center"
+      style={{width: "400px", height: "650px"}}
+      >
+        <h1 className="flex justify-center font-extrabold text-4xl font-serif mb-2"> Sign Up</h1>
       <input
         type="text"
         placeholder="First Name"
         value={firstName}
         onChange={(e) => setFirstName(e.target.value)}
         className="mb-4 py-2 px-4 border border-black rounded-md shadow-lg focus:outline-none focus:border-green-500"
+        style={{width: "300px"}}
       />
       <input
         type="text"
@@ -134,6 +152,7 @@ const SignUp = () => {
         value={lastName}
         onChange={(e) => setLastName(e.target.value)}
         className="mb-4 py-2 px-4 border border-black rounded-md shadow-lg focus:outline-none focus:border-green-500"
+        style={{width: "300px"}}
       />
       <input
         type="text"
@@ -141,6 +160,7 @@ const SignUp = () => {
         value={username}
         onChange={(e) => setUsername(e.target.value)}
         className="mb-4 py-2 px-4 border border-black rounded-md shadow-lg focus:outline-none focus:border-green-500"
+        style={{width: "300px"}}
       />
 
       <input
@@ -149,47 +169,25 @@ const SignUp = () => {
         value={email}
         onChange={(e) => setEmail(e.target.value)}
         className="mb-4 py-2 px-4 border border-black rounded-md shadow-lg focus:outline-none focus:border-green-500"
+        style={{width: "300px"}}
       />
-
-      <TextField
+      <input
         type={showPassword ? "text" : "password"}
-        label="Password"
-        variant="outlined"
+        placeholder="Password"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
-        style={{
-          marginBottom: "10px",
-          width: "12.5%", // Adjust width as needed
-          // Add other styles as needed
-        }}
-        InputProps={{
-          endAdornment: (
-            <>
-              {showPassword ? (
-                <AiOutlineEyeInvisible
-                  className="password-toggle"
-                  onClick={handleTogglePassword}
-                />
-              ) : (
-                <AiOutlineEye
-                  className="password-toggle"
-                  onClick={handleTogglePassword}
-                />
-              )}
-            </>
-          ),
-        }}
+        className="mb-4 py-2 px-4 border border-black rounded-md shadow-lg focus:outline-none focus:border-green-500"
+        style={{width: "300px"}}
       />
-
+      
       <TextField
         type={showPasswordVerified ? "text" : "password"}
-        label="Re-enter Password"
-        variant="outlined"
+        placeholder="Re-enter Password"
         value={passwordVerified}
         onChange={(e) => setPasswordVerified(e.target.value)}
         style={{
           marginBottom: "10px",
-          height: "5%",
+          height:"5%",
           width: "12.5%", // Adjust width as needed
           // Add other styles as needed
         }}
@@ -211,46 +209,43 @@ const SignUp = () => {
           ),
         }}
       />
+
       {formError && <p style={{ color: "red" }}>{formError}</p>}
       <button
+      style={{width: "150px"}}
         onClick={handleSubmit}
-        className="hover:scale-110 hover:shadow-lg duration-200 bg-green-600 flex rounded-md px-4 py-2 mr-4 items-center mv-4 shadow-md border-4 font-semibold font-sans"
+        className="flex justify-center hover:scale-110 hover:shadow-lg hover:bg-white duration-200 bg-green-500 flex rounded-md px-2 py-2 mr-4 items-center mv-4 shadow-md border-4 font-semibold font-sans"
       >
         <AiOutlineFileDone className="text-3xl" />
-        Submit
+        Sign Up
       </button>
       <br />
 
+
+
       <motion.div
-        variants={{
-          hidden: { opacity: 0, x: -75 },
-          visible: { opacity: 1, x: 0 },
-        }}
-        initial="hidden"
-        animate="visible"
-        transition={{ duration: 1, delay: 0.5 }}
-        className="bg-green-600 flex rounded-lg px-4 py-2 mr-4 items-center mb-4 shadow-md border-8 "
-      >
+      variants={{
+        hidden: {opacity: 0, x: -75},
+        visible: {opacity: 1, x: 0},
+      }}
+      initial="hidden"
+      animate="visible"
+      transition={{duration: 1, delay: 0.50}}
+      className="bg-green-600 flex rounded-lg px-4 py-2 mr-4 items-center mb-4 shadow-md border-8 ">
         <p className="text-black mr-2 font-serif text-2xl">Or sign up with:</p>
-        <GoogleButton
-          className="m-4 shadow-md hover:scale-105"
-          onClick={googleLogin}
-        />
+        <GoogleButton className="m-4 shadow-md hover:scale-105" onClick={googleLogin} />  
       </motion.div>
 
       <motion.div
-        variants={{
-          hidden: { opacity: 0, x: -75 },
-          visible: { opacity: 1, x: 0 },
-        }}
-        initial="hidden"
-        animate="visible"
-        transition={{ duration: 1, delay: 1 }}
-        className="bg-green-600 flex rounded-lg px-4 py-2 mr-4 items-center mb-4 shadow-md border-8 "
-      >
-        <p className="text-black mr-2 font-serif text-xl">
-          Already have an account?
-        </p>
+      variants={{
+        hidden: {opacity: 0, x: -75},
+        visible: {opacity: 1, x: 0},
+      }}
+      initial="hidden"
+      animate="visible"
+      transition={{duration: 1, delay: 1}}
+      className="bg-green-600 flex rounded-lg px-4 py-2 mr-4 items-center mb-4 shadow-md border-8 ">
+        <p className="text-black mr-2 font-serif text-xl">Already have an account?</p>
         <Link
           className=" hover:scale-110 hover:shadow-lg duration-200 bg-green-400 flex rounded-md px-4 py-2 mr-4 items-center mt-mb-4 shadow-md text-semibol"
           to="/login"
@@ -261,15 +256,14 @@ const SignUp = () => {
       </motion.div>
 
       <motion.div
-        variants={{
-          hidden: { opacity: 0, y: 100 },
-          visible: { opacity: 1, y: 0 },
-        }}
-        initial="hidden"
-        animate="visible"
-        transition={{ duration: 1, delay: 1.5 }}
-        className="m-4 bg-green-600 flex rounded-lg px-6 py-3 mr-4 items-center mb-4 shadow-md border-8 "
-      >
+      variants={{
+        hidden: {opacity: 0, y:100},
+        visible: {opacity: 1, y: 0},
+      }}
+      initial="hidden"
+      animate="visible"
+      transition={{duration: 1, delay: 1.50}}
+      className="m-4 bg-green-600 flex rounded-lg px-6 py-3 mr-4 items-center mb-4 shadow-md border-8 ">
         <p className="text-base font-serif p-4 border border-green-500 border-opacity-50 rounded-lg bg-gradient-to-r from-green-100 to-green-200 text-lg">
           <h1 className="flex justify-center font-semibold text-xl font-serif">
             Finance-Mate
@@ -284,7 +278,12 @@ const SignUp = () => {
         </p>
       </motion.div>
     </div>
+    </div>
+    
+   
+   
   );
 };
+
 
 export default SignUp;
