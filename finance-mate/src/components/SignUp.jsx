@@ -50,7 +50,7 @@ const SignUp = () => {
         }
       );
 
-      await dispatch(loginUserThunk({ username, password }));
+       dispatch(loginUserThunk({ username, password }));
       //need to dispatch Login, to login the user as soon as submit the data
 
       setPassword("");
@@ -60,7 +60,7 @@ const SignUp = () => {
       setPasswordVerified("");
       setFormError("");
 
-      navigate("/user");
+      navigate("/link_plaid");
     } catch (error) {}
   };
   const googleLogin = async () => {
