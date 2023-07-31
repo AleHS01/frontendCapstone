@@ -31,11 +31,14 @@ const Login = () => {
       alert("Login Failed");
     } else if (loginStatus === "success") {
       // navigate("/user", { state: { intro: true } });
-      navigate("/link_plaid");
+      setTimeout(() => {
+        navigate("/link_plaid");
+      }, 500);
     }
   }, [loginStatus]);
 
   useEffect(() => {
+    console.log("linr 41\n", user);
     if (!(Object.keys(user).length === 0)) {
       setLoginStatus("success"); // Set loginStatus to "success" if login is successfull
     }
