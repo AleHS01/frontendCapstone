@@ -52,11 +52,11 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
+          <Route path="/login/success" element={<LoginGoogleSuccess />} />
           <Route path="/logout" element={<Logout />} />
           <Route element={<ProtectedRoute isLogin={isLogin} />}>
             <Route path="/user" element={<User />} />
             <Route path="/link_plaid" element={<LinkPlaid />} />
-            <Route path="/accounts" element={<Accounts></Accounts>}></Route>
             <Route path="/accounts" element={<Accounts></Accounts>}></Route>
             <Route
               path="/bank_accounts"
@@ -72,24 +72,17 @@ function App() {
             />
             <Route path="/expenses" element={<ExpensesView />} />
             <Route path="/transactions" element={<Transactions />} />
-            <Route path="/login/success" element={<LoginGoogleSuccess />} />
             <Route path="/budgetpage" element={<BudgetPage />} />
-
             {/* prettier-ignore */}
             <Route path="/individual-budget/:budget_id" element={<IndividualBudget />}/>
-            {/* <Route path="/trans-cat" element={<TransactionCatergory/>}/> */}
-
-            <Route path="/wallet" element={<Wallet />} />
             <Route path="/committeesan" element={<LandingPage />} />
             <Route path="/creategroup" element={<GroupForm></GroupForm>} />
             <Route path="/addMembers" element={<AddMembers></AddMembers>} />
-
             <Route
               path="/stripe-checkout"
               element={<StripeCeckout></StripeCeckout>}
             />
             <Route path="/activate" element={<Activate></Activate>} />
-            {/* <Route path="/success" element={<Success></Success>} />     this was not in use, the component was fully commendted out*/}
             <Route path="failure" element={<FailurePage></FailurePage>} />
             <Route
               path="/payout-success/:firstName"
