@@ -32,17 +32,17 @@ const Login = () => {
     } else if (loginStatus === "success") {
       // navigate("/user", { state: { intro: true } });
       setTimeout(() => {
-        navigate("/link_plaid");
+        navigate("/user");
       }, 500);
     }
   }, [loginStatus]);
 
-  useEffect(() => {
-    console.log("linr 41\n", user);
-    if (!(Object.keys(user).length === 0)) {
-      setLoginStatus("success"); // Set loginStatus to "success" if login is successfull
-    }
-  }, [user]);
+  // useEffect(() => {
+  //   console.log("linr 41\n", user);
+  //   if (!(Object.keys(user).length === 0)) {
+  //     setLoginStatus("success"); // Set loginStatus to "success" if login is successfull
+  //   }
+  // }, [user]);
 
   const handleLogin = () => {
     dispatch(loginUserThunk({ username, password }));
@@ -56,10 +56,8 @@ const Login = () => {
     let timer = setInterval(async () => {
       if (newWindow.closed) {
         await dispatch(googleLoginThunk());
+        setLoginStatus("success");
         if (timer) clearInterval(timer);
-        setTimeout(() => {
-          navigate("/user", { state: { intro: true } });
-        }, 100);
       }
     }, 500);
   };
