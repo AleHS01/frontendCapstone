@@ -31,7 +31,7 @@ const Login = () => {
       alert("Login Failed");
     } else if (loginStatus === "success") {
       // navigate("/user", { state: { intro: true } });
-      navigate("/link_plaid")
+      navigate("/link_plaid");
     }
   }, [loginStatus]);
 
@@ -50,11 +50,13 @@ const Login = () => {
       "_blank",
       "width=400, height=700"
     );
-    let timer = setInterval(() => {
+    let timer = setInterval(async () => {
       if (newWindow.closed) {
-        dispatch(googleLoginThunk());
+        await dispatch(googleLoginThunk());
         if (timer) clearInterval(timer);
-        navigate("/user", { state: { intro: true } });
+        setTimeout(() => {
+          navigate("/user", { state: { intro: true } });
+        }, 100);
       }
     }, 500);
   };
